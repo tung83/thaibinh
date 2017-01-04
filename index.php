@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content=""/>
     <?=page_header($view,$db)?>  
-    <link rel="icon" type="image/png" href="<?=frontPath?>logo-ico.png"/>   
+    <link rel="icon" type="image/png" href="<?=frontPath?>short-letter-logo.png"/>   
     <?=common::basic_css()?> 
     <?=common::basic_js()?>
 </head>
