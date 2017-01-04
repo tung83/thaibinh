@@ -21,11 +21,14 @@ function menu($db,$view){
     <div class="nav hidden-xs hidden-sm">
     	<div class="container">
             <div class="row">
-                <div class="before-comp-name"> </div>
-                <div class="comp-name">
-                    <span class="first-comp">Công ty tnhh kỹ thuật tự động</span><p class="sencond-comp">Thái Bình</p>
-                </div> 
-                <div class="header-right">
+                <div class="col-md-4 hotline">
+                    <span>Hotline:</span>
+                    <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
+                </div>
+            <div class="col-md-4 logo">
+                <a href="'.myWeb.'" title="Responsive Slide Menus"><img src="'.frontPath.'logo.png" alt="" style=""/></a>
+            </div>
+                <div class="col-md-4 header-right">
                     <div class="header-contact">    
                         <form class="pull-right" role="form" method="get" name="search" id="search">
                             <input type="hidden" id="search-link" value="'.myWeb.search_view.'/" />                                  
@@ -36,12 +39,6 @@ function menu($db,$view){
                                 </span>
                             </div>
                         </form> 
-                        <span class="shop-contact first  pull-right">
-                            <i class="fa fa-phone"></i>
-                               <a href="tel:'.common::qtext($db,2).'">'
-            . '                     <b> '.common::qtext($db,2).' </b>
-                               </a> 
-                        </span>
                     </div>
                     '.social($db).' 
                 </div>
@@ -50,11 +47,7 @@ function menu($db,$view){
     </div>
     <div class="menu-ground">
     <div class="container clearfix bigmegamenu">
-    <div class="row">
-        <div class="logo clearfix">
-            <a href="'.myWeb.'" title="Responsive Slide Menus"><img src="'.frontPath.'logo.png" alt="" style=""/></a>
-        </div>
-
+    <div class="row">      
         <!--Main Menu HTML Code-->
         <nav class="wsmenu clearfix">
             <ul class="mobile-sub wsmenu-list">';

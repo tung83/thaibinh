@@ -17,7 +17,7 @@ $css=array(
     'hover',
     'nice-tabs',
     'webslidemenu',
-    'self'
+    'front'
 );
 $js=array(
     'jquery',
