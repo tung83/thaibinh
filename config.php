@@ -42,7 +42,7 @@ define('frontPath'   ,'/file/front/');
 define('phpLib'     ,root.'/object/');
 define('pageLib'    ,root.'/page/');
 define('widgetLib'  ,root.'/widget/');
-define('head_title'    ,'Kỹ Thuật Tự Động Thái Bình');
+define('head_title'    ,'Hana Beauty');
 
 
 //define area end
