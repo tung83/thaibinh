@@ -89,17 +89,26 @@
                             <div>
                                 <?=common::qtext($db,4)?>
                             </div> 
-                            <?=social($db)?>
                         </div>
                     </div>
                 </div>  
             </div> 
             <div class="copyright-wrapper">
                 <div class="container">             
-                    <div class="row">                
+                    <div class="row bottom-footer">                
                         <div class="row">
-                            <div class="col-md-12 text-center copyright">
-                                Copyright © 2016 <b class="company">Thái Bình</b>, All rights reserved. Designed by <a class="psmedia"><b>PSmedia.vn</b></a>
+                            <div class="col-md-6 copyright">
+                                Copyright © 2016 <b class="company">Hana Beauty</b>, All rights reserved. Designed by <a class="psmedia"><b>PSmedia.vn</b></a>
+                            </div>
+                            <div class="col-md-6 ">
+                                <?=social($db)?>
+                                <div id="counters" class="pull-right">
+                                    <?php
+                                        $vs=new visitors($db);
+                                    ?>
+                                    <span>Đang online: <?= $vs->getOnlineVisitors() ?></span> |
+                                    <span>Lượt truy cập: <?= $vs->getCounter() ?></span>
+                                </div>
                             </div>
                         </div>
                     </div>

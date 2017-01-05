@@ -75,8 +75,19 @@ class product extends base{
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
                     </a>
                     <a href="'.$lnk.'">
-                        <p class="item-title text-center">'.$item['title'].'</p>
-                    </a>
+                        <p class="item-title text-center">'.$item['title'].'</p>';
+                        if(isset($item['price_reduce']) && $item['price_reduce'] > 0){
+                            $str.='
+                            <p><s>'.number_format($item['price'],0,',','.').'</s>&nbsp;₫</p>
+                            <p><b>'.number_format($item['price_reduce'],0,',','.').'</b>&nbsp;₫</p>';                                
+                        }
+                        else{
+                            $str.='
+                            <p>'.number_format($item['price'],0,',','.').'&nbsp;₫</p>';                              
+                        }
+                     $str.='</a>
+                    <button class="btn btn-default btn-cart" onclick="add_cart('.$item['id'].',1)"><i class="fa fa-shopping-cart"></i> ĐẶT MUA</button>
+         
                 </div>
             </div>';
         return $str;

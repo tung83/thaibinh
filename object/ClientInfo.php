@@ -18,16 +18,18 @@
  */
 class ClientInfo
 {
-    private $user_agent      = '';
-    private $user_ip         = '';
-    private $user_country    = 'unknow';
-    private $user_city       = 'unknow'; 
+    private $user_agent      = 'unknown';
+    private $user_ip         = 'unknown';
+    private $user_country    = 'unknown';
+    private $user_city       = 'unknown'; 
 
     public function __construct()
     {
         $this->user_agent = $_SERVER['HTTP_USER_AGENT'];
-        $this->user_ip    = $_REQUEST['REMOTE_ADDR'];
-        $this->getLocation();
+        if(isset($_REQUEST['REMOTE_ADDR'])){
+            $this->user_ip  = $_REQUEST['REMOTE_ADDR'];
+        }
+        //$this->getLocation();
     }
     public function getCurrentMacAddress()
     {

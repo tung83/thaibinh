@@ -17,7 +17,7 @@ class visitors extends ClientInfo
 
     private $vs_id = 'unknow';
 
-    public function __construct(MysqliDb $db){
+    public function __construct($db){
         parent::__construct();
         $this->db = $db;
         $this->db->reset();
@@ -35,29 +35,33 @@ class visitors extends ClientInfo
     {
         $this->db->reset();
         if(!isset($_SESSION['visitor'])){
-            $_SESSION['visitor'] = session_id();
-            $this->vs_id = $_SESSION['visitor'];
-            $insert=array(
-                'dates'=>date('Y-m-d h:i:s'),
-                'vs_ip'=>$this->getUserIp(),
-                'vs_city'=>$this->getUserCity(),
-                'vs_browser'=>$this->getBrowser(),
-                'vs_os'=>$this->getOS(),
-                'vs_id'=>$this->vs_id,
-                'vs_flag'=>1
-            );
-            $this->db->insert('vs_detail',$insert);
-            $query = 'UPDATE vs_counter SET hit_counter = hit_counter + 1';
-            $this->db->rawQuery($query);
+            $this->insertVisitorDB();
         }
         else {
             $this->vs_id = $_SESSION['visitor'];
             $item=$this->db->where('vs_id',$this->vs_id)->getOne('vs_detail');
             if($item==null||count($item)==0){
-                //$insert
+                $this->insertVisitorDB();
             }
         }
         return TRUE;
+    }
+    
+    private function insertVisitorDB(){
+        $_SESSION['visitor'] = session_id();
+        $this->vs_id = $_SESSION['visitor'];
+        $insert=array(
+            'dates'=>date('Y-m-d h:i:s'),
+            'vs_ip'=>$this->getUserIp(),
+            'vs_city'=>$this->getUserCity(),
+            'vs_browser'=>$this->getBrowser(),
+            'vs_os'=>$this->getOS(),
+            'vs_id'=>$this->vs_id,
+            'vs_flag'=>1
+        );
+        $this->db->insert('vs_detail',$insert);
+        $query = 'UPDATE vs_counter SET hit_counter = hit_counter + 1';
+        $this->db->rawQuery($query);
     }
 
     /**

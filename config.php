@@ -52,6 +52,7 @@ include_once phpLib.'MysqliDb.php';
 include_once phpLib.'Pagination.php';
 include_once phpLib.'wideimage/WideImage.php';
 include_once phpLib.'common.php';
+include_once phpLib.'class.visitors.php';
 
 global $db;
 $db = new MysqliDb(_hostName,_userName,_pass,_dbName);

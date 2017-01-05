@@ -227,6 +227,6 @@ class common{
         $str.='
         </p>';
         return $str;
-    }
+    }   
 }
 ?>

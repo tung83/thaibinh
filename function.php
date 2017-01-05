@@ -9,6 +9,7 @@ function pageId($view){
     return '';
 }
 function menu($db,$view){
+   
     $db->reset();
     $list=$db->where('active',1)->orderBy('ind','ASC')->orderBy('id')->get('menu');
     $str.='
@@ -21,26 +22,37 @@ function menu($db,$view){
     <div class="nav hidden-xs hidden-sm">
     	<div class="container">
             <div class="row">
-                <div class="col-md-4 hotline">
-                    <span>Hotline:</span>
-                    <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
-                </div>
-            <div class="col-md-4 logo">
-                <a href="'.myWeb.'" title="Responsive Slide Menus"><img src="'.frontPath.'logo.png" alt="" style=""/></a>
-            </div>
-                <div class="col-md-4 header-right">
-                    <div class="header-contact">    
-                        <form class="pull-right" role="form" method="get" name="search" id="search">
-                            <input type="hidden" id="search-link" value="'.myWeb.search_view.'/" />                                  
-                            <div class="input-group search">
-                                <input type="text" id="hint" class="form-control" placeholder="Tìm kiếm..." aria-describedby="basic-addon2">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                                </span>
-                            </div>
-                        </form> 
+                <div class="row">
+                    <div class="col-md-4 hotline">                    
+                        <span>Hotline:</span>
+                        <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
                     </div>
-                    '.social($db).' 
+                    <div class="col-md-4 logo">
+                        <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
+                    </div>
+                    <div class="col-md-4 header-right">
+
+                        '.social($db).' 
+                        <div class="search">
+                            <input class="search_box" type="checkbox" id="search_box">                            
+                            <label class="icon-search" for="search_box"><i class="fa fa-search"></i></label>
+                            <div class="search_form">
+                               <form class="pull-right" role="form" method="get" name="search" id="search">
+                                    <input type="hidden" id="search-link" value="'.myWeb.search_view.'/" />                                      
+                                    <input type="text" id="hint" placeholder="Tìm kiếm...">
+                                    <input type="submit" value="search">                               
+                                </form> 
+                            </div>
+
+
+                          </div>
+                        <div class="cart">                           
+                            <a href="/gio-hang"><i class="fa fa-shopping-cart"></i><span class="cart-text">GIỎ HÀNG</span>';
+                                $cart_count = cart_count($db);
+                                    $str.='<span id="cart-count" class="user-cart-quantity'.($cart_count > 0? '' : ' hidden').'">'.$cart_count.'</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
     	</div>
@@ -425,6 +437,13 @@ function search($db){
     </section>';
     return $str;
 }
+
+function cart_count($db){
+    common::load('cart');
+    $obj=new cart($db);
+    return $obj->cart_count();
+}
+
 function shadowBottom(){
     return '<div class="container">  
                 <div id="shadow-bottom" class="row">
@@ -444,8 +463,8 @@ function social($db){
     $basic_config=$db->where('id',1)->getOne('basic_config','social_twitter, social_facebook, social_google_plus');
     $str.='
         <div id="social_block">    
-            <a href="'.$basic_config['social_twitter'].'" target="_blank"><i class="fa fa-twitter"></i></a>
             <a href="'.$basic_config['social_facebook'].'" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="'.$basic_config['social_twitter'].'" target="_blank"><i class="fa fa-twitter"></i></a>
             <a href="'.$basic_config['social_google_plus'].'" target="_blank"><i class="fa fa-google-plus"></i></a>			
         </div>
     ';
