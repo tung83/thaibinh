@@ -75,15 +75,19 @@ class product extends base{
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
                     </a>
                     <a href="'.$lnk.'">
-                        <p class="item-title text-center">'.$item['title'].'</p>';
-                        if(isset($item['price_reduce']) && $item['price_reduce'] > 0){
+                        <p class="item-title">'.$item['title'].'</p>';
+                        if(!isset($item['price']) || $item['price_reduce'] == 0){
                             $str.='
-                            <p><s>'.number_format($item['price'],0,',','.').'</s>&nbsp;₫</p>
-                            <p><b>'.number_format($item['price_reduce'],0,',','.').'</b>&nbsp;₫</p>';                                
+                            <p class="price">Liên hệ</p>';   
+                        }
+                        else if(isset($item['price_reduce']) && $item['price_reduce'] > 0){
+                            $str.='
+                            <p class="price-strike"><s>'.number_format($item['price'],0,',','.').'</s>&nbsp;₫</p>
+                            <p class="price"><b>'.number_format($item['price_reduce'],0,',','.').'</b>&nbsp;₫</p>';                                
                         }
                         else{
                             $str.='
-                            <p>'.number_format($item['price'],0,',','.').'&nbsp;₫</p>';                              
+                            <p class="price">'.number_format($item['price'],0,',','.').'&nbsp;₫</p>';                              
                         }
                      $str.='</a>
                     <button class="btn btn-default btn-cart" onclick="add_cart('.$item['id'].',1)"><i class="fa fa-shopping-cart"></i> ĐẶT MUA</button>
@@ -150,13 +154,16 @@ class product extends base{
             $this->db->where('pId',$pId);
         }
         $this->db_orderBy();
-        $this->db->pageLimit=24;
+        $this->db->pageLimit=23;
         $list=$this->db->paginate('product',$page);
         $count=$this->db->totalCount;
         $str.='<div class="product-list">'
                 . '<div class="row">';
         if($count>0){
-            foreach($list as $item){
+            foreach($list as $key=>$item){
+                if($key == 0){
+                    $str.=$this->product_cate_left_list();
+                }
                 $str.=$this->product_item($item);
             }
         }        
@@ -337,20 +344,39 @@ class product extends base{
         return $str;
     }
 
-    function product_cate_list(){
+    function product_cate_left_list(){
         $this->db->reset();
         $this->db->where('active',1);
         $this->db_orderBy();
         $list=$this->db->get($this->db_cate_name);
         $str.='
-        <ul class="product-menu">';
+            <div class="col-md-3 product-col">
+                <div class="product-item item">    
+                    <ul class="product-menu">';
+                    foreach($list as $cate){
+                        $title=$cate['title'];
+                        $str.='
+                        <li><a href="'.myWeb.$this->view.'/'.common::slug($title).'-p'.$cate["id"].'">'.$title.'</a></li>';   
+                    }
+        $str.='
+                    </ul>
+                </div>
+            </div>';
+        return $str;
+    }
+    
+    function product_cate_list(){
+        $this->db->reset();
+        $this->db->where('active',1);
+        $this->db_orderBy();
+        $list=$this->db->get($this->db_cate_name);
+        $str.='<ul class="product-menu">';
         foreach($list as $cate){
             $title=$cate['title'];
             $str.='
             <li><a href="'.myWeb.$this->view.'/'.common::slug($title).'-p'.$cate["id"].'">'.$title.'</a></li>';   
         }
-        $str.='
-        </ul>';
+        $str.='</ul>';
         return $str;
     }
 }

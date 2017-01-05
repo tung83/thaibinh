@@ -200,10 +200,7 @@ function home($db){
     $project=new project($db);
     $str.=$project->ind_project();
     
-    $str.='
-        <div id="google-map"> </div>
-    </section>'; 
-    $str.=gmap();
+    $str.=submit_mail();
     
     
     /*$str.=partner($db);*/
@@ -469,6 +466,17 @@ function social($db){
         </div>
     ';
     return $str;
+}
+function submit_mail(){
+    return '<section id="home-subscribe">
+        <div class="container">
+            <form action="" id="subscribe">
+                <span>Vui lòng để lại email để nhận tin khuyến mãi</span>
+                <input type="email" name="email" placeholder="Nhập email">
+                <input type="submit" value="Gửi">
+            </form>
+        </div>
+    </section>';
 }
 function gmap(){      
     return '
