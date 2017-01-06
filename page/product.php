@@ -346,7 +346,7 @@ class product extends base{
             $temp.='
             <li>
                 <a href="'.webPath.$item['img'].'" >
-                    <img src="'.webPath.$item['img'].'" alt="" title="" class=""/>
+                    <img src="'.webPath.$item['img'].'" alt="" title="" class="" data-imagezoom="true"/>
                 </a>
             </li>';
             $tmp.='
