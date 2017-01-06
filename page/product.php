@@ -87,7 +87,7 @@ class product extends base{
                         }
                         else{
                             $str.='
-                            <p class="price">'.number_format($item['price'],0,',','.').'&nbsp;₫</p>';                              
+                            <p class="price"><b>'.number_format($item['price'],0,',','.').'</b>&nbsp;₫</p>';                              
                         }
                      $str.='</a>
                     <button class="btn btn-default btn-cart" onclick="add_cart('.$item['id'].',1)"><i class="fa fa-shopping-cart"></i> ĐẶT MUA</button>
@@ -231,11 +231,35 @@ class product extends base{
                 '.$this->product_image_show($item['id']).'
             </div>
                 <article class="product-one">
-                <h1>'.$item['title'].'</h1>
-                <!--b>Giá Bán Lẻ: <em>'.number_format($item['price'],0,',','.').'VNĐ</em></b-->
-                <!--form action="javascript:add_cart('.$item['id'].',1)">
-                    <button class="btn btn-default"><i class="fa fa-shopping-cart"></i> Mua Hàng</button>
-                </form-->
+                <h1>'.$item['title'].'</h1>';
+                    if(!isset($item['price']) || $item['price_reduce'] == 0){
+                        $str.='
+                        <p class="price"><span>Giá: </span>Liên hệ</p>';   
+                    }
+                    else if(isset($item['price_reduce']) && $item['price_reduce'] > 0){
+                        $str.='
+                        <p class="price-strike"><span>Giá gốc: </span><s>'.number_format($item['price'],0,',','.').'</s>&nbsp;₫</p>
+                        <p class="price"><span>Giảm Giá: </span><b>'.number_format($item['price_reduce'],0,',','.').'</b>&nbsp;₫</p>';                                
+                    }
+                    else{
+                        $str.='
+                        <p class="price"><span>Giá: </span><b>'.number_format($item['price'],0,',','.').'</b>&nbsp;₫</p>';                              
+                    }
+                $str.='<form class="form-horizontal" action="javascript:add_cart('.$item['id'].',$(\'#amount\').val())">
+                    <label for="">Số lượng:</label>
+                    <div class="number-spinner-container">
+                        <div class="input-group number-spinner ">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+                            </span>
+                            <input type="text" id="amount" class="form-control text-center" value="1">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                    <button class="btn btn-default btn-cart"><i class="fa fa-shopping-cart"></i> ĐẶT MUA</button>         
+                </form>
                 <p>'.$item['feature'].'</p>
                 </article>
             </div>
@@ -267,7 +291,30 @@ class product extends base{
                     <div class="fb-comments" data-width="100%" data-href="'.$lnk.'" data-numposts="5"></div>
                 </div-->
             </div>       
-        </div>';
+        </div>
+        <script>
+            $(document).on("click", ".number-spinner button", function () {    
+            var btn = $(this),
+                    oldValue = btn.closest(".number-spinner").find("input").val().trim(),
+                    newVal = 0;
+
+            if (btn.attr("data-dir") == "up") {
+                    newVal = parseInt(oldValue) + 1;
+            } else {
+                    if (oldValue > 1) {
+                            newVal = parseInt(oldValue) - 1;
+                    } else {
+                            newVal = 1;
+                    }
+            }
+            btn.closest(".number-spinner").find("input").val(newVal);           
+
+        });
+            $("#size-product").change(function() {                
+                $("#price-L").toggle();
+                $("#price-M").toggle();
+              });
+        </script>';
         if(count($list)>0){
             $str.='
             <h3 class="small-title">
