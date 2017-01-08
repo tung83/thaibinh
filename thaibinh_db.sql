@@ -650,3 +650,40 @@ ALTER TABLE `product_image`
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
+
+CREATE TABLE `partner` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `eTitle` text NOT NULL,
+  `lnk` text NOT NULL,
+  `img` text NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `partner`
+--
+
+INSERT INTO `partner` (`id`, `title`, `eTitle`, `lnk`, `img`, `active`, `ind`) VALUES
+(1, 'Bambo interior', 'Bambo interior', 'pspmedia.vn', '1439345318holistic-solutions-circle-2-252x200.jpg', 1, 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `partner`
+--
+ALTER TABLE `partner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `partner`
+--
+ALTER TABLE `partner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
