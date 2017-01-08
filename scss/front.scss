@@ -333,25 +333,28 @@ header{
     margin: 30px 0 50px 0;
 }
 .btn-primary {
-    color: #fff;
-    background-color: #626262;
-    border-color: #f15207;
+    background-color: #fff;
+    border-color: #fff;
+    color: $grey-text-color;
+    border-radius: 0;
 }
 .btn-primary:hover, .btn-primary:focus {
-    background-color: #626262;
-    border-color: #f15207;
-    opacity: 0.8;
+    color: #fff;
+    background-color: $secondary-color;
+    border-color: $secondary-color;
 }
 .title-head{
     text-align: center;    
 }
 .title-head span{
-    font-size: 39px;
+    font-size: 34px;
     font-weight: 580;    
     margin-top: 20px;
     margin-bottom: 50px;
-    font-style: italic;
     display: inline-block;
+    color: #7f7f7f;
+    padding-bottom: 14px;
+    border-bottom: 4px solid #7f7f7f;
 }
 #home-page .title-head span{  
     margin-bottom: 30px; 
@@ -460,6 +463,38 @@ line-height: 30px;
     .btn-cart:hover,.btn-cart:focus{
             color:$grey-text-color;
     }
+}
+
+section#home-subscribe {
+    padding: 30px 0;
+	span {
+		font-size: 17px;
+		font-style: italic;
+		color: #252525;
+	}
+
+	input[type=email] {
+		border: 1px solid #cfcfcf;
+		border-radius: 16px;
+		height: 32px;
+		width: 370px;
+		font-size: 12px;
+		font-style: italic;
+		color: #979797;
+		padding: 0 15px;
+		margin: 0 10px 0 20px;
+	}
+
+	input[type=submit] {
+		background: $secondary-color;
+		border: 1px solid #cfcfcf;
+		border-radius: 16px;
+		width: 84px;
+		height: 32px;
+		font-size: 17px;
+		font-style: italic;
+		color: #fff;
+	}
 }
 
 .item:hover .item-title,.item:focus .item-title{

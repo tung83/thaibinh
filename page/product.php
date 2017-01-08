@@ -9,8 +9,8 @@ class product extends base{
         <section class="ind-product"> 
             <div class="col-xs-12">
                 <div class="title-head">
-                    <span>'
-                        .$this->title.' 
+                    <span>
+                        SẢN PHẨM BÁN CHẠY
                     </span>
                 </div>
             </div>
@@ -27,9 +27,24 @@ class product extends base{
                     <a href="'.$lnk.'">
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
                     </a>
-                    <a href="'.$lnk.'">                    
-                        <p class="item-title text-center">'.$item['title'].'</p>
-                    </a>
+                    <a href="'.$lnk.'">
+                        <p class="item-title">'.$item['title'].'</p>';
+                        if(!isset($item['price']) || $item['price_reduce'] == 0){
+                            $str.='
+                            <p class="price">Liên hệ</p>';   
+                        }
+                        else if(isset($item['price_reduce']) && $item['price_reduce'] > 0){
+                            $str.='
+                            <p class="price-strike"><s>'.number_format($item['price'],0,',','.').'</s>&nbsp;₫</p>
+                            <p class="price"><b>'.number_format($item['price_reduce'],0,',','.').'</b>&nbsp;₫</p>';                                
+                        }
+                        else{
+                            $str.='
+                            <p class="price"><b>'.number_format($item['price'],0,',','.').'</b>&nbsp;₫</p>';                              
+                        }
+                     $str.='</a>
+                    <button class="btn btn-default btn-cart" onclick="add_cart('.$item['id'].',1)"><i class="fa fa-shopping-cart"></i> ĐẶT MUA</button>
+         
                 </div>
             </div>';
         }
@@ -38,7 +53,7 @@ class product extends base{
             <div class="text-center">
                 <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->view.'">'.more_button.'</a>      
             </div>
-        </section><!--/#partner-->';
+        </section>';
         
         return $str;
     }
@@ -310,10 +325,6 @@ class product extends base{
             btn.closest(".number-spinner").find("input").val(newVal);           
 
         });
-            $("#size-product").change(function() {                
-                $("#price-L").toggle();
-                $("#price-M").toggle();
-              });
         </script>';
         if(count($list)>0){
             $str.='
@@ -346,7 +357,7 @@ class product extends base{
             $temp.='
             <li>
                 <a href="'.webPath.$item['img'].'" >
-                    <img src="'.webPath.$item['img'].'" alt="" title="" class="" data-imagezoom="true"/>
+                    <img src="'.webPath.$item['img'].'" alt="" title="" class="zoom" data-zoom-image="'.webPath.$item['img'].'"/>
                 </a>
             </li>';
             $tmp.='
@@ -391,6 +402,11 @@ class product extends base{
         return $str;
     }
 
+//          $(".zoom").elevateZoom({
+//		cursor: "pointer", 
+//		imageCrossfade: true,
+//                 galleryActiveClass: "active", 
+//	});  
     function product_cate_left_list(){
         $this->db->reset();
         $this->db->where('active',1);

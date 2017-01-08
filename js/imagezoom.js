@@ -69,7 +69,7 @@
           'width':cursorSize[0],
           'height':cursorSize[1],
           'background-color':'rgb('+settings.cursorcolor+')',
-          'z-index':settings.zindex,
+          'z-index':0,
           'opacity':settings.opacity,
           'cursor':settings.cursor
         });

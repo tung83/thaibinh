@@ -182,23 +182,9 @@ function home($db){
     $product=new product($db);
     $str.=$product->ind_product();
     
-    common::page('service');
-    $service=new service($db);
-    $str.=$service->ind_service();     
-    
-    $str.='
-    <section id="index">';
-    common::page('about');
-    $about=new about($db);
-    $str.=$about->ind_about();
-    
-    common::page('news');
-    $news=new news($db);
-    $str.=$news->ind_news();
-    
-    common::page('project');
-    $project=new project($db);
-    $str.=$project->ind_project();
+    common::page('partner');
+    $partner=new partner($db);
+    $str.=$partner->partners();    
     
     $str.=submit_mail();
     
@@ -469,7 +455,7 @@ function social($db){
 }
 function submit_mail(){
     return '<section id="home-subscribe">
-        <div class="container">
+        <div class="container text-center">
             <form action="" id="subscribe">
                 <span>Vui lòng để lại email để nhận tin khuyến mãi</span>
                 <input type="email" name="email" placeholder="Nhập email">

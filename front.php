@@ -25,7 +25,7 @@ $js=array(
     'jquery-migrate',
     'bootstrap.min',
     'validator.min',
-    'imagezoom',
+    'jquery.elevatezoom',
     'jquery.magnific-popup',
     'jAlert-v3',
     'jAlert-functions',
