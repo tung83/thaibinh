@@ -261,7 +261,7 @@ class  form{
         ';
         return $str;
     }
-    function file($name,$options=array()){
+    function fileOld($name,$options=array()){
         $options=array_merge($options,array('type'=>'file'));
         return $this->input($name,$options);
     }
@@ -293,7 +293,7 @@ class  form{
         $options=array_merge($options,array('type'=>'datepicker', 'class'=>'datepicker form-control'));
         return $this->input($name,$options);
     }
-    function checkbox($name,$options=array()){
+    function checkboxold($name,$options=array()){
         if(isset($options['disabled'])) $disabled=$options['disabled'];else $disabled=false;
          if(isset($options['checked'])) $checked=$options['checked'];else $checked=false;
         $str='
@@ -314,6 +314,55 @@ class  form{
         $str.='            
         </div>';
         return $str;
+    }
+    
+    function checkbox($name,$options=array()){
+        if(isset($options['disabled'])) $disabled=$options['disabled'];else $disabled=false;
+         if(isset($options['checked'])) $checked=$options['checked'];else $checked=false;       
+        $checked = $checked ? ' checked="checked"' : '';
+        $disabled = $disabled ? ' disabled="disabled"' : '';
+        return ' 
+        <div class="form-group">'.
+            '<label class="lbswitch">
+                <input type="checkbox" class="uiswitch" name="'. $name .'"'.$checked. $disabled.' 
+                <span></span>
+            </label>'.
+            '<label style="vertical-align: 10px; margin-left: 5px;">Hiển thị</label>
+        </div>';
+        
+        
+    }
+    
+    public function file($value, $width, $height ) {
+        return ' 
+        <div class="form-group">
+        <label>Hình ảnh <code>'. $width .'&times;'.$height .'</code></label>'.
+        $this->image_input($this->get('img'), $width, $height).
+        '</div>';
+    }
+    
+    function image_input( $value, $width, $height ) {
+        $str .=' 
+        <div class="fileinput fileinput-new" data-provides="fileinput" style="max-width: '. $width .'px;">
+            <div class="fileinput-new" style="padding-top: '. $height / $width * 100 .'%;">';
+                if (!empty($value)) { $str .=' 
+                    <img src="'. webPath.$value .' " alt="">';
+                } else { $str .=' 
+                    <div class="placeholder">'. $width .'  &times; '. $height .' </div>';
+                } 
+                $str .=' 
+            </div>
+            <div class="fileinput-preview fileinput-exists" style="padding-top: '. $height / $width * 100 .'%;"></div>
+            <div class="fileinput-buttons">
+                <span class="btn btn-warning btn-xs btn-file">
+                    <span class="fileinput-new">Chọn hình</span>
+                    <span class="fileinput-exists">Chọn lại</span>
+                    <input type="file" name="file">
+                </span>
+                <a href="#" class="btn btn-warning btn-xs fileinput-exists" data-dismiss="fileinput">Bỏ chọn</a>
+            </div>
+        </div>';
+        return $str;                        
     }
     function button($name,$options=array()){
         $type=isset($options['type'])?$options['type']:'submit';

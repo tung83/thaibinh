@@ -349,6 +349,9 @@ header {
   height: 8px !important;
   width: 8px !important; }
 
+.ind-partner {
+  background-color: #e8e8e8; }
+
 .ind-about {
   background-color: #f26422;
   color: #fff !important;

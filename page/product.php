@@ -7,6 +7,8 @@ class product extends base{
     function ind_product(){ 
         $str.='
         <section class="ind-product"> 
+            <div class="container">
+            <div class="row">
             <div class="col-xs-12">
                 <div class="title-head">
                     <span>
@@ -52,6 +54,8 @@ class product extends base{
             <div class="clearfix"></div>
             <div class="text-center">
                 <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->view.'">'.more_button.'</a>      
+            </div>
+            </div>
             </div>
         </section>';
         

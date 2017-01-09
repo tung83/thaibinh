@@ -20,6 +20,8 @@
     <link href="dist/css/sb-admin-2.css" rel="stylesheet"/>
     
     <link href="dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="dist/css/uiswitch.css" rel="stylesheet"/>
+    <link href="dist/css/jasny-bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom Fonts -->
     <link href="../css/font-awesome.css" rel="stylesheet" type="text/css"/>
@@ -75,6 +77,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
     <script src="dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="dist/js/jasny-bootstrap.min.js"></script>
     <script src="../js/validator.min.js"></script>
     <script src="../js/holder.js"></script>
 	<script src="admin.js"></script>

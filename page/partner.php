@@ -9,9 +9,9 @@ class partner extends base{
         $this->db->where('active',1);
         $this->db_orderBy();
         $list=$this->db->get('partner');
-    $str.='<section id="partners">
+    $str.='<section class="ind-partner">
     <div class="container">
-        <div class="section__head"><span>Đối tác</span></div>
+        <div class="title-head"><span>ĐỐI TÁC</span></div>
         <div id="carousel-container-1">';
         foreach($list as $item){
             
@@ -33,6 +33,7 @@ class partner extends base{
             })
         })
     </script>';
+            return $str;
     }
 
 }

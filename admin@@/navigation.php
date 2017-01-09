@@ -10,7 +10,7 @@ function ad_menu()
 					/*array(3,"Quản lý phụ tùng","accessary","pencil"),	*/	
                     array(4,'Dịch vụ','service','anchor'), 
                     array(5,'Tin tức','news','pencil-square-o'),   
-                    array(6,'Dự án','project','briefcase'), 
+                    array(6,'Đối tác','partner','briefcase'), 
                     //array(9,'Video','video','youtube'),
                     /*array(14,'Hỗ trợ trực tuyến','support_online','headphones'),*/
                     //array(14,'Đặt hàng','cart','shopping-cart'),

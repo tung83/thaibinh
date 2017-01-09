@@ -1,14 +1,14 @@
 <?php
 function mainProcess($db)
 {
-    return project($db);
+    return partner($db);
 }
-function project($db)
+function partner($db)
 {
 	$msg='';
-    $act='project';
-    $type='project';
-    $table='project';
+    $act='partner';
+    $type='partner';
+    $table='partner';
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
             $db->where('id',$_POST['idLoad']);
             $list = $db->getOne($table);
@@ -20,18 +20,11 @@ function project($db)
 	}
 	if(isset($_POST["addNew"])||isset($_POST["update"])) {
             $title=htmlspecialchars($_POST['title']);	   
-            $sum=htmlspecialchars($_POST['sum']);
-            $content=str_replace("'","",$_POST['content']);
-            $meta_kw=htmlspecialchars($_POST['meta_keyword']);
-            $meta_desc=htmlspecialchars($_POST['meta_description']);
+            $lnk=htmlspecialchars($_POST['lnk']);
 
-            $home=$_POST['home']=='on'?1:0;
             $active=$_POST['active']=="on"?1:0;
             $file=time().$_FILES['file']['name'];
-            $ind=intval($_POST['ind']);
-            
-            $dateInfo = date_parse_from_format('d/m/Y', $_POST['date']);
-            $date = $dateInfo['year'].'-'.$dateInfo['month'].'-'.$dateInfo['day'];
+            $ind=intval($_POST['ind']);            
 	}
     if(isset($_POST['listDel'])&&$_POST['listDel']!=''){
         $list = explode(',',$_POST['listDel']);
@@ -47,16 +40,13 @@ function project($db)
     }
 	if(isset($_POST["addNew"])) {
             $insert = array(
-                'title'=>$title,'sum'=>$sum,'content'=>$content,
-                'meta_keyword'=>$meta_kw,
-                'meta_description'=>$meta_desc,
-                'date'=>$date,
-                'home'=>$home,'active'=>$active,'ind'=>$ind
+                'title'=>$title,'lnk'=>$lnk,'active'=>$active,'ind'=>$ind
             );
+            var_dump($insert);
                     try{
                 $recent = $db->insert($table,$insert);
                 if(common::file_check($_FILES['file'])){
-                    WideImage::load('file')->resize(800,535, 'fill')->saveToFile(myPath.$file);
+                    WideImage::load('file')->resize(230,110, 'fill')->saveToFile(myPath.$file);
                     $db->where('id',$recent);
                     $db->update($table,array('img'=>$file));
                 }
@@ -67,14 +57,10 @@ function project($db)
 	}
 	if(isset($_POST["update"]))	{
             $update=array(
-                'title'=>$title,'sum'=>$sum,'content'=>$content,
-                'meta_keyword'=>$meta_kw,
-                'meta_description'=>$meta_desc,
-                'date'=>$date,
-                'home'=>$home,'active'=>$active,'ind'=>$ind
+                'title'=>$title,'lnk'=>$lnk,'active'=>$active,'ind'=>$ind
             );
             if(common::file_check($_FILES['file'])){
-                WideImage::load('file')->resize(800,535, 'fill')->saveToFile(myPath.$file);
+                WideImage::load('file')->resize(230,110, 'fill')->saveToFile(myPath.$file);
                 $update = array_merge($update,array('img'=>$file));
                 $form->img_remove($_POST['idLoad'],$db,$table);
             }
@@ -99,7 +85,7 @@ function project($db)
 	}
     
     $page_head= array(
-                    array('#','Danh sách tin tức')
+                    array('#','Danh sách đối tác')
                 );
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
@@ -135,17 +121,13 @@ function project($db)
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
          '.$form->text('title',array('label'=>'Tiêu đề','required'=>true)).'      
-            '.$form->textarea('sum',array('label'=>'Trích Dẫn','required'=>true)).'      
-            '.$form->text('meta_keyword',array('label'=>'Keyword<code>SEO</code>','required'=>true)).'      
-            '.$form->textarea('meta_description',array('label'=>'Meta Description<code>SEO</code>','required'=>true)).'   
-            '.$form->ckeditor('content',array('label'=>'Nội dung','required'=>true)).'
-            '.$form->datepicker('date',array('label'=>'Ngày','required'=>true)).'
+            '.$form->textarea('lnk',array('label'=>'Liên kết','required'=>false)).'  
              
         </div>
         <div class="col-lg-12">
-            '.$form->file('file',array('label'=>'Hình ảnh<code>(800,535)</code>')).'
+            '.$form->file('img',230,110).'
+            '.$form->fileOld('file',array('label'=>'Hình ảnh<code>(230,110)</code>')).'
             '.$form->number('ind',array('label'=>'Thứ tự')).'
-            '.$form->checkbox('home',array('label'=>'Trang chủ')).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'
         </div>
     
