@@ -274,7 +274,26 @@ header{
     }
 }
 
-
+#partner-slider {
+    padding-bottom: 50px;
+    .slick-slide{
+        margin: 0 2px;
+    }
+    .slick-list{
+        margin: 0 40px;
+    }
+    .slick-prev, .slick-next {
+        top: 36%;
+        width: 40px;
+        height: 108px;
+    }
+    .slick-prev {
+        background-image: url(/file/front/left-arrow.png);
+    }
+    .slick-next {
+        background-image: url(/file/front/right-arrow.png);
+    }
+}
 
 
 .wsmenu > .wsmenu-list {

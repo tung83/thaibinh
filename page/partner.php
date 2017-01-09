@@ -10,9 +10,9 @@ class partner extends base{
         $this->db_orderBy();
         $list=$this->db->get('partner');
     $str.='<section class="ind-partner">
-    <div class="container">
+    <div >
         <div class="title-head"><span>ĐỐI TÁC</span></div>
-        <div id="carousel-container-1">';
+        <div id="partner-slider">';
         foreach($list as $item){
             
 		$href = $row->lnk != '' ? $row->lnk : '#';
@@ -24,11 +24,9 @@ class partner extends base{
             $str.=' 
     <script type="text/javascript">
         $(function() {
-            $("#carousel-container-1").slick({
+            $("#partner-slider").slick({
                 infinite: true,
-                speed: 300,
-                slidesToShow: 1,
-                centerMode: true,
+                speed: 300,               
                 variableWidth: true
             })
         })

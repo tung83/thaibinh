@@ -223,6 +223,21 @@ header {
 @media (max-width: 991px) {
   .wsmenu > .wsmenu-list > li > a {
     line-height: 28px; } }
+#partner-slider {
+  padding-bottom: 50px; }
+  #partner-slider .slick-slide {
+    margin: 0 2px; }
+  #partner-slider .slick-list {
+    margin: 0 40px; }
+  #partner-slider .slick-prev, #partner-slider .slick-next {
+    top: 36%;
+    width: 40px;
+    height: 108px; }
+  #partner-slider .slick-prev {
+    background-image: url(/file/front/left-arrow.png); }
+  #partner-slider .slick-next {
+    background-image: url(/file/front/right-arrow.png); }
+
 .wsmenu > .wsmenu-list > li > a > .arrow {
   padding-right: 5px; }
 .wsmenu > .wsmenu-list > li > a .arrow:after {

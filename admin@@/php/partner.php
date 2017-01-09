@@ -126,7 +126,6 @@ function partner($db)
         </div>
         <div class="col-lg-12">
             '.$form->file('img',230,110).'
-            '.$form->fileOld('file',array('label'=>'Hình ảnh<code>(230,110)</code>')).'
             '.$form->number('ind',array('label'=>'Thứ tự')).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'
         </div>
