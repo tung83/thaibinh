@@ -327,7 +327,7 @@ class  form{
                 <input type="checkbox" class="uiswitch" name="'. $name .'"'.$checked. $disabled.' 
                 <span></span>
             </label>'.
-            '<label style="vertical-align: 10px; margin-left: 5px;">Hiển thị</label>
+            '<label style="vertical-align: 10px; margin-left: 5px;">'.$options['label'].'</label>
         </div>';
         
         

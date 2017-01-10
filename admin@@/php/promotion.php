@@ -1,14 +1,14 @@
 <?php
 function mainProcess($db)
 {
-    return service($db);
+    return promotion($db);
 }
-function service($db)
+function promotion($db)
 {
 	$msg='';
-    $act='service';
-    $type='service';
-    $table='service';
+    $act='promotion';
+    $type='promotion';
+    $table='promotion';
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
             $db->where('id',$_POST['idLoad']);
             $list = $db->getOne($table);
@@ -29,8 +29,7 @@ function service($db)
             $file=time().$_FILES['file']['name'];
             $ind=intval($_POST['ind']);
             
-            $dateInfo = date_parse_from_format('d/m/Y', $_POST['date']);
-            $date = $dateInfo['year'].'-'.$dateInfo['month'].'-'.$dateInfo['day'];
+            $pId=intval($_POST['frm_cate_1']);
 	}
     if(isset($_POST['listDel'])&&$_POST['listDel']!=''){
         $list = explode(',',$_POST['listDel']);
@@ -49,13 +48,12 @@ function service($db)
                 'title'=>$title,'sum'=>$sum,'content'=>$content,
                 'meta_keyword'=>$meta_kw,
                 'meta_description'=>$meta_desc,
-                'date'=>$date,
-                'home'=>$home,'active'=>$active,'ind'=>$ind
+                'home'=>$home,'active'=>$active,'ind'=>$ind,'pId'=>$pId
             );
                     try{
                 $recent = $db->insert($table,$insert);
                 if(common::file_check($_FILES['file'])){
-                    WideImage::load('file')->resize(600,700, 'fill')->saveToFile(myPath.$file);
+                    WideImage::load('file')->resize(365,175, 'fill')->saveToFile(myPath.$file);
                     $db->where('id',$recent);
                     $db->update($table,array('img'=>$file));
                 }
@@ -69,11 +67,10 @@ function service($db)
                 'title'=>$title,'sum'=>$sum,'content'=>$content,
                 'meta_keyword'=>$meta_kw,
                 'meta_description'=>$meta_desc,
-                'date'=>$date,
-                'home'=>$home,'active'=>$active,'ind'=>$ind
+                'home'=>$home,'active'=>$active,'ind'=>$ind,'pId'=>$pId
             );
             if(common::file_check($_FILES['file'])){
-                WideImage::load('file')->resize(600,700, 'fill')->saveToFile(myPath.$file);
+                WideImage::load('file')->resize(365,175, 'fill')->saveToFile(myPath.$file);
                 $update = array_merge($update,array('img'=>$file));
                 $form->img_remove($_POST['idLoad'],$db,$table);
             }
@@ -98,18 +95,18 @@ function service($db)
 	}
     
     $page_head= array(
-                    array('#','Danh sách tin tức')
+                    array('#','Danh sách khuyến mãi')
                 );
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
     
-    $str.=$form->search_area($db,$act,'category',$_GET['hint'],0);
+    $str.=$form->search_area($db,$act,'promotion_cate',$_GET['hint'],0);
     
     $head_title=array('Tiêu đề','Hình ảnh','Hiện/Ẩn','STT');
 	$str.=$form->table_start($head_title);
 	
     $page=isset($_GET["page"])?intval($_GET["page"]):1;
-    if(isset($_GET['hint'])) $db->where('title','%'.$_GET['hint'].'%','LIKE');
+    if(isset($_GET['hint'])) $db->where('title','%'.$_GET['hint'].'%','LIKE'); 
     $db->orderBy('id');
     $db->pageLimit=ad_lim;
     $list=$db->paginate($table,$page);
@@ -138,11 +135,10 @@ function service($db)
             '.$form->text('meta_keyword',array('label'=>'Keyword<code>SEO</code>','required'=>true)).'      
             '.$form->textarea('meta_description',array('label'=>'Meta Description<code>SEO</code>','required'=>true)).'   
             '.$form->ckeditor('content',array('label'=>'Nội dung','required'=>true)).'
-            '.$form->datepicker('date',array('label'=>'Ngày','required'=>true)).'
              
         </div>
         <div class="col-lg-12">
-            '.$form->file('file',array('label'=>'Hình ảnh<code>(600,700)</code>')).'
+            '.$form->file('img',365,175).'
             '.$form->number('ind',array('label'=>'Thứ tự')).'
             '.$form->checkbox('home',array('label'=>'Trang chủ')).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'

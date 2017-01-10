@@ -230,13 +230,21 @@ header {
   #partner-slider .slick-list {
     margin: 0 40px; }
   #partner-slider .slick-prev, #partner-slider .slick-next {
-    top: 36%;
-    width: 40px;
-    height: 108px; }
+    top: 29%;
+    width: 25px;
+    height: 42px;
+    background-color: transparent; }
   #partner-slider .slick-prev {
+    left: 5px;
     background-image: url(/file/front/left-arrow.png); }
   #partner-slider .slick-next {
+    right: 5px;
     background-image: url(/file/front/right-arrow.png); }
+  #partner-slider .slick-prev:hover,
+  #partner-slider .slick-prev:focus,
+  #partner-slider .slick-next:hover,
+  #partner-slider .slick-next:focus {
+    background-color: #686868; }
 
 .wsmenu > .wsmenu-list > li > a > .arrow {
   padding-right: 5px; }
@@ -356,13 +364,14 @@ header {
   font-size: 19px; }
 
 #wowslider-container1 .ws_bullets {
-  right: 0px;
-  bottom: 0px;
-  left: auto !important; }
-
-#wowslider-container1 .ws_bullets a {
-  height: 8px !important;
-  width: 8px !important; }
+  left: 50%;
+  bottom: 0px; }
+  #wowslider-container1 .ws_bullets a {
+    height: 10px !important;
+    width: 10px !important;
+    border-radius: 36% !important; }
+  #wowslider-container1 .ws_bullets a:hover, #wowslider-container1 .ws_bullets a:focus, #wowslider-container1 .ws_bullets a.ws_selbull {
+    background-color: #ff578f !important; }
 
 .ind-partner {
   background-color: #e8e8e8; }
@@ -497,6 +506,14 @@ section#home-subscribe {
 
 .product-col, .service-col {
   padding: 15px 10px 15px 10px; }
+
+.promotion-item {
+  border: 5px solid #fff;
+  box-shadow: 0px 0px 8px #e1e1e1; }
+
+.ind-promotion {
+  padding-top: 40px;
+  padding-bottom: 20px; }
 
 .news-item-title {
   color: #0070b3;

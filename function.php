@@ -66,30 +66,7 @@ function menu($db,$view){
         foreach($list as $item){
             $active=($view==$item['view'])?'active':'';
             $title=$item['title'];
-            $lnk=myWeb.$item['view'];  
-            $db_cate_name = null;          
-            switch($item['view']){
-                case 'san-pham':
-                    $db_cate_name = 'product_cate';                    
-                    break;
-                case 'tin-tuc':
-                    $db_cate_name = 'news_cate';  
-            }
-            if(isset($db_cate_name)){
-                $str.='
-                        <li><span class="wsmenu-click"><i class="wsmenu-arrow fa fa-angle-down"></i></span>
-                            <a href="'.$lnk.'" class="'.$active.'">'.$title.'<span class="arrow"></span></a>
-                            <ul class="wsmenu-submenu">';
-                    $cate=$db->where('active',1)->orderBy('ind','ASC')->orderBy('id')->get($db_cate_name,null,'id,title');
-                    foreach($cate as $cate_item){
-                        $lnk=myWeb.$item['view'].'/'.common::slug($cate_item['title']).'-p'.$cate_item['id'];                        
-                        $str.='                        
-                                <li><a href="'.$lnk.'"><i class="fa fa-angle-right"></i>'.$cate_item['title'].' </a></li>';
-                    }
-                    $str.=' </ul>
-                        </li>';
-                continue;
-            }
+            $lnk=myWeb.$item['view'];    
             $str.='
                 <li><a href="'.$lnk.'"  class="'.$active.'">'.$title.'</a></li>';
         }
@@ -178,6 +155,10 @@ function home($db){
             '.wow_slider($db).'
         </div>
     </section>';  
+    common::page('promotion');
+    $promotion=new promotion($db);
+    $str.=$promotion->ind_promotion();
+    
     common::page('product');
     $product=new product($db);
     $str.=$product->ind_product();
@@ -295,7 +276,7 @@ function about($db){
 function news($db){
     common::page('news');
     $news=new news($db);
-    $str.=$news->breadcrumb_cate_lev1();
+    $str.=$news->breadcrumb_with_Id();
     $str.=$news->top_content('');
     if(isset($_GET['id'])){
         $str.=$news->news_one(intval($_GET['id']));    
@@ -303,6 +284,19 @@ function news($db){
         $str.=$news->news_cate();
     }     
     $str.=$news->bottom_content(); 
+    return $str;
+}
+function promotion($db){
+    common::page('promotion');
+    $promotion=new promotion($db);
+    $str.=$promotion->breadcrumb_with_Id();
+    $str.=$promotion->top_content('');
+    if(isset($_GET['id'])){
+        $str.=$promotion->promotion_one(intval($_GET['id']));    
+    }else{
+        $str.=$promotion->promotion_cate();
+    }     
+    $str.=$promotion->bottom_content(); 
     return $str;
 }
 function career($db){

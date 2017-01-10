@@ -8,7 +8,7 @@ function ad_menu()
                     array(2,"Giới thiệu","about","credit-card"),
                     array(3,'Quản lý sản phẩm',"product","dropbox"),
 					/*array(3,"Quản lý phụ tùng","accessary","pencil"),	*/	
-                    array(4,'Dịch vụ','service','anchor'), 
+                    array(4,'Khuyến mãi','promotion','anchor'), 
                     array(5,'Tin tức','news','pencil-square-o'),   
                     array(6,'Đối tác','partner','briefcase'), 
                     //array(9,'Video','video','youtube'),
@@ -25,8 +25,6 @@ function ad_menu()
                     array(3,'Danh mục sản phẩm','type=product_cate'),
                     /*array(2,'Danh mục sản phẩm cấp 2','type=product_cate_2'), */
                     array(3,'Danh sách sản phẩm','type=product'), 
-                    array(5,'Danh mục tin tức','type=news_cate'),
-                    array(5,'Danh sách tin tức','type=news'),  
                     /*array(6,'Danh mục dịch vụ','type=serv_cate'),
                     array(6,'Danh sách dịch vụ','type=serv'),*/ 
                     //array(8,'Danh mục khuyến mãi','type=promotion_cate'),

@@ -26,7 +26,7 @@ class partner extends base{
         $(function() {
             $("#partner-slider").slick({
                 infinite: true,
-                speed: 300,               
+                speed: 300,
                 variableWidth: true
             })
         })

@@ -25,8 +25,8 @@
             case 'tim-kiem':
                 echo product($db);
                 break;
-            case 'bien-tan':
-                echo bien_tan($db);
+            case 'khuyen-mai':
+                echo promotion($db);
                 break;
             case 'servo':
                 echo servo($db);

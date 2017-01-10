@@ -283,15 +283,25 @@ header{
         margin: 0 40px;
     }
     .slick-prev, .slick-next {
-        top: 36%;
-        width: 40px;
-        height: 108px;
+        top: 29%;
+        width: 25px;
+        height: 42px;
+        background-color: transparent;
     }
     .slick-prev {
+        left: 5px;
         background-image: url(/file/front/left-arrow.png);
     }
-    .slick-next {
+    .slick-next {        
+        right: 5px;
         background-image: url(/file/front/right-arrow.png);
+    }
+    .slick-prev:hover,
+    .slick-prev:focus,
+    .slick-next:hover,
+    .slick-next:focus
+    {
+        background-color: #686868;
     }
 }
 
@@ -416,15 +426,17 @@ header{
     margin-left: 30px;
     font-size:19px;
 }
-#wowslider-container1 .ws_bullets {
-    right: 0px;
+#wowslider-container1 .ws_bullets {    
+    left: 50%;
     bottom: 0px;
-    left: auto !important;
-}
-
-#wowslider-container1 .ws_bullets a {
-    height: 8px !important;
-    width: 8px !important;
+    a {
+        height: 10px !important;
+        width: 10px !important;
+        border-radius: 36% !important;
+    }
+    a:hover, a:focus,a.ws_selbull{
+        background-color: $secondary-color !important;
+    }
 }
 .ind-partner{
     background-color: $grey-background;
@@ -592,6 +604,14 @@ section#home-subscribe {
     padding: 15px 10px 15px 10px;
 }
 
+.promotion-item{    
+    border: 5px solid #fff;
+    box-shadow: 0px 0px 8px #e1e1e1;
+}
+.ind-promotion{
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
 .news-item-title { 
     color: #0070b3;
     margin: 22px 0 8px 0;
