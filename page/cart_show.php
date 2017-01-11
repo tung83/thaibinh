@@ -1,11 +1,9 @@
 <?php
-class cart_show{
+class cart_show extends base{
     private $cart;
-    function __construct($db,$view='gio-hang',$lang='vi'){
-        $this->db=$db;
+    function __construct($db){        
+        parent::__construct($db,8,'cart');
         $this->cart=$_SESSION['cart'];
-        $this->view=$view;
-        $this->lang=$lang;
     }
     function breadcrumb(){
         
@@ -159,7 +157,7 @@ class cart_show{
                         <div class="chose_area">						
     						<a class="btn btn-default btn-product" href="'.myWeb.'">Tiếp tục mua sắm</a>
                             <button type="submit"  class="btn btn-default btn-product">Cập nhật</button>
-							<a class="btn btn-default btn-product" href="'.myWeb.$this->lang.'/'.$this->view.'/'.payment_view.'">Gửi đơn hàng</a>
+							<a class="btn btn-default btn-product" href="'.myWeb.$this->view.'/giao-hang">Gửi đơn hàng</a>
     					</div>							
 					</div>
 				</div>

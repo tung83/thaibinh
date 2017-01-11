@@ -28,9 +28,9 @@
             case 'khuyen-mai':
                 echo promotion($db);
                 break;
-            case 'servo':
-                echo servo($db);
-                break;
+            case 'thanh-toan':
+                echo cart($db, $view);
+                break;        
             case 'dong-co':
                 echo dong_co($db);
                 break;

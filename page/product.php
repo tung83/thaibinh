@@ -9,6 +9,7 @@ class product extends base{
         <section class="ind-product"> 
             <div class="container">
             <div class="row">
+            <div class="row">
             <div class="col-xs-12">
                 <div class="title-head">
                     <span>

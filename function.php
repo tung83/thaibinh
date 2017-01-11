@@ -47,7 +47,7 @@ function menu($db,$view){
 
                           </div>
                         <div class="cart">                           
-                            <a href="/gio-hang"><i class="fa fa-shopping-cart"></i><span class="cart-text">GIỎ HÀNG</span>';
+                            <a href="/thanh-toan"><i class="fa fa-shopping-cart"></i><span class="cart-text">GIỎ HÀNG</span>';
                                 $cart_count = cart_count($db);
                                     $str.='<span id="cart-count" class="user-cart-quantity'.($cart_count > 0? '' : ' hidden').'">'.$cart_count.'</span>
                             </a>
@@ -262,7 +262,13 @@ function project($db){
     }     
     return $str;
 }
-function about($db){
+function about($db){ 
+    $str='
+    <section id="ind-slider">
+        <div id="slider-box">
+            '.wow_slider($db).'
+        </div>
+    </section>'; 
     $str.='
     <section id="page">';
     common::page('about');
@@ -312,21 +318,26 @@ function career($db){
     $str.=$career->bottom_content(); 
     return $str;
 }
-function manual($db){
-    //common::widget('layer_slider');
-    //$layer_slider=new layer_slider($db);
+function cart($db, $view)
+{
+    common::load('cart_show','page');
+    $cart = new cart_show($db, $view, $lang);
     
-    $str='
-    <section id="ind-slider">
-        <div class="container">
-            '.wow_slider($db).'
+    $str.='
+    <div class="container cart-list">
+        <div class="row">';
+        switch($act=$_GET['act']){
+            case 'giao-hang':
+            case 'payment':
+                $str.=$cart->cart_checkout();
+                break;
+            default:
+                $str.=$cart->cart_output($db);
+                break;
+    }
+    $str.='           
         </div>
-    </section>';
-    
-    common::page('manual');
-    $manual=new manual($db);
-    //$str=$about->breadcrumb();
-    $str.=$manual->manual_one();
+    </div>';
     return $str;
 }
 function product($db){
@@ -421,6 +432,19 @@ function cart_count($db){
     return $obj->cart_count();
 }
 
+function cart_update_multi($db){
+    common::load('cart');
+    $obj=new cart($db);        
+             
+    if ( isset( $_POST['productItems'] ) )  {   
+        foreach ( $_POST['productItems'] as $item )
+        { 
+            $obj->cart_update($item['id'],$item['qty']);
+        }
+        return true;
+    }
+    return false;
+}
 function shadowBottom(){
     return '<div class="container">  
                 <div id="shadow-bottom" class="row">
