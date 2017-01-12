@@ -179,11 +179,9 @@ class product extends base{
         $count=$this->db->totalCount;
         $str.='<div class="product-list">'
                 . '<div class="row">';
+                    $str.=$this->product_cate_left_list();
         if($count>0){
             foreach($list as $key=>$item){
-                if($key == 0){
-                    $str.=$this->product_cate_left_list();
-                }
                 $str.=$this->product_item($item);
             }
         }        
@@ -413,18 +411,21 @@ class product extends base{
 //                 galleryActiveClass: "active", 
 //	});  
     function product_cate_left_list(){
+        $pId = $this->check_pId();
         $this->db->reset();
         $this->db->where('active',1);
         $this->db_orderBy();
         $list=$this->db->get($this->db_cate_name);
+        
         $str.='
             <div class="col-md-3 product-col">
-                <div class="product-item item">    
+                <div class="product-item product-menu-container item">    
                     <ul class="product-menu">';
                     foreach($list as $cate){
+                        $active_class = ($pId!=0 && $cate["id"] == $pId)? 'active' : '';
                         $title=$cate['title'];
                         $str.='
-                        <li><a href="'.myWeb.$this->view.'/'.common::slug($title).'-p'.$cate["id"].'">'.$title.'</a></li>';   
+                        <li class="'.$active_class.'"><a href="'.myWeb.$this->view.'/'.common::slug($title).'-p'.$cate["id"].'"><span></span>'.$title.'</a><hr></li>';   
                     }
         $str.='
                     </ul>

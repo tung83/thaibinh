@@ -346,6 +346,11 @@ function product($db){
     common::page('product');
     $pd=new product($db);
     $str.=$pd->breadcrumb_cate_lev1();
+    
+    common::page('promotion');
+    $promotion=new promotion($db);
+    $str.=$promotion->ind_promotion();
+    
     $str.=$pd->top_content('');
     if(isset($_GET['id'])){
         $str.=$pd->product_one(intval($_GET['id']));    
@@ -354,6 +359,7 @@ function product($db){
     }
     else{
         $str.=$pd->product_cate();
+        $str.=resize_product_cate();
     }
     $str.=$pd->bottom_content(); 
     return $str;
@@ -481,6 +487,22 @@ function submit_mail(){
             </form>
         </div>
     </section>';
+}
+
+function resize_product_cate(){      
+    return '
+        <script>   
+        $(document).ready(function() {
+            $(window).resize(function() {
+                if($(".product-item").length > 0)
+                {
+                    var productItemHeight = $($(".product-item")[1]).height();
+                }
+                $(".product-menu-container").height(productItemHeight);
+                
+            }).resize();
+        });
+        </script>';
 }
 function gmap(){      
     return '
