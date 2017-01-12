@@ -484,7 +484,8 @@ section#home-subscribe {
     font-style: italic;
     color: #979797;
     padding: 0 15px;
-    margin: 0 10px 0 20px; }
+    margin: 0 10px 0 20px;
+    outline: none; }
   section#home-subscribe input[type=submit] {
     background: #ff578f;
     border: 1px solid #cfcfcf;
@@ -493,8 +494,7 @@ section#home-subscribe {
     height: 32px;
     font-size: 17px;
     font-style: italic;
-    color: #fff;
-    outline: none; }
+    color: #fff; }
 
 .item:hover .item-title, .item:focus .item-title {
   color: #db5010; }

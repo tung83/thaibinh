@@ -9,6 +9,13 @@ switch($act){
         ->orderBy('id')->get('product',10,'id,code,title');        
         echo json_encode($list);
         break;
+    case 'subscribe':    
+        $insert=array(
+                'email'=>$_POST['email'],
+                'dates'=>date("Y-m-d H:i:s")
+            );
+        $db->insert('subcriber',$insert); 
+        break;
     default:
         break;
 }
