@@ -10,6 +10,15 @@
     <?=common::basic_js()?>
 </head>
 <body id="<?=pageId($view)?>">
+    
+        <?php
+        if($view == 'trang-chu'){
+            echo '<section id="ind-slider">
+                <div id="slider-box">
+                    '.wow_slider($db).' 
+                </div>
+            </section>';
+    } ?>
     <div class="wsmenucontainer clearfix">
         <div class="overlapblackbg"></div>
         <header>

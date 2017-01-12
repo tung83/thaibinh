@@ -42,7 +42,7 @@ function slider($db){
 		try{
             $recent = $db->insert($table,$insert);
             if(common::file_check($_FILES['file'])){
-                WideImage::load('file')->resize(1900,600,'fill')->saveToFile(myPath.$file);
+                WideImage::load('file')->resize(5180,3450,'fill')->saveToFile(myPath.$file);
                 $db->where('id',$recent);
                 $db->update($table,array('img'=>$file));
             }
@@ -57,7 +57,7 @@ function slider($db){
                     'active'=>$active,'lnk'=>$lnk
                 );
         if(common::file_check($_FILES['file'])){
-            WideImage::load('file')->resize(1900,600, 'fill')->saveToFile(myPath.$file);
+            WideImage::load('file')->resize(5180,3450, 'fill')->saveToFile(myPath.$file);
             $update = array_merge($update,array('img'=>$file)); 
             $form->img_remove($_POST['idLoad'],$db,$table);
         }        
@@ -118,7 +118,7 @@ function slider($db){
             '.$form->text('lnk',array('label'=>'Liên kết')).'            
         </div>
         <div class="col-lg-12">
-            '.$form->file('file',array('label'=>'Hình ảnh <code>( đề nghị: 1900px:600px )</code>')).'
+            '.$form->file('img',3000,2000).'
             '.$form->number('ind',array('label'=>'Thứ tự')).'
             '.$form->checkbox('active',array('label'=>'Hiển thị','checked'=>true)).'
         </div>

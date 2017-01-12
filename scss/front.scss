@@ -1,9 +1,24 @@
 $primary-color: #2f2f2f;
-$secondary-color: #ff578f;
+$secondary-color: #9a0000;
 $grey-text-color: #464646;
 $price-color: #dc9860;
 $grey-background: #e8e8e8;
+#wowslider-container1 {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        z-index: 0 !important;
+    }
 
+    .content {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: auto;
+        z-index: 0 !important;
+    }
 @import url('fonts.css');
 body{
     font-family: 'arial';
@@ -252,12 +267,14 @@ header{
     }
 }
 
-.header .menu-ground, .mobile-sub{
-    background: $primary-color;
-}
+
 
 .wsmenu{
     background:transparent;
+}
+.wsmenu > .wsmenu-list > li{
+    display: inline-block;
+    width: 130px;  
 }
 .wsmenu > .wsmenu-list > li > a{
     color:#fff; 
@@ -305,7 +322,11 @@ header{
     }
 }
 
-
+.header .menu-ground, .mobile-sub li{
+    background: #000000;
+    opacity: 0.8;
+    margin-right: 2px;
+}
 .wsmenu > .wsmenu-list {
     > li {
         > a {
@@ -322,6 +343,19 @@ header{
             > .arrow:after{ 
                 border-top-color:#fff !important;
             }
+        }
+        a.active:after {
+            margin-bottom: -5px;
+            box-sizing: border-box;
+            position: absolute;
+            top: 100%;
+            left: 43%;
+            border: 5px solid transparent;
+            border-top-color: #9a0000;
+            content: ' ';
+            height: 0;
+            width: 0;
+            pointer-events: none;
         }
         > a:hover {
             opacity: 1;

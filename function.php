@@ -23,14 +23,36 @@ function menu($db,$view){
     	<div class="container">
             <div class="row">
                 <div class="row">
-                    <div class="col-md-4 hotline">                    
+                    
+                    <div class="col-md-2 logo">
+                        <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
+                    </div>
+                     <div class="col-md-4 logo">
+                     <!--Main Menu HTML Code-->
+                    <nav class="wsmenu clearfix">
+                        <ul class="mobile-sub wsmenu-list">';
+                    foreach($list as $item){
+                        $active=($view==$item['view'])?'active':'';
+                        $title=$item['title'];
+                        $lnk=myWeb.$item['view'];  
+                        if($item['view'] == "trang-chu"){
+                            $str.='<li><a href="'.$lnk.'"  class="'.$active.'"><i class="fa fa-home"></i></a></li>';
+                        }
+                        else{
+                        $str.='
+                            <li><a href="'.$lnk.'"  class="'.$active.'">'.$title.'</a></li>';
+                        }
+                    }
+                    $str.='            
+                        </ul>
+                    </nav>
+                    <!--Menu HTML Code--> 
+                     </div>
+                    <div class="col-md-2 hotline">                    
                         <span>Hotline:</span>
                         <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
                     </div>
-                    <div class="col-md-4 logo">
-                        <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
-                    </div>
-                    <div class="col-md-4 header-right">
+                    <div class="col-md-2 header-right">
 
                         '.social($db).' 
                         <div class="search">
@@ -60,20 +82,7 @@ function menu($db,$view){
     <div class="menu-ground">
     <div class="container clearfix bigmegamenu">
     <div class="row">      
-        <!--Main Menu HTML Code-->
-        <nav class="wsmenu clearfix">
-            <ul class="mobile-sub wsmenu-list">';
-        foreach($list as $item){
-            $active=($view==$item['view'])?'active':'';
-            $title=$item['title'];
-            $lnk=myWeb.$item['view'];    
-            $str.='
-                <li><a href="'.$lnk.'"  class="'.$active.'">'.$title.'</a></li>';
-        }
-        $str.='            
-            </ul>
-        </nav>
-        <!--Menu HTML Code-->    
+         
     </div>    
     </div>   
     </div>    
@@ -149,26 +158,17 @@ function foot_product_cate($db,$view){
 }
 
 function home($db){    
-    $str='
-    <section id="ind-slider">
-        <div id="slider-box">
-            '.wow_slider($db).'
-        </div>
-    </section>';  
-    common::page('promotion');
-    $promotion=new promotion($db);
-    $str.=$promotion->ind_promotion();
     
-    common::page('product');
-    $product=new product($db);
-    $str.=$product->ind_product();
-    
-    common::page('partner');
-    $partner=new partner($db);
-    $str.=$partner->partners();    
-    
-    $str.=submit_mail();
-    
+//    common::page('product');
+//    $product=new product($db);
+//    $str.=$product->ind_product();
+//    
+//    common::page('partner');
+//    $partner=new partner($db);
+//    $str.=$partner->partners();    
+//    
+//    $str.=submit_mail();
+//    
     
     /*$str.=partner($db);*/
     return $str;
@@ -183,7 +183,7 @@ function wow_slider($db){
 	<div class="ws_images"><ul>';
     $i=1;
     foreach($list as $item){
-        $img='<img src="'.webPath.$item['img'].'" alt="" title=""/>';
+        $img='<img src="'.webPath.$item['img'].'" alt="" title=""></img>';
         $lnk=$item['lnk']!=''?'<a href="'.$item['lnk'].'">'.$img.'</a>':$img;
         $str.='
         <li>'.$lnk.'</li>';
