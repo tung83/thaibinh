@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.14
+-- version 4.5.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Jan 04, 2017 at 03:21 PM
--- Server version: 5.6.26-cll-lve
--- PHP Version: 5.4.31
+-- Host: 127.0.0.1
+-- Generation Time: Jan 13, 2017 at 10:22 AM
+-- Server version: 5.7.11
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `thaibinh_db`
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `about`
 --
 
-CREATE TABLE IF NOT EXISTS `about` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `about` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `content` longtext NOT NULL,
@@ -41,9 +41,8 @@ CREATE TABLE IF NOT EXISTS `about` (
   `e_meta_description` text NOT NULL,
   `active` tinyint(1) NOT NULL,
   `ind` int(11) NOT NULL,
-  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `about`
@@ -58,14 +57,13 @@ INSERT INTO `about` (`id`, `title`, `sum`, `content`, `img`, `meta_keyword`, `me
 -- Table structure for table `ad_user`
 --
 
-CREATE TABLE IF NOT EXISTS `ad_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ad_user` (
+  `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `pwd` text NOT NULL,
   `power` int(11) NOT NULL,
-  `lastOnl` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `lastOnl` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ad_user`
@@ -81,8 +79,8 @@ INSERT INTO `ad_user` (`id`, `email`, `pwd`, `power`, `lastOnl`) VALUES
 -- Table structure for table `basic_config`
 --
 
-CREATE TABLE IF NOT EXISTS `basic_config` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `basic_config` (
+  `id` int(11) NOT NULL,
   `smtp_server` text NOT NULL,
   `smtp_port` text NOT NULL,
   `smtp_user` text NOT NULL,
@@ -94,9 +92,8 @@ CREATE TABLE IF NOT EXISTS `basic_config` (
   `another_script` text NOT NULL,
   `social_twitter` text NOT NULL,
   `social_facebook` text NOT NULL,
-  `social_google_plus` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `social_google_plus` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `basic_config`
@@ -108,20 +105,69 @@ INSERT INTO `basic_config` (`id`, `smtp_server`, `smtp_port`, `smtp_user`, `smtp
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `adds` text NOT NULL,
+  `phone` text NOT NULL,
+  `notice` text NOT NULL,
+  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `name`, `adds`, `phone`, `notice`, `dates`) VALUES
+(1, 'tung', '3434234', '232131231', 'nhớ', '2017-01-13 03:08:20'),
+(2, 'w232', '2323', '23232', '2323232', '2017-01-13 03:09:16'),
+(3, 'sdfsfsdf', 'sdfsdfdsf', 'sdfdsfsdf', 'sfsdfsdf', '2017-01-13 03:22:07'),
+(4, 'terer', 'erere', 'erere', 'erere', '2017-01-13 03:29:43'),
+(5, '32323', '2323', '2323', '2323', '2017-01-13 03:30:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_detail`
+--
+
+CREATE TABLE `cart_detail` (
+  `id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_title` text NOT NULL,
+  `product_price` float NOT NULL,
+  `product_qty` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cart_detail`
+--
+
+INSERT INTO `cart_detail` (`id`, `cart_id`, `product_id`, `product_title`, `product_price`, `product_qty`) VALUES
+(1, 4, 186, 'BIẾN TẦN YASKAWA V1000', 0, 1),
+(2, 4, 175, 'BIẾN TẦN YASKAWA F7', 0, 1),
+(3, 5, 186, 'BIẾN TẦN YASKAWA V1000', 0, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `contact`
 --
 
-CREATE TABLE IF NOT EXISTS `contact` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `adds` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `subject` varchar(1000) DEFAULT NULL,
   `content` text NOT NULL,
-  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `contact`
@@ -137,8 +183,8 @@ INSERT INTO `contact` (`id`, `name`, `adds`, `phone`, `email`, `subject`, `conte
 -- Table structure for table `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `icon` varchar(255) NOT NULL,
   `meta_keyword` text NOT NULL,
@@ -149,9 +195,8 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `e_meta_description` text NOT NULL,
   `e_view` varchar(255) NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `menu`
@@ -160,15 +205,11 @@ CREATE TABLE IF NOT EXISTS `menu` (
 INSERT INTO `menu` (`id`, `title`, `icon`, `meta_keyword`, `meta_description`, `view`, `e_title`, `e_meta_keyword`, `e_meta_description`, `e_view`, `ind`, `active`) VALUES
 (1, 'Trang Chủ', '', 'cửa sắt,cửa nhôm,mặt alu', 'EWEWEWE', 'trang-chu', 'Home', 'cửa sắt,cửa nhôm,mặt alu', '', 'home', 1, 1),
 (2, 'Giới Thiệu', 'team', '', '', 'gioi-thieu', 'About Us', '', '', 'about-us', 2, 1),
-(3, 'Sản Phẩm', '', '', '', 'san-pham', 'Products', '', '', 'product', 6, 1),
-(4, 'Tin Tức', '', '', '', 'tin-tuc', 'News', '', '', 'news', 8, 1),
-(5, 'Tuyển dụng', '', '', '', 'tuyen-dung', 'Careers', '', '', 'careers', 10, 1),
-(6, 'Liên Hệ', '', '', '', 'lien-he', 'Contact Us', '', '', 'contact-us', 11, 1),
-(7, 'BIẾN TẦN', '', 'bien tan', '', 'bien-tan', '', '', '', '', 3, 1),
-(8, 'SERVO', '', 'SERVO', '', 'servo', '', '', '', '', 4, 1),
-(9, 'ĐỘNG CƠ', '', 'ĐỘNG CƠ', '', 'dong-co', '', '', '', '', 5, 1),
-(10, 'Dịch vụ', '', '', '', 'dich-vu', '', '', '', '', 7, 1),
-(11, 'Dự án', '', '', '', 'du-an', '', '', '', '', 9, 1);
+(3, 'Sản Phẩm', '', '', '', 'san-pham', 'Products', '', '', 'product', 3, 1),
+(4, 'Tin Tức', '', '', '', 'tin-tuc', 'News', '', '', 'news', 4, 1),
+(5, 'Khuyến mãi', '', 'khuyen-mai', '', 'khuyen-mai', '', '', '', '', 5, 1),
+(6, 'Thanh toán', '', 'Thanh toán', '', 'thanh-toan', '', '', '', '', 6, 1),
+(7, 'Liên Hệ', '', '', '', 'lien-he', 'Contact Us', '', '', 'contact-us', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -176,8 +217,8 @@ INSERT INTO `menu` (`id`, `title`, `icon`, `meta_keyword`, `meta_description`, `
 -- Table structure for table `news`
 --
 
-CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `content` longtext NOT NULL,
@@ -196,10 +237,8 @@ CREATE TABLE IF NOT EXISTS `news` (
   `date` date DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   `home` tinyint(4) NOT NULL DEFAULT '0',
-  `ind` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pId` (`pId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `news`
@@ -217,8 +256,8 @@ INSERT INTO `news` (`id`, `title`, `sum`, `content`, `meta_keyword`, `meta_descr
 -- Table structure for table `news_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `news_cate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news_cate` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `meta_keyword` text NOT NULL,
@@ -232,9 +271,8 @@ CREATE TABLE IF NOT EXISTS `news_cate` (
   `pId` int(11) NOT NULL,
   `lev` int(11) NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `news_cate`
@@ -249,11 +287,44 @@ INSERT INTO `news_cate` (`id`, `title`, `sum`, `meta_keyword`, `meta_description
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `partner`
+--
+
+CREATE TABLE `partner` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `eTitle` text NOT NULL,
+  `lnk` text NOT NULL,
+  `img` text NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `partner`
+--
+
+INSERT INTO `partner` (`id`, `title`, `eTitle`, `lnk`, `img`, `active`, `ind`) VALUES
+(1, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(2, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(3, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(4, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(5, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(6, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(7, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(8, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(9, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(10, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1),
+(11, 'Bambo interior2232323', 'Bambo interior', 'pspmedia.vn3232', '1483951483index_28.png', 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
-CREATE TABLE IF NOT EXISTS `product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `feature` longtext NOT NULL,
   `price` int(11) DEFAULT NULL,
@@ -284,10 +355,8 @@ CREATE TABLE IF NOT EXISTS `product` (
   `pId` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL,
   `home` tinyint(1) NOT NULL,
-  `ind` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pId` (`pId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=228 ;
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
@@ -295,46 +364,12 @@ CREATE TABLE IF NOT EXISTS `product` (
 
 INSERT INTO `product` (`id`, `title`, `feature`, `price`, `price_reduce`, `in_stock`, `condition`, `brand_id`, `detail`, `content`, `teach`, `video`, `meta_keyword`, `meta_description`, `manual`, `e_manual`, `promotion`, `e_promotion`, `e_title`, `e_feature`, `e_detail`, `e_content`, `e_teach`, `e_meta_keyword`, `e_meta_description`, `pd_option`, `lnk`, `e_lnk`, `pId`, `active`, `home`, `ind`) VALUES
 (175, 'BIẾN TẦN YASKAWA F7', '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Biến tần Yaskawa F7</strong> là dòng biến tần cao cấp, tích hợp sẵn chế độ điều khiển tự động điều hướng động cơ (auto tuning), tĩnh và động. Là dòng biến tần duy nhất tại Nhật Bản đạt chuẩn RoHS<br />\r\n<br />\r\n&nbsp;</span></span>', NULL, NULL, 0, 0, 0, '<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Nguồn cấp: 3 pha 200VAC / 3 pha 400VAC</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Tần số: 50-60Hz (&plusmn;5%)</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Công suất: 0.4 &ndash; 300kw</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Phương pháp điều khiển: V/f, véc tơ vòng hở cho động cơ đồng bộ</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Mô men khởi động: 150%/3Hz (điều khiển V/f), 100%/5% tốc độ (điều khiển véc tơ vòng hở)</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Khả năng quá tải: 120% trong 60 giây</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Chức năng tự động dò tốc độ động cơ khi mất nguồn không sử dụng cảm biến tốc độ</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Chức năng KEB giữ động cơ hoạt động ổn định khi mất nguồn dùng động năng tái sinh</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Tích hợp sẵn bộ điều khiển PID và cổng truyền thông RS422/RS485.</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Các tính năng đặc biệt cho bơm quạt: thiết lập cho các ứng dụng bơm quạt cài đặt trước, khả năng phát hiện sự cố mô men cao hoặc thấp, giữ động cơ hoạt động ngay cả khi mất tín hiệu cài đặt tần số, giám sát công suất và điện năng tiêu thụ.</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Thiết bị mở rộng:</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Hỗ trợ các chuẩn truyền thông RS422/RS485, mechatrolink II, CC-link, Devicenet, Profibus-DP, CANopen, Lonworks</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Bộ lọc sóng hài và cải thiện hệ số công suất xoay chiều, một chiều</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Ứng dụng:</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Quạt, bơm, máy ép, băng tải, xe lăn, xe cáp, máy trục hàng, máy ly tâm.</span>', '', '', '', 'BIẾN TẦN YASKAWA F7', 'BIẾN TẦN YASKAWA F7', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 1, 4),
-(176, 'SWITCH OMRON', '<p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>SWITCH OMRON</strong></span></span></p>\r\n\r\n<p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Nút nhấn có đèn, LED xanh 24VDC<br />\r\nĐèn LED, 24VDC<br />\r\nCấu trúc tháo lắp dễ dàng<br />\r\nTiếp điểm: 1NO+1NC. 6A,/220VAC, 10A/110VDC<br />\r\nTiêu chuẩn EC, IP65</span></span></p>\r\n', NULL, NULL, 0, 0, 0, '', '', '', '', 'SWITCH OMRON', 'SWITCH OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 2),
-(177, 'SENSOR OMRON', '<span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px">Nguồn cấp: 12 to 24 VDC &plusmn;10%<br />\r\nÁp suất đo: 0 đến 98 kPa<br />\r\nÁp suất chịu đựng tối đa: 490 kPa<br />\r\nMôi chất làm việc: Khí không ăn mòn, không cháy<br />\r\nĐộ chính xác ngõ ra On/Off: &plusmn;1% FS max.<br />\r\nĐộ chính xác ngõ ra analog: &plusmn;3% FS max.<br />\r\nThời gian đáp ứng: 5 ms max.<br />\r\nNgõ ra analog: 0 ~ 5 VDC, tổng trở ra 20 &Omega;, cho phép tải thuần trở 10 k&Omega; min.<br />\r\nNgõ ra On/Off: NPN open collector, 80mA 30VDC max.<br />\r\nChức năng bảo vệ ngược cực nguồn và ngắn mạch ngõ ra<br />\r\nChỉ thị: 21/2‐digit LCD,đèn báo hoạt động (đỏ)<br />\r\nNhiệt độ làm việc: &minus;10&deg;C ~ 55&deg;C<br />\r\nVỏ bọc: Nhôm<br />\r\nTiêu chuẩn: IEC 60529 IP50</span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'SENSOR OMRON', 'SENSOR OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 1),
-(178, 'COUNTER OMRON', '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Nguồn cấp: 100-240VAC<br />\r\nChế độ hoạt động: 1-stage preset counter, total and preset counter *1 (lưạ chọn)<br />\r\nHiển thị negative transmissive LCD, 6 số, -99,999 ~ 999,999<br />\r\nChọn màu hiển thị<br />\r\nNgõ vào NPN/PNP và cảm biến 2-dây<br />\r\nChọn chế độ ngõ vào: Increment, decrement, command (UP/DOWN A), individual (UP/DOWN B), quadrature (UP/DOWN C)<br />\r\nNgõ ra: Rơle và NPN<br />\r\nChọn chế độ ngõ ra: N, F, C, R, K-1, P, Q, A, K-2, D, L<br />\r\nNgõ ra tác động nhanh: 0.01 ~ 99.99s<br />\r\nChức năng đếm: 1-stage counter / 1-stage counter with total counter<br />\r\nTốc độ: 30Hz / 5kHz<br />\r\nCó nguồn cho thiết bị ngoài: 12VDC, 100mA<br />\r\nTiêu chuẩn: UL, CSA, EN, CE. IP54</span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'COUNTER OMRON', 'COUNTER OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 1),
-(179, 'PLC OMRON', '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Nguồn cấp: 100-240VAC  Ngôn ngữ lập trình: Ladder diagram<br />\r\nTốc độ thực hiện lệnh: Lệnh cơ bản: 0.01&mu;s; Lệnh đặc biệt: 0.15&mu;s<br />\r\nBộ nhớ chương trình: 20K steps<br />\r\nBộ đếm tốc độ cao: 100 kHz (single-phase), 50 kHz (differential phases), 4 axes<br />\r\nNgõ ra xung tốc độ cao: 100 kHz for 4 axes<br />\r\nCổng truyền thong: Trang bị sẵn cổng USB, chọn lựa thêm RS232C, RS422/RS485<br />\r\nNgõ vào/ra analog: -<br />\r\nCó thể gắn thêm 7 bộ mở rộng CPM1 và 2 bộ mở rộng CJ1W<br />\r\nChức năng thời gian thực (Clock)<br />\r\nNhiệt độ làm việc: 0~55 C<br />\r\nTiêu chuẩn: IEC 61000; JIS C0040; JIS C0041</span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'PLC OMRON', 'PLC OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 1),
-(180, 'INVERTER OMRON', '<span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px"><strong>Chức năng PID</strong><br />\r\nTrang bị sẵn Radio Noise Filter (Z-phase reactor)<br />\r\n&nbsp;Chỉnh tần số ngõ ra: 0.5 ~ 400Hz, độ phân giải 0.1Hz<br />\r\n&nbsp;Khả năng quá tải: 150% trong 1phút<br />\r\nThời gian tăng giảm tốc: 0.01S ~ 3000S<br />\r\nChức năng bảo vệ: Overcurrent, overvoltage, undervoltage, electronic thermal, temperature error, ground-fault overcurrent at power-on state, overload limit, incoming overvoltage, external trip, memory error, CPU error, USP trip, communication error, overvoltage protection during deceleration, momentary power interruption protection, emergency shutoff<br />\r\nTruyền thông Modbus-RTU<br />\r\nChọn lựa thiết bị ngoại vi: Noise filter, AC/DC reactors, regenerative braking unit and resistor,<br />\r\nTiêu chuẩn: EC, UL/cUL</span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'INVERTER OMRON', 'INVERTER OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 4),
 (181, 'SERVO MOTOR', '', NULL, NULL, 0, 0, 0, '<span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Servo motor 100W</strong></span></span></span>\r\n<ul>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Công suất ra: 100W, 0.32N.m</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tốc độ định mức: 3000 vòng/phút</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tốc độ tức thời cực đại: 5000 vòng/phút</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Momen xoắn cực đại: 0.45</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Quán tính rotor: 2.5 &times; 10&minus;6 (kg.m2)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Sử dụng được cho tải quán tính: 30 lần quán tính của rotor</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Quán tính hãm: 2 &times; 10-7 (kg.m2)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ma sát tĩnh: 0.29 min. (N.m)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tuổi thọ hãm: 10,000,000 lần tối thiểu</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Cấp cách điện: Type B</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Cấu trúc: Kín, tự làm mát</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Cấp bảo vệ: IP65</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Cấp chịu rung: V-15</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Lắp đặt: Flange-mounting</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tiêu chuẩn: EC, UL CSA</strong></span></span></span></li>\r\n</ul>\r\n', '', '', '', 'SERVO MOTOR', 'SERVO MOTOR', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 1, 0, 5),
-(182, 'SERVO DRIVE OMRON', '', NULL, NULL, 0, 0, 0, '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Nguồn cấp: 200-240VAC (170 - 264 V), 50/60 Hz, 1 pha<br />\r\nTần số điều rộng xung (PWM): 12kHz<br />\r\nPhương pháp nghịch lưu: IGBT-driven PWM<br />\r\nKhoảng điều khiển tốc độ: 1/5000<br />\r\nTín hiệu tham chiếu: Analog, xung<br />\r\nChế độ điều khiển: Vị trí; Tốc độ; Torque<br />\r\nChức năng: Vibration control, Autotunning, Realtime autotunning<br />\r\nĐặc tính tải: 0.01% or less at 0% to 100% (at rated speed)<br />\r\nĐặc tính điện áp: 0% at &plusmn;10% of rated voltage (at rated speed)<br />\r\nĐặc tính nhiệt: &plusmn;0.1% or less at 0 to 50&deg;C (at rated speed)<br />\r\nKhả năng điều khiển torque: &plusmn;3% (at 20% to 100% of rated torque)</span></span>', '', '', '', 'SERVO DRIVE OMRON', 'SERVO DRIVE OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 1),
 (183, 'SERVO JUNMA YASKAWA', '', NULL, NULL, 0, 0, 0, '<span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px"><strong>Servopack: SGDV</strong><br />\r\n1/3 AC 230V, 50/60Hz, +10%/-15%, 0,05kW &ndash; 1,5kW<br />\r\n3 AC 380V &ndash; 480V, 50/60Hz, +10%/-15%, 0,5kW &ndash; 15kW<br />\r\n<br />\r\n<strong>Servomotor: SGMAV, SGMEV, SGMGV, SGMJV, SGMSV</strong><br />\r\n3 AC 230V, 3000min-1, 0,159Nm &ndash; 2,39Nm, 50W &ndash; 1.5kW<br />\r\n3 AC 400V, 1500min-1, 1,96Nm &ndash; 28,4Nm, 0,3kW &ndash; 15kW<br />\r\n3 AC 400V, 3000min-1, 0,637Nm &ndash; 22,3Nm, 200kW &ndash; 7kW</span></span>', '', '', '', 'SERVO JUNMA YASKAWA', 'SERVO JUNMA YASKAWA', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 0, 1),
 (184, 'SERVO YASKAWA', '', NULL, NULL, 0, 0, 0, '<p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>SERVO YASKAWA</strong></span></span></p>\r\n\r\n<ul>\r\n	<li><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Độ phân giải vượt trội đến 1.6Khz.</span></span></li>\r\n	<li><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp; Tự động dò tìm theo thời gian thực nhằm điều khiển tải phù hợp.</span></span></li>\r\n	<li><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp; Giảm thiểu rung động cho tải.</span></span></li>\r\n	<li><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp; Chức năng tự động dò tìm tiên tiến</span></span></li>\r\n	<li><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp; Điều khiển truyền động chính xác cao nhất.</span></span></li>\r\n	<li><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp; Servopack: SGDV</span></span></li>\r\n</ul>\r\n\r\n<p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">1/3 AC 230V, 50/60Hz, +10%/-15%, 0,05kW &ndash; 1,5kW<br />\r\n3 AC 380V &ndash; 480V, 50/60Hz, +10%/-15%, 0,5kW &ndash; 15kW<br />\r\n<br />\r\n<strong>Servomotor: SGMAV, SGMEV, SGMGV, SGMJV, SGMSV</strong><br />\r\n3 AC 230V, 3000min-1, 0,159Nm &ndash; 2,39Nm, 50W &ndash; 1.5kW<br />\r\n3 AC 400V, 1500min-1, 1,96Nm &ndash; 28,4Nm, 0,3kW &ndash; 15kW<br />\r\n3 AC 400V, 3000min-1, 0,637Nm &ndash; 22,3Nm, 200kW &ndash; 7kW</span></span></p>\r\n', '', '', '', 'SERVO YASKAWA', 'SERVO YASKAWA', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 1, 5),
 (185, 'BIẾN TẦN YASKAWA A1000', '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dòng biến tần YASKAWA A1000 là dòng biến tần đa năng,cách lắp đặt và cài đặt tham số đơn giản,cung cấp hệ thống điều khiển cơ bản cho động cơ không đồng bộ 3 pha rotor lồng sóc với giải công xuất từ 0.4kw- 630kw<br />\r\nLà biến tần duy nhất Nhật Bản đạt tiêu chuẩn môi trường<br />\r\nCông xuất : 3P &nbsp; 200-240V/50Hz : 0.4 &ndash; 110kw<br />\r\n3P: 380-480V/50Hz : 0.4 - 630kw<br />\r\nSai số nguồn cấp cho phép : Điện áp + 10%,-15% ; Tần số : &plusmn; 5%<br />\r\nKhả năng quá tải : 120% trong vòng 60s với tải thường,150% trong vòng 60s với tải nặng.<br />\r\nPhương pháp điều kiển động cơ : Điều khiển V/f,V/f với PG ( Pluse Generrato &ndash; máy phát xung ),vector vòng hở,vector vòng kín với PG,vector vòng hở cho PM ( Permanent &ndash;Động cơ nam châm vĩnh cửu ),vector vòng kín cho PM.<br />\r\nHãm 1 chiều cho toàn dải công xuất,tích hợp mạch điều khiển hãm động năng biến tần 30kw<br />\r\nMôi trường làm viêc : Nhiệt độ : -10 -50Oc,độ ẩm : &lt; 95%,độ cao &lt; 1000m<br />\r\nTiêu chuẩn bảo vệ IP00,IP20,ỊP4<br />\r\nThiết bị mở rộng : mạch phản hồi tốc độ Encoder,mạch kế nối Proﬁbus-DP, Lonwork,Mechatrolink,CANopen,Devvicenet,CC-link</span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'BIẾN TẦN YASKAWA A1000', 'BIẾN TẦN YASKAWA A1000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 0, 3),
 (186, 'BIẾN TẦN YASKAWA V1000', '<span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px"><strong>Biến tần YASKAWA V1000</strong> chuyên dùng cho các ứng dụng tải năng, phức tạp<br />\r\nPhần mềm ( CranSoftware ) với các tham số dành riêng cho ứng dụng cẩu trục chuyên biệt.<br />\r\nLà biến tần duy nhất Nhật bản đạt tiêu chuần về môi trường<br />\r\nCông xuất : 3P &nbsp; 200-240V/50Hz : 0.1 &ndash; 15kw 3P &nbsp; 380-480V/50Hz : 0.2 &ndash; 15kw<br />\r\nTần số ra : 0 &ndash; 400Hz<br />\r\nKhả năng quá tải 150% trong vòng 60s<br />\r\nDải điều khiển : 0-10V,4-20Ma<br />\r\nChức năng vận hành : điều khiển đa tốc độ,phanh DC trong quá trình tăng,điều khiển PID,AVR,tự động Reset khi có lỗi,kế nối truyền thông 485<br />\r\nTiêu chuẩn bảo vệ : IP 20<br />\r\nThiết bị mở rộng : mạch phản hồi tốc độ Encoder,mạch kế nối Proﬁbus-DP, &nbsp;Lonwork,Mechatrolink,CANopen,Devvicenet,CC-link</span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'BIẾN TẦN YASKAWA V1000', 'BIẾN TẦN YASKAWA V1000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 1, 2),
 (187, 'BIẾN TẦN YASKAWA J1000', '', NULL, NULL, 0, 0, 0, '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dòng biến tần YASKAWA J1000 là dòng biến tần tiện dụng, cách lắp đặt và cài đặt đơn giản, có thiết kế nhỏ gọn,phù hợp cho lắp đặt công xuất nhỏ,yêu cầu thẩm mỹ cao, khả năng chịu tải lớn<br />\r\nLà biến tần duy nhất tại Nhật Bản đạt tiêu chuẩn quốc tế về môi trường.<br />\r\nCông xuất : 3P &nbsp; 200V-240V / 50Hz &nbsp; : 0.2-5.5kw<br />\r\nCông xuất : 3P &nbsp; 380V-480V / 50Hz &nbsp; &nbsp;: 0.4-5.5kw<br />\r\nGiải tần số ra : 0-1500Hz<br />\r\nKhả năng quá tải 150% trong vòng 60s,200% trong vòng 0.5s<br />\r\nMô men khởi động 200% tại 0.5Hz<br />\r\nDải điều khiển từ : 0-10v,4-20Ma<br />\r\nTần số song mang lên tới 15Khz<br />\r\nChức năng vận hành : điều khiển đa tốc độ,phanh DC trong quá trình tăng,điều khiển PID,AVR,tự động Reset khi có lỗi,kế nối truyền thông 485<br />\r\nBảo vệ quá áp,quá tải,nhiệt độ quá cao,lỗi CPU,&hellip;<br />\r\nTiêu chuẩn bảo vệ : IP 20<br />\r\nThiết bị mở rộng : mạch phản hồi tốc độ Encoder,mạch kế nối Proﬁbus-DP, Lonwork,Mechatrolink,CANopen,Devvicenet,CC-link</span></span>', '', '', '', 'BIẾN TẦN YASKAWA J1000', 'BIẾN TẦN YASKAWA J1000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 1, 1),
-(188, 'MOTOR ABB', '', NULL, NULL, 0, 0, 0, '', '<span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px">Dải công xuất lên tới 630kw<br />\r\nĐiện áp cấp nguồn 400v /50Hz<br />\r\nChiều cao trục lên tới 355mm<br />\r\nHiệu xuất EFF2<br />\r\nCấp bảo vệ IP 55<br />\r\nTiêu chuẩn làm mát IC 411<br />\r\nCấp cách nhiệt F &nbsp;,Cấp tăng nhiệt B<br />\r\nKiểu lắp chân đế ( IMB3 ) , Mặt bích ( IMB5 )</span></span>', '', '', 'MOTOR ABB', 'MOTOR ABB', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 9, 1, 0, 1),
-(189, 'KHỞI ĐỘNG MỀM ABB', '', NULL, NULL, 0, 0, 0, '', '<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Khởi động và dừng mềm với khoảng điều chỉnh star ram : 1&hellip;10s,</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Stop ram : 0&hellip;20s</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Thực hiện khởi động 10 lần/giờ và 20 lần/giờ nếu có quạt làm mát</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Có thể gắn trên DIN-Rail hoặc ráp trên bảng điện bằng vít</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Điện áp hoạt động : 208-600v</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Cấp bảo vệ IP 20</span>', '', '', 'KHỞI ĐỘNG MỀM ABB', 'KHỞI ĐỘNG MỀM ABB', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 9, 1, 0, 1),
-(190, 'CONTACTOR ABB', '', NULL, NULL, 0, 0, 0, '', '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dùng cho mạch xoay chiều AC và 1 chiều DC<br />\r\nDải điện áp rộng,mạch điều khiển có giao diện điện tử<br />\r\nTiêu chuẩn IP 20</span></span>', '', '', 'CONTACTOR ABB', 'CONTACTOR ABB', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 9, 1, 0, 1),
-(191, 'THIẾT BỊ ĐIỀU KHIỂN ABB', '', NULL, NULL, 0, 0, 0, '', '<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Đóng ngắt và bảo vệ quá tải ngắn mạch cho động cơ</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Cần điều khiển loại tay xoay ,đảm bảo tuyệt đối khi vận hành</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Tiêu chuẩn IP 20</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Đáp ứng tiêu chuẩn IEC 60479-1</span>', '', '', 'THIẾT BỊ ĐIỀU KHIỂN ABB', 'THIẾT BỊ ĐIỀU KHIỂN ABB', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 9, 1, 0, 5),
-(192, 'MÁY CẮT KHÔNG KHÍ ABB', '', NULL, NULL, 0, 0, 0, '', '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Sản xuất tại Ý,bảo vệ ngắn mạch,bảo vệ quá tải,<br />\r\nChỉnh dòng quá tải với trip điện tử<br />\r\nĐược nhiệt đới hóa,dễ dàng lắp đặt,dòng định mức lên tới 3200A<br />\r\nĐáp ứng tiêu chuẩn IEC60947-2</span></span>', '', '', 'MÁY CẮT KHÔNG KHÍ ABB', 'MÁY CẮT KHÔNG KHÍ ABB', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 9, 1, 0, 6),
-(193, 'THIẾT BỊ ĐÓNG CẮT ABB', '', NULL, NULL, 0, 0, 0, '', '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>CẦU DAO TỰ ĐỘNG DẠNG KHỐI &ndash; MCCB T6-T7 AND ISO MAX</strong><br />\r\nSản xuất tại Ý,bảo vệ ngắn mạch,bảo vệ quá tải,<br />\r\nChỉnh dòng quá tải với trip điện tử<br />\r\nĐược nhiệt đới hóa,dễ dàng lắp đặt,dòng định mức lên tới 3200A<br />\r\nĐáp ứng tiêu chuẩn IEC60947-2</span></span>', '', '', 'THIẾT BỊ ĐÓNG CẮT ABB', 'THIẾT BỊ ĐÓNG CẮT ABB\r\n', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 9, 1, 0, 8),
-(194, 'BIẾN TẦN FUJI FRENIC-MINI', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'BIẾN TẦN FUJI FRENIC-MINI', 'BIẾN TẦN FUJI FRENIC-MINI', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 10, 1, 0, 1),
-(195, 'BIẾN TẦN FUJI FRENIC-ECO', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Biến tần Fuji FRENIC-Eco', 'Biến tần Fuji FRENIC-Eco', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 10, 1, 0, 2),
-(196, 'BIẾN TẦN FUJI FRENIC-MULTI', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Biến tần Fuji FRENIC-Multi', 'Biến tần Fuji FRENIC-Multi', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 10, 1, 0, 4),
-(197, 'BIẾN TẦN FUJI FRENIC-MEGA', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Biến tần Fuji FRENIC-MEGA', 'Biến tần Fuji FRENIC-MEGA', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 10, 1, 0, 4),
-(198, 'MCCB FUJI', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'MCCB FUJI', 'MCCB FUJI', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 11, 1, 0, 0),
-(199, 'Contactor Fuji', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Contactor Fuji', 'Contactor Fuji', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 11, 1, 0, 5),
-(200, 'Inverter Fuji                                                                                 ', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Inverter Fuji                                                                                 ', 'Inverter Fuji                                                                                 ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 11, 1, 0, 2),
-(201, 'Servo Fuji', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Servo Fuji', 'Servo Fuji', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 11, 1, 0, 3),
-(202, 'Contacror Mitsubishi    ', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Contacror Mitsubishi    ', 'Contacror Mitsubishi    ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 12, 1, 0, 1),
-(203, 'MÀN HÌNH HMI OMRON', '<span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px"><span style="line-height:1"><strong>Tính năng TFT mạnh mẽ, LCD cảm ứng màu cho khả năng hiển thị tuyệt vời và đèn nền LED tuổi thọ cao (50.000 giờ). &nbsp;Kích thước màn hình 3.5&rdquo; đến 10&rdquo;<br />\r\n* Màn hình TFT, đèn nền LED<br />\r\n* Góc nhìn rộng<br />\r\n* Hiển thị hơn 65.000 màu<br />\r\n* Lưu trữ đến 128 MBs dữ liệu màn hình</strong></span></span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'MÀN HÌNH HMI OMRON', 'MÀN HÌNH HMI OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 1),
-(204, 'NÚT NHẤN', '<span style="line-height:1"><strong><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Nút nhấn có đèn, LED xanh 24VDC<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Đèn LED, 24VDC<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Cấu trúc tháo lắp dễ dàng<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Tiếp điểm: 1NO+1NC. 6A,/220VAC, 10A/110VDC<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Tiêu chuẩn EC, IP65</span></span></strong></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'NÚT NHẤN', 'NÚT NHẤN', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 2),
-(205, 'CẢM BIẾN ÁP SUẤT', '', NULL, NULL, 0, 0, 0, '<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Cảm biến áp suất 0~98 kPa, ngõ ra 0~5VDC<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Nguồn cấp: 12 to 24 VDC &plusmn;10%<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Áp suất đo: 0 đến 98 kPa<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Áp suất chịu đựng tối đa: 490 kPa<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Môi chất làm việc: Khí không ăn mòn, không cháy<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Độ chính xác ngõ ra On/Off: &plusmn;1% FS max.<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Độ chính xác ngõ ra analog: &plusmn;3% FS max.<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Thời gian đáp ứng: 5 ms max.<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Ngõ ra analog: 0 ~ 5 VDC, tổng trở ra 20 &Omega;, cho phép tải thuần trở 10 k&Omega; min.<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Ngõ ra On/Off: NPN open collector, 80mA 30VDC max.<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Chức năng bảo vệ ngược cực nguồn và ngắn mạch ngõ ra<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Chỉ thị: 21/2-digit LCD,đèn báo hoạt động (đỏ)<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Nhiệt độ làm việc: &minus;10&deg;C ~ 55&deg;C<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Vỏ bọc: Nhôm<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Tiêu chuẩn: IEC 60529 IP50</span></span></span></strong>', '', '', '', 'CẢM BIẾN ÁP SUẤT', 'CẢM BIẾN ÁP SUẤT', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 3),
-(206, 'MCCB Mitsubishi', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'MCCB Mitsubishi', 'MCCB Mitsubishi', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 12, 1, 0, 3),
-(207, 'Inverter Mitsubishi', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Inverter Mitsubishi', 'Inverter Mitsubishi', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 12, 1, 0, 4),
-(208, 'Servo Mitsubishi', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Servo Mitsubishi', 'Servo Mitsubishi', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 12, 1, 0, 5),
-(209, 'PLC Mitsubishi', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'PLC Mitsubishi', 'PLC Mitsubishi', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 12, 1, 0, 6),
-(210, 'HMI Mitsubishi', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'HMI Mitsubishi', 'HMI Mitsubishi', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 12, 1, 0, 7),
-(211, 'SERVO PANASONIC', '', NULL, NULL, 0, 0, 0, '<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&bull;&nbsp;&nbsp; &nbsp;Minas A4 family &nbsp;dải công xuất : 50w-7.5kw<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Minas A5 Seri dải công xuất : 50w-15kw</span></span></span></strong><br />\r\n', '', '', '', 'SERVO PANASONIC', 'SERVO PANASONIC', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 13, 1, 0, 1),
-(212, 'DC Geared Motor D &amp;  J', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'DC Geared Motor D &amp;  J', 'DC Geared Motor D &amp;  J', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 13, 1, 0, 2),
-(213, 'Encoder Motor D &amp; J', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Encoder Motor D &amp; J', 'Encoder Motor D &amp; J', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 13, 1, 0, 3),
-(214, 'Step Motor D &amp; J', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'Step Motor D &amp; J', 'Step Motor D &amp; J', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 13, 1, 0, 4),
-(215, 'DC Micro Motor D &amp; J', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'DC Micro Motor D &amp; J', 'DC Micro Motor D &amp; J', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 13, 1, 0, 5),
 (216, 'Ezi-Servo ', '<span style="line-height:1"><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px"><strong>Motor + Encoder + Drive<br />\r\nFast Response&nbsp; / Closed Loop System / High Torque / No Gain Tuning.</strong></span></span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'Ezi-Servo ', 'Ezi-Servo ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 2, 1, 0, 1),
 (217, 'BỘ ĐIỀU KHIỂN TỤ BÙ  DUCATI', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'BỘ ĐIỀU KHIỂN TỤ BÙ  DUCATI', 'BỘ ĐIỀU KHIỂN TỤ BÙ  DUCATI', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 15, 1, 0, 1),
 (218, 'TỤ BÙ SAMWHA', '', NULL, NULL, 0, 0, 0, '', '', '', '', 'TỤ BÙ SAMWHA', 'TỤ BÙ SAMWHA', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 15, 1, 0, 2),
@@ -342,11 +377,8 @@ INSERT INTO `product` (`id`, `title`, `feature`, `price`, `price_reduce`, `in_st
 (220, 'SERVO YASKAWA', '', NULL, NULL, 0, 0, 0, '<ul>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Độ phân giải vượt trội đến 1.6Khz.</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tự động dò tìm theo thời gian thực nhằm điều khiển tải phù hợp.</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Giảm thiểu rung động cho tải.</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Chức năng tự động dò tìm tiên tiến</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Điều khiển truyền động chính xác cao nhất.</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Servopack: SGDV<br />\r\n	1/3 AC 230V, 50/60Hz, +10%/-15%, 0,05kW &ndash; 1,5kW<br />\r\n	3 AC 380V &ndash; 480V, 50/60Hz, +10%/-15%, 0,5kW &ndash; 15kW</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Servomotor: SGMAV, SGMEV, SGMGV, SGMJV, SGMSV<br />\r\n	3 AC 230V, 3000min-1, 0,159Nm &ndash; 2,39Nm, 50W &ndash; 1.5kW<br />\r\n	3 AC 400V, 1500min-1, 1,96Nm &ndash; 28,4Nm, 0,3kW &ndash; 15kW<br />\r\n	3 AC 400V, 3000min-1, 0,637Nm &ndash; 22,3Nm, 200kW &ndash; 7kW</span></span></span></strong></li>\r\n</ul>\r\n', '', '', '', 'SERVO YASKAWA', 'SERVO YASKAWA', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 0, 5),
 (221, 'INVERTER YASKAWA SERRI A1000', '', NULL, NULL, 0, 0, 0, '<span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>-&nbsp;&nbsp; &nbsp;Dòng biến tần A1000 là dòng biến tần đa năng,cách lắp đặt và cài đặt tham số đơn giản,cung cấp hệ thống điều khiển cơ bản cho động cơ không đồng bộ 3 pha rotor lồng sóc với giải công xuất từ 0.4kw- 630kw<br />\r\n-&nbsp;&nbsp; &nbsp;Là biến tần duy nhất Nhật Bản đạt tiêu chuẩn môi trường<br />\r\n-&nbsp;&nbsp; &nbsp;Công xuất : 3P &nbsp; 200-240V/50Hz : 0.4 &ndash; 110kw<br />\r\n&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3P &nbsp; 380-480V/50Hz : 0.4 - 630kw<br />\r\n-&nbsp;&nbsp; &nbsp;Sai số nguồn cấp cho phép : Điện áp + 10%,-15% ; Tần số : &plusmn; 5%<br />\r\n-&nbsp;&nbsp; &nbsp;Khả năng quá tải : 120% trong vòng 60s với tải thường,150% trong vòng 60s với tải nặng.<br />\r\n-&nbsp;&nbsp; &nbsp;Phương pháp điều kiển động cơ : Điều khiển V/f,V/f với PG ( Pluse Generrato &ndash; máy phát xung ),vector vòng hở,vector vòng kín với PG,vector vòng hở cho PM ( Permanent &ndash;Động cơ nam châm vĩnh cửu ),vector vòng kín cho PM.<br />\r\n-&nbsp;&nbsp; &nbsp;Hãm 1 chiều cho toàn dải công xuất,tích hợp mạch điều khiển hãm động năng biến tần 30kw<br />\r\n-&nbsp;&nbsp; &nbsp;Môi trường làm viêc : Nhiệt độ : -10 -50Oc,độ ẩm : &lt; 95%,độ cao &lt; 1000m<br />\r\n-&nbsp;&nbsp; &nbsp;Tiêu chuẩn bảo vệ IP00,IP20,ỊP4<br />\r\n-&nbsp;&nbsp; &nbsp; Thiết bị mở rộng : mạch phản hồi tốc độ Encoder,mạch kế nối Profibus-DP,Lonwork,Mechatrolink,CANopen,Devvicenet,CC-link</strong></span></span></span><br />\r\n', '', '', '', 'INVERTER YASKAWA SERRI A1000', 'INVERTER YASKAWA SERRI A1000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 0, 6),
 (222, 'Inverter Yaskawa Serri V1000', '', NULL, NULL, 0, 0, 0, '<ul>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Chuyên dung cho các ứng dụng tải năng,phức tạp</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Phần mềm ( CranSoftware ) với các tham số dành riêng cho ứng dụng cẩu trục chuyên biệt.</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Là biến tần duy nhất Nhật bản đạt tiêu chuần về môi trường</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Công xuất : 3P&nbsp;&nbsp; 200-240V/50Hz : 0.1 &ndash; 15kw</span></span></span></strong></li>\r\n</ul>\r\n<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3P&nbsp;&nbsp; 380-480V/50Hz : 0.2 &ndash; 15kw</span></span></span></strong>\r\n\r\n<ul>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tần số ra : 0 &ndash; 400Hz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Khả năng quá tải 150% trong vòng 60s</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dải điều khiển : 0-10V,4-20Ma</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Chức năng vận hành : điều khiển đa tốc độ,phanh DC trong quá trình tăng,điều khiển PID,AVR,tự động Reset khi có lỗi,kế nối truyền thông 485</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tiêu chuẩn bảo vệ : IP 20</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Thiết bị mở rộng : mạch phản hồi tốc độ Encoder,mạch kế nối Profibus-DP,Lonwork,Mechatrolink,CANopen,Devvicenet,CC-link</span></span></span></strong></li>\r\n</ul>\r\n', '', '', '', 'Inverter Yaskawa Serri V1000', 'Inverter Yaskawa Serri V1000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 0, 7),
-(223, 'Inverter Yaskawa Serri J1000', '', NULL, NULL, 0, 0, 0, '<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Inverter Yaskawa Serri J1000</span></span></span></strong>\r\n<ul>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dòng biến tần J1000 là dòng biến tần tiện dụng,cách lắp đặt và cài đặt đơn giản,có thiết kế nhỏ gọn,phù hợp cho lắp đặt công xuất nhỏ,yêu cầu thẩm mỹ cao,khả năng chịu tải lớn</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Là biến tần duy nhất tại Nhật Bản đạt tiêu chuẩn quốc tế về môi trường.</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Công xuất : 3P&nbsp;&nbsp; 200V-240V / 50Hz&nbsp;&nbsp; : 0.2-5.5kw</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Công xuất : 3P&nbsp;&nbsp; 380V-480V / 50Hz&nbsp;&nbsp;&nbsp; : 0.4-5.5kw</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Giải tần số ra : 0-1500Hz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Khả năng quá tải 150% trong vòng 60s,200% trong vòng 0.5s</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Mô men khởi động 200% tại 0.5Hz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dải điều khiển từ : 0-10v,4-20Ma</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tần số song mang lên tới 15Khz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Chức năng vận hành : điều khiển đa tốc độ,phanh DC trong quá trình tăng,điều khiển PID,AVR,tự động Reset khi có lỗi,kế nối truyền thông 485</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Bảo vệ quá áp,quá tải,nhiệt độ quá cao,lỗi CPU,&hellip;</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tiêu chuẩn bảo vệ : IP 20</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Thiết bị mở rộng : mạch phản hồi tốc độ Encoder,mạch kế nối Profibus-DP,Lonwork,Mechatrolink,CANopen,Devvicenet,CC-link</span></span></span></strong></li>\r\n</ul>\r\n', '', '', '', 'Inverter Yaskawa Serri J1000', 'Inverter Yaskawa Serri J1000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 0, 8),
-(224, 'BIẾN TẦN OMRON', '', NULL, NULL, 0, 0, 0, '<span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Biến tần 400W, 3P/1P 220VAC</strong></span></span></span>\r\n<ul>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chức năng PID</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Trang bị sẵn Radio Noise Filter (Z-phase reactor)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chỉnh tần số ngõ ra: 0.5 ~ 400Hz, độ phân giải 0.1Hz</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Khả năng quá tải: 150% trong 1phút</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Thời gian tăng giảm tốc: 0.01S ~ 3000S</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chức năng bảo vệ: Overcurrent, overvoltage, undervoltage, electronic thermal, temperature error, ground-fault overcurrent at power-on state, overload limit, incoming overvoltage, external trip, memory error, CPU error, USP trip, communication error, overvoltage protection during deceleration, momentary power interruption protection, emergency shutoff</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Truyền thông Modbus-RTU</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn lựa thiết bị ngoại vi: Noise filter, AC/DC reactors, regenerative braking unit and resistor,</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tiêu chuẩn: EC, UL/cUL</strong></span></span></span></li>\r\n</ul>\r\n', '', '', '', 'Biến tần Omron', 'Biến tần Omron', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 9),
-(226, 'BỘ ĐẾM', '', NULL, NULL, 0, 0, 0, '<span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Bộ đếm đa năng 1 trạng thái, kích thước 72 x 72mm</strong></span></span></span>\r\n<ul>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Nguồn cấp: 100-240VAC</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chế độ hoạt động: 1-stage preset counter, total and preset counter *1 (lưạ chọn)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Hiển thị negative transmissive&nbsp;LCD, 6 số, -99,999 ~ 999,999</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn màu hiển thị</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ vào NPN/PNP và cảm biến 2-dây</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn chế độ ngõ vào: Increment, decrement, command (UP/DOWN A), individual (UP/DOWN B), quadrature (UP/DOWN C)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ ra: Rơle và NPN</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn&nbsp;chế độ ngõ ra:&nbsp;N, F, C, R, K-1, P, Q, A, K-2, D, L</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ ra tác động nhanh: 0.01 ~ 99.99s</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chức năng đếm: 1-stage counter / 1-stage counter with total counter</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tốc độ: 30Hz / 5kHz</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Có nguồn cho thiết bị ngoài: 12VDC, 100mA&nbsp;</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tiêu chuẩn: UL, CSA, EN, CE. IP54&nbsp;</strong></span></span></span></li>\r\n</ul>\r\n', '', '', '', 'BỘ ĐẾM', 'BỘ ĐẾM', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 17, 1, 0, 14);
-INSERT INTO `product` (`id`, `title`, `feature`, `price`, `price_reduce`, `in_stock`, `condition`, `brand_id`, `detail`, `content`, `teach`, `video`, `meta_keyword`, `meta_description`, `manual`, `e_manual`, `promotion`, `e_promotion`, `e_title`, `e_feature`, `e_detail`, `e_content`, `e_teach`, `e_meta_keyword`, `e_meta_description`, `pd_option`, `lnk`, `e_lnk`, `pId`, `active`, `home`, `ind`) VALUES
-(227, 'Bộ Điều Khiển Lập Trình PLC', '', NULL, NULL, 0, 0, 0, '<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">24 DC inputs,16 relay outputs</span></span></span></strong>\r\n<ul>\r\n	<li><strong>Nguồn cấp: 100-240VAC</strong></li>\r\n	<li><strong>Ngôn ngữ lập trình: Ladder diagram</strong></li>\r\n	<li><strong>Tốc độ thực hiện lệnh: Lệnh cơ bản: 0.01&micro;s; Lệnh đặc biệt: 0.15&micro;s</strong></li>\r\n	<li><strong>Bộ nhớ chương trình: 20K steps</strong></li>\r\n	<li><strong>Bộ đếm tốc độ cao: 100 kHz (single-phase), 50 kHz (differential phases), 4 axes</strong></li>\r\n	<li><strong>Ngõ ra xung tốc độ cao: 100 kHz for 4 axes</strong></li>\r\n	<li><strong>Cổng truyền thong: Trang bị sẵn cổng USB, chọn lựa thêm RS232C, RS422/RS485</strong></li>\r\n	<li><strong>Ngõ vào/ra analog: -</strong></li>\r\n	<li><strong>Có thể gắn thêm 7 bộ mở rộng CPM1 và 2 bộ mở rộng CJ1W</strong></li>\r\n	<li><strong>Chức năng thời gian thực (Clock)</strong></li>\r\n	<li><strong>Nhiệt độ làm việc: 0~55<sup>o</sup>C</strong></li>\r\n	<li><strong>Tiêu chuẩn: IEC 61000; JIS C0040; JIS C0041</strong></li>\r\n</ul>\r\n<strong>&nbsp;</strong>', '', '', '', 'Bộ điều khiển lập trình PLC', 'Bộ điều khiển lập trình PLC', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 14);
+(223, 'Inverter Yaskawa Serri J1000', '', 2000000, 1000000, 0, 0, 0, '<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Inverter Yaskawa Serri J1000</span></span></span></strong>\r\n<ul>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dòng biến tần J1000 là dòng biến tần tiện dụng,cách lắp đặt và cài đặt đơn giản,có thiết kế nhỏ gọn,phù hợp cho lắp đặt công xuất nhỏ,yêu cầu thẩm mỹ cao,khả năng chịu tải lớn</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Là biến tần duy nhất tại Nhật Bản đạt tiêu chuẩn quốc tế về môi trường.</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Công xuất : 3P&nbsp;&nbsp; 200V-240V / 50Hz&nbsp;&nbsp; : 0.2-5.5kw</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Công xuất : 3P&nbsp;&nbsp; 380V-480V / 50Hz&nbsp;&nbsp;&nbsp; : 0.4-5.5kw</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Giải tần số ra : 0-1500Hz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Khả năng quá tải 150% trong vòng 60s,200% trong vòng 0.5s</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Mô men khởi động 200% tại 0.5Hz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dải điều khiển từ : 0-10v,4-20Ma</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tần số song mang lên tới 15Khz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Chức năng vận hành : điều khiển đa tốc độ,phanh DC trong quá trình tăng,điều khiển PID,AVR,tự động Reset khi có lỗi,kế nối truyền thông 485</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Bảo vệ quá áp,quá tải,nhiệt độ quá cao,lỗi CPU,&hellip;</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tiêu chuẩn bảo vệ : IP 20</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Thiết bị mở rộng : mạch phản hồi tốc độ Encoder,mạch kế nối Profibus-DP,Lonwork,Mechatrolink,CANopen,Devvicenet,CC-link</span></span></span></strong></li>\r\n</ul>\r\n', '', '', '', 'Inverter Yaskawa Serri J1000', 'Inverter Yaskawa Serri J1000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 0, 8),
+(226, 'BỘ ĐẾM', '', 100000, 0, 0, 0, 0, '<span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Bộ đếm đa năng 1 trạng thái, kích thước 72 x 72mm</strong></span></span></span>\r\n<ul>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Nguồn cấp: 100-240VAC</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chế độ hoạt động: 1-stage preset counter, total and preset counter *1 (lưạ chọn)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Hiển thị negative transmissive&nbsp;LCD, 6 số, -99,999 ~ 999,999</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn màu hiển thị</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ vào NPN/PNP và cảm biến 2-dây</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn chế độ ngõ vào: Increment, decrement, command (UP/DOWN A), individual (UP/DOWN B), quadrature (UP/DOWN C)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ ra: Rơle và NPN</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn&nbsp;chế độ ngõ ra:&nbsp;N, F, C, R, K-1, P, Q, A, K-2, D, L</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ ra tác động nhanh: 0.01 ~ 99.99s</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chức năng đếm: 1-stage counter / 1-stage counter with total counter</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tốc độ: 30Hz / 5kHz</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Có nguồn cho thiết bị ngoài: 12VDC, 100mA&nbsp;</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tiêu chuẩn: UL, CSA, EN, CE. IP54&nbsp;</strong></span></span></span></li>\r\n</ul>\r\n', '', '', '', 'BỘ ĐẾM', 'BỘ ĐẾM', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 17, 1, 0, 14);
 
 -- --------------------------------------------------------
 
@@ -354,8 +386,8 @@ INSERT INTO `product` (`id`, `title`, `feature`, `price`, `price_reduce`, `in_st
 -- Table structure for table `product_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `product_cate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product_cate` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `meta_keyword` text NOT NULL,
@@ -369,9 +401,8 @@ CREATE TABLE IF NOT EXISTS `product_cate` (
   `pId` int(11) NOT NULL,
   `lev` int(11) NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product_cate`
@@ -382,12 +413,6 @@ INSERT INTO `product_cate` (`id`, `title`, `sum`, `meta_keyword`, `meta_descript
 (2, 'SERVO', '', 'LED Moving Head', 'LED Moving Head', 'Auto Parts', '', 'Auto Parts', 'Auto Parts', '', '', 0, 1, 2, 1),
 (3, 'ĐỘNG CƠ ', '', 'Moving Head light', 'Moving Head light', 'Mechanical Heat Sink', '', 'Mechanical Heat Sink', 'Mechanical Heat Sink', '', '', 0, 1, 3, 1),
 (8, 'INVERTER OMRON', '', 'INVERTER OMRON', 'INVERTER OMRON', '', '', '', '', '', '', 0, 1, 8, 1),
-(9, 'MOTOR ABB', '', 'MOTOR ABB', 'MOTOR ABB', '', '', '', '', '', '', 0, 1, 9, 1),
-(10, 'BIẾN TẦN FUJI', '', 'BIẾN TẦN FUJI', 'BIẾN TẦN FUJI', '', '', '', '', '', '', 0, 1, 10, 1),
-(11, 'THIẾT BỊ ĐÓNG TẮT FUJI', '', 'THIẾT BỊ ĐÓNG TẮT FUJI', 'THIẾT BỊ ĐÓNG TẮT FUJI', '', '', '', '', '', '', 0, 1, 1, 1),
-(12, 'THIẾT BỊ TỰ ĐỘNG MITSUBISHI', '', 'THIẾT BỊ TỰ ĐỘNG MITSUBISHI', 'THIẾT BỊ TỰ ĐỘNG MITSUBISHI', '', '', '', '', '', '', 0, 1, 11, 1),
-(13, 'SERVO PANASONIC', '', 'SERVO PANASONIC', 'SERVO PANASONIC', '', '', '', '', '', '', 0, 1, 12, 1),
-(14, 'SERVO OMRON', '', 'SERVO OMRON', 'SERVO OMRON', '', '', '', '', '', '', 0, 1, 5, 1),
 (15, 'DUCATI', '', 'DUCATI', 'DUCATI', '', '', '', '', '', '', 0, 1, 6, 1),
 (16, 'YASKAWA', '', 'YASKAWA', 'YASKAWA', '', '', '', '', '', '', 0, 1, 1, 1),
 (17, 'BỘ ĐIỀU KHIỂN', '', 'BỘ ĐIỀU KHIỂN', 'BỘ ĐIỀU KHIỂN', '', '', '', '', '', '', 0, 1, 13, 1);
@@ -398,15 +423,13 @@ INSERT INTO `product_cate` (`id`, `title`, `sum`, `meta_keyword`, `meta_descript
 -- Table structure for table `product_image`
 --
 
-CREATE TABLE IF NOT EXISTS `product_image` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product_image` (
+  `id` int(11) NOT NULL,
   `img` text NOT NULL,
   `pId` int(11) NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pId` (`pId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=235 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product_image`
@@ -414,46 +437,12 @@ CREATE TABLE IF NOT EXISTS `product_image` (
 
 INSERT INTO `product_image` (`id`, `img`, `pId`, `ind`, `active`) VALUES
 (178, '148284958026-12-2016 9-26-24 CH.png', 175, 1, 1),
-(179, '148284961726-12-2016 9-28-11 CH.png', 176, 1, 1),
-(180, '148284956126-12-2016 9-24-44 CH.png', 177, 1, 1),
-(182, '148284952426-12-2016 5-27-08 CH.png', 179, 1, 1),
-(183, '148284950326-12-2016 5-30-05 CH.png', 180, 1, 1),
 (184, '148284947326-12-2016 9-14-39 CH.png', 181, 1, 1),
-(185, '148284939726-12-2016 5-34-19 CH.png', 182, 7, 1),
 (186, '148284937126-12-2016 5-22-29 CH.png', 183, 1, 1),
 (187, '148284935226-12-2016 5-20-29 CH.png', 184, 2, 1),
 (188, '148284933226-12-2016 9-13-21 CH.png', 185, 3, 1),
 (189, '148284929626-12-2016 9-11-51 CH.png', 186, 4, 1),
 (190, '148284927026-12-2016 9-10-13 CH.png', 187, 6, 1),
-(191, '148284924126-12-2016 5-16-04 CH.png', 188, 1, 1),
-(192, '148284920326-12-2016 5-10-07 CH.png', 189, 2, 1),
-(193, '148284914426-12-2016 5-06-12 CH.png', 190, 4, 1),
-(195, '148284899926-12-2016 5-46-13 CH.png', 192, 1, 1),
-(196, '148284898526-12-2016 5-42-43 CH.png', 193, 1, 1),
-(197, '148284954526-12-2016 9-15-59 CH.png', 178, 1, 1),
-(198, '148284912326-12-2016 5-48-11 CH.png', 191, 5, 1),
-(199, '148284892026-12-2016 5-04-14 CH.png', 194, 1, 1),
-(200, '148284888526-12-2016 5-39-45 CH.png', 195, 2, 1),
-(201, '14828488631.png', 196, 3, 1),
-(202, '148284871526-12-2016 5-04-14 CH.png', 197, 4, 1),
-(203, '148284850127-12-2016 9-19-18 CH.png', 198, 1, 1),
-(204, '148350219503-01-2017 10-54-13 CH.jpg', 199, 1, 1),
-(208, '148351087004-01-2017 11-12-51 SA.png', 201, 3, 1),
-(209, '148350221703-01-2017 11-02-09 CH.jpg', 200, 2, 1),
-(210, '148351098004-01-2017 1-22-16 CH.png', 202, 1, 1),
-(211, '148350365604-01-2017 11-18-07 SA.png', 203, 1, 1),
-(212, '148350379904-01-2017 11-21-46 SA.png', 204, 2, 1),
-(213, '148350407804-01-2017 11-26-44 SA.png', 205, 3, 1),
-(214, '148351125604-01-2017 1-26-41 CH.png', 206, 3, 1),
-(215, '148351137604-01-2017 1-28-36 CH.png', 207, 4, 1),
-(216, '148351215004-01-2017 1-31-03 CH.png', 208, 5, 1),
-(217, '148351227204-01-2017 1-43-32 CH.png', 209, 6, 1),
-(218, '148351242604-01-2017 1-46-03 CH.png', 210, 6, 1),
-(219, '148351334304-01-2017 2-01-02 CH.png', 211, 1, 1),
-(220, '148351350104-01-2017 2-04-22 CH.png', 212, 2, 1),
-(221, '148351360904-01-2017 2-06-13 CH.png', 213, 3, 1),
-(222, '148351391204-01-2017 2-09-49 CH.png', 214, 4, 1),
-(223, '148351403904-01-2017 2-13-32 CH.png', 215, 5, 1),
 (224, '148351470604-01-2017 2-22-09 CH.png', 216, 1, 1),
 (225, '148351492904-01-2017 2-28-03 CH.png', 217, 1, 1),
 (226, '148351502004-01-2017 2-29-36 CH.png', 218, 2, 1),
@@ -462,9 +451,7 @@ INSERT INTO `product_image` (`id`, `img`, `pId`, `ind`, `active`) VALUES
 (229, '148351562904-01-2017 2-40-03 CH.png', 221, 6, 1),
 (230, '148351603904-01-2017 2-46-34 CH.png', 222, 7, 1),
 (231, '148351619804-01-2017 2-49-08 CH.png', 223, 9, 1),
-(232, '148351655304-01-2017 2-55-05 CH.png', 224, 9, 1),
-(233, '148351726404-01-2017 3-07-11 CH.png', 226, 1, 1),
-(234, '148351761504-01-2017 3-09-31 CH.png', 227, 12, 1);
+(233, '148351726404-01-2017 3-07-11 CH.png', 226, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -472,8 +459,8 @@ INSERT INTO `product_image` (`id`, `img`, `pId`, `ind`, `active`) VALUES
 -- Table structure for table `project`
 --
 
-CREATE TABLE IF NOT EXISTS `project` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `project` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `content` longtext NOT NULL,
@@ -492,9 +479,45 @@ CREATE TABLE IF NOT EXISTS `project` (
   `date` date DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   `home` tinyint(4) NOT NULL DEFAULT '0',
-  `ind` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promotion`
+--
+
+CREATE TABLE `promotion` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `sum` text NOT NULL,
+  `content` longtext NOT NULL,
+  `meta_keyword` text NOT NULL,
+  `meta_description` text NOT NULL,
+  `e_title` text NOT NULL,
+  `e_sum` text NOT NULL,
+  `e_content` longtext NOT NULL,
+  `e_meta_keyword` text NOT NULL,
+  `e_meta_description` text NOT NULL,
+  `pId` int(11) NOT NULL,
+  `maps` text NOT NULL,
+  `city` int(11) NOT NULL,
+  `district` int(11) NOT NULL,
+  `img` text NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `home` tinyint(4) NOT NULL DEFAULT '0',
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `promotion`
+--
+
+INSERT INTO `promotion` (`id`, `title`, `sum`, `content`, `meta_keyword`, `meta_description`, `e_title`, `e_sum`, `e_content`, `e_meta_keyword`, `e_meta_description`, `pId`, `maps`, `city`, `district`, `img`, `active`, `home`, `ind`) VALUES
+(1, 'Lorem ipsum', 'Lorem ipsum dolor sit amet, ea eum exerci utroque liberavisse, vis in solet verear numquam, eam an soluta detracto. Eius aliquip nominati usu no, dico doctus convenire ut eam. Pro ad nisl esse iusto, case paulo tacimates pro ei. In viris habemus blandit per. Usu officiis petentium argumentum at, novum dicit consequuntur pro ei.', '<p>Lorem ipsum dolor sit amet, ea eum exerci utroque liberavisse, vis in solet verear numquam, eam an soluta detracto. Eius aliquip nominati usu no, dico doctus convenire ut eam. Pro ad nisl esse iusto, case paulo tacimates pro ei. In viris habemus blandit per. Usu officiis petentium argumentum at, novum dicit consequuntur pro ei.<br />\r\n<br />\r\nNonumy altera antiopam vim no, no sed meis pericula. No aperiri oporteat mei, sea et movet nobis utroque. Habemus electram te nec, id ubique semper discere eos, aliquid voluptaria ad per. Quo accusam luptatum apeirian an. Sensibus vituperata est cu. Ad cum adhuc appareat, eam no nemore tincidunt, ius oporteat torquatos posidonium et.<br />\r\n<br />\r\nEx eum nusquam iudicabit reformidans, essent delenit eu eos. His alia feugait voluptatum ei, an vidisse aperiri legimus qui. Lorem saepe eripuit quo in, id vidisse democritum vituperata has. Ea tation nominati suavitate sea, error constituam ad nec, ea integre luptatum erroribus has. Quem libris his et, menandri sapientem sed ei, vix possit voluptua rationibus eu. At pro civibus voluptua, quod illud aliquam vel te, eu vel mediocrem referrentur. Vocibus accommodare pri in, ea sed noluisse imperdiet.<br />\r\n<br />\r\nIus impetus nostrum adipisci eu, et indoctum posidonium pri, mei denique disputationi no. Sed an elitr omnes. An impedit fabellas cum, vel eu persius mentitum pericula. Rationibus incorrupte pro cu, cu nec minim ridens intellegebat. Vix ne ullum dolorem volumus, purto quaestio deterruisset sit ex.<br />\r\n<br />\r\nEius velit at ius, id nobis ponderum recusabo usu. Ex praesent accusamus consequat per, torquatos adolescens qui no, nam omnes repudiare constituto ne. Ut vim viderer discere pertinax, stet mucius probatus mea te. Vim nulla dicunt euripidis et.</p>\r\n', '34234', '34234324', 'Ngại nổ gas, vợ sếp chuộng bếp điện từ hồng ngoại', 'Tiết kiệm điện, không tốn chi phí gas, an toàn trong sử dụng lại nấu thức ăn ngon... bếp điện tử hồng ngoại hiện được nhiều bà nội trợ chuộng dù giá bán khá cao: ít nhất trên 20 triệu đồng một chiếc.', '<p>Tiết kiệm điện, không tốn chi phí gas, an toàn trong sử dụng lại nấu thức ăn ngon... bếp điện tử hồng ngoại hiện được nhiều bà nội trợ chuộng dù giá bán khá cao: ít nhất trên 20 triệu đồng một chiếc.</p>\r\n\r\n<p>Chồng làm giám đốc một công ty lớn trong ngành truyền thông, gia đình có đến 2 người giúp việc, chị Thu ở Núi Trúc, Hà Nội, vẫn giữ thói quen tự nấu nướng cho cả gia đình. Chồng cùng 2 cậu con trai của chị cũng chỉ thích ăn những món do nội tướng chế biến.</p>\r\n\r\n<p>&quot;Nhiều món ăn tuy đơn giản nhưng vẫn cần bí quyết chế biến riêng nên người khác nấu không hợp khẩu vị khiến chồng con tôi không ưng. Hai cô giúp việc chỉ phải dọn dẹp với giặt giũ, còn đi chợ hay nấu nướng thì tôi tự thu xếp công việc và thời gian để làm&quot;, chị Thu nói.</p>\r\n\r\n<p>Không ít lần chị Thu &quot;mất điểm&quot; vì công việc quá lu bu. Chị kể, đặt nồi cá kho lên bếp định một tiếng rưỡi tiếng xuống tắt lửa là vừa, nhưng mải quyết toán doanh thu cuối tháng của công ty nên chị quên mất. Ngửi thấy mùi khét, chị chạy xuống bếp thì nồi cá đã sắp thành than.</p>\r\n\r\n<p>Chia sẻ với bạn, chị Thu được mách về loại bếp điện từ hồng ngoại - kết hợp tính năng điện từ với hồng ngoại, có hẹn giờ nên tránh được tối đa những sơ suất tương tự &quot;vụ nồi cá&quot;. Ngoài ra, dùng loại bếp này, thời gian nấu nhanh, nấu được với tất cả các loại nồi chứ không bị bó hẹp như bếp từ. Cân nhắc mãi, chị Thu quyết định mua một chiếc dù mức giá khá cao, 45 triệu đồng cho loại 4 bếp.</p>\r\n\r\n<p>&quot;Chi phí ban đầu hơi cao nhưng tiết kiệm được thời gian nấu, tính ra chưa đầy 30 phút là xong bữa tối. Con cái còn nhỏ, ở nhà cả ngày với người giúp việc, mà gần đây xảy ra nhiều vụ nổ gas nên tôi càng lo, quyết tâm đầu tư bếp từ hồng ngoại để đảm bảo an toàn cho cả nhà&quot;, chị Thu tâm sự. Ngoài ra, mặt bếp sáng bóng, hợp với không gian căn bếp sang trọng mà vợ chồng chị đã cất công thiết kế, khiến chị Thu không tiếc khoản tiền gần 50 triệu đồng đã bỏ ra để mua.</p>\r\n\r\n<p>Chị Tiến ở Mỹ Đình, Hà Nội, phu nhân giám đốc chi nhánh của công ty dược có tiếng, cũng chọn bếp điện từ hồng ngoại cho gian bếp nhà mình. Chị lý giải, ngoài lý do an toàn, hình thức bắt mắt và nấu nướng nhanh, bếp có giá trị sử dụng cao, giảm được chi phí hằng tháng so với dùng các loại bếp thông thường.</p>\r\n\r\n<p>Theo chị, nếu dùng bếp gas, trung bình mỗi tháng gia đình chị hết khoảng 250.000 đồng. Từ khi chuyển sang dùng bếp từ hồng ngoại, cắt giảm được chi phí gas, chị tính toán thấy số tiền điện chỉ tăng thêm từ 120.000 đồng đến 150.000 đồng so với trước. Định kỳ hằng năm, chị không phải thay van gas, dây nối..., tuổi thọ của loại bếp này cũng gấp 2-3 lần so với bếp gas. Chưa kể, do có nhiều chức năng tự động như tự ngắt khi gặp vật thể lạ hoặc người dùng quên tắt... nên thiết bị nhà bếp này khá an toàn.</p>\r\n\r\n<p>&quot;Tôi thấy giá khá cao nhưng &#39;đắt xắt ra miếng&#39;, đầu tư lớn ban đầu mà chi phí dùng về sau rẻ hơn khá nhiều nên tính về lâu dài thì tiết kiệm hơn. Một điểm nữa tôi rất thích là trời nóng vẫn có thể bật quạt hướng thẳng vào vị trí đứng nấu mà không sợ bị tản nhiệt như nấu bằng bếp gas&quot;, chị Tiến giải thích.</p>\r\n\r\n<p>Xuất hiện chưa lâu và có mức giá khá cao song bếp điện từ hồng ngoại đã được khá nhiều bà nội trợ đầu tư chọn lựa. Giá bếp dao động từ 20 đến trên 40 triệu đồng mỗi chiếc, tùy vào xuất xứ, vật liệu và số lượng mặt bếp. Ông Phạm Đức Tuân, Giám đốc kinh doanh ngành hàng bếp của Kangaroo, một những doanh nghiệp vừa tung ra dòng sản phẩm bếp điện từ hồng ngoại cao cấp cho biết, chỉ trong vòng 2 tháng, số lượng bán ra đã hơn 5.000 chiếc, trong đó, doanh số tháng sau cao hơn tháng trước 30%.</p>\r\n\r\n<p>Trao đổi với&nbsp;<em>VnExpress.net</em>, ông cho biết, so với bếp gas, bếp điện từ hồng ngoại Kangaroo có hiệu suất hấp thụ nhiệt cao đến 90%, trong khi bếp gas đạt 55%, bếp điện thông thường đạt khoảng 65%. Theo đó, nếu chuyển từ bếp gas sang bếp điện từ hồng ngoại, người tiêu dùng tiết kiệm được đến 40% chi phí nhiên liệu cho việc đun nấu, thời gian nấu nướng cũng vì thế mà nhanh gấp 2-3 lần.</p>\r\n\r\n<p>Hai bộ phận quan trọng nhất của bếp là mặt kính và bộ gia nhiệt đều được nhập khẩu từ các hãng danh tiếng của Đức là Schott và Ego, đảm bảo độ bền và hiệu suất ra nhiệt tối đa. Ngoài ra với độ dày 4 mm, bếp có khả năng chịu lực và chịu nhiệt lên đến 800 độ C. Nhiệt độ được truyền thẳng đứng đến đáy nồi, nhiệt năng không bị thất thoát ra không khí.</p>\r\n\r\n<p>Tuy nhiên, vị chuyên gia khẳng định, dù sử dụng bất kỳ loại bếp nào, người nội trợ cũng nên vệ sinh, bảo trì thiết bị thường xuyên, giữ không khí trong phòng bếp lưu thông, thoáng mát... để đảm bảo chất lượng sản phẩm.</p>\r\n', '', '', 0, '<iframe src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Kuningan,+Jakarta+Capital+Region,+Indonesia&aq=3&oq=kuningan+&sll=37.0625,-95.677068&sspn=37.410045,86.572266&ie=UTF8&hq=&hnear=Kuningan&t=m&z=14&ll=-6.238824,106.830177&output=embed"></iframe>', 3, 136, '1484038911index_16.jpg', 1, 1, 1),
+(2, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, ea eum exerci utroque liberavisse, vis in solet verear numquam, eam an soluta detracto. Eius aliquip nominati usu no, dico doctus convenire ut eam. Pro ad nisl esse iusto, case paulo tacimates pro ei. In viris habemus blandit per. Usu officiis petentium argumentum at, novum dicit consequuntur pro ei.', '<p>Lorem ipsum dolor sit amet, ea eum exerci utroque liberavisse, vis in solet verear numquam, eam an soluta detracto. Eius aliquip nominati usu no, dico doctus convenire ut eam. Pro ad nisl esse iusto, case paulo tacimates pro ei. In viris habemus blandit per. Usu officiis petentium argumentum at, novum dicit consequuntur pro ei.<br />\r\n<br />\r\nNonumy altera antiopam vim no, no sed meis pericula. No aperiri oporteat mei, sea et movet nobis utroque. Habemus electram te nec, id ubique semper discere eos, aliquid voluptaria ad per. Quo accusam luptatum apeirian an. Sensibus vituperata est cu. Ad cum adhuc appareat, eam no nemore tincidunt, ius oporteat torquatos posidonium et.<br />\r\n<br />\r\nEx eum nusquam iudicabit reformidans, essent delenit eu eos. His alia feugait voluptatum ei, an vidisse aperiri legimus qui. Lorem saepe eripuit quo in, id vidisse democritum vituperata has. Ea tation nominati suavitate sea, error constituam ad nec, ea integre luptatum erroribus has. Quem libris his et, menandri sapientem sed ei, vix possit voluptua rationibus eu. At pro civibus voluptua, quod illud aliquam vel te, eu vel mediocrem referrentur. Vocibus accommodare pri in, ea sed noluisse imperdiet.<br />\r\n<br />\r\nIus impetus nostrum adipisci eu, et indoctum posidonium pri, mei denique disputationi no. Sed an elitr omnes. An impedit fabellas cum, vel eu persius mentitum pericula. Rationibus incorrupte pro cu, cu nec minim ridens intellegebat. Vix ne ullum dolorem volumus, purto quaestio deterruisset sit ex.<br />\r\n<br />\r\nEius velit at ius, id nobis ponderum recusabo usu. Ex praesent accusamus consequat per, torquatos adolescens qui no, nam omnes repudiare constituto ne. Ut vim viderer discere pertinax, stet mucius probatus mea te. Vim nulla dicunt euripidis et.</p>\r\n', '23232', '232323', 'Sự lên ngôi của bếp từ trong căn bếp Việt', 'Không chỉ tuyệt vời về hiệu quả sử dụng, bếp từ còn rất được...', '<p><strong>Vì&nbsp;sao bếp gas bị thất thế?</strong></p>\r\n\r\n<p>Còn nhớ vụ nổ gas cách đây không lâu tại phố Tạ Quang Bửu khiến hai cháu bé bị tử vong rất thương tâm, bố và mẹ bị thương nặng. Chính vì lẽ đó mà không ít người e dè khi lựa chọn bếp gas để sử dụng.</p>\r\n\r\n<p>Anh Hoàng Vũ Linh (Đống Đa &ndash; Hà Nội) cho hay: &ldquo;Vụ nổ khí gas vừa rồi thật kinh khủng quá. Gia đình tôi cũng sử dụng gas để nấu nướng nhưng không hay thường xuyên kiểm tra xem dây dẫn gas, van gas có an toàn không, đã bị hư hại gì chưa. Nhưng sau lần này thì tôi sẽ thường xuyên gọi thợ tới kiểm tra hơn để đảm bảo an toàn khi sử dụng&rdquo;.</p>\r\n\r\n<p><a href="http://bep.vn/upload/editor/images/bep-ga-bep-tu.jpg" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" title="Sự lên ngôi của bếp từ trong căn bếp Việt - ảnh 1"><img alt="Hình ảnh Sự lên ngôi của bếp từ trong căn bếp Việt số 1" src="http://bep.vn/upload/editor/images/bep-ga-bep-tu.jpg" style="border-style:initial; border-width:0px; box-sizing:border-box; max-width:100%; vertical-align:middle" title="Sự lên ngôi của bếp từ trong căn bếp Việt - ảnh 1" /></a></p>\r\n\r\n<p><em>Nhiều người tiêu dùng e ngại tính an toàn của bếp gas</em></p>\r\n\r\n<p>Chính vì những &ldquo;ẩn họa&rdquo; khôn lường của bếp gas mà không ít gia đình đã loại nó ra khỏi danh mục những đồ dùng trong nhà bếp. Chị Trần Hoàng Ngân (Từ Liêm &ndash; Hà Nội) chia sẻ: &ldquo;Sau một vài vụ cháy nổ do gas gây ra, gia đình tôi đã quyết định không sử dụng loại bếp này nữa, chuyển sang sử dụng loại bếp khác an toàn hơn để tránh những rủi ro đáng tiếc có thể xảy ra&rdquo;.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Và sự lên ngôi của bếp từ</strong></p>\r\n\r\n<p>Chẳng có gì lạ khi người tiêu dùng quay lưng lại với bếp gas và &ldquo;sính&rdquo; sử dụng&nbsp;<a href="http://bep.vn/bep-tu" rel="dofollow" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" target="_blank"><strong>bếp từ</strong></a>&nbsp;bởi sự an toàn, tiết kiệm và đẹp sang trọng của nó.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Với cơ chế làm trực tiếp phần thức ăn bên trong nồi nên hiệu suất sử dụng của bếp từ rất cao lên tới 90%, cao hơn rất nhiều so với bếp gas và bếp điện. Chính vì vậy mà thời gian nấu ăn của bạn sẽ được rút ngắn hơn và chi phí phải bỏ ra cho công việc nấu nướng cũng tiết kiệm hơn. &nbsp;</p>\r\n\r\n<p><a href="http://bep.vn/upload/editor/images/bep-ga-bep-tu-1.jpg" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" title="Sự lên ngôi của bếp từ trong căn bếp Việt - ảnh 2"><img alt="Hình ảnh Sự lên ngôi của bếp từ trong căn bếp Việt số 2" src="http://bep.vn/upload/editor/images/bep-ga-bep-tu-1.jpg" style="border-style:initial; border-width:0px; box-sizing:border-box; max-width:100%; vertical-align:middle" title="Sự lên ngôi của bếp từ trong căn bếp Việt - ảnh 2" /></a></p>\r\n\r\n<p><em>Sự lên ngôi của bếp từ</em></p>\r\n\r\n<p>Không chỉ tuyệt vời về hiệu quả sử dụng, bếp từ còn rất được lòng các bà nội trợ bởi thiết kế đẹp mắt, sang trọng và hiện đại của nó. Hơn nữa, bếp từ rất dễ sử dụng (thông qua các nút điều khiển), tính năng đa dạng lại an toàn với cả trẻ em và người lớn nếu vô tình chạm phải mặt bếp trong khi đang nấu, nó không gây bỏng rát bởi mặt bếp luôn mát trong suốt quá trình sử dụng.</p>\r\n\r\n<p>Hiện nay có rất nhiều chủng loại&nbsp;<a href="http://bep.vn/bep-dien-tu" rel="dofollow" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" target="_blank">bếp điện</a>,&nbsp;bếp từ của rất nhiều hang khác nhau, người tiêu dùng nên lựa chọn những loại bếp của các thương hiệu uy tín để đảm bảo an toàn và chất lượng khi sử dụng.&nbsp;</p>\r\n\r\n<p>Nếu bạn còn đang băn khoăn không biết nên lựa chọn loại bếp nào cho phù hợp với &ldquo;túi tiền&rdquo; và không gian bếp nhà mình, còn chần chừ gì nữa mà không đến với&nbsp;<strong>Bep.vn&nbsp;</strong>tại&nbsp;địa chỉ 406 Xã Đàn, Đống Đa, Hà Nội. Tại đây, bạn sẽ nhận được những lời tư vấn xác đáng từ những tư vấn viên chuyên nghiệp của chúng tôi, chắc chắn bạn sẽ dễ dàng chọn được cho gia đình một sản phẩm bếp từ ưng ý.</p>\r\n\r\n<p>Tại&nbsp;<strong>Bep.vn</strong>, chúng tôi&nbsp;cung cấp các sản phẩm bếp từ, bếp điện từ, bếp điện,&nbsp;<a href="http://bep.vn/lo-nuong" rel="dofollow" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" target="_blank">lò nướng</a>, lò vi sóng, máy hút mùi, máy rửa bát và các sản phẩm gia dụng khác chính hãng với chất lượng tốt nhất trên thị trường hiện nay.</p>\r\n\r\n<p><strong>Thông tin liên hệ:</strong></p>\r\n\r\n<p>Công ty TNHH Xây Dựng và Dịch Vụ Anh Tú<br />\r\nSố 406 Phố Xã Đàn - Đống Đa - Hà Nội &nbsp;(Đường Kim Liên Mới)<br />\r\nTel : 04 35738480&nbsp;<br />\r\nEmail :&nbsp;info@bep.vn<br />\r\nWebsite:&nbsp;<a href="http://bep.vn/" rel="dofollow" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" target="_blank">http://bep.vn</a></p>\r\n', '', '', 0, '', 0, 0, '1484038911index_16.jpg', 1, 1, 2),
+(3, 'Free Ecommerce Template', 'Lorem ipsum dolor sit amet, ea eum exerci utroque liberavisse, vis in solet verear numquam, eam an soluta detracto. Eius aliquip nominati usu no, dico doctus convenire ut eam. Pro ad nisl esse iusto, case paulo tacimates pro ei. In viris habemus blandit per. Usu officiis petentium argumentum at, novum dicit consequuntur pro ei.', '<span style="line-height:20.8px">Lorem ipsum dolor sit amet, ea eum exerci utroque liberavisse, vis in solet verear numquam, eam an soluta detracto. Eius aliquip nominati usu no, dico doctus convenire ut eam. Pro ad nisl esse iusto, case paulo tacimates pro ei. In viris habemus blandit per. Usu officiis petentium argumentum at, novum dicit consequuntur pro ei.</span><br />\r\n<br />\r\n<span style="line-height:20.8px">Nonumy altera antiopam vim no, no sed meis pericula. No aperiri oporteat mei, sea et movet nobis utroque. Habemus electram te nec, id ubique semper discere eos, aliquid voluptaria ad per. Quo accusam luptatum apeirian an. Sensibus vituperata est cu. Ad cum adhuc appareat, eam no nemore tincidunt, ius oporteat torquatos posidonium et.</span><br />\r\n<br />\r\n<span style="line-height:20.8px">Ex eum nusquam iudicabit reformidans, essent delenit eu eos. His alia feugait voluptatum ei, an vidisse aperiri legimus qui. Lorem saepe eripuit quo in, id vidisse democritum vituperata has. Ea tation nominati suavitate sea, error constituam ad nec, ea integre luptatum erroribus has. Quem libris his et, menandri sapientem sed ei, vix possit voluptua rationibus eu. At pro civibus voluptua, quod illud aliquam vel te, eu vel mediocrem referrentur. Vocibus accommodare pri in, ea sed noluisse imperdiet.</span><br />\r\n<br />\r\n<span style="line-height:20.8px">Ius impetus nostrum adipisci eu, et indoctum posidonium pri, mei denique disputationi no. Sed an elitr omnes. An impedit fabellas cum, vel eu persius mentitum pericula. Rationibus incorrupte pro cu, cu nec minim ridens intellegebat. Vix ne ullum dolorem volumus, purto quaestio deterruisset sit ex.</span><br />\r\n<br />\r\n<span style="line-height:20.8px">Eius velit at ius, id nobis ponderum recusabo usu. Ex praesent accusamus consequat per, torquatos adolescens qui no, nam omnes repudiare constituto ne. Ut vim viderer discere pertinax, stet mucius probatus mea te. Vim nulla dicunt euripidis et.</span>', 'tertret', 'tretret', '', '', '', '', '', 0, '', 0, 0, '1484038911index_16.jpg', 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -502,14 +525,13 @@ CREATE TABLE IF NOT EXISTS `project` (
 -- Table structure for table `qtext`
 --
 
-CREATE TABLE IF NOT EXISTS `qtext` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `qtext` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `e_title` text NOT NULL,
   `content` longtext NOT NULL,
-  `e_content` longtext NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `e_content` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `qtext`
@@ -527,8 +549,8 @@ INSERT INTO `qtext` (`id`, `title`, `e_title`, `content`, `e_content`) VALUES
 -- Table structure for table `service`
 --
 
-CREATE TABLE IF NOT EXISTS `service` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `content` longtext NOT NULL,
@@ -547,10 +569,8 @@ CREATE TABLE IF NOT EXISTS `service` (
   `date` date DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   `home` tinyint(4) NOT NULL DEFAULT '0',
-  `ind` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pId` (`pId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `service`
@@ -562,11 +582,31 @@ INSERT INTO `service` (`id`, `title`, `sum`, `content`, `meta_keyword`, `meta_de
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `session`
+--
+
+CREATE TABLE `session` (
+  `session_id` varchar(255) NOT NULL,
+  `last_visit` datetime NOT NULL DEFAULT '2017-01-03 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `session`
+--
+
+INSERT INTO `session` (`session_id`, `last_visit`) VALUES
+('0t5hddeb3438eando09bk6uop1', '2017-01-03 15:13:38'),
+('7fbha854m8kpq4mtlquhfe64h1', '2017-01-03 15:22:14'),
+('pjg2af50coeiuig9uu970r8n66', '2017-01-03 15:13:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `slider`
 --
 
-CREATE TABLE IF NOT EXISTS `slider` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `slider` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `e_title` text NOT NULL,
   `sum` text NOT NULL,
@@ -575,9 +615,8 @@ CREATE TABLE IF NOT EXISTS `slider` (
   `lnk` text NOT NULL,
   `e_lnk` text NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `slider`
@@ -590,10 +629,30 @@ INSERT INTO `slider` (`id`, `title`, `e_title`, `sum`, `e_sum`, `img`, `lnk`, `e
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subscriber`
+--
+
+CREATE TABLE `subscriber` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `dates` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `subscriber`
+--
+
+INSERT INTO `subscriber` (`id`, `email`, `dates`) VALUES
+(2, 'tung@mail.com', '2017-01-13 09:10:01'),
+(3, 'tung@mail.com', '2017-01-13 09:11:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `vs_counter`
 --
 
-CREATE TABLE IF NOT EXISTS `vs_counter` (
+CREATE TABLE `vs_counter` (
   `hit_counter` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -602,7 +661,7 @@ CREATE TABLE IF NOT EXISTS `vs_counter` (
 --
 
 INSERT INTO `vs_counter` (`hit_counter`) VALUES
-(173);
+(190);
 
 -- --------------------------------------------------------
 
@@ -610,25 +669,266 @@ INSERT INTO `vs_counter` (`hit_counter`) VALUES
 -- Table structure for table `vs_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `vs_detail` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vs_detail` (
+  `id` int(11) NOT NULL,
   `vs_ip` varchar(255) NOT NULL,
-  `vs_city` varchar(255) NOT NULL,
+  `vs_city` varchar(255) DEFAULT NULL,
   `vs_browser` varchar(255) NOT NULL,
   `vs_os` varchar(255) NOT NULL,
   `vs_id` varchar(255) NOT NULL,
   `vs_flag` tinyint(1) NOT NULL,
-  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=181 ;
+  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `vs_detail`
 --
 
 INSERT INTO `vs_detail` (`id`, `vs_ip`, `vs_city`, `vs_browser`, `vs_os`, `vs_id`, `vs_flag`, `dates`) VALUES
-(180, '27.74.116.50', 'Hanoi', 'Chrome', 'Windows 10', 'b8k0fr0kgq63mqts889utgqp97', 0, '2016-11-12 23:31:08');
+(185, 'unknown', 'unknown', 'Chrome', 'Windows 8.1', 'b6b5dp986locsa3fmuk1orfhj4', 0, '2017-01-13 06:20:04'),
+(186, 'unknown', 'unknown', 'Chrome', 'Windows 8.1', '7aajgd55hpjcpn7a6r28adrl44', 0, '2017-01-13 07:47:24'),
+(187, 'unknown', 'unknown', 'Chrome', 'Windows 8.1', 'l9m090vbsq9ssok5ndfi2rkl81', 1, '2017-01-13 10:08:43');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `about`
+--
+ALTER TABLE `about`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ad_user`
+--
+ALTER TABLE `ad_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `basic_config`
+--
+ALTER TABLE `basic_config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cart_detail`
+--
+ALTER TABLE `cart_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cart_id` (`cart_id`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `news_cate`
+--
+ALTER TABLE `news_cate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `partner`
+--
+ALTER TABLE `partner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `product_cate`
+--
+ALTER TABLE `product_cate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_image`
+--
+ALTER TABLE `product_image`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `promotion`
+--
+ALTER TABLE `promotion`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `qtext`
+--
+ALTER TABLE `qtext`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `session`
+--
+ALTER TABLE `session`
+  ADD PRIMARY KEY (`session_id`);
+
+--
+-- Indexes for table `slider`
+--
+ALTER TABLE `slider`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subscriber`
+--
+ALTER TABLE `subscriber`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vs_detail`
+--
+ALTER TABLE `vs_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `about`
+--
+ALTER TABLE `about`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `ad_user`
+--
+ALTER TABLE `ad_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `basic_config`
+--
+ALTER TABLE `basic_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `cart_detail`
+--
+ALTER TABLE `cart_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `news_cate`
+--
+ALTER TABLE `news_cate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `partner`
+--
+ALTER TABLE `partner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
+--
+-- AUTO_INCREMENT for table `product_cate`
+--
+ALTER TABLE `product_cate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `product_image`
+--
+ALTER TABLE `product_image`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `promotion`
+--
+ALTER TABLE `promotion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `qtext`
+--
+ALTER TABLE `qtext`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `slider`
+--
+ALTER TABLE `slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `subscriber`
+--
+ALTER TABLE `subscriber`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `vs_detail`
+--
+ALTER TABLE `vs_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 --
 -- Constraints for dumped tables
 --
@@ -648,42 +948,3 @@ ALTER TABLE `product_image`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-CREATE TABLE `partner` (
-  `id` int(11) NOT NULL,
-  `title` text NOT NULL,
-  `eTitle` text NOT NULL,
-  `lnk` text NOT NULL,
-  `img` text NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  `ind` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `partner`
---
-
-INSERT INTO `partner` (`id`, `title`, `eTitle`, `lnk`, `img`, `active`, `ind`) VALUES
-(1, 'Bambo interior', 'Bambo interior', 'pspmedia.vn', '1439345318holistic-solutions-circle-2-252x200.jpg', 1, 1);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `partner`
---
-ALTER TABLE `partner`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `partner`
---
-ALTER TABLE `partner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
