@@ -100,6 +100,30 @@ $(function() {
     });
     
     $('.pagination>li>a:has(i)').addClass('has_icon');
+    
+    $('form#subscribe').on('submit', function (e) {
+            e.preventDefault();
+
+            var $form = this;
+            var email = $form.email.value.trim();
+            var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+            if (!email) return alert("Bạn phải nhập email!");
+            if (!regex.test(email)) return alert('Email không đúng!');
+
+            $.ajax({
+                    type: 'POST',
+                    url: "/ajax.php",
+                    data: {act: 'subscribe', email: email },
+                    success: function() {
+                            alert("Cám ơn bạn đã đăng ký nhận tin.");
+                            $form.reset();
+                    },
+                    fail: function() {
+                            alert("Có lỗi xảy ra. Bạn vui lòng thử lại lần sau.");
+                    }
+            })
+    })
 });
 
 function add_cart(id,qty){
@@ -114,28 +138,5 @@ function add_cart(id,qty){
     });
 }
 
-$('form#subscribe').on('submit', function (e) {
-	e.preventDefault();
-
-	var $form = this;
-	var email = $form.email.value.trim();
-	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-
-	if (!email) return alert("Bạn phải nhập email!");
-	if (!regex.test(email)) return alert('Email không đúng!');
-
-	$.ajax({
-		type: 'POST',
-		url: '/ajax/subscribe',
-		data: { email: email },
-		success: function() {
-			alert("Cám ơn bạn đã đăng ký nhận tin.");
-			$form.reset();
-		},
-		fail: function() {
-			alert("Có lỗi xảy ra. Bạn vui lòng thử lại lần sau.");
-		}
-	})
-})
 
 

@@ -4,7 +4,6 @@ function ad_menu()
 {
 	$topNav=array(
                     array(1,"Slider","slider","camera-retro"),
-                    /*array(10,'Banner quảng cáo','ads_banner','diamond'),*/
                     array(2,"Giới thiệu","about","credit-card"),
                     array(3,'Quản lý sản phẩm',"product","dropbox"),
 					/*array(3,"Quản lý phụ tùng","accessary","pencil"),	*/	
@@ -13,8 +12,9 @@ function ad_menu()
                     array(6,'Đối tác','partner','briefcase'), 
                     //array(9,'Video','video','youtube'),
                     /*array(14,'Hỗ trợ trực tuyến','support_online','headphones'),*/
-                    //array(14,'Đặt hàng','cart','shopping-cart'),
-                    array(8,'Liên hệ','contact','users'),                    
+                    array(14,'Đặt hàng','cart','shopping-cart'),
+                    array(8,'Liên hệ','contact','users'), 
+                    array(9,'Đăng ký nhận email','subscriber','user'),
                     array(11,"Pages SEO","seo","book"),
                     array(12,"Quản lý text","qtext","folder-open"),
                     array(15,"Cấu hình cơ bản","basic_config","cog")

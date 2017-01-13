@@ -590,6 +590,7 @@ section#home-subscribe {
             font-size: 17px;
             font-style: italic;
             color: #fff;
+            outline: none;
 	}
 }
 
@@ -695,8 +696,38 @@ section#home-subscribe {
     color: #767676;    
 }
 
+#contact-page{
+    textarea#content{
+        height: 235px;
+    }
+    .title-head span {
+        margin-bottom: 5px;
+    }
+    .title-head{
+        margin-bottom: 40px;
+    }
+}
 
+.about-us-box{
+    .title-head{
+        margin-top: 30px;
+        span{
+            margin-bottom: 20px;
+        }
+    }
+}
 
+#product-page{
+    .ind-promotion{
+        padding-top: 0;
+    }
+    .breadcrumb{
+        margin-bottom: 10px;
+    }
+    .title-head span{
+            margin-top: 35px;
+    }
+}
 
 
 

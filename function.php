@@ -273,7 +273,6 @@ function about($db){
     <section id="page">';
     common::page('about');
     $about=new about($db);
-    $str.=$about->breadcrumb_with_Id();
     $str.=$about->about_one();
     $str.='
     </section>';
@@ -342,7 +341,7 @@ function cart($db, $view)
 }
 function product($db){
     $str.='
-    <section id="page">';  
+    <section id="product-page">';  
     common::page('product');
     $pd=new product($db);
     $str.=$pd->breadcrumb_cate_lev1();
@@ -508,8 +507,8 @@ function gmap(){
     return '
         <script>   
             function initMap() {
-                var companyAddress = {lat: 10.799471, lng: 106.717565};
-                var addCenter = {lat: 10.8, lng: 106.717565};
+                var companyAddress = {lat: 10.841838, lng: 106.635172};
+                var addCenter = {lat: 10.8427, lng: 106.635172};
                 var map = new google.maps.Map(document.getElementById("google-map"), {
                   zoom: 17,
                   fullscreenControl: true,
@@ -521,8 +520,9 @@ function gmap(){
                   title: "566/12 Điện Biên Phủ, Phường 22, Quận Bình Thạnh, Tp. Hồ Chí Minh"
                 });
                 var lequangdinhContentString = 
-                      "<h4 style=\"color: #f26522\">KỸ THUẬT TỰ ĐỘNG THÁI BÌNH</h4>" +
-                      "<a  target=\"_blank\" href=\"https://www.google.com/maps/place/10%C2%B047\'58.1%22N+106%C2%B043\'03.2%22E/@10.799471,106.7170178,19z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d10.799471!4d106.717565\">Get direction</a>";
+                      "<h4 style=\"color: #ff578f\">Hana Beauty</h4>" +
+                      "<p>Căn Hộ Gia Đức, Đường 44, Phường 14, Gò Vấp</p>" +
+                      "<a  target=\"_blank\" href=\"https://www.google.com/maps/dir//10.841838,106.635172/@10.8430076,106.6335198,17z/data=!4m8!1m7!3m6!1s0x0:0x0!2zMTDCsDUwJzMwLjYiTiAxMDbCsDM4JzA2LjYiRQ!3b1!8m2!3d10.841838!4d106.635172\">Get direction</a>";
 
                   var infowindow = new google.maps.InfoWindow({
                     content: lequangdinhContentString

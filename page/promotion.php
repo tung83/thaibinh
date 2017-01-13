@@ -27,7 +27,8 @@ class promotion extends base{
                         </div>
                     </div>';   
         }
-        $str.='                    
+        $str.='              
+                </div>                 
                 </div>
                 </div>
             </div>';

@@ -494,7 +494,8 @@ section#home-subscribe {
     height: 32px;
     font-size: 17px;
     font-style: italic;
-    color: #fff; }
+    color: #fff;
+    outline: none; }
 
 .item:hover .item-title, .item:focus .item-title {
   color: #db5010; }
@@ -576,6 +577,25 @@ section#home-subscribe {
 
 .news-item-sum {
   color: #767676; }
+
+#contact-page textarea#content {
+  height: 235px; }
+#contact-page .title-head span {
+  margin-bottom: 5px; }
+#contact-page .title-head {
+  margin-bottom: 40px; }
+
+.about-us-box .title-head {
+  margin-top: 30px; }
+  .about-us-box .title-head span {
+    margin-bottom: 20px; }
+
+#product-page .ind-promotion {
+  padding-top: 0; }
+#product-page .breadcrumb {
+  margin-bottom: 10px; }
+#product-page .title-head span {
+  margin-top: 35px; }
 
 footer {
   background-color: #e8e8e8;

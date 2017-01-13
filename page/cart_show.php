@@ -8,6 +8,7 @@ class cart_show extends base{
     function breadcrumb(){
         
     }
+    
     function cart_checkout(){
         $this->db->reset();
         if(isset($_POST['contact_send'])){
@@ -25,7 +26,8 @@ class cart_show extends base{
                 $recent=$this->db->insert('cart',$insert); 
                 foreach($this->cart as $val){
                     $item=$this->db->where('id',$val['id'])->getOne('product','id,title,price,price_reduce');
-                    $price=($item['price_reduce']>0&&$item['price_reduce']<$item['price'])?$item['price_reduce']:$item['price'];
+                    $price=($item['price_reduce']>0)?$item['price_reduce']:$item['price'];
+                    $price= isset($price)? $price: 0;
                     $insert=array(
                         'cart_id'=>$recent,'product_id'=>$item['id'],'product_title'=>$item['title'],
                         'product_price'=>$price,
@@ -36,14 +38,14 @@ class cart_show extends base{
                 }
                 echo '
                     <script>
-                        /*var msg="Thông tin của bạn đã được gửi đi, Chúng tôi sẽ liên lạc với bạn sớm nhất có thể, Xin cám ơn!";
+                        var msg="Thông tin của bạn đã được gửi đi, Chúng tôi sẽ liên lạc với bạn sớm nhất có thể, Xin cám ơn!";
                         $.jAlert({
                             "title":"Thông báo"
-                            "content":"abc",
+                            "content":msg,
                             onClose:function(){
                                 location.href="'.myWeb.'" 
                             }
-                        }) */             
+                        })              
                         location.href="'.myWeb.'"         
                     </script>';
             }catch(Exception $e){
@@ -97,6 +99,7 @@ class cart_show extends base{
 					</thead>
 					<tbody>';
      $set=0;
+     $isSetContact = false;
      foreach($this->cart as $key=>$val){
         $item=$this->db->where('id',$val['id'])->getOne('product','id,title,price,price_reduce');
         common::load('product','page');
@@ -104,7 +107,12 @@ class cart_show extends base{
         $img=$pd->first_image($val['id']);
         $lnk=myWeb.$this->lang.'/'.product_view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $price=($item['price_reduce']>0&&$item['price_reduce']<$item['price'])?$item['price_reduce']:$item['price'];
+        $priceString = ($price == 0) ? 'Liên hệ' : number_format($price,0,',','.').'&nbsp;₫';
         $total=$price*$val['qty'];
+        $totaltring = ($total == 0) ? 'Liên hệ' : number_format($total,0,',','.').'&nbsp;₫';
+        if($total==0){
+            $isSetContact = true;
+        }
         $set+=$total;
         $str.='
         <tr>
@@ -115,7 +123,7 @@ class cart_show extends base{
 				<h4><a href="'.$lnk.'">'.$item['title'].'</a></h4>
 			</td>
 			<td class="cart_price">
-				<p>'.number_format($price,0,',','.').'&nbsp;₫</p>
+				<p>'.$priceString.'</p>
 			</td>
 			<td class="cart_quantity">
                             <div class="number-spinner-container">
@@ -132,7 +140,7 @@ class cart_show extends base{
 				
 			</td>
 			<td class="cart_price">
-				<p>'.number_format($total,0,',','.').'&nbsp;₫</p>
+				<p>'.$totaltring.'</p>
 			</td>
 			<td class="action-clear">
 				<a href="javaScript:removeItem('.$key.');" ><i class="fa fa-trash-o"></i></a>
@@ -140,6 +148,7 @@ class cart_show extends base{
                         <input type="hidden"  name="productItems['.$key.'][id]" value="'.$val['id'].'" />
 		</tr>';
      }
+        $setString = ($set == 0) ? 'Liên hệ' : number_format($set,0,',','.').'&nbsp;₫';     
      $str.='
 					</tbody>
 				</table>
@@ -151,7 +160,7 @@ class cart_show extends base{
 				<div class="col-sm-12">
                                 <div class="total_area clearfix">
 					<p class="pull-right">                                        
-                                        <b>Tổng tiền: <span id="span-price">'.number_format($set,0,',','.').'&nbsp;₫</span></b>
+                                        <b>Tổng tiền: <span id="span-price">'.$setString.'</span></b>
                                         </p>
                                 </div>
                         <div class="chose_area">						

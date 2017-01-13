@@ -67,7 +67,10 @@ class contact extends base{
                             <div class="title-head">
                                 <span>'
                                     .$this->title.' 
-                                </span>
+                                </span>                                
+                                <p>
+                                    <i>Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:</i>
+                                </p>   
                             </div>
                         </div> 
                     </div> 
@@ -77,13 +80,13 @@ class contact extends base{
                              $str.= $this->post_result;
                          }                             
         $str.=              '<div class="col-sm-6">
-                            <i>Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:</i>
-                            <p>
-                                <img src="'.frontPath.'contact.png" class="img-responsive" alt="" title=""/>
-                            </p>    
+                             
                             <p>
                                 '.common::qtext($this->db,3).'
-                            </p>       
+                            </p>     
+                            <p>
+                                <img src="'.frontPath.'contact.png" class="img-responsive" alt="" title=""/>
+                            </p>     
                         </div>
                         <div class="col-sm-6"> 
                             <p class="text-center">

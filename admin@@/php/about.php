@@ -36,12 +36,6 @@ function about($db)
             
             'ind'=>$ind,'active'=>$active,'dates'=>date('Y-m-d H:i:s')
        );
-       if(common::file_check($_FILES['file'])){
-            //WideImage::load('file')->resize(336,272, 'fill')->saveToFile(myPath.$file);
-            WideImage::load('file')->saveToFile(myPath.$file);
-            $update = array_merge($update,array('img'=>$file));
-            $form->img_remove($_POST['idLoad'],$db,$table);
-       }
        try{
             $db->where('id',$_POST['idLoad']);
             $db->update($table,$update);  
@@ -58,7 +52,7 @@ function about($db)
     
     $str.=$form->search_area($db,$act,'category',$_GET['hint'],0);
     
-    $head_title=array('Tiêu đề','Hình Nền','STT','Hiển thị');
+    $head_title=array('Tiêu đề','STT','Hiển thị');
 	$str.=$form->table_start($head_title);
     
     $page=isset($_GET["page"])?intval($_GET["page"]):1;
@@ -72,7 +66,6 @@ function about($db)
         foreach($list as $item){
             $item_content = array(                           
                 array($item['title'],'text'),
-                array(myPath.$item['img'],'image'),
                 array($item['ind'],'number'),
                 array($item['active'],'bool')
             );
@@ -93,7 +86,6 @@ function about($db)
             '.$form->ckeditor('content',array('label'=>'Nội dung','required'=>true)).'
         </div>
         <div class="col-lg-12">
-            '.$form->file('file',array('label'=>'Hình Nền')).'
             '.$form->number('ind',array('label'=>'STT')).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'
             
