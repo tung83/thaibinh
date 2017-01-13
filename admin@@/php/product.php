@@ -283,12 +283,13 @@ function product($db){
         $meta_desc=htmlspecialchars($_POST['meta_description']);
         $content=str_replace("'","",$_POST['content']);     
         $feature=str_replace("'","",$_POST['feature']);
-        $detail=str_replace("'","",$_POST['detail']);
         $manual=str_replace("'","",$_POST['manual']);
 
         $active=$_POST['active']=="on"?1:0;
         $home=$_POST['home']=='on'?1:0;
         $ind=intval($_POST['ind']);
+        $price=intval($_POST['price']);
+        $price_reduce=intval($_POST['price_reduce']);
         $pId=intval($_POST['frm_cate_1']);
 	}
     if(isset($_POST['listDel'])&&$_POST['listDel']!=''){
@@ -306,10 +307,10 @@ function product($db){
 	if(isset($_POST["addNew"])) {
         $insert = array(
                     'title'=>$title,'content'=>$content,
-                    'detail'=>$detail,'manual'=>$manual,
+                    'manual'=>$manual,
                     'feature'=>$feature,'meta_keyword'=>$meta_kw,
                     'meta_description'=>$meta_desc,                                    
-                    'home'=>$home,'active'=>$active,'pId'=>$pId,'ind'=>$ind
+                    'home'=>$home,'active'=>$active,'pId'=>$pId,'ind'=>$ind,'price'=>$price,'price_reduce'=>$price_reduce
                 );
 		try{
             $db->insert($table,$insert);
@@ -321,11 +322,11 @@ function product($db){
 	if(isset($_POST["update"]))	{
 	   $update=array(
                     'title'=>$title,'content'=>$content,
-                    'detail'=>$detail,'manual'=>$manual,
+                    'manual'=>$manual,
                     'feature'=>$feature,'meta_keyword'=>$meta_kw,
                     'meta_description'=>$meta_desc,
                     'price'=>$price,'price_reduce'=>$price_reduce,                    
-                    'home'=>$home,'active'=>$active,'pId'=>$pId,'ind'=>$ind
+                    'home'=>$home,'active'=>$active,'pId'=>$pId,'ind'=>$ind,'price'=>$price,'price_reduce'=>$price_reduce
                 );
         try{
             $db->where('id',$_POST['idLoad']);
@@ -355,7 +356,7 @@ function product($db){
     
     $str.=$form->search_area($db,$act,'product_cate',$_GET['hint'],1);
 
-    $head_title=array('Tên SP','Danh mục','Hình ảnh','Trang chủ','Hiển thị','Thứ tự');
+    $head_title=array('Tên SP','Danh mục','Hình ảnh','Đơn Giá (VNĐ)','Trang chủ','Hiển thị','Thứ tự');
 	$str.=$form->table_start($head_title);
     
     $page=isset($_GET["page"])?intval($_GET["page"]):1;
@@ -375,8 +376,9 @@ function product($db){
             if(trim($img['img'])==='') $img='holder.js/130x100';else $img=myPath.$img['img'];   
             $item_content = array(
                 array($item['title'],'text'),
-                array(array($cate_1),'cate'),                              
+                array(array($cate_1),'cate'),                             
                 array($img,'image'),
+                array($item['price'],'text'),   
                 
                 array($item['home'],'bool'),
                 array($item['active'],'bool'),
@@ -401,9 +403,10 @@ function product($db){
           '.$form->text('title',array('label'=>'Tên SP','required'=>true)).'
             '.$form->text('meta_keyword',array('label'=>'Keyword <code>SEO</code>')).'
             '.$form->textarea('meta_description',array('label'=>'Description <code>SEO</code>')).'
+            '.$form->number('price',array('label'=>'Đơn Giá (VNĐ)')).'
+            '.$form->number('price_reduce',array('label'=>'Giảm giá (VNĐ)')).'
             '.$form->ckeditor('feature',array('label'=>'Điểm nổi bật')).'            
             '.$form->ckeditor('content',array('label'=>'Mô tả chi tiết')).'
-            '.$form->ckeditor('detail',array('label'=>'Thông số kỹ thuật')).'
             '.$form->ckeditor('manual',array('label'=>'Ghi chú')).'           
         </div>
         <div class="col-lg-12">

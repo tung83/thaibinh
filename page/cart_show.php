@@ -82,7 +82,16 @@ class cart_show extends base{
         if(cart_update_multi($db)){
             $this->cart=$_SESSION['cart'];            
         }
-        $str.='<form action="" method="post" id="post-cart">';
+        
+        $str.=' 
+        <div class="col-xs-12">
+            <div class="title-head">
+                <span>
+                    GIỎ HÀNG CỦA BẠN
+                </span>
+            </div>
+        </div>
+        <form action="" method="post" id="post-cart">';
         $str.='
         <section id="cart_items">
 			<div class="table-responsive cart_info">
@@ -91,9 +100,9 @@ class cart_show extends base{
 						<tr class="cart_menu">
 							<th class="image">Hình Ảnh</th>
 							<th class="description">Tên SP</th>
-							<th class="price">Đơn Giá(VNĐ)</th>
-							<th class="quantity">SL</th>
-							<th class="total">Thành Tiền</th>
+							<th >Đơn Giá(VNĐ)</th>
+							<th class="quantity">Số lượng</th>
+							<th class="total">Thành Tiền(VNĐ)</th>
 							<th class="action-clear">Xóa</th>
 						</tr>
 					</thead>
@@ -120,7 +129,7 @@ class cart_show extends base{
 				<a href="'.$lnk.'"><img src="'.webPath.$img.'" class="img-responsive" style="max-width:50px" alt="" title=""/></a>
 			</td>
 			<td class="cart_description">
-				<h4><a href="'.$lnk.'">'.$item['title'].'</a></h4>
+				<a href="'.$lnk.'">'.$item['title'].'</a>
 			</td>
 			<td class="cart_price">
 				<p>'.$priceString.'</p>
@@ -160,11 +169,11 @@ class cart_show extends base{
 				<div class="col-sm-12">
                                 <div class="total_area clearfix">
 					<p class="pull-right">                                        
-                                        <b>Tổng tiền: <span id="span-price">'.$setString.'</span></b>
+                                        <b>Tổng cộng: <span id="span-price">'.$setString.'</span></b>
                                         </p>
                                 </div>
-                        <div class="chose_area">						
-    						<a class="btn btn-default btn-product" href="'.myWeb.'">Tiếp tục mua sắm</a>
+                        <div class="choose_area">						
+    						<a class="btn btn-default btn-product pull-left" href="'.myWeb.'">Tiếp tục mua sắm</a>
                             <button type="submit"  class="btn btn-default btn-product">Cập nhật</button>
 							<a class="btn btn-default btn-product" href="'.myWeb.$this->view.'/giao-hang">Gửi đơn hàng</a>
     					</div>							

@@ -13,21 +13,22 @@ function menu($db,$view){
     $db->reset();
     $list=$db->where('active',1)->orderBy('ind','ASC')->orderBy('id')->get('menu');
     $str.='
+             
+    <div class="header">
     <div class="wsmobileheader clearfix">
         <a id="wsnavtoggle" class="animated-arrow"><span></span></a>
-        <a href="'.myWeb.'" class="smallogo"><img src="'.frontPath.'logo.png" height="35" alt="" /></a>
+        <a href="'.myWeb.'" class="smallogo"><img src="'.frontPath.'white-letter-logo.png" height="27" alt="" /></a>
         <a class="callusicon" href="tel:'.common::qtext($db,5).'"><span class="fa fa-phone"></span></a>
-    </div>            
-    <div class="header">
-    <div class="nav hidden-xs hidden-sm">
+    </div>  
+    <div class="nav">
     	<div class="container">
             <div class="row">
                 <div class="row">
-                    <div class="col-md-4 hotline">                    
+                    <div class="col-md-4 hotline hidden-xs hidden-sm">
                         <span>Hotline:</span>
                         <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
                     </div>
-                    <div class="col-md-4 logo">
+                    <div class="col-md-4 logo hidden-xs hidden-sm">
                         <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
                     </div>
                     <div class="col-md-4 header-right">
@@ -363,58 +364,6 @@ function product($db){
     $str.=$pd->bottom_content(); 
     return $str;
 }
-
-function bien_tan($db){
-    common::page('bien_tan');
-    $bien_tan=new bien_tan($db);
-    $str.=$bien_tan->breadcrumb_with_Id();
-    $str.=$bien_tan->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$bien_tan->product_one(intval($_GET['id']));    
-    }else{
-        $str.=$bien_tan->product_cate();
-    }     
-    return $str;
-}
-
-function servo($db){
-    common::page('servo');
-    $servo=new servo($db);
-    $str.=$servo->breadcrumb_with_Id();
-    $str.=$servo->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$servo->product_one(intval($_GET['id']));    
-    }else{
-        $str.=$servo->product_cate();
-    }     
-    return $str;
-}
-
-function dong_co($db){
-    common::page('dong_co');
-    $dong_co=new dong_co($db);
-    $str.=$dong_co->breadcrumb_with_Id();
-    $str.=$dong_co->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$dong_co->product_one(intval($_GET['id']));    
-    }else{
-        $str.=$dong_co->product_cate();
-    }     
-    return $str;
-}
-
-function service($db){
-    common::page('service');
-    $service=new service($db);
-    $str.=$service->breadcrumb_with_Id();
-    $str.=$service->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$service->service_one(intval($_GET['id']));    
-    }else{
-        $str.=$service->service_cate();
-    }     
-    return $str;
-}
 function search($db){
     $hint=$_GET['hint'];
     $str.='
@@ -493,11 +442,11 @@ function resize_product_cate(){
         <script>   
         $(document).ready(function() {
             $(window).resize(function() {
-                if($(".product-item").length > 0)
+                if($(window).width() > 992 && $(".product-item").length > 0)
                 {
                     var productItemHeight = $($(".product-item")[1]).height();
+                    $(".product-menu-container").height(productItemHeight -1);
                 }
-                $(".product-menu-container").height(productItemHeight);
                 
             }).resize();
         });

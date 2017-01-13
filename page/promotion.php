@@ -1,7 +1,7 @@
 <?php
 class promotion extends base{
     function __construct($db){
-        parent::__construct($db,7,'promotion');
+        parent::__construct($db,5,'promotion');
     }
     function ind_promotion(){
         $this->db->reset();
@@ -47,7 +47,6 @@ class promotion extends base{
                     <a href="'.$lnk.'" class="about-item clearfix">
                         <p class="promotion-title">'.$item['title'].'</p>
                     </a>
-                    <p class="promotion-date"><i> '.date("d/m/Y",strtotime($item['date'])).'</i></p>
                     <div class="promotion-sum">
                         <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
                     </div>

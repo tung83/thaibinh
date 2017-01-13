@@ -108,8 +108,11 @@ header{
 	box-shadow: 0 0 20px rgba(0,0,0,.3);
         border-bottom:1px solid #e9e9e9;    
 }
-.header{    
+
+@media (min-width: 992px){
     border-top: 6px solid $primary-color;
+}
+.header{    
     background: #fff;
     color: $grey-text-color;
     list-style: none;
@@ -251,7 +254,25 @@ header{
         }
     }
 }
-
+#post-cart{
+    td {
+        padding-top: 10px;
+    }
+    .cart_description a{
+        color: $secondary-color;
+    }
+    .choose_area{
+        text-align: right;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        .btn{
+            border-radius: 0px;
+            background-color: #ff578f;
+            color:#fff;
+        }
+    }
+    
+}
 .header .menu-ground, .mobile-sub{
     background: $primary-color;
 }
@@ -349,7 +370,7 @@ header{
         margin-top:50px;
     }
 }
-#page-content{
+.wrapper{
     background-color: #f9f9f9;
 }
 .btn-primary-long {
@@ -477,6 +498,7 @@ line-height: 30px;
     .price{
         color: $price-color;
         height: 30px;
+        font-size: 18px;
     }
     .price-strike{
         color: $grey-text-color;
@@ -499,7 +521,7 @@ line-height: 30px;
     padding-left: 0;
     padding-right: 0;
 }
-ul.product-menu {    
+.product-col ul.product-menu {    
     font-weight: normal;
     font-size: 16px;
     padding: 15px 0 5px 0;
@@ -561,7 +583,7 @@ ul.product-menu {
 }
 
 section#home-subscribe {
-    padding: 30px 0;
+    padding-bottom: 30px;
 	span {
 		font-size: 17px;
 		font-style: italic;
@@ -597,24 +619,28 @@ section#home-subscribe {
 .item:hover .item-title,.item:focus .item-title{
     color: #db5010;
 }
-.product-detail{    
+.product-detail,#post-cart{    
     .price{
         span{
             color: #000;
         }
         color: $price-color;
         height: 30px;
+        font-size: 18px;
     }
     .price-strike{
         color: $grey-text-color;
     }
     .btn-cart{
         border-radius: 0px;
-        height: 40px;
+        height: 36px;
         width: 110px;
         background-color: #ff578f;
         color:#fff;
     } 
+    #amount{
+        height:33px;
+    }
     .btn-cart:hover,.btn-cart:focus{
             color:$grey-text-color;
     }
@@ -637,6 +663,11 @@ section#home-subscribe {
     }
     form{
         margin: 15px 0;
+    }
+}
+.cart-list{
+    .title-head span{
+        margin-top: 40px;
     }
 }
 @media (min-width: 1200px){   
@@ -668,7 +699,7 @@ section#home-subscribe {
     padding: 15px 10px 15px 10px;
 }
 
-.promotion-item{    
+ #home-page .promotion-item,#product-page .promotion-item{    
     border: 5px solid #fff;
     box-shadow: 0px 0px 8px #e1e1e1;
 }
@@ -701,7 +732,7 @@ section#home-subscribe {
         height: 235px;
     }
     .title-head span {
-        margin-bottom: 5px;
+        margin-bottom: 40px;
     }
     .title-head{
         margin-bottom: 40px;
@@ -726,6 +757,7 @@ section#home-subscribe {
     }
     .title-head span{
             margin-top: 35px;
+            margin-bottom: 35px;
     }
 }
 
@@ -813,18 +845,14 @@ footer{
     }
 }
 .product-menu{
-    z-index: 99999999999999999;
     margin-top: 0;
 }
 
- .about-us-box,.contact-box, .news-box, .product-box, .project-box, .service-box{
+ .about-us-box,.contact-box, .news-box, .product-box, .promotion-box, .service-box{
     margin-bottom: 10px;
 }
 #news, #product, #project, #service{
     margin-bottom: 30px;
-}
-.contact-wrap{
-    margin-bottom: 40px;
 }
 .news-title{
     margin: 0 0 20px 0;
@@ -848,7 +876,7 @@ footer{
     margin-top: 20px;
 }
 
-.news-list hr:last-child{
+.promotion-list hr:last-child, .news-list hr:last-child{
     display: none;  
 }
 
@@ -1006,7 +1034,6 @@ footer{
 @media(min-width:1200px){
     
 }
-
 /*=================== Start phone ring ===============*/
 .coccoc-alo-phone {
     background-color: transparent;
@@ -1027,6 +1054,25 @@ footer{
         left: 0;
         bottom: 0px;
     }
+    .nav {
+        margin-top: 45px;
+    }
+    .callusicon {
+        right: 10px;
+    }
+    .smallogo {
+        background-color: $secondary-color;
+    }
+    .nav>.container>.row{
+        padding-bottom: 10px !important;
+    }
+    section#home-subscribe input[type=submit] {
+        margin-top: 10px;
+    }
+    .promotion-item img{
+        width: 100%;
+    }
+
     
 }
 .coccoc-alo-phone.coccoc-alo-show {

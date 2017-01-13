@@ -237,7 +237,7 @@ class product extends base{
     }
     function product_one($id){
         $this->db->where('id',$id);
-        $item=$this->db->getOne('product','id,price,price_reduce,title,content,pId,feature,detail,manual,promotion,video');
+        $item=$this->db->getOne('product','id,price,price_reduce,title,content,pId,feature,manual,promotion,video');
         $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
         $list=$this->db->get('product');
         $lnk=domain.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
@@ -286,18 +286,12 @@ class product extends base{
             <div id="tabs" class="tabs">
                 <ul>
                     <li><a href="#tabs-1"><i class="fa fa-file-text-o"></i> MÔ TẢ CHI TIẾT</a></li>
-                    <li><a href="#tabs-2"><i class="fa fa-list-alt"></i> THÔNG SỐ KỸ THUẬT</a></li>
                     <li><a href="#tabs-3"><i class="fa fa-pencil-square-o"></i> GHI CHÚ</a></li>
                     <!--li><a href="#tabs-4">BÌNH LUẬN</a></li-->
                 </ul>
                 <div id="tabs-1">
                     <article>
                         <p>'.$item['content'].'</p>
-                    </article>
-                </div>
-                <div id="tabs-2">
-                    <article>
-                        <p>'.$item['detail'].'</p>
                     </article>
                 </div>
                 <div id="tabs-3">
