@@ -31,9 +31,9 @@ body{
         width: 100%;
     }
 }
-@media (min-width: 1200px){
+@media (min-width: 1300px){
     .container {
-        width: 1170px;
+        width: 1300px;
     }
     .wsmenu-submenu{
         min-width: 185px;
@@ -150,6 +150,9 @@ header{
         margin-top: 20px;
         a:hover, a:focus{
             opacity: 1;
+        }
+        img{
+            width: 160px;
         }
     }
     .cart{        
@@ -274,14 +277,14 @@ header{
 }
 .wsmenu > .wsmenu-list > li{
     display: inline-block;
-    width: 130px;  
+    vertical-align: baseline !important;
 }
 .wsmenu > .wsmenu-list > li > a{
     color:#fff; 
     text-transform: uppercase;
     border-radius:0px;
-    font-size: 15px;
-    line-height: 60px;
+    font-size: 17px;
+    line-height: 40px;
     background:transparent !important;    
 }
 

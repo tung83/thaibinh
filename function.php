@@ -27,7 +27,7 @@ function menu($db,$view){
                     <div class="col-md-2 logo">
                         <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
                     </div>
-                     <div class="col-md-4 logo">
+                     <div class="col-md-8 logo">
                      <!--Main Menu HTML Code-->
                     <nav class="wsmenu clearfix">
                         <ul class="mobile-sub wsmenu-list">';
@@ -48,13 +48,11 @@ function menu($db,$view){
                     </nav>
                     <!--Menu HTML Code--> 
                      </div>
-                    <div class="col-md-2 hotline">                    
-                        <span>Hotline:</span>
+                    <div class="col-md-2 header-right">
+                    <div class="hotline">                    
+                        <span></span>
                         <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
                     </div>
-                    <div class="col-md-2 header-right">
-
-                        '.social($db).' 
                         <div class="search">
                             <input class="search_box" type="checkbox" id="search_box">                            
                             <label class="icon-search" for="search_box"><i class="fa fa-search"></i></label>
@@ -68,12 +66,6 @@ function menu($db,$view){
 
 
                           </div>
-                        <div class="cart">                           
-                            <a href="/gio-hang"><i class="fa fa-shopping-cart"></i><span class="cart-text">GIỎ HÀNG</span>';
-                                $cart_count = cart_count($db);
-                                    $str.='<span id="cart-count" class="user-cart-quantity'.($cart_count > 0? '' : ' hidden').'">'.$cart_count.'</span>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
