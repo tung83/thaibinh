@@ -113,15 +113,18 @@ header {
   .header .nav > .container > .row {
     padding-top: 16px;
     padding-bottom: 40px; }
-  .header .hotline a {
-    color: #ff002c;
-    font-size: 22px;
-    font-weight: 500; }
-  .header .hotline span:before {
-    content: url(/file/front/small-phone.png);
-    margin-right: 4px;
-    vertical-align: -2px;
-    display: inline-block; }
+  .header .hotline {
+    background-color: #d20000;
+    padding: 6px 5px 5px 10px; }
+    .header .hotline a {
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 500; }
+    .header .hotline span:before {
+      content: url(/file/front/small-phone.png);
+      margin-right: 4px;
+      vertical-align: -2px;
+      display: inline-block; }
   .header .logo {
     margin-top: 20px; }
     .header .logo a:hover, .header .logo a:focus {
