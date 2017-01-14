@@ -219,6 +219,8 @@ header {
     border-radius: 0px;
     background-color: #ff578f;
     color: #fff; }
+#post-cart .cart_price, #post-cart #span-price {
+  color: #dc9860; }
 
 .header .menu-ground, .mobile-sub {
   background: #2f2f2f; }
@@ -298,7 +300,7 @@ header {
 
 @media (max-width: 991px) {
   .wrapper {
-    margin-top: 50px; } }
+    margin-top: 0; } }
 .wrapper {
   background-color: #f9f9f9; }
 
@@ -660,12 +662,15 @@ footer {
       margin-top: 12px;
       margin-bottom: 12px;
       font-size: 11px; }
+      footer .copyright-wrapper .bottom-footer .counter {
+        text-align: right; }
+        footer .copyright-wrapper .bottom-footer .counter #counters, footer .copyright-wrapper .bottom-footer .counter #social_block {
+          display: inline-block; }
       footer .copyright-wrapper .bottom-footer .copyright .company {
         color: #dc8d1f; }
       footer .copyright-wrapper .bottom-footer .copyright .psmedia {
         color: #dc8d1f; }
       footer .copyright-wrapper .bottom-footer #social_block {
-        float: right;
         margin-left: 25px; }
         footer .copyright-wrapper .bottom-footer #social_block a {
           font-size: 18px; }
@@ -675,7 +680,12 @@ footer {
     padding-left: 0; } }
 @media (max-width: 991px) {
   .footer-contact-part .footer-top-span {
-    margin-top: 15px; } }
+    margin-top: 15px; }
+
+  .copyright-wrapper .counter {
+    text-align: center !important; }
+  .copyright-wrapper .copyright {
+    text-align: center; } }
 .product-menu {
   margin-top: 0; }
 
@@ -843,15 +853,10 @@ footer {
   visibility: hidden;
   width: 180px;
   z-index: 200000 !important;
-  right: 0px;
+  left: 0;
   bottom: 0px; }
 
 @media (max-width: 991px) {
-  .coccoc-alo-phone {
-    right: auto;
-    left: 0;
-    bottom: 0px; }
-
   .nav {
     margin-top: 45px; }
 

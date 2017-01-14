@@ -271,6 +271,9 @@ header{
             color:#fff;
         }
     }
+    .cart_price, #span-price{
+        color: $price-color;
+    }
     
 }
 .header .menu-ground, .mobile-sub{
@@ -367,7 +370,7 @@ header{
 
 @media (max-width: 991px){
     .wrapper{
-        margin-top:50px;
+        margin-top:0;
     }
 }
 .wrapper{
@@ -815,6 +818,12 @@ footer{
             margin-top: 12px;
             margin-bottom: 12px;   
             font-size: 11px;
+            .counter{
+                text-align: right;
+                #counters, #social_block{
+                    display: inline-block;
+                }
+            }
             .copyright .company{
                 color: #dc8d1f;
             }
@@ -822,7 +831,6 @@ footer{
                 color: #dc8d1f;
             }
             #social_block{
-                float: right;
                 margin-left: 25px;
                 a{
                     font-size: 18px;
@@ -842,6 +850,14 @@ footer{
 @media(max-width:991px){
     .footer-contact-part .footer-top-span{
         margin-top: 15px;
+    }
+    .copyright-wrapper {
+        .counter{
+            text-align: center !important;
+        }
+        .copyright{
+            text-align: center;
+        }
     }
 }
 .product-menu{
@@ -1044,16 +1060,11 @@ footer{
     visibility: hidden;
     width: 180px;
     z-index: 200000 !important;
-    right: 0px; 
+    left: 0;
     bottom: 0px;
 }
-
 @media(max-width:991px){
-    .coccoc-alo-phone {
-        right: auto;
-        left: 0;
-        bottom: 0px;
-    }
+    
     .nav {
         margin-top: 45px;
     }

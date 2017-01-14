@@ -442,7 +442,7 @@ function resize_product_cate(){
         <script>   
         $(document).ready(function() {
             $(window).resize(function() {
-                if($(window).width() > 992 && $(".product-item").length > 0)
+                if($(window).width() > 992 && $(".product-item").length > 1)
                 {
                     var productItemHeight = $($(".product-item")[1]).height();
                     $(".product-menu-container").height(productItemHeight -1);

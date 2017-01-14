@@ -100,15 +100,15 @@
                             <div class="col-md-6 copyright">
                                 Copyright © 2016 <b class="company">Hana Beauty</b>, All rights reserved. Designed by <a class="psmedia"><b>PSmedia.vn</b></a>
                             </div>
-                            <div class="col-md-6 ">
-                                <?=social($db)?>
-                                <div id="counters" class="pull-right">
+                            <div class="col-md-6 counter">
+                                <div id="counters">
                                     <?php
                                         $vs=new visitors($db);
                                     ?>
                                     <span>Đang online: <?= $vs->getOnlineVisitors() ?></span> |
                                     <span>Lượt truy cập: <?= $vs->getCounter() ?></span>
                                 </div>
+                                <?=social($db)?>
                             </div>
                         </div>
                     </div>
