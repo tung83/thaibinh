@@ -62,40 +62,6 @@
         ?>        
         </section>
         <footer>
-            <div class="container">
-                <div class="row footer-content">
-                    <div class="col-md-3 col-xs-5 footer-menu">
-                        <div class="footer-menu-part">
-                            <span class="footer-top-span">
-                                Menu
-                            </span>
-                            <div>
-                                <?=foot_menu($db,$lang,$view)?>
-                            </div>     
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer-product-part">
-                            <span class="footer-top-span">
-                                Sản phẩm
-                            </span>
-                            <div>
-                                <?=foot_product_cate($db,$lang,$view)?>   
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="footer-contact-part">
-                            <span class="footer-top-span">
-                                Liên hệ công ty
-                            </span>    
-                            <div>
-                                <?=common::qtext($db,$lang,4)?>
-                            </div> 
-                        </div>
-                    </div>
-                </div>  
-            </div> 
             <div class="copyright-wrapper">
                 <div class="container">             
                     <div class="row bottom-footer">                

@@ -1,6 +1,8 @@
 <?php
 define('db_prefix'      ,'');
-define('welcome'  ,'Xin chào');
+define('welcome'  ,'Xin chào !');
+define('cmsStudio_view'        ,'cmstudio');
+
 define('cate'           ,'Danh mục');
 define('sys'            ,'Hệ thống phân phối');
 define('sys_desc'       ,'Hệ thống phân phối của Mekong rộng khắp toàn quốc');

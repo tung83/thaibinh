@@ -164,15 +164,20 @@ function home($db,$lang){
 //    
     
     $str.=welcomeHome($db,$lang);
+    $str.=resizeSlider();
     return $str;
 }
 function welcomeHome($db,$lang){
     return '<div class="container">
                 <div class="row welcome"> 
-                    <p class="welcome-head">'.welcome.'</p> 
-                    <div clss="welcom-content">'
+                    <div><span class="welcome-head">'.welcome.'</span></div> 
+                    <div class="welcome-content">'
                        .common::qtext($db,$lang,6) 
-                    . '</div>
+                  
+                    . ' <div>
+                            <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$lang.'/'.cmsStudio_view.'">'.more_button.'</a>    
+                        </div>
+                    </div>
                 </div>
             </div>';
     
@@ -474,6 +479,22 @@ function lang_flag($lang){
     <a class="language" href="' . $flag_lnk . '">
         <img src="' .frontPath.$flag . '" class="img-responsive" style="max-height:20px" title="" alt=""/>
     </a>';
+}
+
+function resizeSlider(){  
+    return '
+        <script>   
+        $(document).ready(function() {
+            $(window).resize(function() {
+                if($(window).height() > 600)
+                {
+                    var sliderHeight = $(window).height() - $(".copyright-wrapper").height();
+                    $("#wowslider-container1 .ws_images").height(sliderHeight);                    
+                    $("#page-content").height(sliderHeight - $("header").height()-1);
+                }                
+            }).resize();
+        });
+        </script>';
 }
 function gmap(){      
     return '

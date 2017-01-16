@@ -307,6 +307,20 @@ header{
 
 .welcome{
     position: relative;
+    width: 345px;
+    color: #fff;
+    .welcome-head{   
+        margin-left: 1px;
+        padding: 8px 20px;
+        background-color: #d20000;
+        text-transform: uppercase;
+        font-size: 19px;
+        line-height: 37px;
+    }
+    .welcome-content{        
+        background-color: #424242;
+        padding: 15px;
+    }
 }
 
 .wsmenu{
@@ -364,7 +378,7 @@ header{
 
 .header .menu-ground, .mobile-sub li{
     background: #000000;
-    opacity: 0.8;
+    opacity: 0.7;
     margin-right: 2px;
 }
 .wsmenu > .wsmenu-list {
@@ -428,12 +442,11 @@ header{
 #page-content{
     background-color: #f9f9f9;
 }
-.btn-primary-long {
-    padding: 12px 60px;
-    border-radius: 40px;
-}
 .btn-primary-long.see-more{
-    margin: 30px 0 50px 0;
+    margin-top: 5px;
+    color: #fff;
+    background-color: #9a0000;
+    border-color: #7f0000;
 }
 .btn-primary {
     background-color: #fff;
@@ -713,7 +726,6 @@ section#home-subscribe {
 
 footer{
     background-color: $grey-background;
-    padding: 30px 0 0 0;
     color: $grey-text-color;
     a {
         color: $grey-text-color;        
