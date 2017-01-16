@@ -195,7 +195,7 @@ header {
       position: absolute;
       z-index: 0;
       padding: 0px 5px;
-      right: 0;
+      right: 15px;
       top: 15px;
       overflow: hidden;
       width: 20px;
@@ -239,7 +239,7 @@ header {
     color: #fff;
     width: 48px;
     display: inline-block;
-    height: 33px;
+    height: 34px;
     vertical-align: middle; }
     .header .language img {
       margin-top: 10px;
@@ -628,7 +628,6 @@ footer {
       margin-bottom: 12px;
       text-transform: uppercase; }
   footer .copyright-wrapper {
-      position: relative;
     background-color: #2f2f2f;
     text-transform: uppercase;
     color: #fff;
