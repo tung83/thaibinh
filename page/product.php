@@ -32,7 +32,7 @@ class product extends base{
                     </a>
                     <a href="'.$lnk.'">
                         <p class="item-title">'.$item['title'].'</p>';
-                        if(!isset($item['price']) || $item['price_reduce'] == 0){
+                        if(!isset($item['price']) || $item['price'] == 0){
                             $str.='
                             <p class="price">Liên hệ</p>';   
                         }
