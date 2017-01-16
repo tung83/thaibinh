@@ -43,7 +43,18 @@ function qtext($db)
 		<div class="row">
 		<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
-            '.$form->ckeditor('content',array('label'=>'Nội dung')).'
+            <ul class="nav nav-tabs">
+    			<li class="active"><a href="#vietnamese" data-toggle="tab">Việt Nam</a></li>
+    			<li><a href="#english" data-toggle="tab">English</a></li>
+    		</ul>
+            <div class="tab-content">
+    			<div class="tab-pane bg-vi active" id="vietnamese">
+                    '.$form->ckeditor('content',array('label'=>'Nội dung')).'
+                </div>
+                <div class="tab-pane bg-en" id="english">
+                    '.$form->ckeditor('e_content',array('label'=>'Nội dung')).'
+                </div>
+            </div>
         </div>
 		'.$form->hidden($btn['name'],$btn['value']).'
 	</div>

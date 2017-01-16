@@ -22,7 +22,7 @@ class about extends base{
                         </div>
                         <p class="text-center">'.$sum.'</p>
                         <p class="text-right more">
-                            <a href="'.myWeb.$this->view.'">'.more.'</a>
+                            <a href="'.myWeb.$this->lang.'/'.$this->view.'">'.more.'</a>
                         </p>
                     </div>
                 </div>

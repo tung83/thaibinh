@@ -30,9 +30,9 @@ function ad_menu()
                     //array(8,'Danh mục khuyến mãi','type=promotion_cate'),
                     //array(8,'Danh sách khuyến mãi','type=promotion'),   
                     array(12,"HotLine","id=2"),
-					array(12,"Liên hệ","id=3"),
-                   
-                    array(12,"Footer","id=4")               	
+                    array(12,"Liên hệ","id=3"),                   
+                    array(12,"Footer","id=4"),            
+                    array(12,"Giới thiệu","5")       
 				);
 	$size=sizeof($topNav);
 	$act=$_GET["act"];

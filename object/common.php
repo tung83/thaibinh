@@ -206,10 +206,10 @@ class common{
     static function widget($class_name){
         self::load($class_name,'widget');
     }
-    static function qtext($db,$id,$table='qtext'){
+    static function qtext($db,$lang,$id,$table='qtext'){
         $db->where('id',$id);
-        $item=$db->getOne($table,'content');
-        return $item['content'];
+        $item=$db->getOne($table,'content, e_content');
+        return $lang=='vi'?$item['content']:$item['e_content'];
     }
     function ads_banner($db){
         $db->reset();

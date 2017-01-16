@@ -114,23 +114,29 @@ header {
     padding-top: 16px;
     padding-bottom: 40px; }
   .header .hotline {
+    width: 160px;
+    display: inline-block;
     background-color: #d20000;
-    padding: 6px 5px 5px 10px; }
+    padding: 6px 0px 5px 10px;
+    margin-right: 10px; }
     .header .hotline a {
       color: #ffffff;
-      font-size: 22px;
+      vertical-align: middle;
+      font-size: 18px;
       font-weight: 500; }
-    .header .hotline span:before {
+    .header .hotline span.small-phone:before {
       content: url(/file/front/small-phone.png);
       margin-right: 4px;
       vertical-align: -2px;
+      font-size: 22px;
       display: inline-block; }
-  .header .logo {
-    margin-top: 20px; }
-    .header .logo a:hover, .header .logo a:focus {
-      opacity: 1; }
-    .header .logo img {
-      width: 160px; }
+    .header .hotline .phone-number {
+      vertical-align: top;
+      line-height: 26px; }
+  .header .logo a:hover, .header .logo a:focus {
+    opacity: 1; }
+  .header .logo img {
+    width: 160px; }
   .header .cart {
     position: relative; }
     .header .cart .cart-text {
@@ -157,13 +163,15 @@ header {
     display: block;
     float: left;
     font-size: 18px;
-    color: #464646;
-    padding: 0 15px 0 0; }
-  .header .cart, .header .search, .header #social_block {
+    color: #464646; }
+  .header .cart, .header #social_block {
     float: right; }
+  .header .header-right {
+    text-align: right; }
   .header .search {
     position: relative;
-    display: inline-block; }
+    display: inline-block;
+    color: #fff; }
     .header .search [class^="icon-"] {
       display: inline-block;
       transition: all 0.5s ease;
@@ -171,10 +179,11 @@ header {
       cursor: pointer;
       z-index: 10;
       position: relative;
-      border-left: 1px solid #464646;
-      border-right: 1px solid #464646;
-      padding-left: 10px;
-      margin-right: 15px; }
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 7px;
+      vertical-align: middle;
+      margin-bottom: 0; }
     .header .search [class^="icon-"]:hover {
       background: #e8e8e8;
       transition: all 0.5s ease;
@@ -225,6 +234,22 @@ header {
       opacity: 1;
       transition: 0.3s all ease-out 0.5s;
       -webkit-transition: 0.3s all ease-out 0.5s; }
+  .header .language {
+    border: 1px solid #fff;
+    color: #fff;
+    width: 48px;
+    display: inline-block;
+    height: 34px;
+    vertical-align: middle; }
+    .header .language img {
+      margin-top: 10px;
+      margin-left: 10px; }
+  .header .hotline, .header .language, .header .head-right-corner {
+    vertical-align: middle;
+    display: inline-block;
+    text-align: left; }
+  .header .head-right-corner {
+    text-align: right; }
 
 .wsmenu {
   background: transparent; }

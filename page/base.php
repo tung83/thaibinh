@@ -1,10 +1,11 @@
 <?php
 class base{
     protected $db,$view,$title,$db_name,$db_cate_name,$paging_shown;
-    protected function __construct($db,$id,$db_name,$table='menu'){
+    protected function __construct($db,$id,$db_name,$lang='vi',$table='menu'){
         $this->db_name = $db_name;
         $this->db_cate_name = $db_name.'_cate';
         $this->db=$db;
+        $this->lang=$lang;
         $this->db->reset();
         $db->where('id',$id);
         $item=$db->getOne($table);
@@ -17,8 +18,8 @@ class base{
         $str.='
         <div class="container">
         <ul class="breadcrumb clearfix">
-            <li><a href="'.myWeb.'"><i class="fa fa-home"></i> Trang chủ</a></li>
-            <li><a href="'.myWeb.$this->view.'">'.$this->title.'</a></li>';
+            <li><a href="'.myWeb.$this->lang.'/'.'"><i class="fa fa-home"></i> Trang chủ</a></li>
+            <li><a href="'.myWeb.$this->lang.'/'.$this->view.'">'.$this->title.'</a></li>';
         $str.='
         </ul>
         </div>';
@@ -29,8 +30,8 @@ class base{
         $str.='
         <div class="container">
         <ul class="breadcrumb clearfix">
-            <li><a href="'.myWeb.'"><i class="fa fa-home"></i> Trang chủ</a></li>
-            <li><a href="'.myWeb.$this->view.'">'.$this->title.'</a></li>';
+            <li><a href="'.myWeb.$this->lang.'/'.'"><i class="fa fa-home"></i> Trang chủ</a></li>
+            <li><a href="'.myWeb.$this->lang.'/'.$this->view.'">'.$this->title.'</a></li>';
         if(isset($_GET['id'])){      
             $this->db->reset();
             $this->db->where('id',intval($_GET['id']));
@@ -38,7 +39,7 @@ class base{
             
             $this->db->reset();
             $cate=$this->db->where('id',$item['pId'])->getOne($this->db_cate_name,'id,title');
-            $str.='<li><a href="'.myWeb.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'].'">'.$cate['title'].'</a></li>';
+            $str.='<li><a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'].'">'.$cate['title'].'</a></li>';
                        
             $title = $item['title'];
             $str.='<li><a href="#">'.$title.'</a></li>';
@@ -57,8 +58,8 @@ class base{
         $str.='
         <div class="container">
         <ul class="breadcrumb clearfix">
-            <li><a href="'.myWeb.'"><i class="fa fa-home"></i> Trang chủ</a></li>
-            <li><a href="'.myWeb.$this->view.'">'.$this->title.'</a></li>';
+            <li><a href="'.myWeb.$this->lang.'/'.'"><i class="fa fa-home"></i> Trang chủ</a></li>
+            <li><a href="'.myWeb.$this->lang.'/'.$this->view.'">'.$this->title.'</a></li>';
         if(isset($_GET['id'])){      
             $this->db->reset();
             $this->db->where('id',intval($_GET['id']));

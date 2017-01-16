@@ -29,8 +29,8 @@ class payment extends base{
         $this->db->reset();
         $str.='
         <ul class="breadcrumb clearfix">
-        	<li><a href="'.myWeb.'"><i class="fa fa-home"></i></a></li>
-            <li><a href="'.myWeb.$this->view.'">Hướng dẫn thanh toán</a></li>';
+        	<li><a href="'.myWeb.$this->lang.'/'.'"><i class="fa fa-home"></i></a></li>
+            <li><a href="'.myWeb.$this->lang.'/'.$this->view.'">Hướng dẫn thanh toán</a></li>';
         if(isset($_GET['id'])){
             $this->db->where('id',intval($_GET['id']));
             $item=$this->db->getOne('payment','id,title');

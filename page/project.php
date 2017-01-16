@@ -35,7 +35,7 @@ class project extends base{
         $str.=' 
             <div class="clearfix"></div>
             <div class="text-center">
-                <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->view.'">'.more_button.'</a>      
+                <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->lang.'/'.$this->view.'">'.more_button.'</a>      
             </div>
         </section><!--/#partner-->';
         

@@ -43,10 +43,10 @@ class cart_show{
                             "title":"Thông báo"
                             "content":"abc",
                             onClose:function(){
-                                location.href="'.myWeb.'" 
+                                location.href="'.myWeb.$this->lang.'/'.'" 
                             }
                         }) */             
-                        location.href="'.myWeb.'"         
+                        location.href="'.myWeb.$this->lang.'/'.'"         
                     </script>';
             }catch(Exception $e){
                 echo $e->getErrorMessage;
@@ -157,7 +157,7 @@ class cart_show{
                                         </p>
                                 </div>
                         <div class="chose_area">						
-    						<a class="btn btn-default btn-product" href="'.myWeb.'">Tiếp tục mua sắm</a>
+    						<a class="btn btn-default btn-product" href="'.myWeb.$this->lang.'/'.'">Tiếp tục mua sắm</a>
                             <button type="submit"  class="btn btn-default btn-product">Cập nhật</button>
 							<a class="btn btn-default btn-product" href="'.myWeb.$this->lang.'/'.$this->view.'/'.payment_view.'">Gửi đơn hàng</a>
     					</div>							

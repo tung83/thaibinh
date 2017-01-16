@@ -53,7 +53,7 @@ class product extends base{
         $str.=' 
             <div class="clearfix"></div>
             <div class="text-center">
-                <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->view.'">'.more_button.'</a>      
+                <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->lang.'/'.$this->view.'">'.more_button.'</a>      
             </div>
             </div>
             </div>
@@ -155,7 +155,7 @@ class product extends base{
                 $active='';
             }
             $str.='
-            <a href="'.myWeb.$this->view.'/'.common::slug($item['title']).'-p'.$item['id'].'"'.$active.'>
+            <a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($item['title']).'-p'.$item['id'].'"'.$active.'>
                 '.$item['title'].'
             </a>';
         }
@@ -423,7 +423,7 @@ class product extends base{
                     foreach($list as $cate){
                         $title=$cate['title'];
                         $str.='
-                        <li><a href="'.myWeb.$this->view.'/'.common::slug($title).'-p'.$cate["id"].'">'.$title.'</a></li>';   
+                        <li><a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-p'.$cate["id"].'">'.$title.'</a></li>';   
                     }
         $str.='
                     </ul>
@@ -441,7 +441,7 @@ class product extends base{
         foreach($list as $cate){
             $title=$cate['title'];
             $str.='
-            <li><a href="'.myWeb.$this->view.'/'.common::slug($title).'-p'.$cate["id"].'">'.$title.'</a></li>';   
+            <li><a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-p'.$cate["id"].'">'.$title.'</a></li>';   
         }
         $str.='</ul>';
         return $str;

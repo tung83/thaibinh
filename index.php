@@ -22,7 +22,7 @@
     <div class="wsmenucontainer clearfix">
         <div class="overlapblackbg"></div>
         <header>
-            <?=menu($db,$view)?>         
+            <?=menu($db,$lang,$view)?>         
         </header>  
         <div class="wrapper">
         <section id="page-content">
@@ -32,37 +32,31 @@
             case 'san-pham':
             case 'search':
             case 'tim-kiem':
-                echo product($db);
+                echo product($db,$lang);
                 break;
             case 'khuyen-mai':
-                echo promotion($db);
-                break;
-            case 'servo':
-                echo servo($db);
-                break;
-            case 'dong-co':
-                echo dong_co($db);
+                echo promotion($db,$lang);
                 break;
             case 'dich-vu':
-                echo service($db);
+                echo service($db,$lang);
                 break;
             case 'du-an':
-                echo project($db);
+                echo project($db,$lang);
                 break;
             case 'tuyen-dung':
-                echo career($db);
+                echo career($db,$lang);
                 break;
             case 'tin-tuc':
-                echo news($db);
+                echo news($db,$lang);
                 break;
             case 'gioi-thieu':
-                echo about($db);
+                echo about($db,$lang);
                 break;
             case 'lien-he':
-                echo contact($db);
+                echo contact($db,$lang);
                 break;
             default:
-                echo home($db);
+                echo home($db,$lang);
                 break;
         }
         ?>        
@@ -76,7 +70,7 @@
                                 Menu
                             </span>
                             <div>
-                                <?=foot_menu($db,$view)?>
+                                <?=foot_menu($db,$lang,$view)?>
                             </div>     
                         </div>
                     </div>
@@ -86,7 +80,7 @@
                                 Sản phẩm
                             </span>
                             <div>
-                                <?=foot_product_cate($db,$view)?>   
+                                <?=foot_product_cate($db,$lang,$view)?>   
                             </div>  
                         </div>
                     </div>
@@ -96,7 +90,7 @@
                                 Liên hệ công ty
                             </span>    
                             <div>
-                                <?=common::qtext($db,4)?>
+                                <?=common::qtext($db,$lang,4)?>
                             </div> 
                         </div>
                     </div>
@@ -131,7 +125,7 @@
     <div class="coccoc-alo-ph-circle"></div>
     <div class="coccoc-alo-ph-circle-fill"></div>
     <div class="coccoc-alo-ph-img-circle">
-        <a href="tel:<?=common::qtext($db,2)?>"><img class="coccoc-img" src="<?=frontPath?>phone-ring.png" alt=""/></a>
+        <a href="tel:<?=common::qtext($db,$lang,2)?>"><img class="coccoc-img" src="<?=frontPath?>phone-ring.png" alt=""/></a>
     </div>
 </div>
 </body>

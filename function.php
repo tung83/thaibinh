@@ -8,15 +8,15 @@ function pageId($view){
     }
     return '';
 }
-function menu($db,$view){
+function menu($db,$lang,$view){
    
     $db->reset();
     $list=$db->where('active',1)->orderBy('ind','ASC')->orderBy('id')->get('menu');
     $str.='
     <div class="wsmobileheader clearfix">
         <a id="wsnavtoggle" class="animated-arrow"><span></span></a>
-        <a href="'.myWeb.'" class="smallogo"><img src="'.frontPath.'logo.png" height="35" alt="" /></a>
-        <a class="callusicon" href="tel:'.common::qtext($db,5).'"><span class="fa fa-phone"></span></a>
+        <a href="'.myWeb.$lang.'/'.'" class="smallogo"><img src="'.frontPath.'logo.png" height="35" alt="" /></a>
+        <a class="callusicon" href="tel:'.common::qtext($db,$lang,2).'"><span class="fa fa-phone"></span></a>
     </div>            
     <div class="header">
     <div class="nav hidden-xs hidden-sm">
@@ -25,16 +25,16 @@ function menu($db,$view){
                 <div class="row">
                     
                     <div class="col-md-2 logo">
-                        <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
+                        <a href="'.myWeb.$lang.'/'.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
                     </div>
-                     <div class="col-md-8 logo">
+                     <div class="col-md-7">
                      <!--Main Menu HTML Code-->
                     <nav class="wsmenu clearfix">
                         <ul class="mobile-sub wsmenu-list">';
                     foreach($list as $item){
+                        $title=$lang=='vi'?$item['title']:$item['e_title'];
                         $active=($view==$item['view'])?'active':'';
-                        $title=$item['title'];
-                        $lnk=myWeb.$item['view'];  
+                        $lnk=$lang=='vi'?$item['view']:$item['e_view'];;  
                         if($item['view'] == "trang-chu"){
                             $str.='<li><a href="'.$lnk.'"  class="'.$active.'"><i class="fa fa-home"></i></a></li>';
                         }
@@ -48,24 +48,25 @@ function menu($db,$view){
                     </nav>
                     <!--Menu HTML Code--> 
                      </div>
-                    <div class="col-md-2 header-right">
-                    <div class="hotline">                    
-                        <span></span>
-                        <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
+                    <div class="col-md-3 header-right">
+                    <div class="hotline">                  
+                        <a href="tel:'.common::qtext($db,$lang,2).'">  
+                            <span class="small-phone"></span><span class="phone-number">'.common::qtext($db,$lang,2)
+                        .'</span></a>
                     </div>
+                    <div class="head-right-corner">
                         <div class="search">
                             <input class="search_box" type="checkbox" id="search_box">                            
                             <label class="icon-search" for="search_box"><i class="fa fa-search"></i></label>
                             <div class="search_form">
                                <form class="pull-right" role="form" method="get" name="search" id="search">
-                                    <input type="hidden" id="search-link" value="'.myWeb.search_view.'/" />                                      
+                                    <input type="hidden" id="search-link" value="'.myWeb.$lang.'/'.search_view.'/" />                                      
                                     <input type="text" id="hint" placeholder="Tìm kiếm...">
                                     <input type="submit" value="search">                               
                                 </form> 
                             </div>
-
-
-                          </div>
+                        </div>'.lang_flag($lang).' 
+                    </div>
                     </div>
                 </div>
             </div>
@@ -125,7 +126,7 @@ function page_header($view, $db)
         head_description : $param['meta_description'];
     common::page_head($param);
 }
-function foot_menu($db,$view){
+function foot_menu($db,$lang,$view){
     $db->reset();
     $list=$db->where('active',1)->orderBy('ind','ASC')->orderBy('id')->get('menu');
     $str.='
@@ -136,20 +137,20 @@ function foot_menu($db,$view){
         {
             $db_view=$item['view'];
             $str.='
-            <li><a href="'.myWeb.$db_view.'">'.$title.'</a></li>';
+            <li><a href="'.myWeb.$lang.'/'.$db_view.'">'.$title.'</a></li>';
         }
     }
     $str.='
     </ul>';
     return $str;
 }
-function foot_product_cate($db,$view){   
+function foot_product_cate($db,$lang,$view){   
     common::page('product');
     $product=new product($db);
     return $product->product_cate_list();    
 }
 
-function home($db){    
+function home($db,$lang){    
     
 //    common::page('product');
 //    $product=new product($db);
@@ -162,8 +163,19 @@ function home($db){
 //    $str.=submit_mail();
 //    
     
-    /*$str.=partner($db);*/
+    $str.=welcomeHome($db,$lang);
     return $str;
+}
+function welcomeHome($db,$lang){
+    var_dump('tung1');
+    var_dump(welcome);
+    return '<div class="welcome"> 
+                <p class="welcome-head">'.welcome.'</p> 
+                <div clss="welcom-content">'
+                   .common::qtext($db,$lang,6) 
+                . '</div>
+            </div>';
+    
 }
 function wow_slider($db){
     $db->reset();
@@ -449,6 +461,19 @@ function submit_mail(){
             </form>
         </div>
     </section>';
+}
+function lang_flag($lang){
+    if ($lang == 'vi') {
+        $flag = 'en-white.png';
+        $flag_lnk = common::language_change($_SERVER['REQUEST_URI'],'en');
+    } else {
+        $flag = 'vn-white.png';
+        $flag_lnk = common::language_change($_SERVER['REQUEST_URI'],'vi');
+    }
+    return '
+    <a class="language" href="' . $flag_lnk . '">
+        <img src="' .frontPath.$flag . '" class="img-responsive" style="max-height:20px" title="" alt=""/>
+    </a>';
 }
 function gmap(){      
     return '

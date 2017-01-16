@@ -1,5 +1,6 @@
 <?php
 define('db_prefix'      ,'e_');
+define('welcome'  ,'Welcome');
 define('cate'           ,'Categories');
 define('sys'            ,'Hệ thống phân phối');
 define('sys_desc'       ,'Hệ thống phân phối của Mekong rộng khắp toàn quốc');
