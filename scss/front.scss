@@ -121,7 +121,6 @@ header{
 	min-height:45px;
 	padding:0px 0px 0px 0px;	
 	box-shadow: 0 0 20px rgba(0,0,0,.3);
-        border-bottom:1px solid #e9e9e9;    
 }
 .header{    
     border-top: 6px solid $primary-color;
@@ -195,7 +194,6 @@ header{
         display: block;
         float: left;
         font-size: 18px;
-        color: $grey-text-color;
     }
     .cart, #social_block{
         float: right;    
@@ -322,6 +320,11 @@ header{
         padding: 15px;
     }
 }
+.about-image{
+    background: #1a170f url("/file/front/introduction-banner.png") no-repeat top center; 
+    height: 220px;
+    width: 100%;
+}
 
 .wsmenu{
     background:transparent;
@@ -338,7 +341,6 @@ header{
     line-height: 40px;
     background:transparent !important;    
 }
-
 @media (max-width: 991px){
     .wsmenu > .wsmenu-list > li > a{
         line-height: 28px;
@@ -381,6 +383,7 @@ header{
     opacity: 0.7;
     margin-right: 2px;
 }
+
 .wsmenu > .wsmenu-list {
     > li {
         > a {
@@ -434,6 +437,22 @@ header{
     vertical-align:middle
 }
 
+#others {
+    .header{    
+        background: #121212;
+        .menu-ground, .mobile-sub li{
+            background: transparent;
+            opacity: 1;
+            margin-right: 2px;
+        }
+        .nav > .container > .row {
+            padding-bottom: 10px;
+        }
+    }
+    #about-us{
+        background: #121212;        
+    }
+}
 @media (max-width: 991px){
     .wrapper{
         margin-top:50px;

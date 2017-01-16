@@ -49,7 +49,7 @@
             case 'tin-tuc':
                 echo news($db,$lang);
                 break;
-            case 'gioi-thieu':
+            case 'CMStudio':
                 echo about($db,$lang);
                 break;
             case 'lien-he':

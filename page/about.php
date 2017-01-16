@@ -3,6 +3,12 @@ class about extends base{
     function __construct($db){
         parent::__construct($db,2,'about');
     }
+    
+    function about_top_content(){
+        return '  
+            <div class="about-image">                               
+            </div>';
+    }
     function ind_about(){
         $this->db->where('active',1);
         $this->db_orderBy();
@@ -62,8 +68,7 @@ class about extends base{
         return $str;
     }
     
-    function about_one(){
-        $id=1;
+    function about_one($id){
         $item=$this->db->where('id',$id)->getOne('about');
         $title=$item['title'];
         $content=$item['content'];
@@ -73,10 +78,8 @@ class about extends base{
                 <div class="row about-us-box">
                     <div class="row wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="10ms">
                         <div class="col-xs-12">
-                            <div class="title-head">
-                                <span>'
-                                    .$this->title.' 
-                                </span>
+                            <div class="title-head">'
+                                    .$this->category($id).' 
                             </div>
                         </div> 
                         <div class="col-md-12">
@@ -92,6 +95,26 @@ class about extends base{
                 '.shadowBottomDent().' 
             </div>
         </section>';
+    }
+    
+    function category($id){
+        $list=$this->db->where('active',1)->orderBy('ind','ASC')->get('about',null,'id,title,e_title');
+        $str='
+        <div class="row about-category">';
+        foreach($list as $item){
+            $title=($this->lang=='en')?$item['e_title']:$item['title'];
+            if($item['id']==$id){
+                $active=' class="active"';
+            }else{
+                $active='';
+            }
+            $str.='
+            <a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'].'"'.$active.'>
+                '.$title.'
+            </a>';
+        }
+        $str.='</div> </div>';
+        return $str;
     }
 }
 

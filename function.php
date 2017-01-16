@@ -2,11 +2,11 @@
 include_once 'front.php';
 common::page('base');
 function pageId($view){
-    if($view == 'trang-chu')
+    if($view == 'trang-chu' || $view == 'home')
     {
-        return 'home-page';
+        return 'home';
     }
-    return '';
+    return 'others';
 }
 function menu($db,$lang,$view){
    
@@ -34,7 +34,8 @@ function menu($db,$lang,$view){
                     foreach($list as $item){
                         $title=$lang=='vi'?$item['title']:$item['e_title'];
                         $active=($view==$item['view'])?'active':'';
-                        $lnk=$lang=='vi'?$item['view']:$item['e_view'];;  
+                        $lnk=$lang=='vi'?$item['view']:$item['e_view'];
+                        $lnk = myWeb.$lang.'/'.$lnk;
                         if($item['view'] == "trang-chu"){
                             $str.='<li><a href="'.$lnk.'"  class="'.$active.'"><i class="fa fa-home"></i></a></li>';
                         }
@@ -169,7 +170,7 @@ function home($db,$lang){
 }
 function welcomeHome($db,$lang){
     return '<div class="container">
-                <div class="row welcome"> 
+                <div class="row welcome wow fadeInDown animated"> 
                     <div><span class="welcome-head">'.welcome.'</span></div> 
                     <div class="welcome-content">'
                        .common::qtext($db,$lang,6) 
@@ -276,8 +277,9 @@ function about($db){
     <section id="page">';
     common::page('about');
     $about=new about($db);
-    $str.=$about->breadcrumb_with_Id();
-    $str.=$about->about_one();
+    $str.=$about->about_top_content();
+    $id=isset($_GET['id']) ? $_GET['id'] : 1;
+    $str.=$about->about_one($id);
     $str.='
     </section>';
     return $str;    
