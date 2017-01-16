@@ -167,13 +167,13 @@ function home($db,$lang){
     return $str;
 }
 function welcomeHome($db,$lang){
-    var_dump('tung1');
-    var_dump(welcome);
-    return '<div class="welcome"> 
-                <p class="welcome-head">'.welcome.'</p> 
-                <div clss="welcom-content">'
-                   .common::qtext($db,$lang,6) 
-                . '</div>
+    return '<div class="container">
+                <div class="row welcome"> 
+                    <p class="welcome-head">'.welcome.'</p> 
+                    <div clss="welcom-content">'
+                       .common::qtext($db,$lang,6) 
+                    . '</div>
+                </div>
             </div>';
     
 }
