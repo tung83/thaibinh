@@ -535,7 +535,7 @@ function product_image($db){
 	<div class="row">
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
-            '.$form->file('file',array('label'=>'Hình ảnh <code>(600,700)</code>')).'
+            '.$form->file('img',600,700).'
             '.$form->number('ind',array('label'=>'Thứ tự','required'=>true)).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'
         </div>
