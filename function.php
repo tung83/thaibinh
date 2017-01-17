@@ -253,9 +253,8 @@ function contact($db){
     <section id="page">';
     common::page('contact');
     $contact=new contact($db);
-    $str.=$contact->breadcrumb_with_Id();
-    $str.=$contact->contact();    
-    $str.=gmap();
+    $str.=$contact->contact_top_content();
+    $str.=$contact->contact(); 
     $str.='
     </section>';
     return $str;
@@ -280,6 +279,27 @@ function about($db){
     $str.=$about->about_top_content();
     $id=isset($_GET['id']) ? $_GET['id'] : 1;
     $str.=$about->about_one($id);
+    $str.='
+    </section>';
+    return $str;    
+}
+function collection($db){
+    $str.='
+    <section id="page">';
+    common::page('collection');
+    $collection=new collection($db);
+    $str.=$collection->collection_top_content();
+    $id=isset($_GET['id']) ? $_GET['id'] : 1;
+    //$str.=$collection->collection_one($id);
+    
+//    if(isset($_GET['id'])){
+//        $str.=$collection->collection_one(intval($_GET['id']));    
+//    }elseif(isset($_GET['hint'])){
+//        $str.=$collection->collection_search();    
+//    }
+//    else{
+//        $str.=$collection->collection_cate();
+//    }
     $str.='
     </section>';
     return $str;    
@@ -398,10 +418,22 @@ function dong_co($db){
     return $str;
 }
 
+function video($db){
+    common::page('video');
+    $video=new video($db);
+    $str.=$video->video_top_content();
+    $str.=$video->top_content('');
+//    if(isset($_GET['id'])){
+//        $str.=$video->video_one(intval($_GET['id']));    
+//    }else{
+//        $str.=$video->video_cate();
+//    }     
+    return $str;
+}
 function service($db){
     common::page('service');
     $service=new service($db);
-    $str.=$service->breadcrumb_with_Id();
+    $str.=$service->service_top_content();
     $str.=$service->top_content('');
     if(isset($_GET['id'])){
         $str.=$service->service_one(intval($_GET['id']));    

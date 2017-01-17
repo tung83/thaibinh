@@ -4,6 +4,11 @@ class contact extends base{
     function __construct($db){
         parent::__construct($db,6,'contact');
     }
+    function contact_top_content(){
+        return '  
+            <div class="contact-image">                               
+            </div>';
+    }
     function contact_insert(){
         $this->db->reset();
         if(isset($_POST['contact_send'])){
@@ -78,9 +83,7 @@ class contact extends base{
                          }                             
         $str.=              '<div class="col-sm-6">
                             <i>Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:</i>
-                            <p>
-                                <img src="'.frontPath.'contact.png" class="img-responsive" alt="" title=""/>
-                            </p>    
+     
                             <p>
                                 '.common::qtext($this->db,3).'
                             </p>       

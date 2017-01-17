@@ -1,23 +1,23 @@
 <?php
-class about extends base{
+class collection extends base{
     function __construct($db){
-        parent::__construct($db,2,'about');
+        parent::__construct($db,2,'collection');
     }
     
-    function about_top_content(){
+    function collection_top_content(){
         return '  
-            <div class="about-image">                               
+            <div class="collection-image">                               
             </div>';
     }
-    function ind_about(){
+    function ind_collection(){
         $this->db->where('active',1);
         $this->db_orderBy();
-        $item=$this->db->getOne('about');
+        $item=$this->db->getOne('collection');
         $lnk=myWeb.$this->view;
         $title=$item['title'];
         $sum=$item['sum'];  
         $str='
-        <div class="ind-about wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="10ms">
+        <div class="ind-collection wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="10ms">
             <div class="container">
                 <div class="row">            
                     <div class="col-xs-12">
@@ -38,15 +38,15 @@ class about extends base{
         return $str;
     }
     
-    function about_all(){
+    function collection_all(){
         $page=isset($_GET['page'])?intval($_GET['page']):1;
         $this->db->where('active',1);
         $this->db->orderBy('id');
         $this->db->pageLimit=10;
-        $list=$this->db->paginate('about',$page);
+        $list=$this->db->paginate('collection',$page);
         $count=$this->db->totalCount;
         foreach($list as $item){
-            $str.=$this->about_item($item);
+            $str.=$this->collection_item($item);
         }
         
         $pg=new Pagination(array('limit'=>limit,'count'=>$count,'page'=>$page,'type'=>0));
@@ -55,10 +55,10 @@ class about extends base{
         $str.= '<div class="pagination-centered">'.$pg->process().'</div>';
         return $str;
     }
-    function about_item($item){
+    function collection_item($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $str.='
-        <a href="'.$lnk.'" class="about-item clearfix">
+        <a href="'.$lnk.'" class="collection-item clearfix">
             <img src="'.webPath.$item['img'].'" class="img-responsive" alt="" title=""/>
             <div>
                 <h2>'.$item['title'].'</h2>
@@ -68,14 +68,14 @@ class about extends base{
         return $str;
     }
     
-    function about_one($id){
-        $item=$this->db->where('id',$id)->getOne('about');
+    function collection_one($id){
+        $item=$this->db->where('id',$id)->getOne('collection');
         $title=$item['title'];
         $content=$item['content'];
         return '  
-        <section id="about-us">
+        <section id="collection-us">
             <div class="container">
-                <div class="row about-us-box">
+                <div class="row collection-us-box">
                     <div class="row wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="10ms">
                         <div class="col-xs-12">
                             <div class="title-head">'
@@ -98,9 +98,9 @@ class about extends base{
     }
     
     function category($id){
-        $list=$this->db->where('active',1)->orderBy('ind','ASC')->get('about',null,'id,title,e_title');
+        $list=$this->db->where('active',1)->orderBy('ind','ASC')->get('collection',null,'id,title,e_title');
         $str='
-        <div class="row about-category category-item">';
+        <div class="row collection-category category-item">';
         foreach($list as $item){
             $title=($this->lang=='en')?$item['e_title']:$item['title'];
             if($item['id']==$id){

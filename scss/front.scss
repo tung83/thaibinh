@@ -325,6 +325,26 @@ header{
     height: 220px;
     width: 100%;
 }
+.collection-image{
+    background: #232322 url("/file/front/collection-banner.png") no-repeat top center; 
+    height: 220px;
+    width: 100%;
+}
+.service-image{
+    background: #214267 url("/file/front/service-banner.png") no-repeat top center; 
+    height: 220px;
+    width: 100%;
+}
+.video-image{
+    background: #26242f url("/file/front/video-banner.png") no-repeat top center; 
+    height: 220px;
+    width: 100%;
+}
+.contact-image{
+    background: #26242f url("/file/front/contact-banner.png") no-repeat top center; 
+    height: 220px;
+    width: 100%;
+}
 
 .wsmenu{
     background:transparent;
@@ -453,6 +473,18 @@ header{
         background: #121212;        
     }
 }
+.category-item{
+    a {
+        color: #fff;
+        text-transform: uppercase;        
+        margin: 40px 20px;
+        display: inline-block;
+
+    }
+    a.active, a:hover, a:focus{
+        color: #810303;
+    }
+}
 @media (max-width: 991px){
     .wrapper{
         margin-top:50px;
@@ -484,7 +516,7 @@ header{
 .title-head span{
     font-size: 34px;
     font-weight: 580;    
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 50px;
     display: inline-block;
     color: #7f7f7f;

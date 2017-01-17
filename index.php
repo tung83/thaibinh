@@ -34,11 +34,17 @@
             case 'tim-kiem':
                 echo product($db,$lang);
                 break;
-            case 'khuyen-mai':
-                echo promotion($db,$lang);
+            case 'bo-suu-tap':
+            case 'collections':
+                echo collection($db,$lang);
                 break;
             case 'dich-vu':
+            case 'service':
                 echo service($db,$lang);
+                break;
+            case 'video-dac-sac':
+            case 'best-videos':
+                echo video($db,$lang);
                 break;
             case 'du-an':
                 echo project($db,$lang);
