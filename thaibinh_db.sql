@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.14
+-- version 4.5.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Jan 04, 2017 at 03:21 PM
--- Server version: 5.6.26-cll-lve
--- PHP Version: 5.4.31
+-- Host: 127.0.0.1
+-- Generation Time: Jan 18, 2017 at 10:04 AM
+-- Server version: 5.7.11
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `thaibinh_db`
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `about`
 --
 
-CREATE TABLE IF NOT EXISTS `about` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `about` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `content` longtext NOT NULL,
@@ -41,16 +41,15 @@ CREATE TABLE IF NOT EXISTS `about` (
   `e_meta_description` text NOT NULL,
   `active` tinyint(1) NOT NULL,
   `ind` int(11) NOT NULL,
-  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `about`
 --
 
 INSERT INTO `about` (`id`, `title`, `sum`, `content`, `img`, `meta_keyword`, `meta_description`, `e_title`, `e_sum`, `e_content`, `e_meta_keyword`, `e_meta_description`, `active`, `ind`, `dates`) VALUES
-(1, 'THÁI BÌNH AUTO', 'KÍNH CHÀO QUÝ DOANH NGHIỆP !\r\n\r\nCÔNG TY TNHH KỸ THUẬT TỰ ĐỘNG THÁI BÌNH – TBC Công ty xuất nhập khẩu hàng đầu và là nhà cung cấp chuyên nghiệp các mặt hàng,thiết bị điện và điện công nghiệp nói chung và Yaskawa nói riêng.\r\n\r\n\r\n\r\nChúng tôi đáp ứng xu hướng công nghiệp hóa,hiện đại hóa.Ứng dụng công nghệ cao và tự động hóa trong quản lý và sản xuất nhằm tối ưu hóa hiệu quả kinh doanh.Vì vậy các doanh nghiệp đang đứng trước trạng thái do dự,xét đoán lựa chọn nhà cung cấp linh kiện,phụ tùng,thiết bị phụ tùng chính hãng,chất lượng và độ chính xác cao. Thái Bình đã đạt được mục tiêu này là nhờ vào sự lựa chọn cho mình những hãng tự động hàng đầu đáng tin cậy bởi những mặt hàng chất lượng cao và có tiếng trên thế giới.\r\nToàn thể nhân viên Công ty luôn phấn đấu trao dồi kiến thức chuyên môn và kinh nghiệm quản lý,phấn đấu trở thành doanh nghiệp uy tín và đáp ứng mọi nhu cầu của khách hàng.\r\nLĩnh vực hoạt động chính :\r\nKinh doanh thiết bị điện công nghiệp,tự động hóa,đo lường và điều khiển.\r\nCung cấp lắp đặt tủ bảng điện & tủ điều khiển tự động.\r\nKhảo sát,thiết kế  và thi công hệ thống điều khiển,đo lường và điều khiển tự động\r\nTư vấn thiết kế và lắp đặt hệ thống điều khiển quá trình sản xuất và tự động hóa  ( PLC,SCADA ).\r\n\r\n TBC Mang đến những giải pháp tối ưu cho đầu tư của bạn !\r\n\r\n\r\nTRÂN TRỌNG !', '<h1><span style="font-family:arial,helvetica,sans-serif"><span style="line-height:1"><span style="font-size:14px"><span style="font-size:16px"><strong>KÍNH CHÀO QUÝ DOANH NGHIỆP</strong></span><br />\r\n<strong><span style="font-size:18px"><span style="color:#FF0000">CÔNG TY TNHH KỸ THUẬT TỰ ĐỘNG THÁI BÌNH &ndash; TBC</span></span> </strong>&nbsp;<br />\r\n<img alt="" src="/file/ckfinder/userfiles/images/03-01-2017%204-56-30%20CH.png" style="height:137px; width:995px" /><br />\r\nCông ty xuất nhập khẩu hàng đầu và là nhà cung cấp chuyên nghiệp các mặt hàng,thiết bị điện và điện công nghiệp.<br />\r\nChúng tôi đáp ứng xu hướng công nghiệp hóa,hiện đại hóa.Ứng dụng công nghệ cao và tự động hóa trong quản lý và sản xuất nhằm tối ưu hóa hiệu quả kinh doanh.Vì vậy các doanh nghiệp đang đứng trước trạng thái do dự,xét đoán lựa chọn nhà cung cấp linh kiện,phụ tùng,thiết bị phụ tùng chính hãng,chất lượng và độ chính xác cao.<br />\r\nThái Bình đã đat được mục tiêu này là nhờ vào sự lựa chọn cho mình những hãng tự động hàng đầu đáng tin cậy cới những mặt hàng chất lượng cao và có tiếng trên thế giới.<br />\r\nToàn thể nhân viên Công ty luôn phấn đấu trao dồi kiến thức chuyên môn và kinh nghiệm quản lý,phấn đấu trở thành doanh nghiệp uy tín và đáp ứng mọi nhu cầu của khách hàng.<br />\r\nLĩnh vực hoạt động chính :<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Kinh doanh thiết bị điện công nghiệp,tự động hóa,đo lường và điều khiển.<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Cung cấp lắp đặt tủ bảng điện &amp; tủ điều khiển tự động.<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Khảo sát,thiết kế &nbsp;và thi công hệ thống điều khiển,đo lường và điều khiển tự động<br />\r\n&bull;&nbsp;&nbsp; &nbsp;Tư vấn thiết kế và lắp đặt hệ thống điều khiển quá trình sản xuất và tự động hóa ( PLC,SCADA ).</span></span></span></h1>\r\n\r\n<h1 style="text-align: right;"><span style="font-family:arial,helvetica,sans-serif"><span style="line-height:1"><span style="font-size:14px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#FF0000"><span style="font-size:16px"><strong>TBC Mang đến những giải pháp tối ưu cho đầu tư của bạn !</strong></span></span></span></span></span><br />\r\n<span style="font-size:16px"><span style="color:#000000"><strong>TRÂN TRỌNG !</strong></span></span></h1>\r\n', '14815312831.png', 'THAI BINH AUTO', 'THAI BINH AUTO', 'Taiwan Aluminium', 'Taiwan Aluminium', '<div style="text-align: center;"><span style="font-size:16px"><span style="font-family:arial,helvetica,sans-serif"><strong>ALUMINIUM COMPANY LIMITED TAIWAN</strong></span></span></div>\r\n\r\n<div><br />\r\n<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>COMPANY LIMITED ALUMINIUM TAIWAN</strong> established with an investment of over 30 million, 100% investment from Taiwan, with an area of 25,000m2, located in Vinh Loc Industrial Park 2.</span></span></div>\r\n\r\n<div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>T</strong>he initial criteria when establishing our business is establishing a company has sufficient capacity and expertise in the field of manufacturing Aluminum profiles.<br />\r\nOur products include: various types of aluminum alloy, surface treatment varied and extensive range of industrial aluminum.<br />\r\nIn addition to stand on Aluminum construction market in the country, we also received a lot of orders for export Aluminium.</span></span></div>\r\n\r\n<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><img alt="" src="/file/ckfinder/userfiles/images/12-10-2016%209-31-49%20CH(2).png" style="height:179px; width:500px" /></span></span></div>\r\n\r\n<div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">With the business motto: <strong>PRESTIGE - QUALITY - DEVELOPING.</strong><br />\r\nWe are proud to be one of the leading companies in Vietnam specializing in supply and installation of aluminum doors for high-end projects.<br />\r\nWe sincerely thank you for your trust, support and use TWA aluminum products during the past.<br />\r\nIn response to his sincerity, Aluminum TWA will be happy to accompany you, research and development more product Aluminum profiles.<br />\r\nThrough which customers can be assured of quality and product design.</span></span></div>\r\n\r\n<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><img alt="" src="/file/ckfinder/userfiles/images/12-10-2016%209-31-15%20CH(2).png" style="height:334px; width:500px" /></span></span></div>\r\n\r\n<div style="text-align: center;">&nbsp;</div>\r\n', 'Taiwan Aluminium', 'Taiwan Aluminium', 1, 1, '2017-01-03 09:59:04');
+(1, 'Giới thiệu', 'KÍNH CHÀO QUÝ DOANH NGHIỆP !\r\n\r\nCÔNG TY TNHH KỸ THUẬT TỰ ĐỘNG THÁI BÌNH – TBC Công ty xuất nhập khẩu hàng đầu và là nhà cung cấp chuyên nghiệp các mặt hàng,thiết bị điện và điện công nghiệp nói chung và Yaskawa nói riêng.\r\n\r\n\r\n\r\nChúng tôi đáp ứng xu hướng công nghiệp hóa,hiện đại hóa.Ứng dụng công nghệ cao và tự động hóa trong quản lý và sản xuất nhằm tối ưu hóa hiệu quả kinh doanh.Vì vậy các doanh nghiệp đang đứng trước trạng thái do dự,xét đoán lựa chọn nhà cung cấp linh kiện,phụ tùng,thiết bị phụ tùng chính hãng,chất lượng và độ chính xác cao. Thái Bình đã đạt được mục tiêu này là nhờ vào sự lựa chọn cho mình những hãng tự động hàng đầu đáng tin cậy bởi những mặt hàng chất lượng cao và có tiếng trên thế giới.\r\nToàn thể nhân viên Công ty luôn phấn đấu trao dồi kiến thức chuyên môn và kinh nghiệm quản lý,phấn đấu trở thành doanh nghiệp uy tín và đáp ứng mọi nhu cầu của khách hàng.\r\nLĩnh vực hoạt động chính :\r\nKinh doanh thiết bị điện công nghiệp,tự động hóa,đo lường và điều khiển.\r\nCung cấp lắp đặt tủ bảng điện & tủ điều khiển tự động.\r\nKhảo sát,thiết kế  và thi công hệ thống điều khiển,đo lường và điều khiển tự động\r\nTư vấn thiết kế và lắp đặt hệ thống điều khiển quá trình sản xuất và tự động hóa  ( PLC,SCADA ).\r\n\r\n TBC Mang đến những giải pháp tối ưu cho đầu tư của bạn !\r\n\r\n\r\nTRÂN TRỌNG !', '<div style="text-align: center;"><span style="font-size:16px"><span style="font-family:arial,helvetica,sans-serif"><strong>ALUMINIUM COMPANY LIMITED TAIWAN</strong></span></span></div>\r\n\r\n<div><br />\r\n<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>COMPANY LIMITED ALUMINIUM TAIWAN</strong> established with an investment of over 30 million, 100% investment from Taiwan, with an area of 25,000m2, located in Vinh Loc Industrial Park 2.</span></span></div>\r\n\r\n<div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>T</strong>he initial criteria when establishing our business is establishing a company has sufficient capacity and expertise in the field of manufacturing Aluminum profiles.<br />\r\nOur products include: various types of aluminum alloy, surface treatment varied and extensive range of industrial aluminum.<br />\r\nIn addition to stand on Aluminum construction market in the country, we also received a lot of orders for export Aluminium.</span></span></div>\r\n\r\n<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><img alt="" src="/file/ckfinder/userfiles/images/12-10-2016%209-31-49%20CH(2).png" style="height:179px; width:500px" /></span></span></div>\r\n\r\n<div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">With the business motto: <strong>PRESTIGE - QUALITY - DEVELOPING.</strong><br />\r\nWe are proud to be one of the leading companies in Vietnam specializing in supply and installation of aluminum doors for high-end projects.<br />\r\nWe sincerely thank you for your trust, support and use TWA aluminum products during the past.<br />\r\nIn response to his sincerity, Aluminum TWA will be happy to accompany you, research and development more product Aluminum profiles.<br />\r\nThrough which customers can be assured of quality and product design.</span></span></div>\r\n\r\n<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><img alt="" src="/file/ckfinder/userfiles/images/12-10-2016%209-31-15%20CH(2).png" style="height:334px; width:500px" /></span></span></div>\r\n\r\n<div style="text-align: center;">&nbsp;</div>\r\n', '14815312831.png', 'Taiwan Aluminium', 'THAI BINH AUTO', 'About', 'KÍNH CHÀO QUÝ DOANH NGHIỆP !\r\n\r\nCÔNG TY TNHH KỸ THUẬT TỰ ĐỘNG THÁI BÌNH – TBC Công ty xuất nhập khẩu hàng đầu và là nhà cung cấp chuyên nghiệp các mặt hàng,thiết bị điện và điện công nghiệp nói chung và Yaskawa nói riêng.\r\n\r\n\r\n\r\nChúng tôi đáp ứng xu hướng công nghiệp hóa,hiện đại hóa.Ứng dụng công nghệ cao và tự động hóa trong quản lý và sản xuất nhằm tối ưu hóa hiệu quả kinh doanh.Vì vậy các doanh nghiệp đang đứng trước trạng thái do dự,xét đoán lựa chọn nhà cung cấp linh kiện,phụ tùng,thiết bị phụ tùng chính hãng,chất lượng và độ chính xác cao. Thái Bình đã đạt được mục tiêu này là nhờ vào sự lựa chọn cho mình những hãng tự động hàng đầu đáng tin cậy bởi những mặt hàng chất lượng cao và có tiếng trên thế giới.\r\nToàn thể nhân viên Công ty luôn phấn đấu trao dồi kiến thức chuyên môn và kinh nghiệm quản lý,phấn đấu trở thành doanh nghiệp uy tín và đáp ứng mọi nhu cầu của khách hàng.\r\nLĩnh vực hoạt động chính :\r\nKinh doanh thiết bị điện công nghiệp,tự động hóa,đo lường và điều khiển.\r\nCung cấp lắp đặt tủ bảng điện & tủ điều khiển tự động.\r\nKhảo sát,thiết kế  và thi công hệ thống điều khiển,đo lường và điều khiển tự động\r\nTư vấn thiết kế và lắp đặt hệ thống điều khiển quá trình sản xuất và tự động hóa  ( PLC,SCADA ).\r\n\r\n TBC Mang đến những giải pháp tối ưu cho đầu tư của bạn !\r\n\r\n\r\nTRÂN TRỌNG !', '<div style="text-align: center;"><span style="font-size:16px"><span style="font-family:arial,helvetica,sans-serif"><strong>ALUMINIUM COMPANY LIMITED TAIWAN</strong></span></span></div>\r\n\r\n<div><br />\r\n<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>COMPANY LIMITED ALUMINIUM TAIWAN</strong> established with an investment of over 30 million, 100% investment from Taiwan, with an area of 25,000m2, located in Vinh Loc Industrial Park 2.</span></span></div>\r\n\r\n<div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>T</strong>he initial criteria when establishing our business is establishing a company has sufficient capacity and expertise in the field of manufacturing Aluminum profiles.<br />\r\nOur products include: various types of aluminum alloy, surface treatment varied and extensive range of industrial aluminum.<br />\r\nIn addition to stand on Aluminum construction market in the country, we also received a lot of orders for export Aluminium.</span></span></div>\r\n\r\n<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><img alt="" src="/file/ckfinder/userfiles/images/12-10-2016%209-31-49%20CH(2).png" style="height:179px; width:500px" /></span></span></div>\r\n\r\n<div><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">With the business motto: <strong>PRESTIGE - QUALITY - DEVELOPING.</strong><br />\r\nWe are proud to be one of the leading companies in Vietnam specializing in supply and installation of aluminum doors for high-end projects.<br />\r\nWe sincerely thank you for your trust, support and use TWA aluminum products during the past.<br />\r\nIn response to his sincerity, Aluminum TWA will be happy to accompany you, research and development more product Aluminum profiles.<br />\r\nThrough which customers can be assured of quality and product design.</span></span></div>\r\n\r\n<div style="text-align: center;"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><img alt="" src="/file/ckfinder/userfiles/images/12-10-2016%209-31-15%20CH(2).png" style="height:334px; width:500px" /></span></span></div>\r\n\r\n<div style="text-align: center;">&nbsp;</div>\r\n', 'Taiwan Aluminium', 'Taiwan Aluminium', 1, 1, '2017-01-17 06:02:12');
 
 -- --------------------------------------------------------
 
@@ -58,14 +57,13 @@ INSERT INTO `about` (`id`, `title`, `sum`, `content`, `img`, `meta_keyword`, `me
 -- Table structure for table `ad_user`
 --
 
-CREATE TABLE IF NOT EXISTS `ad_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ad_user` (
+  `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `pwd` text NOT NULL,
   `power` int(11) NOT NULL,
-  `lastOnl` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `lastOnl` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ad_user`
@@ -81,8 +79,8 @@ INSERT INTO `ad_user` (`id`, `email`, `pwd`, `power`, `lastOnl`) VALUES
 -- Table structure for table `basic_config`
 --
 
-CREATE TABLE IF NOT EXISTS `basic_config` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `basic_config` (
+  `id` int(11) NOT NULL,
   `smtp_server` text NOT NULL,
   `smtp_port` text NOT NULL,
   `smtp_user` text NOT NULL,
@@ -94,9 +92,8 @@ CREATE TABLE IF NOT EXISTS `basic_config` (
   `another_script` text NOT NULL,
   `social_twitter` text NOT NULL,
   `social_facebook` text NOT NULL,
-  `social_google_plus` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `social_google_plus` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `basic_config`
@@ -111,17 +108,16 @@ INSERT INTO `basic_config` (`id`, `smtp_server`, `smtp_port`, `smtp_user`, `smtp
 -- Table structure for table `contact`
 --
 
-CREATE TABLE IF NOT EXISTS `contact` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `adds` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `subject` varchar(1000) DEFAULT NULL,
   `content` text NOT NULL,
-  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `contact`
@@ -137,8 +133,8 @@ INSERT INTO `contact` (`id`, `name`, `adds`, `phone`, `email`, `subject`, `conte
 -- Table structure for table `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `icon` varchar(255) NOT NULL,
   `meta_keyword` text NOT NULL,
@@ -149,26 +145,20 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `e_meta_description` text NOT NULL,
   `e_view` varchar(255) NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id`, `title`, `icon`, `meta_keyword`, `meta_description`, `view`, `e_title`, `e_meta_keyword`, `e_meta_description`, `e_view`, `ind`, `active`) VALUES
-(1, 'Trang Chủ', '', 'cửa sắt,cửa nhôm,mặt alu', 'EWEWEWE', 'trang-chu', 'Home', 'cửa sắt,cửa nhôm,mặt alu', '', 'home', 1, 1),
-(2, 'Giới Thiệu', 'team', '', '', 'gioi-thieu', 'About Us', '', '', 'about-us', 2, 1),
-(3, 'Sản Phẩm', '', '', '', 'san-pham', 'Products', '', '', 'product', 6, 1),
-(4, 'Tin Tức', '', '', '', 'tin-tuc', 'News', '', '', 'news', 8, 1),
-(5, 'Tuyển dụng', '', '', '', 'tuyen-dung', 'Careers', '', '', 'careers', 10, 1),
+(1, 'Trang Chủ', '', 'cửa sắt,cửa nhôm,mặt alu', 'EWEWEWE', 'trang-chu', 'Home', 'cửa sắt,cửa nhôm,mặt alu', '', 'home', 0, 1),
+(3, 'CMStudio', '', '', '', 'CMStudio', 'CMStudio', '', '', 'CMStudio', 1, 1),
+(4, 'Bộ sưu tập', '', '', '', 'bo-suu-tap', 'Collections', '', '', 'collections', 3, 1),
+(5, 'Video đặc sắc', '', '', '', 'video-dac-sac', 'Best Videos', '', '', 'best-videos', 5, 1),
 (6, 'Liên Hệ', '', '', '', 'lien-he', 'Contact Us', '', '', 'contact-us', 11, 1),
-(7, 'BIẾN TẦN', '', 'bien tan', '', 'bien-tan', '', '', '', '', 3, 1),
-(8, 'SERVO', '', 'SERVO', '', 'servo', '', '', '', '', 4, 1),
-(9, 'ĐỘNG CƠ', '', 'ĐỘNG CƠ', '', 'dong-co', '', '', '', '', 5, 1),
-(10, 'Dịch vụ', '', '', '', 'dich-vu', '', '', '', '', 7, 1),
-(11, 'Dự án', '', '', '', 'du-an', '', '', '', '', 9, 1);
+(10, 'Dịch vụ', '', '', '', 'dich-vu', 'Services', '', '', 'services', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -176,8 +166,8 @@ INSERT INTO `menu` (`id`, `title`, `icon`, `meta_keyword`, `meta_description`, `
 -- Table structure for table `news`
 --
 
-CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `content` longtext NOT NULL,
@@ -196,10 +186,8 @@ CREATE TABLE IF NOT EXISTS `news` (
   `date` date DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   `home` tinyint(4) NOT NULL DEFAULT '0',
-  `ind` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pId` (`pId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `news`
@@ -217,8 +205,8 @@ INSERT INTO `news` (`id`, `title`, `sum`, `content`, `meta_keyword`, `meta_descr
 -- Table structure for table `news_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `news_cate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news_cate` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `meta_keyword` text NOT NULL,
@@ -232,9 +220,8 @@ CREATE TABLE IF NOT EXISTS `news_cate` (
   `pId` int(11) NOT NULL,
   `lev` int(11) NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `news_cate`
@@ -249,11 +236,34 @@ INSERT INTO `news_cate` (`id`, `title`, `sum`, `meta_keyword`, `meta_description
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `partner`
+--
+
+CREATE TABLE `partner` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `eTitle` text NOT NULL,
+  `lnk` text NOT NULL,
+  `img` text NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `partner`
+--
+
+INSERT INTO `partner` (`id`, `title`, `eTitle`, `lnk`, `img`, `active`, `ind`) VALUES
+(1, 'Bambo interior', 'Bambo interior', 'pspmedia.vn', '1439345318holistic-solutions-circle-2-252x200.jpg', 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
-CREATE TABLE IF NOT EXISTS `product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `feature` longtext NOT NULL,
   `price` int(11) DEFAULT NULL,
@@ -284,10 +294,8 @@ CREATE TABLE IF NOT EXISTS `product` (
   `pId` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL,
   `home` tinyint(1) NOT NULL,
-  `ind` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pId` (`pId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=228 ;
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
@@ -344,9 +352,8 @@ INSERT INTO `product` (`id`, `title`, `feature`, `price`, `price_reduce`, `in_st
 (222, 'Inverter Yaskawa Serri V1000', '', NULL, NULL, 0, 0, 0, '<ul>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Chuyên dung cho các ứng dụng tải năng,phức tạp</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Phần mềm ( CranSoftware ) với các tham số dành riêng cho ứng dụng cẩu trục chuyên biệt.</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Là biến tần duy nhất Nhật bản đạt tiêu chuần về môi trường</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Công xuất : 3P&nbsp;&nbsp; 200-240V/50Hz : 0.1 &ndash; 15kw</span></span></span></strong></li>\r\n</ul>\r\n<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3P&nbsp;&nbsp; 380-480V/50Hz : 0.2 &ndash; 15kw</span></span></span></strong>\r\n\r\n<ul>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tần số ra : 0 &ndash; 400Hz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Khả năng quá tải 150% trong vòng 60s</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dải điều khiển : 0-10V,4-20Ma</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Chức năng vận hành : điều khiển đa tốc độ,phanh DC trong quá trình tăng,điều khiển PID,AVR,tự động Reset khi có lỗi,kế nối truyền thông 485</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tiêu chuẩn bảo vệ : IP 20</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Thiết bị mở rộng : mạch phản hồi tốc độ Encoder,mạch kế nối Profibus-DP,Lonwork,Mechatrolink,CANopen,Devvicenet,CC-link</span></span></span></strong></li>\r\n</ul>\r\n', '', '', '', 'Inverter Yaskawa Serri V1000', 'Inverter Yaskawa Serri V1000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 0, 7),
 (223, 'Inverter Yaskawa Serri J1000', '', NULL, NULL, 0, 0, 0, '<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Inverter Yaskawa Serri J1000</span></span></span></strong>\r\n<ul>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dòng biến tần J1000 là dòng biến tần tiện dụng,cách lắp đặt và cài đặt đơn giản,có thiết kế nhỏ gọn,phù hợp cho lắp đặt công xuất nhỏ,yêu cầu thẩm mỹ cao,khả năng chịu tải lớn</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Là biến tần duy nhất tại Nhật Bản đạt tiêu chuẩn quốc tế về môi trường.</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Công xuất : 3P&nbsp;&nbsp; 200V-240V / 50Hz&nbsp;&nbsp; : 0.2-5.5kw</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Công xuất : 3P&nbsp;&nbsp; 380V-480V / 50Hz&nbsp;&nbsp;&nbsp; : 0.4-5.5kw</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Giải tần số ra : 0-1500Hz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Khả năng quá tải 150% trong vòng 60s,200% trong vòng 0.5s</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Mô men khởi động 200% tại 0.5Hz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Dải điều khiển từ : 0-10v,4-20Ma</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tần số song mang lên tới 15Khz</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Chức năng vận hành : điều khiển đa tốc độ,phanh DC trong quá trình tăng,điều khiển PID,AVR,tự động Reset khi có lỗi,kế nối truyền thông 485</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Bảo vệ quá áp,quá tải,nhiệt độ quá cao,lỗi CPU,&hellip;</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Tiêu chuẩn bảo vệ : IP 20</span></span></span></strong></li>\r\n	<li><strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Thiết bị mở rộng : mạch phản hồi tốc độ Encoder,mạch kế nối Profibus-DP,Lonwork,Mechatrolink,CANopen,Devvicenet,CC-link</span></span></span></strong></li>\r\n</ul>\r\n', '', '', '', 'Inverter Yaskawa Serri J1000', 'Inverter Yaskawa Serri J1000', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 0, 8),
 (224, 'BIẾN TẦN OMRON', '', NULL, NULL, 0, 0, 0, '<span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Biến tần 400W, 3P/1P 220VAC</strong></span></span></span>\r\n<ul>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chức năng PID</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Trang bị sẵn Radio Noise Filter (Z-phase reactor)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chỉnh tần số ngõ ra: 0.5 ~ 400Hz, độ phân giải 0.1Hz</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Khả năng quá tải: 150% trong 1phút</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Thời gian tăng giảm tốc: 0.01S ~ 3000S</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chức năng bảo vệ: Overcurrent, overvoltage, undervoltage, electronic thermal, temperature error, ground-fault overcurrent at power-on state, overload limit, incoming overvoltage, external trip, memory error, CPU error, USP trip, communication error, overvoltage protection during deceleration, momentary power interruption protection, emergency shutoff</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Truyền thông Modbus-RTU</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn lựa thiết bị ngoại vi: Noise filter, AC/DC reactors, regenerative braking unit and resistor,</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tiêu chuẩn: EC, UL/cUL</strong></span></span></span></li>\r\n</ul>\r\n', '', '', '', 'Biến tần Omron', 'Biến tần Omron', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 9),
-(226, 'BỘ ĐẾM', '', NULL, NULL, 0, 0, 0, '<span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Bộ đếm đa năng 1 trạng thái, kích thước 72 x 72mm</strong></span></span></span>\r\n<ul>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Nguồn cấp: 100-240VAC</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chế độ hoạt động: 1-stage preset counter, total and preset counter *1 (lưạ chọn)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Hiển thị negative transmissive&nbsp;LCD, 6 số, -99,999 ~ 999,999</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn màu hiển thị</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ vào NPN/PNP và cảm biến 2-dây</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn chế độ ngõ vào: Increment, decrement, command (UP/DOWN A), individual (UP/DOWN B), quadrature (UP/DOWN C)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ ra: Rơle và NPN</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn&nbsp;chế độ ngõ ra:&nbsp;N, F, C, R, K-1, P, Q, A, K-2, D, L</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ ra tác động nhanh: 0.01 ~ 99.99s</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chức năng đếm: 1-stage counter / 1-stage counter with total counter</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tốc độ: 30Hz / 5kHz</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Có nguồn cho thiết bị ngoài: 12VDC, 100mA&nbsp;</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tiêu chuẩn: UL, CSA, EN, CE. IP54&nbsp;</strong></span></span></span></li>\r\n</ul>\r\n', '', '', '', 'BỘ ĐẾM', 'BỘ ĐẾM', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 17, 1, 0, 14);
-INSERT INTO `product` (`id`, `title`, `feature`, `price`, `price_reduce`, `in_stock`, `condition`, `brand_id`, `detail`, `content`, `teach`, `video`, `meta_keyword`, `meta_description`, `manual`, `e_manual`, `promotion`, `e_promotion`, `e_title`, `e_feature`, `e_detail`, `e_content`, `e_teach`, `e_meta_keyword`, `e_meta_description`, `pd_option`, `lnk`, `e_lnk`, `pId`, `active`, `home`, `ind`) VALUES
-(227, 'Bộ Điều Khiển Lập Trình PLC', '', NULL, NULL, 0, 0, 0, '<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">24 DC inputs,16 relay outputs</span></span></span></strong>\r\n<ul>\r\n	<li><strong>Nguồn cấp: 100-240VAC</strong></li>\r\n	<li><strong>Ngôn ngữ lập trình: Ladder diagram</strong></li>\r\n	<li><strong>Tốc độ thực hiện lệnh: Lệnh cơ bản: 0.01&micro;s; Lệnh đặc biệt: 0.15&micro;s</strong></li>\r\n	<li><strong>Bộ nhớ chương trình: 20K steps</strong></li>\r\n	<li><strong>Bộ đếm tốc độ cao: 100 kHz (single-phase), 50 kHz (differential phases), 4 axes</strong></li>\r\n	<li><strong>Ngõ ra xung tốc độ cao: 100 kHz for 4 axes</strong></li>\r\n	<li><strong>Cổng truyền thong: Trang bị sẵn cổng USB, chọn lựa thêm RS232C, RS422/RS485</strong></li>\r\n	<li><strong>Ngõ vào/ra analog: -</strong></li>\r\n	<li><strong>Có thể gắn thêm 7 bộ mở rộng CPM1 và 2 bộ mở rộng CJ1W</strong></li>\r\n	<li><strong>Chức năng thời gian thực (Clock)</strong></li>\r\n	<li><strong>Nhiệt độ làm việc: 0~55<sup>o</sup>C</strong></li>\r\n	<li><strong>Tiêu chuẩn: IEC 61000; JIS C0040; JIS C0041</strong></li>\r\n</ul>\r\n<strong>&nbsp;</strong>', '', '', '', 'Bộ điều khiển lập trình PLC', 'Bộ điều khiển lập trình PLC', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 14);
+(226, 'BỘ ĐẾM', '', NULL, NULL, 0, 0, 0, '<span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Bộ đếm đa năng 1 trạng thái, kích thước 72 x 72mm</strong></span></span></span>\r\n<ul>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Nguồn cấp: 100-240VAC</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chế độ hoạt động: 1-stage preset counter, total and preset counter *1 (lưạ chọn)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Hiển thị negative transmissive&nbsp;LCD, 6 số, -99,999 ~ 999,999</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn màu hiển thị</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ vào NPN/PNP và cảm biến 2-dây</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn chế độ ngõ vào: Increment, decrement, command (UP/DOWN A), individual (UP/DOWN B), quadrature (UP/DOWN C)</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ ra: Rơle và NPN</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chọn&nbsp;chế độ ngõ ra:&nbsp;N, F, C, R, K-1, P, Q, A, K-2, D, L</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Ngõ ra tác động nhanh: 0.01 ~ 99.99s</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Chức năng đếm: 1-stage counter / 1-stage counter with total counter</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tốc độ: 30Hz / 5kHz</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Có nguồn cho thiết bị ngoài: 12VDC, 100mA&nbsp;</strong></span></span></span></li>\r\n	<li><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Tiêu chuẩn: UL, CSA, EN, CE. IP54&nbsp;</strong></span></span></span></li>\r\n</ul>\r\n', '', '', '', 'BỘ ĐẾM', 'BỘ ĐẾM', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 17, 1, 0, 14),
+(227, 'Bộ Điều Khiển Lập Trình PLC', '', NULL, NULL, 0, 0, 0, '<strong><span style="line-height:1"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">24 DC inputs,16 relay outputs</span></span></span></strong>\r\n<ul>\r\n	<li><strong>Nguồn cấp: 100-240VAC</strong></li>\r\n	<li><strong>Ngôn ngữ lập trình: Ladder diagram</strong></li>\r\n	<li><strong>Tốc độ thực hiện lệnh: Lệnh cơ bản: 0.01&micro;s; Lệnh đặc biệt: 0.15&micro;s</strong></li>\r\n	<li><strong>Bộ nhớ chương trình: 20K steps</strong></li>\r\n	<li><strong>Bộ đếm tốc độ cao: 100 kHz (single-phase), 50 kHz (differential phases), 4 axes</strong></li>\r\n	<li><strong>Ngõ ra xung tốc độ cao: 100 kHz for 4 axes</strong></li>\r\n	<li><strong>Cổng truyền thong: Trang bị sẵn cổng USB, chọn lựa thêm RS232C, RS422/RS485</strong></li>\r\n	<li><strong>Ngõ vào/ra analog: -</strong></li>\r\n	<li><strong>Có thể gắn thêm 7 bộ mở rộng CPM1 và 2 bộ mở rộng CJ1W</strong></li>\r\n	<li><strong>Chức năng thời gian thực (Clock)</strong></li>\r\n	<li><strong>Nhiệt độ làm việc: 0~55<sup>o</sup>C</strong></li>\r\n	<li><strong>Tiêu chuẩn: IEC 61000; JIS C0040; JIS C0041</strong></li>\r\n</ul>\r\n<strong>&nbsp;</strong>', '', '', '', 'Bộ điều khiển lập trình PLC', 'Bộ điều khiển lập trình PLC', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 15, 1, 0, 14);
 
 -- --------------------------------------------------------
 
@@ -354,8 +361,8 @@ INSERT INTO `product` (`id`, `title`, `feature`, `price`, `price_reduce`, `in_st
 -- Table structure for table `product_cate`
 --
 
-CREATE TABLE IF NOT EXISTS `product_cate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product_cate` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `meta_keyword` text NOT NULL,
@@ -369,9 +376,8 @@ CREATE TABLE IF NOT EXISTS `product_cate` (
   `pId` int(11) NOT NULL,
   `lev` int(11) NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product_cate`
@@ -380,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `product_cate` (
 INSERT INTO `product_cate` (`id`, `title`, `sum`, `meta_keyword`, `meta_description`, `e_title`, `e_sum`, `e_meta_keyword`, `e_meta_description`, `img`, `icon`, `pId`, `lev`, `ind`, `active`) VALUES
 (1, 'BIẾN TẦN', '', 'LED Par Lights', 'LED Par Lights', 'Electrical Parts', '', 'Electrical Parts', 'Electrical Parts', '', '', 0, 1, 1, 1),
 (2, 'SERVO', '', 'LED Moving Head', 'LED Moving Head', 'Auto Parts', '', 'Auto Parts', 'Auto Parts', '', '', 0, 1, 2, 1),
-(3, 'ĐỘNG CƠ ', '', 'Moving Head light', 'Moving Head light', 'Mechanical Heat Sink', '', 'Mechanical Heat Sink', 'Mechanical Heat Sink', '', '', 0, 1, 3, 1),
+(3, 'ĐỘNG CƠ ', '', 'Moving Head light', 'Moving Head light', 'Mechanical Heat Sink', '', 'Mechanical Heat Sink', 'Mechanical Heat Sink', '', '', 1, 2, 3, 1),
 (8, 'INVERTER OMRON', '', 'INVERTER OMRON', 'INVERTER OMRON', '', '', '', '', '', '', 0, 1, 8, 1),
 (9, 'MOTOR ABB', '', 'MOTOR ABB', 'MOTOR ABB', '', '', '', '', '', '', 0, 1, 9, 1),
 (10, 'BIẾN TẦN FUJI', '', 'BIẾN TẦN FUJI', 'BIẾN TẦN FUJI', '', '', '', '', '', '', 0, 1, 10, 1),
@@ -388,8 +394,8 @@ INSERT INTO `product_cate` (`id`, `title`, `sum`, `meta_keyword`, `meta_descript
 (12, 'THIẾT BỊ TỰ ĐỘNG MITSUBISHI', '', 'THIẾT BỊ TỰ ĐỘNG MITSUBISHI', 'THIẾT BỊ TỰ ĐỘNG MITSUBISHI', '', '', '', '', '', '', 0, 1, 11, 1),
 (13, 'SERVO PANASONIC', '', 'SERVO PANASONIC', 'SERVO PANASONIC', '', '', '', '', '', '', 0, 1, 12, 1),
 (14, 'SERVO OMRON', '', 'SERVO OMRON', 'SERVO OMRON', '', '', '', '', '', '', 0, 1, 5, 1),
-(15, 'DUCATI', '', 'DUCATI', 'DUCATI', '', '', '', '', '', '', 0, 1, 6, 1),
-(16, 'YASKAWA', '', 'YASKAWA', 'YASKAWA', '', '', '', '', '', '', 0, 1, 1, 1),
+(15, 'DUCATI', '', 'DUCATI', 'DUCATI', '', '', '', '', '', '', 1, 2, 6, 1),
+(16, 'YASKAWA', '', 'YASKAWA', 'YASKAWA', '', '', '', '', '', '', 2, 2, 1, 1),
 (17, 'BỘ ĐIỀU KHIỂN', '', 'BỘ ĐIỀU KHIỂN', 'BỘ ĐIỀU KHIỂN', '', '', '', '', '', '', 0, 1, 13, 1);
 
 -- --------------------------------------------------------
@@ -398,15 +404,13 @@ INSERT INTO `product_cate` (`id`, `title`, `sum`, `meta_keyword`, `meta_descript
 -- Table structure for table `product_image`
 --
 
-CREATE TABLE IF NOT EXISTS `product_image` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product_image` (
+  `id` int(11) NOT NULL,
   `img` text NOT NULL,
   `pId` int(11) NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pId` (`pId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=235 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product_image`
@@ -472,8 +476,8 @@ INSERT INTO `product_image` (`id`, `img`, `pId`, `ind`, `active`) VALUES
 -- Table structure for table `project`
 --
 
-CREATE TABLE IF NOT EXISTS `project` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `project` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `content` longtext NOT NULL,
@@ -492,9 +496,45 @@ CREATE TABLE IF NOT EXISTS `project` (
   `date` date DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   `home` tinyint(4) NOT NULL DEFAULT '0',
-  `ind` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promotion`
+--
+
+CREATE TABLE `promotion` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `sum` text NOT NULL,
+  `content` longtext NOT NULL,
+  `meta_keyword` text NOT NULL,
+  `meta_description` text NOT NULL,
+  `e_title` text NOT NULL,
+  `e_sum` text NOT NULL,
+  `e_content` longtext NOT NULL,
+  `e_meta_keyword` text NOT NULL,
+  `e_meta_description` text NOT NULL,
+  `pId` int(11) NOT NULL,
+  `maps` text NOT NULL,
+  `city` int(11) NOT NULL,
+  `district` int(11) NOT NULL,
+  `img` text NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `home` tinyint(4) NOT NULL DEFAULT '0',
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `promotion`
+--
+
+INSERT INTO `promotion` (`id`, `title`, `sum`, `content`, `meta_keyword`, `meta_description`, `e_title`, `e_sum`, `e_content`, `e_meta_keyword`, `e_meta_description`, `pId`, `maps`, `city`, `district`, `img`, `active`, `home`, `ind`) VALUES
+(1, 'Tuần Lễ Làm Đẹp', 'Tuần Lễ Làm Đẹp', '', 'Tuần Lễ Làm Đẹp', 'Tuần Lễ Làm Đẹp', 'Ngại nổ gas, vợ sếp chuộng bếp điện từ hồng ngoại', 'Tiết kiệm điện, không tốn chi phí gas, an toàn trong sử dụng lại nấu thức ăn ngon... bếp điện tử hồng ngoại hiện được nhiều bà nội trợ chuộng dù giá bán khá cao: ít nhất trên 20 triệu đồng một chiếc.', '<p>Tiết kiệm điện, không tốn chi phí gas, an toàn trong sử dụng lại nấu thức ăn ngon... bếp điện tử hồng ngoại hiện được nhiều bà nội trợ chuộng dù giá bán khá cao: ít nhất trên 20 triệu đồng một chiếc.</p>\r\n\r\n<p>Chồng làm giám đốc một công ty lớn trong ngành truyền thông, gia đình có đến 2 người giúp việc, chị Thu ở Núi Trúc, Hà Nội, vẫn giữ thói quen tự nấu nướng cho cả gia đình. Chồng cùng 2 cậu con trai của chị cũng chỉ thích ăn những món do nội tướng chế biến.</p>\r\n\r\n<p>&quot;Nhiều món ăn tuy đơn giản nhưng vẫn cần bí quyết chế biến riêng nên người khác nấu không hợp khẩu vị khiến chồng con tôi không ưng. Hai cô giúp việc chỉ phải dọn dẹp với giặt giũ, còn đi chợ hay nấu nướng thì tôi tự thu xếp công việc và thời gian để làm&quot;, chị Thu nói.</p>\r\n\r\n<p>Không ít lần chị Thu &quot;mất điểm&quot; vì công việc quá lu bu. Chị kể, đặt nồi cá kho lên bếp định một tiếng rưỡi tiếng xuống tắt lửa là vừa, nhưng mải quyết toán doanh thu cuối tháng của công ty nên chị quên mất. Ngửi thấy mùi khét, chị chạy xuống bếp thì nồi cá đã sắp thành than.</p>\r\n\r\n<p>Chia sẻ với bạn, chị Thu được mách về loại bếp điện từ hồng ngoại - kết hợp tính năng điện từ với hồng ngoại, có hẹn giờ nên tránh được tối đa những sơ suất tương tự &quot;vụ nồi cá&quot;. Ngoài ra, dùng loại bếp này, thời gian nấu nhanh, nấu được với tất cả các loại nồi chứ không bị bó hẹp như bếp từ. Cân nhắc mãi, chị Thu quyết định mua một chiếc dù mức giá khá cao, 45 triệu đồng cho loại 4 bếp.</p>\r\n\r\n<p>&quot;Chi phí ban đầu hơi cao nhưng tiết kiệm được thời gian nấu, tính ra chưa đầy 30 phút là xong bữa tối. Con cái còn nhỏ, ở nhà cả ngày với người giúp việc, mà gần đây xảy ra nhiều vụ nổ gas nên tôi càng lo, quyết tâm đầu tư bếp từ hồng ngoại để đảm bảo an toàn cho cả nhà&quot;, chị Thu tâm sự. Ngoài ra, mặt bếp sáng bóng, hợp với không gian căn bếp sang trọng mà vợ chồng chị đã cất công thiết kế, khiến chị Thu không tiếc khoản tiền gần 50 triệu đồng đã bỏ ra để mua.</p>\r\n\r\n<p>Chị Tiến ở Mỹ Đình, Hà Nội, phu nhân giám đốc chi nhánh của công ty dược có tiếng, cũng chọn bếp điện từ hồng ngoại cho gian bếp nhà mình. Chị lý giải, ngoài lý do an toàn, hình thức bắt mắt và nấu nướng nhanh, bếp có giá trị sử dụng cao, giảm được chi phí hằng tháng so với dùng các loại bếp thông thường.</p>\r\n\r\n<p>Theo chị, nếu dùng bếp gas, trung bình mỗi tháng gia đình chị hết khoảng 250.000 đồng. Từ khi chuyển sang dùng bếp từ hồng ngoại, cắt giảm được chi phí gas, chị tính toán thấy số tiền điện chỉ tăng thêm từ 120.000 đồng đến 150.000 đồng so với trước. Định kỳ hằng năm, chị không phải thay van gas, dây nối..., tuổi thọ của loại bếp này cũng gấp 2-3 lần so với bếp gas. Chưa kể, do có nhiều chức năng tự động như tự ngắt khi gặp vật thể lạ hoặc người dùng quên tắt... nên thiết bị nhà bếp này khá an toàn.</p>\r\n\r\n<p>&quot;Tôi thấy giá khá cao nhưng &#39;đắt xắt ra miếng&#39;, đầu tư lớn ban đầu mà chi phí dùng về sau rẻ hơn khá nhiều nên tính về lâu dài thì tiết kiệm hơn. Một điểm nữa tôi rất thích là trời nóng vẫn có thể bật quạt hướng thẳng vào vị trí đứng nấu mà không sợ bị tản nhiệt như nấu bằng bếp gas&quot;, chị Tiến giải thích.</p>\r\n\r\n<p>Xuất hiện chưa lâu và có mức giá khá cao song bếp điện từ hồng ngoại đã được khá nhiều bà nội trợ đầu tư chọn lựa. Giá bếp dao động từ 20 đến trên 40 triệu đồng mỗi chiếc, tùy vào xuất xứ, vật liệu và số lượng mặt bếp. Ông Phạm Đức Tuân, Giám đốc kinh doanh ngành hàng bếp của Kangaroo, một những doanh nghiệp vừa tung ra dòng sản phẩm bếp điện từ hồng ngoại cao cấp cho biết, chỉ trong vòng 2 tháng, số lượng bán ra đã hơn 5.000 chiếc, trong đó, doanh số tháng sau cao hơn tháng trước 30%.</p>\r\n\r\n<p>Trao đổi với&nbsp;<em>VnExpress.net</em>, ông cho biết, so với bếp gas, bếp điện từ hồng ngoại Kangaroo có hiệu suất hấp thụ nhiệt cao đến 90%, trong khi bếp gas đạt 55%, bếp điện thông thường đạt khoảng 65%. Theo đó, nếu chuyển từ bếp gas sang bếp điện từ hồng ngoại, người tiêu dùng tiết kiệm được đến 40% chi phí nhiên liệu cho việc đun nấu, thời gian nấu nướng cũng vì thế mà nhanh gấp 2-3 lần.</p>\r\n\r\n<p>Hai bộ phận quan trọng nhất của bếp là mặt kính và bộ gia nhiệt đều được nhập khẩu từ các hãng danh tiếng của Đức là Schott và Ego, đảm bảo độ bền và hiệu suất ra nhiệt tối đa. Ngoài ra với độ dày 4 mm, bếp có khả năng chịu lực và chịu nhiệt lên đến 800 độ C. Nhiệt độ được truyền thẳng đứng đến đáy nồi, nhiệt năng không bị thất thoát ra không khí.</p>\r\n\r\n<p>Tuy nhiên, vị chuyên gia khẳng định, dù sử dụng bất kỳ loại bếp nào, người nội trợ cũng nên vệ sinh, bảo trì thiết bị thường xuyên, giữ không khí trong phòng bếp lưu thông, thoáng mát... để đảm bảo chất lượng sản phẩm.</p>\r\n', '', '', 0, '<iframe src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Kuningan,+Jakarta+Capital+Region,+Indonesia&aq=3&oq=kuningan+&sll=37.0625,-95.677068&sspn=37.410045,86.572266&ie=UTF8&hq=&hnear=Kuningan&t=m&z=14&ll=-6.238824,106.830177&output=embed"></iframe>', 3, 136, '1484721347tải xuống (1).jpg', 1, 1, 1),
+(2, 'Khuyến Mãi Ngày Vàng', 'Khuyến Mãi Ngày Vàng', '', 'Khuyến Mãi Ngày Vàng', 'Khuyến Mãi Ngày Vàng', 'Sự lên ngôi của bếp từ trong căn bếp Việt', 'Không chỉ tuyệt vời về hiệu quả sử dụng, bếp từ còn rất được...', '<p><strong>Vì&nbsp;sao bếp gas bị thất thế?</strong></p>\r\n\r\n<p>Còn nhớ vụ nổ gas cách đây không lâu tại phố Tạ Quang Bửu khiến hai cháu bé bị tử vong rất thương tâm, bố và mẹ bị thương nặng. Chính vì lẽ đó mà không ít người e dè khi lựa chọn bếp gas để sử dụng.</p>\r\n\r\n<p>Anh Hoàng Vũ Linh (Đống Đa &ndash; Hà Nội) cho hay: &ldquo;Vụ nổ khí gas vừa rồi thật kinh khủng quá. Gia đình tôi cũng sử dụng gas để nấu nướng nhưng không hay thường xuyên kiểm tra xem dây dẫn gas, van gas có an toàn không, đã bị hư hại gì chưa. Nhưng sau lần này thì tôi sẽ thường xuyên gọi thợ tới kiểm tra hơn để đảm bảo an toàn khi sử dụng&rdquo;.</p>\r\n\r\n<p><a href="http://bep.vn/upload/editor/images/bep-ga-bep-tu.jpg" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" title="Sự lên ngôi của bếp từ trong căn bếp Việt - ảnh 1"><img alt="Hình ảnh Sự lên ngôi của bếp từ trong căn bếp Việt số 1" src="http://bep.vn/upload/editor/images/bep-ga-bep-tu.jpg" style="border-style:initial; border-width:0px; box-sizing:border-box; max-width:100%; vertical-align:middle" title="Sự lên ngôi của bếp từ trong căn bếp Việt - ảnh 1" /></a></p>\r\n\r\n<p><em>Nhiều người tiêu dùng e ngại tính an toàn của bếp gas</em></p>\r\n\r\n<p>Chính vì những &ldquo;ẩn họa&rdquo; khôn lường của bếp gas mà không ít gia đình đã loại nó ra khỏi danh mục những đồ dùng trong nhà bếp. Chị Trần Hoàng Ngân (Từ Liêm &ndash; Hà Nội) chia sẻ: &ldquo;Sau một vài vụ cháy nổ do gas gây ra, gia đình tôi đã quyết định không sử dụng loại bếp này nữa, chuyển sang sử dụng loại bếp khác an toàn hơn để tránh những rủi ro đáng tiếc có thể xảy ra&rdquo;.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Và sự lên ngôi của bếp từ</strong></p>\r\n\r\n<p>Chẳng có gì lạ khi người tiêu dùng quay lưng lại với bếp gas và &ldquo;sính&rdquo; sử dụng&nbsp;<a href="http://bep.vn/bep-tu" rel="dofollow" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" target="_blank"><strong>bếp từ</strong></a>&nbsp;bởi sự an toàn, tiết kiệm và đẹp sang trọng của nó.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Với cơ chế làm trực tiếp phần thức ăn bên trong nồi nên hiệu suất sử dụng của bếp từ rất cao lên tới 90%, cao hơn rất nhiều so với bếp gas và bếp điện. Chính vì vậy mà thời gian nấu ăn của bạn sẽ được rút ngắn hơn và chi phí phải bỏ ra cho công việc nấu nướng cũng tiết kiệm hơn. &nbsp;</p>\r\n\r\n<p><a href="http://bep.vn/upload/editor/images/bep-ga-bep-tu-1.jpg" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" title="Sự lên ngôi của bếp từ trong căn bếp Việt - ảnh 2"><img alt="Hình ảnh Sự lên ngôi của bếp từ trong căn bếp Việt số 2" src="http://bep.vn/upload/editor/images/bep-ga-bep-tu-1.jpg" style="border-style:initial; border-width:0px; box-sizing:border-box; max-width:100%; vertical-align:middle" title="Sự lên ngôi của bếp từ trong căn bếp Việt - ảnh 2" /></a></p>\r\n\r\n<p><em>Sự lên ngôi của bếp từ</em></p>\r\n\r\n<p>Không chỉ tuyệt vời về hiệu quả sử dụng, bếp từ còn rất được lòng các bà nội trợ bởi thiết kế đẹp mắt, sang trọng và hiện đại của nó. Hơn nữa, bếp từ rất dễ sử dụng (thông qua các nút điều khiển), tính năng đa dạng lại an toàn với cả trẻ em và người lớn nếu vô tình chạm phải mặt bếp trong khi đang nấu, nó không gây bỏng rát bởi mặt bếp luôn mát trong suốt quá trình sử dụng.</p>\r\n\r\n<p>Hiện nay có rất nhiều chủng loại&nbsp;<a href="http://bep.vn/bep-dien-tu" rel="dofollow" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" target="_blank">bếp điện</a>,&nbsp;bếp từ của rất nhiều hang khác nhau, người tiêu dùng nên lựa chọn những loại bếp của các thương hiệu uy tín để đảm bảo an toàn và chất lượng khi sử dụng.&nbsp;</p>\r\n\r\n<p>Nếu bạn còn đang băn khoăn không biết nên lựa chọn loại bếp nào cho phù hợp với &ldquo;túi tiền&rdquo; và không gian bếp nhà mình, còn chần chừ gì nữa mà không đến với&nbsp;<strong>Bep.vn&nbsp;</strong>tại&nbsp;địa chỉ 406 Xã Đàn, Đống Đa, Hà Nội. Tại đây, bạn sẽ nhận được những lời tư vấn xác đáng từ những tư vấn viên chuyên nghiệp của chúng tôi, chắc chắn bạn sẽ dễ dàng chọn được cho gia đình một sản phẩm bếp từ ưng ý.</p>\r\n\r\n<p>Tại&nbsp;<strong>Bep.vn</strong>, chúng tôi&nbsp;cung cấp các sản phẩm bếp từ, bếp điện từ, bếp điện,&nbsp;<a href="http://bep.vn/lo-nuong" rel="dofollow" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" target="_blank">lò nướng</a>, lò vi sóng, máy hút mùi, máy rửa bát và các sản phẩm gia dụng khác chính hãng với chất lượng tốt nhất trên thị trường hiện nay.</p>\r\n\r\n<p><strong>Thông tin liên hệ:</strong></p>\r\n\r\n<p>Công ty TNHH Xây Dựng và Dịch Vụ Anh Tú<br />\r\nSố 406 Phố Xã Đàn - Đống Đa - Hà Nội &nbsp;(Đường Kim Liên Mới)<br />\r\nTel : 04 35738480&nbsp;<br />\r\nEmail :&nbsp;info@bep.vn<br />\r\nWebsite:&nbsp;<a href="http://bep.vn/" rel="dofollow" style="box-sizing: border-box; color: rgb(53, 75, 156); text-decoration: none; transition: all 0.1s ease-in-out; outline: none; background-color: transparent;" target="_blank">http://bep.vn</a></p>\r\n', '', '', 0, '', 0, 0, '14847211918799411372062.jpg', 1, 1, 2),
+(3, 'Tri Ân Kh3ách Háng Cuối Năm ', 'Tri Ân Khách Háng Cuối Năm ', '', 'Tri Ân Khách Háng Cuối Năm ', 'Tri Ân Khách Háng Cuối Năm ', '', '', '', '', '', 0, '', 0, 0, '1484721142tải xuống.jpg', 1, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -502,14 +542,13 @@ CREATE TABLE IF NOT EXISTS `project` (
 -- Table structure for table `qtext`
 --
 
-CREATE TABLE IF NOT EXISTS `qtext` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `qtext` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `e_title` text NOT NULL,
   `content` longtext NOT NULL,
-  `e_content` longtext NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `e_content` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `qtext`
@@ -519,7 +558,8 @@ INSERT INTO `qtext` (`id`, `title`, `e_title`, `content`, `e_content`) VALUES
 (2, 'Hotline', '', '0963 907 282', ''),
 (3, 'Liên hệ', '', '<span style="color:#008000"><strong><img alt="" src="/file/ckfinder/userfiles/images/03-01-2017%205-04-15%20CH.png" style="height:131px; width:380px" /><br />\r\nCÔNG TY TNHH KỸ THUẬT TỰ ĐỘNG&nbsp;THÁI BÌNH</strong><br />\r\n<strong>NHÀ CUNG CẤP CÁC THIẾT BỊ TỰ ĐỘNG HÓA TRONG CÔNG NGHIỆP</strong></span><br />\r\n<span style="font-size:14px"><strong>MST : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0312 953 329&nbsp;</strong><br />\r\n<strong>Địa Chỉ: &nbsp; &nbsp; &nbsp; &nbsp; 566/12 Điện Biên Phủ, Phường 22, Quận Bình Thạnh,&nbsp;Tp. HCM<br />\r\nĐiện Thoại: &nbsp; 0912 907 282<br />\r\nFax: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;08.62 945 256</strong><br />\r\n<strong>Email: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sale.thaibinh@gmail.com<br />\r\nWebsite: &nbsp; &nbsp; &nbsp; &nbsp;thaibinhauto.com</strong></span><br />\r\n&nbsp;', ''),
 (4, 'Footer', '', '<span style="line-height:2"><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><span style="color:rgb(0, 128, 0)"><strong>CÔNG TY TRÁCH NHIỆM HỮU HẠN&nbsp;KỸ THUẬT TỰ ĐỘNG THÁI BÌNH</strong></span><br />\r\n<strong>MST : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0312 953 329&nbsp;</strong><br />\r\n<strong>Địa Chỉ: &nbsp; &nbsp; &nbsp; &nbsp; </strong>566/12 Điện Biên Phủ, Phường 22, Quận Bình Thạnh,&nbsp;Tp. HCM<br />\r\n<strong>Điện Thoại: &nbsp; (84-8) 62 945 255 - Hotline: <span style="color:#FFF0F5">0963 907 282</span><br />\r\nFax: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;(84-8) 62 945 256</strong><br />\r\n<strong>Email: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;info@thaibinhauto.com<br />\r\nWebsite: &nbsp; &nbsp; &nbsp; &nbsp;thaibinhauto.com</strong></span></span></span>', ''),
-(5, 'Header Text', '', '343435556', '');
+(5, 'Header Text', '', '343435556', ''),
+(6, 'Giới thiệu', 'Introduction', 'Team Giáng Son chào đón cố vấn âm nhạc là nhạc sĩ Dương Khắc Linh. HLV Giáng Son đưa ra chủ đề Tình yêu và thiên nhiên để 7 thí sinh sáng tác. ', '');
 
 -- --------------------------------------------------------
 
@@ -527,8 +567,8 @@ INSERT INTO `qtext` (`id`, `title`, `e_title`, `content`, `e_content`) VALUES
 -- Table structure for table `service`
 --
 
-CREATE TABLE IF NOT EXISTS `service` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `sum` text NOT NULL,
   `content` longtext NOT NULL,
@@ -547,17 +587,15 @@ CREATE TABLE IF NOT EXISTS `service` (
   `date` date DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   `home` tinyint(4) NOT NULL DEFAULT '0',
-  `ind` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pId` (`pId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `service`
 --
 
 INSERT INTO `service` (`id`, `title`, `sum`, `content`, `meta_keyword`, `meta_description`, `e_title`, `e_sum`, `e_content`, `e_meta_keyword`, `e_meta_description`, `pId`, `maps`, `city`, `district`, `img`, `date`, `active`, `home`, `ind`) VALUES
-(2, 'DỊCH VỤ CỦA TBC', 'DỊCH VỤ CỦA TBC', '<div><span style="font-size:16px"><span style="font-family:arial,helvetica,sans-serif">- Cung cấp tất các các thiết bị dung tròng nghành công nghiệp<br />\r\n- Chuyển đổi công nghệ,cải tạo nhà xưởng<br />\r\n- Hỗ trợ kỹ thuật và lắp đặt hệ thống,dây chuyền sản xuất tự động,<br />\r\n- Thiết kế và thi công các loại tủ điện điều khiển và tủ động lực.<br />\r\n- Bảo dưỡng trang thiết bị công nghiệp&hellip;.</span></span></div>\r\n&nbsp;\r\n\r\n<div style="text-align: center;"><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px"><img alt="" src="/file/ckfinder/userfiles/images/5.png" style="height:525px; width:554px" /></span></span></div>\r\n\r\n<div style="text-align: center;"><span style="color:#FF8C00"><strong>THAI BINH AUTOMATION TECHNOLOGY COMPANY LIMITED<br />\r\n&nbsp;&nbsp;SYSTEM DESIGN &amp; PANEN BUIDING</strong></span></div>\r\n\r\n<div style="text-align: center;">&nbsp;</div>\r\n', 'DỊCH VỤ CỦA TBC', 'DỊCH VỤ CỦA TBC', '', '', '', '', '', 3, '', 0, 0, '14815339665.png', '2016-11-23', 1, 1, 1);
+(2, 'DỊCH VỤ CỦA TBC444', 'DỊCH VỤ CỦA TBC', '<div><span style="font-size:16px"><span style="font-family:arial,helvetica,sans-serif">- Cung cấp tất các các thiết bị dung tròng nghành công nghiệp<br />\r\n- Chuyển đổi công nghệ,cải tạo nhà xưởng<br />\r\n- Hỗ trợ kỹ thuật và lắp đặt hệ thống,dây chuyền sản xuất tự động,<br />\r\n- Thiết kế và thi công các loại tủ điện điều khiển và tủ động lực.<br />\r\n- Bảo dưỡng trang thiết bị công nghiệp&hellip;.</span></span></div>\r\n&nbsp;\r\n\r\n<div style="text-align: center;"><span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px"><img alt="" src="/file/ckfinder/userfiles/images/5.png" style="height:525px; width:554px" /></span></span></div>\r\n\r\n<div style="text-align: center;"><span style="color:#FF8C00"><strong>THAI BINH AUTOMATION TECHNOLOGY COMPANY LIMITED<br />\r\n&nbsp;&nbsp;SYSTEM DESIGN &amp; PANEN BUIDING</strong></span></div>\r\n\r\n<div style="text-align: center;">&nbsp;</div>\r\n', 'DỊCH VỤ CỦA TBC', 'DỊCH VỤ CỦA TBC', '', '', '', '', '', 0, '', 0, 0, '14815339665.png', '2016-11-23', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -565,8 +603,8 @@ INSERT INTO `service` (`id`, `title`, `sum`, `content`, `meta_keyword`, `meta_de
 -- Table structure for table `slider`
 --
 
-CREATE TABLE IF NOT EXISTS `slider` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `slider` (
+  `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `e_title` text NOT NULL,
   `sum` text NOT NULL,
@@ -575,9 +613,8 @@ CREATE TABLE IF NOT EXISTS `slider` (
   `lnk` text NOT NULL,
   `e_lnk` text NOT NULL,
   `ind` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `slider`
@@ -585,7 +622,91 @@ CREATE TABLE IF NOT EXISTS `slider` (
 
 INSERT INTO `slider` (`id`, `title`, `e_title`, `sum`, `e_sum`, `img`, `lnk`, `e_lnk`, `ind`, `active`) VALUES
 (7, '', '', '', '', '1482802266z545205850373_9510fc44fe245b44d94d86c8b20889a8.jpg', '', '', 1, 0),
-(8, '', '', '', '', '1482802276z545205868441_ede69b610d86f3f2d746469c938a094b.jpg', '', '', 2, 1);
+(8, '', '', '', '', 'background.jpg', '', '', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video`
+--
+
+CREATE TABLE `video` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `feature` longtext NOT NULL,
+  `price` int(11) DEFAULT NULL,
+  `price_reduce` int(11) DEFAULT NULL,
+  `in_stock` tinyint(1) NOT NULL,
+  `condition` tinyint(1) NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `detail` longtext NOT NULL,
+  `content` longtext NOT NULL,
+  `teach` longtext NOT NULL,
+  `video` varchar(200) NOT NULL,
+  `meta_keyword` text NOT NULL,
+  `meta_description` text NOT NULL,
+  `manual` longtext NOT NULL,
+  `e_manual` longtext NOT NULL,
+  `promotion` longtext NOT NULL,
+  `e_promotion` longtext NOT NULL,
+  `e_title` text NOT NULL,
+  `e_feature` longtext NOT NULL,
+  `e_detail` longtext NOT NULL,
+  `e_content` longtext NOT NULL,
+  `e_teach` longtext NOT NULL,
+  `e_meta_keyword` text NOT NULL,
+  `e_meta_description` text NOT NULL,
+  `pd_option` varchar(255) NOT NULL,
+  `lnk` text NOT NULL,
+  `e_lnk` text NOT NULL,
+  `pId` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `home` tinyint(1) NOT NULL,
+  `ind` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `video`
+--
+
+INSERT INTO `video` (`id`, `title`, `feature`, `price`, `price_reduce`, `in_stock`, `condition`, `brand_id`, `detail`, `content`, `teach`, `video`, `meta_keyword`, `meta_description`, `manual`, `e_manual`, `promotion`, `e_promotion`, `e_title`, `e_feature`, `e_detail`, `e_content`, `e_teach`, `e_meta_keyword`, `e_meta_description`, `pd_option`, `lnk`, `e_lnk`, `pId`, `active`, `home`, `ind`) VALUES
+(1, 'BIẾN TẦN YASKAWA F7', '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>Biến tần Yaskawa F7</strong> là dòng biến tần cao cấp, tích hợp sẵn chế độ điều khiển tự động điều hướng động cơ (auto tuning), tĩnh và động. Là dòng biến tần duy nhất tại Nhật Bản đạt chuẩn RoHS<br />\r\n<br />\r\n&nbsp;</span></span>', NULL, NULL, 0, 0, 0, '<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Nguồn cấp: 3 pha 200VAC / 3 pha 400VAC</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Tần số: 50-60Hz (&plusmn;5%)</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Công suất: 0.4 &ndash; 300kw</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Phương pháp điều khiển: V/f, véc tơ vòng hở cho động cơ đồng bộ</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Mô men khởi động: 150%/3Hz (điều khiển V/f), 100%/5% tốc độ (điều khiển véc tơ vòng hở)</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Khả năng quá tải: 120% trong 60 giây</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Chức năng tự động dò tốc độ động cơ khi mất nguồn không sử dụng cảm biến tốc độ</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Chức năng KEB giữ động cơ hoạt động ổn định khi mất nguồn dùng động năng tái sinh</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Tích hợp sẵn bộ điều khiển PID và cổng truyền thông RS422/RS485.</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">- Các tính năng đặc biệt cho bơm quạt: thiết lập cho các ứng dụng bơm quạt cài đặt trước, khả năng phát hiện sự cố mô men cao hoặc thấp, giữ động cơ hoạt động ngay cả khi mất tín hiệu cài đặt tần số, giám sát công suất và điện năng tiêu thụ.</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Thiết bị mở rộng:</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Hỗ trợ các chuẩn truyền thông RS422/RS485, mechatrolink II, CC-link, Devicenet, Profibus-DP, CANopen, Lonworks</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Bộ lọc sóng hài và cải thiện hệ số công suất xoay chiều, một chiều</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Ứng dụng:</span><br />\r\n<span style="font-family:arial,helvetica,sans-serif; font-size:14px">Quạt, bơm, máy ép, băng tải, xe lăn, xe cáp, máy trục hàng, máy ly tâm.</span>', '', '', '', 'BIẾN TẦN YASKAWA F7', 'BIẾN TẦN YASKAWA F7', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16, 1, 1, 4),
+(2, 'SWITCH OMRON', '<p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif"><strong>SWITCH OMRON</strong></span></span></p>\r\n\r\n<p><span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Nút nhấn có đèn, LED xanh 24VDC<br />\r\nĐèn LED, 24VDC<br />\r\nCấu trúc tháo lắp dễ dàng<br />\r\nTiếp điểm: 1NO+1NC. 6A,/220VAC, 10A/110VDC<br />\r\nTiêu chuẩn EC, IP65</span></span></p>\r\n', NULL, NULL, 0, 0, 0, '', '', '', '', 'SWITCH OMRON', 'SWITCH OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 2),
+(3, 'SENSOR OMRON', '<span style="font-family:arial,helvetica,sans-serif"><span style="font-size:14px">Nguồn cấp: 12 to 24 VDC &plusmn;10%<br />\r\nÁp suất đo: 0 đến 98 kPa<br />\r\nÁp suất chịu đựng tối đa: 490 kPa<br />\r\nMôi chất làm việc: Khí không ăn mòn, không cháy<br />\r\nĐộ chính xác ngõ ra On/Off: &plusmn;1% FS max.<br />\r\nĐộ chính xác ngõ ra analog: &plusmn;3% FS max.<br />\r\nThời gian đáp ứng: 5 ms max.<br />\r\nNgõ ra analog: 0 ~ 5 VDC, tổng trở ra 20 &Omega;, cho phép tải thuần trở 10 k&Omega; min.<br />\r\nNgõ ra On/Off: NPN open collector, 80mA 30VDC max.<br />\r\nChức năng bảo vệ ngược cực nguồn và ngắn mạch ngõ ra<br />\r\nChỉ thị: 21/2‐digit LCD,đèn báo hoạt động (đỏ)<br />\r\nNhiệt độ làm việc: &minus;10&deg;C ~ 55&deg;C<br />\r\nVỏ bọc: Nhôm<br />\r\nTiêu chuẩn: IEC 60529 IP50</span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'SENSOR OMRON', 'SENSOR OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 1),
+(4, 'COUNTER OMRON', '<span style="font-size:14px"><span style="font-family:arial,helvetica,sans-serif">Nguồn cấp: 100-240VAC<br />\r\nChế độ hoạt động: 1-stage preset counter, total and preset counter *1 (lưạ chọn)<br />\r\nHiển thị negative transmissive LCD, 6 số, -99,999 ~ 999,999<br />\r\nChọn màu hiển thị<br />\r\nNgõ vào NPN/PNP và cảm biến 2-dây<br />\r\nChọn chế độ ngõ vào: Increment, decrement, command (UP/DOWN A), individual (UP/DOWN B), quadrature (UP/DOWN C)<br />\r\nNgõ ra: Rơle và NPN<br />\r\nChọn chế độ ngõ ra: N, F, C, R, K-1, P, Q, A, K-2, D, L<br />\r\nNgõ ra tác động nhanh: 0.01 ~ 99.99s<br />\r\nChức năng đếm: 1-stage counter / 1-stage counter with total counter<br />\r\nTốc độ: 30Hz / 5kHz<br />\r\nCó nguồn cho thiết bị ngoài: 12VDC, 100mA<br />\r\nTiêu chuẩn: UL, CSA, EN, CE. IP54</span></span>', NULL, NULL, 0, 0, 0, '', '', '', '', 'COUNTER OMRON', 'COUNTER OMRON', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14, 1, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_cate`
+--
+
+CREATE TABLE `video_cate` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `sum` text NOT NULL,
+  `meta_keyword` text NOT NULL,
+  `meta_description` text NOT NULL,
+  `e_title` text NOT NULL,
+  `e_sum` text NOT NULL,
+  `e_meta_keyword` text NOT NULL,
+  `e_meta_description` text NOT NULL,
+  `img` text NOT NULL,
+  `icon` text NOT NULL,
+  `pId` int(11) NOT NULL,
+  `lev` int(11) NOT NULL,
+  `ind` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `video_cate`
+--
+
+INSERT INTO `video_cate` (`id`, `title`, `sum`, `meta_keyword`, `meta_description`, `e_title`, `e_sum`, `e_meta_keyword`, `e_meta_description`, `img`, `icon`, `pId`, `lev`, `ind`, `active`) VALUES
+(1, 'BIẾN TẦN', '', 'LED Par Lights', 'LED Par Lights', 'Electrical Parts', '', 'Electrical Parts', 'Electrical Parts', '', '', 0, 1, 1, 1),
+(2, 'SERVO', '', 'LED Moving Head', 'LED Moving Head', 'Auto Parts', '', 'Auto Parts', 'Auto Parts', '', '', 0, 1, 2, 1),
+(3, 'ĐỘNG CƠ ', '', 'Moving Head light', 'Moving Head light', 'Mechanical Heat Sink', '', 'Mechanical Heat Sink', 'Mechanical Heat Sink', '', '', 1, 2, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -593,7 +714,7 @@ INSERT INTO `slider` (`id`, `title`, `e_title`, `sum`, `e_sum`, `img`, `lnk`, `e
 -- Table structure for table `vs_counter`
 --
 
-CREATE TABLE IF NOT EXISTS `vs_counter` (
+CREATE TABLE `vs_counter` (
   `hit_counter` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -602,7 +723,7 @@ CREATE TABLE IF NOT EXISTS `vs_counter` (
 --
 
 INSERT INTO `vs_counter` (`hit_counter`) VALUES
-(173);
+(185);
 
 -- --------------------------------------------------------
 
@@ -610,25 +731,248 @@ INSERT INTO `vs_counter` (`hit_counter`) VALUES
 -- Table structure for table `vs_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `vs_detail` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vs_detail` (
+  `id` int(11) NOT NULL,
   `vs_ip` varchar(255) NOT NULL,
   `vs_city` varchar(255) NOT NULL,
   `vs_browser` varchar(255) NOT NULL,
   `vs_os` varchar(255) NOT NULL,
   `vs_id` varchar(255) NOT NULL,
   `vs_flag` tinyint(1) NOT NULL,
-  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=181 ;
+  `dates` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `vs_detail`
 --
 
 INSERT INTO `vs_detail` (`id`, `vs_ip`, `vs_city`, `vs_browser`, `vs_os`, `vs_id`, `vs_flag`, `dates`) VALUES
-(180, '27.74.116.50', 'Hanoi', 'Chrome', 'Windows 10', 'b8k0fr0kgq63mqts889utgqp97', 0, '2016-11-12 23:31:08');
+(191, 'unknown', 'unknown', 'Chrome', 'Windows 8.1', 'hrivvmtkhsj8airpvc80ph49k1', 0, '2017-01-18 09:50:02'),
+(192, 'unknown', 'unknown', 'Chrome', 'Windows 8.1', '3el8gu4vhbq42ro5vbomr3q906', 1, '2017-01-18 10:03:54');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `about`
+--
+ALTER TABLE `about`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ad_user`
+--
+ALTER TABLE `ad_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `basic_config`
+--
+ALTER TABLE `basic_config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `news_cate`
+--
+ALTER TABLE `news_cate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `partner`
+--
+ALTER TABLE `partner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `product_cate`
+--
+ALTER TABLE `product_cate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_image`
+--
+ALTER TABLE `product_image`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `promotion`
+--
+ALTER TABLE `promotion`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `qtext`
+--
+ALTER TABLE `qtext`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `slider`
+--
+ALTER TABLE `slider`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `video`
+--
+ALTER TABLE `video`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pId` (`pId`);
+
+--
+-- Indexes for table `video_cate`
+--
+ALTER TABLE `video_cate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vs_detail`
+--
+ALTER TABLE `vs_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `about`
+--
+ALTER TABLE `about`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `ad_user`
+--
+ALTER TABLE `ad_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `basic_config`
+--
+ALTER TABLE `basic_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `news_cate`
+--
+ALTER TABLE `news_cate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `partner`
+--
+ALTER TABLE `partner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
+--
+-- AUTO_INCREMENT for table `product_cate`
+--
+ALTER TABLE `product_cate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `product_image`
+--
+ALTER TABLE `product_image`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `promotion`
+--
+ALTER TABLE `promotion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `qtext`
+--
+ALTER TABLE `qtext`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `slider`
+--
+ALTER TABLE `slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `video`
+--
+ALTER TABLE `video`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `video_cate`
+--
+ALTER TABLE `video_cate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `vs_detail`
+--
+ALTER TABLE `vs_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
 --
 -- Constraints for dumped tables
 --
@@ -648,42 +992,3 @@ ALTER TABLE `product_image`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-CREATE TABLE `partner` (
-  `id` int(11) NOT NULL,
-  `title` text NOT NULL,
-  `eTitle` text NOT NULL,
-  `lnk` text NOT NULL,
-  `img` text NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  `ind` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `partner`
---
-
-INSERT INTO `partner` (`id`, `title`, `eTitle`, `lnk`, `img`, `active`, `ind`) VALUES
-(1, 'Bambo interior', 'Bambo interior', 'pspmedia.vn', '1439345318holistic-solutions-circle-2-252x200.jpg', 1, 1);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `partner`
---
-ALTER TABLE `partner`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `partner`
---
-ALTER TABLE `partner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

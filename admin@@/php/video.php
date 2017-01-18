@@ -2,24 +2,24 @@
 function mainProcess($db)
 {
     switch($_GET['type']){
-        case 'product_cate':
-            return product_cate($db);
+        case 'video_cate':
+            return video_cate($db);
             break;
-        case 'product_cate_2':
-            return product_cate_2($db);
+        case 'video_cate_2':
+            return video_cate_2($db);
             break;
         default:
-            if(isset($_GET['id'])) return product_image($db);
-            else return product($db);
+            if(isset($_GET['id'])) return video_image($db);
+            else return video($db);
             break;
     }
 }
-function product_cate($db)
+function video_cate($db)
 {
 	$msg='';
-    $act='product';
-    $type='product_cate';
-    $table='product_cate';
+    $act='video';
+    $type='video_cate';
+    $table='video_cate';
     $lev=1;
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
 		$db->where('id',$_POST['idLoad']);
@@ -140,11 +140,11 @@ function product_cate($db)
 	';	
 	return $str;
 }
-function product_cate_2($db){
+function video_cate_2($db){
     $msg='';
-    $act='product';
-    $type='product_cate_2';
-    $table='product_cate';
+    $act='video';
+    $type='video_cate_2';
+    $table='video_cate';
     $lev=2;
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
 		$db->where('id',$_POST['idLoad']);
@@ -218,7 +218,7 @@ function product_cate_2($db){
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
     
-    $str.=$form->search_area($db,$act,'product_cate',$_GET['hint'],1);
+    $str.=$form->search_area($db,$act,'video_cate',$_GET['hint'],1);
     
     $head_title=array('Tiêu đề','Thuộc danh mục','Thứ tự','Hiển thị');
 	$str.=$form->table_start($head_title);
@@ -232,7 +232,7 @@ function product_cate_2($db){
 
     if($db->count!=0){
         foreach($list as $item){
-            $cate=$db->where('id',$item['pId'])->getOne('product_cate','id,title');
+            $cate=$db->where('id',$item['pId'])->getOne('video_cate','id,title');
             $item_content = array(
                 array($item['title'],'text'),
                 array(array($cate),'cate'),
@@ -250,7 +250,7 @@ function product_cate_2($db){
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
             '.$form->text('title',array('label'=>'Tiêu đề','required'=>true)).'
-            '.$form->cate_group($db,$table='product_cate',1).'
+            '.$form->cate_group($db,$table='video_cate',1).'
             '.$form->text('meta_keyword',array('label'=>'Keyword <code>SEO</code>')).'
             '.$form->textarea('meta_description',array('label'=>'Description <code>SEO</code>')).'
             '.$form->number('ind',array('label'=>'Thứ tự','required'=>true)).'
@@ -261,11 +261,11 @@ function product_cate_2($db){
 	</form>';	
 	return $str;
 }
-function product($db){
+function video($db){
     $msg='';
-    $act='product';
-    $type='product';
-    $table='product';
+    $act='video';
+    $type='video';
+    $table='video';
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
 		$db->where('id',$_POST['idLoad']);
         $list = $db->getOne($table);
@@ -353,7 +353,7 @@ function product($db){
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
     
-    $str.=$form->search_area($db,$act,'product_cate',$_GET['hint'],1);
+    $str.=$form->search_area($db,$act,'video_cate',$_GET['hint'],1);
 
     $head_title=array('Tên SP','Danh mục','Hình ảnh','Trang chủ','Hiển thị','Thứ tự');
 	$str.=$form->table_start($head_title);
@@ -370,9 +370,9 @@ function product($db){
     if($db->count!=0){
         $db_sub=$db;
         foreach($list as $item){
-            $cate=$db->where('id',$item['pId'])->getOne('product_cate','id,title,pId');
-            $p_cate=$db->where('id',$cate['pId'])->getOne('product_cate','id,title');
-            $img=$db->where('pId',$item['id'])->orderBy('ind','asc')->getOne('product_image','img');
+            $cate=$db->where('id',$item['pId'])->getOne('video_cate','id,title,pId');
+            $p_cate=$db->where('id',$cate['pId'])->getOne('video_cate','id,title');
+            $img=$db->where('pId',$item['id'])->orderBy('ind','asc')->getOne('video_image','img');
             if(trim($img['img'])==='') $img='holder.js/130x100';else $img=myPath.$img['img'];   
             $item_content = array(
                 array($item['title'],'text'),
@@ -396,7 +396,7 @@ function product($db){
 	<div class="row">
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
-            '.$form->cate_group($db,'product_cate',2).'
+            '.$form->cate_group($db,'video_cate',2).'
         </div>
         <div class="col-lg-12">
           '.$form->text('title',array('label'=>'Tên SP','required'=>true)).'
@@ -419,11 +419,11 @@ function product($db){
 	';
 	return $str;
 }
-function product_image($db){
+function video_image($db){
     $msg='';
-    $act='product';
-    $type='product';
-    $table='product_image';
+    $act='video';
+    $type='video';
+    $table='video_image';
     $pId=intval($_GET['id']);
     
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
@@ -496,9 +496,9 @@ function product_image($db){
         }
 	}
     $db->where('id',$pId);
-    $pd=$db->getOne('product','id,title,pId');
+    $pd=$db->getOne('video','id,title,pId');
     $db->where('id',$pd['pId']);
-    $cate=$db->getOne('product_cate','id,title');
+    $cate=$db->getOne('video_cate','id,title');
 
     $page_head= array(
                     array('#','Hình ảnh sản phẩm'),

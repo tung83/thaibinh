@@ -25,7 +25,7 @@ function menu($db,$lang,$view){
                 <div class="row">
                     
                     <div class="col-md-2 logo">
-                        <a href="'.myWeb.$lang.'/'.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
+                        <a href="'.myWeb.$lang.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
                     </div>
                      <div class="col-md-7">
                      <!--Main Menu HTML Code-->
@@ -283,22 +283,22 @@ function about($db){
     </section>';
     return $str;    
 }
-function collection($db){
+function product($db){
     $str.='
     <section id="page">';
-    common::page('collection');
-    $collection=new collection($db);
-    $str.=$collection->collection_top_content();
+    common::page('product');
+    $product=new product($db);
+    $str.=$product->product_top_content();
     $id=isset($_GET['id']) ? $_GET['id'] : 1;
-    //$str.=$collection->collection_one($id);
+    //$str.=$product->product_one($id);
     
 //    if(isset($_GET['id'])){
-//        $str.=$collection->collection_one(intval($_GET['id']));    
+//        $str.=$product->product_one(intval($_GET['id']));    
 //    }elseif(isset($_GET['hint'])){
-//        $str.=$collection->collection_search();    
+//        $str.=$product->product_search();    
 //    }
 //    else{
-//        $str.=$collection->collection_cate();
+//        $str.=$product->product_cate();
 //    }
     $str.='
     </section>';
@@ -360,24 +360,24 @@ function manual($db){
     $str.=$manual->manual_one();
     return $str;
 }
-function product($db){
-    $str.='
-    <section id="page">';  
-    common::page('product');
-    $pd=new product($db);
-    $str.=$pd->breadcrumb_cate_lev1();
-    $str.=$pd->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$pd->product_one(intval($_GET['id']));    
-    }elseif(isset($_GET['hint'])){
-        $str.=$pd->product_search();    
-    }
-    else{
-        $str.=$pd->product_cate();
-    }
-    $str.=$pd->bottom_content(); 
-    return $str;
-}
+//function product($db){
+//    $str.='
+//    <section id="page">';  
+//    common::page('product');
+//    $pd=new product($db);
+//    $str.=$pd->breadcrumb_cate_lev1();
+//    $str.=$pd->top_content('');
+//    if(isset($_GET['id'])){
+//        $str.=$pd->product_one(intval($_GET['id']));    
+//    }elseif(isset($_GET['hint'])){
+//        $str.=$pd->product_search();    
+//    }
+//    else{
+//        $str.=$pd->product_cate();
+//    }
+//    $str.=$pd->bottom_content(); 
+//    return $str;
+//}
 
 function bien_tan($db){
     common::page('bien_tan');

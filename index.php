@@ -36,7 +36,7 @@
                 break;
             case 'bo-suu-tap':
             case 'collections':
-                echo collection($db,$lang);
+                echo product($db,$lang);
                 break;
             case 'dich-vu':
             case 'service':

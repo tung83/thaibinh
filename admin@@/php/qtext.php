@@ -46,7 +46,7 @@ function qtext($db)
             <ul class="nav nav-tabs">
     			<li class="active"><a href="#vietnamese" data-toggle="tab">Việt Nam</a></li>
     			<li><a href="#english" data-toggle="tab">English</a></li>
-    		</ul>
+            </ul>
             <div class="tab-content">
     			<div class="tab-pane bg-vi active" id="vietnamese">
                     '.$form->ckeditor('content',array('label'=>'Nội dung')).'
