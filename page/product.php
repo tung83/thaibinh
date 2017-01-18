@@ -55,6 +55,22 @@ class product extends base{
         $str.= '<div class="pagination-centered">'.$pg->process().'</div>';
         return $str;
     }
+    
+    function project_item($item){
+        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $img=webPath.$item['img'];
+        return '
+              <div class="col-md-3 col-sm-4 project-col wow fadeInLeft animated" data-wow-duration="2s">
+                <figure class="project-item item">
+                       <img src="'.$img.'" class="img-responsive center-block"/>
+                   
+                    <figcaption>
+                        <p class="item-title text-center">'.$item['title'].'</p>
+                        <a href="'.$lnk.'">View more</a>                     
+                    </figcaption>			
+                </figure>
+            </div>';
+    }
     function product_item($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $str.='
