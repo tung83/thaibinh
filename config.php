@@ -42,7 +42,7 @@ define('frontPath'   ,'/file/front/');
 define('phpLib'     ,root.'/object/');
 define('pageLib'    ,root.'/page/');
 define('widgetLib'  ,root.'/widget/');
-define('head_title'    ,'Hana Beauty');
+define('head_title'    ,'CM Studio');
 
 
 //define area end

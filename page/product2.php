@@ -1,6 +1,6 @@
 <?php
 //http://bootsnipp.com/snippets/z4Wor
-class product extends base{
+class product2 extends base{
     function __construct($db){        
         parent::__construct($db,3,'product');
     }
@@ -181,7 +181,7 @@ class product extends base{
         if($count>0){
             foreach($list as $key=>$item){
                 if($key == 0){
-                    $str.=$this->product_cate_left_list();
+                    $str.=$this->product_cate_lev1();
                 }
                 $str.=$this->product_item($item);
             }
@@ -411,26 +411,49 @@ class product extends base{
 //		imageCrossfade: true,
 //                 galleryActiveClass: "active", 
 //	});  
-    function product_cate_left_list(){
+    function product_cate_lev1($pId){
         $this->db->reset();
-        $this->db->where('active',1);
+        $this->db->where('active',1)->where('lev',1);
         $this->db_orderBy();
         $list=$this->db->get($this->db_cate_name);
-        $str.='
-            <div class="col-md-3 product-col">
-                <div class="product-item item">    
-                    <ul class="product-menu">';
-                    foreach($list as $cate){
-                        $title=$cate['title'];
-                        $str.='
-                        <li><a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-p'.$cate["id"].'">'.$title.'</a></li>';   
-                    }
-        $str.='
-                    </ul>
-                </div>
-            </div>';
+        $str.='         
+        <ul class="nav nav-pills">';
+        foreach($list as $cate){
+            $active = ($cate->id==$pId) ? 'active': '';
+            $title=$cate['title'];
+            $link = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-p'.$cate["id"];
+            $str.='<li role="presentation" class="dropdown '.$active.'"> '
+                . '<a href="'.$link.'" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'
+                . ''.$title.'</a> '
+                .menu_cate_lev2($cate->id)
+            . '</li>';
+        }
+        $str.='               
+        </ul>'  ;
         return $str;
     }
+function menu_cate_lev2($cate_lev1_id){
+    $this->db->reset();
+    $this->db->where('active',1)->where('pid',$cate_lev1_id)->where('lev',2);
+    $this->db_orderBy();
+    $sub_list=$this->db->get($this->db_cate_name);
+    if(count($sub_list)>0){
+        $cate_link = myWeb.$db_view;
+        $str.='
+        <ul class="dropdown-menu">';
+        foreach($sub_list as $sub_item){
+            $title=$sub_item['title'];
+            $sub_lnk = myWeb.$this->lang.'/'.$this->view.'/'.'-p'.$cate_lev1_id.'/'.common::slug($title).'-p_sub'.$sub_item->id;
+              $str.='<li>'
+                    . '<a href="'.$sub_lnk.'">'.$title.'</a>'
+                    . '<hr/>'
+                . '</li>';             
+        }
+        $str.='
+        </ul>';        
+    }
+    return $str;
+}
     
     function product_cate_list(){
         $this->db->reset();

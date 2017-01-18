@@ -248,11 +248,11 @@ function slide($db){
 	<!-- End WOWSlider.com BODY section -->';
     return $str;
 }
-function contact($db){
+function contact($db, $lang){
     $str.='
     <section id="page">';
     common::page('contact');
-    $contact=new contact($db);
+    $contact=new contact($db,$lang);
     $str.=$contact->contact_top_content();
     $str.=$contact->contact(); 
     $str.='
@@ -271,11 +271,11 @@ function project($db){
     }     
     return $str;
 }
-function about($db){
+function about($db,$lang){
     $str.='
     <section id="page">';
     common::page('about');
-    $about=new about($db);
+    $about=new about($db,$lang);
     $str.=$about->about_top_content();
     $id=isset($_GET['id']) ? $_GET['id'] : 1;
     $str.=$about->about_one($id);
@@ -283,25 +283,23 @@ function about($db){
     </section>';
     return $str;    
 }
-function product($db){
-    $str.='
-    <section id="page">';
+function product($db,$lang){
     common::page('product');
-    $product=new product($db);
+    $product=new product($db,$lang);
     $str.=$product->product_top_content();
+    $str.=$product->top_content('');
     $id=isset($_GET['id']) ? $_GET['id'] : 1;
     //$str.=$product->product_one($id);
     
-//    if(isset($_GET['id'])){
-//        $str.=$product->product_one(intval($_GET['id']));    
-//    }elseif(isset($_GET['hint'])){
-//        $str.=$product->product_search();    
-//    }
-//    else{
-//        $str.=$product->product_cate();
-//    }
-    $str.='
-    </section>';
+    if(isset($_GET['id'])){
+        $str.=$product->product_one(intval($_GET['id']));    
+    }elseif(isset($_GET['hint'])){
+        $str.=$product->product_search();    
+    }
+    else{
+        $str.=$product->product_cate();
+    }
+    $str.=$product->bottom_content(); 
     return $str;    
 }
 function news($db){

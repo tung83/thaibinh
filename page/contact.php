@@ -1,8 +1,8 @@
 <?php
 class contact extends base{
     private $post_result;
-    function __construct($db){
-        parent::__construct($db,6,'contact');
+    function __construct($db,$lang){
+        parent::__construct($db,6,'contact',$lang);
     }
     function contact_top_content(){
         return '  
@@ -60,7 +60,6 @@ class contact extends base{
         $basic_config=$this->db->getOne('basic_config');
         $this->contact_insert();
         $this->db->reset();
-        $item=$this->db->where('id',3)->getOne('qtext','content');
          
         $str.='    
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -72,7 +71,10 @@ class contact extends base{
                             <div class="title-head">
                                 <span>'
                                     .$this->title.' 
-                                </span>
+                                </span>    
+                                <p>
+                                    <i>Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:</i>
+                                </p>    
                             </div>
                         </div> 
                     </div> 
@@ -81,11 +83,9 @@ class contact extends base{
                          {
                              $str.= $this->post_result;
                          }                             
-        $str.=              '<div class="col-sm-6">
-                            <i>Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:</i>
-     
+        $str.=              '<div class="col-sm-6">                        
                             <p>
-                                '.common::qtext($this->db,3).'
+                                '.common::qtext($this->db,$this->lang,3).'
                             </p>       
                         </div>
                         <div class="col-sm-6"> 
@@ -131,7 +131,6 @@ class contact extends base{
                     </div><!--/.row-->   
                 </div><!--/.row contact-box--> 
             </div><!--/.container-->
-             <div id="google-map"> </div>
         </section><!--/#contact-page-->';
         return $str;
     }

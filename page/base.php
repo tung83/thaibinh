@@ -9,8 +9,8 @@ class base{
         $this->db->reset();
         $db->where('id',$id);
         $item=$db->getOne($table);
-        $this->view=$item['view'];
-        $this->title=$item['title'];
+        $this->view=$lang == 'en' ? $item['e_view'] : $item['view'];
+        $this->title=$lang == 'en' ? $item['e_title'] :$item['title'];
     }
     
     function breadcrumb(){
@@ -98,9 +98,9 @@ class base{
             </div>
         </section>';
     }
-    protected function check_pId(){
-        if(isset($_GET['pId'])){
-            $pId=intval($_GET['pId']);
+    protected function check_pId($pId){
+        if(isset($_GET[$pId])){
+            $pId=intval($_GET[$pId]);
         }elseif(isset($_GET['id'])){
             $item=$this->db->where('id',intval($_GET['id']))->getOne($this->db_cate_name,'pId');
             $pId=$item['pId'];

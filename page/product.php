@@ -1,7 +1,7 @@
 <?php
 class product extends base{
-    function __construct($db){
-        parent::__construct($db,2,'product');
+    function __construct($db, $lang){
+        parent::__construct($db,4,'product',$lang);
     }
     
     function product_top_content(){
@@ -67,7 +67,99 @@ class product extends base{
         </a>';
         return $str;
     }
+    function product_cate(){
+        $pId = $this->check_pId('pId');
+        $pId_lev2 = $this->check_pId('pSubId');
+        $page=isset($_GET['page'])?intval($_GET['page']):1;
+        $this->db->reset();
+        $this->db->where('active',1);
+        
+        if($pId_lev2!=0){
+            $this->db->where('pId',$pId_lev2);
+        }
+        else if($pId!=0){
+            $this->db->where('pId',$pId);
+        }
+        $this->db_orderBy();
+        $this->db->pageLimit=9;
+        $list=$this->db->paginate('product',$page);
+        $count=$this->db->totalCount;
+        $str.='<div class="product-list">'
+                . '<div class="row">';
+        $str.=$this->product_cate_lev1($pId,$pId_lev2);
+        if($count>0){
+            foreach($list as $key=>$item){
+                $str.=$this->product_item($item);
+            }
+        }        
+        $str.=      '</div>'
+                .'</div>'
+                .'<div class="clearfix"></div>';
+        
+        $pg=new Pagination(array('limit'=>24,'count'=>$count,'page'=>$page,'type'=>0));  
+        if($pId_lev2 > 0){
+            $cate=$this->db->where('id',$pId)->getOne('product_cate','id,title');  
+            $cateLev2=$this->db->where('id',$pId_lev2)->getOne('product_cate','id,title');  
+            $cateLink = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'];
+            $sub_lnk = $cateLink.'/'.common::slug($title).'-p_sub'.$sub_item['id'];
+            $pg->defaultUrl = $sub_lnk;
+            $pg->paginationUrl = $pg->defaultUrl.'/page[p]';
+        }
+        else if($pId > 0){
+            $cate=$this->db->where('id',$pId)->getOne('product_cate','id,title');       
+            $pg->defaultUrl = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'];
+            $pg->paginationUrl = $pg->defaultUrl.'/page[p]';
+        }else{
+            $pg->set_url(array('def'=>myWeb.$this->lang.'/'.$this->view,'url'=>myWeb.$this->lang.'/'.$this->view.'/page[p]'));
+        }
+        $str.= '<div class="pagination-wrapper"> <div class="text-center">'.$pg->process().'</div></div>';
+        $this->paging_shown = ($pg->paginationTotalpages > 0);
+        return $str;
+    }
     
+    function product_cate_lev1($pId,$pId_lev2){
+        $this->db->reset();
+        $this->db->where('active',1)->where('lev',1);
+        $this->db_orderBy();
+        $list=$this->db->get($this->db_cate_name);
+        $str.='         
+        <ul class="nav nav-pills">';
+        foreach($list as $cate){
+            $active = ($cate["id"]==$pId) ? 'active': '';
+            $title=$cate['title'];
+            $link = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-p'.$cate["id"];
+            $str.='<li role="presentation" class="dropdown '.$active.'"> '
+                . '<a href="'.$link.'" role="button" aria-haspopup="true" aria-expanded="false">'
+                . ''.$title.'</a> '
+                .$this->menu_cate_lev2($cate["id"],$link,$pId_lev2)
+            . '</li>';
+        }
+        $str.='               
+        </ul>'  ;
+        return $str;
+    }
+    function menu_cate_lev2($cate_lev1_id,$link,$pId_lev2){
+        $this->db->reset();
+        $this->db->where('active',1)->where('pid',$cate_lev1_id)->where('lev',2);
+        $this->db_orderBy();
+        $sub_list=$this->db->get($this->db_cate_name);
+        if(count($sub_list)>0){
+            $str.='
+            <ul class="dropdown-menu">';
+            foreach($sub_list as $sub_item){
+                $title=$sub_item['title'];
+                $active = ($sub_item["id"]==$pId_lev2) ? 'active': '';
+                $sub_lnk = $link.'/'.common::slug($title).'-p_sub'.$sub_item['id'];
+                  $str.='<li class="'.$active.'">'
+                        . '<a href="'.$sub_lnk.'">'.$title.'</a>'
+                        . '<hr/>'
+                    . '</li>';             
+            }
+            $str.='
+            </ul>';        
+        }
+        return $str;
+    }
     function product_one($id){
         $item=$this->db->where('id',$id)->getOne('product');
         $title=$item['title'];

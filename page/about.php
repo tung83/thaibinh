@@ -1,7 +1,7 @@
 <?php
 class about extends base{
-    function __construct($db){
-        parent::__construct($db,2,'about');
+    function __construct($db,$lang){
+        parent::__construct($db,2,'about',$lang);
     }
     
     function about_top_content(){

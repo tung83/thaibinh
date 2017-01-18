@@ -7,7 +7,7 @@ function ad_menu()
                     /*array(10,'Banner quảng cáo','ads_banner','diamond'),*/
                     array(2,"Giới thiệu","about","credit-card"),
                     array(3,'Quản lý sản phẩm',"product","dropbox"),
-                    array(4,'Dịch vụ','service','anchor'), 
+                    array(16,'Dịch vụ','service','anchor'), 
                     array(7,'Quản lý Videos',"video","dropbox"),
 					/*array(3,"Quản lý phụ tùng","accessary","pencil"),	*/	
                     array(4,'Khuyến mãi','promotion','anchor'), 

@@ -36,6 +36,8 @@
                 break;
             case 'bo-suu-tap':
             case 'collections':
+            case 'search':
+            case 'tim-kiem':
                 echo product($db,$lang);
                 break;
             case 'dich-vu':
