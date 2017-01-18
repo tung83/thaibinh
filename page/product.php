@@ -56,11 +56,11 @@ class product extends base{
         return $str;
     }
     
-    function project_item($item){
+    function product_item($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $img=webPath.$item['img'];
         return '
-              <div class="col-md-3 col-sm-4 project-col wow fadeInLeft animated" data-wow-duration="2s">
+              <div class="col-md-4 col-sm-6 project-col wow fadeInLeft animated" data-wow-duration="2s">
                 <figure class="project-item item">
                        <img src="'.$img.'" class="img-responsive center-block"/>
                    
@@ -71,7 +71,7 @@ class product extends base{
                 </figure>
             </div>';
     }
-    function product_item($item){
+    function product_item2($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $str.='
         <a href="'.$lnk.'" class="collection-item clearfix">
