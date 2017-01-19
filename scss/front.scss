@@ -408,8 +408,9 @@ header{
     border-bottom: 4px solid #7f7f7f;
 }
 #home-page .title-head span{  
-    margin-bottom: 30px; 
-    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    line-height: 40px;
 }
 .more a{
     color: #ffb763;
@@ -519,6 +520,7 @@ line-height: 30px;
     .btn-cart:hover,.btn-cart:focus{
             color:$grey-text-color;
     }
+    
 }
 .product-menu-container{
     padding-left: 0;
@@ -642,7 +644,7 @@ section#home-subscribe {
         color:#fff;
     } 
     #amount{
-        height:33px;
+        height:34px;
     }
     .btn-cart:hover,.btn-cart:focus{
             color:$grey-text-color;
@@ -671,6 +673,13 @@ section#home-subscribe {
 .cart-list{
     .title-head span{
         margin-top: 40px;
+    }
+}
+.detailed{
+    margin-top: 25px;
+    h4{
+        display: inline;
+        border-bottom: 2px solid #7f7f7f;
     }
 }
 @media (min-width: 1200px){   

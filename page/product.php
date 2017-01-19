@@ -245,7 +245,7 @@ class product extends base{
         <div class="row product-detail clearfix">
             
             <div class="col-xs-12">
-            <div class="col-xs-5">
+            <div class="col-md-5">
                 '.$this->product_image_show($item['id']).'
             </div>
                 <article class="product-one">
@@ -280,30 +280,15 @@ class product extends base{
                 </form>
                 <p>'.$item['feature'].'</p>
                 </article>
+                                 
+                <div class="detailed">       
+                    <h4><i class="fa fa-file-text-o"></i> MÔ TẢ CHI TIẾT</h4>
+                    <article>
+                            <p>'.$item['content'].'</p>
+                    </article>      
+                </div>
             </div>
-        </div>                   
-        <div>
-            <div id="tabs" class="tabs">
-                <ul>
-                    <li><a href="#tabs-1"><i class="fa fa-file-text-o"></i> MÔ TẢ CHI TIẾT</a></li>
-                    <li><a href="#tabs-3"><i class="fa fa-pencil-square-o"></i> GHI CHÚ</a></li>
-                    <!--li><a href="#tabs-4">BÌNH LUẬN</a></li-->
-                </ul>
-                <div id="tabs-1">
-                    <article>
-                        <p>'.$item['content'].'</p>
-                    </article>
-                </div>
-                <div id="tabs-3">
-                    <article>
-                        <p>'.$item['manual'].'</p>
-                    </article>
-                </div>
-                <!--div id="tabs-4">
-                    <div class="fb-comments" data-width="100%" data-href="'.$lnk.'" data-numposts="5"></div>
-                </div-->
-            </div>       
-        </div>
+        </div>  
         <script>
             $(document).on("click", ".number-spinner button", function () {    
             var btn = $(this),

@@ -98,7 +98,7 @@
                     <div class="row bottom-footer">                
                         <div class="row">
                             <div class="col-md-6 copyright">
-                                Copyright © 2016 <b class="company">Hana Beauty</b>, All rights reserved. Designed by <a class="psmedia"><b>PSmedia.vn</b></a>
+                                Copyright © 2016 <b class="company">Hana Beauty</b>, All rights reserved. Designed by <a class="psmedia" href="http://psmedia.vn" target="_blank"><b>PSmedia.vn</b></a>
                             </div>
                             <div class="col-md-6 counter">
                                 <div id="counters">

@@ -79,18 +79,44 @@ $(function(){
       fixedContentPos: false
     });      
 })
-$(function() {
-    // slick
-    $('.slick').slick({
+$(function() {    
+     $('.slick').slick({
         dots: false,
         autoplay: true,
-        autoplaySpeed: 2500,
+        autoplaySpeed: 2000,
         infinite: true,
-        speed: 100,
+        speed: 150,
         slidesToShow: 4,
-        slidesToScroll: 1
-    });
-    
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ]
+      });
     $("#search").on('submit',function(e){
         e.preventDefault();
         var val=$(this).find("#hint").val();

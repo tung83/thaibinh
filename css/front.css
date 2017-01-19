@@ -336,8 +336,9 @@ header {
   border-bottom: 4px solid #7f7f7f; }
 
 #home-page .title-head span {
-  margin-bottom: 30px;
-  margin-top: 40px; }
+  margin-bottom: 20px;
+  margin-top: 30px;
+  line-height: 40px; }
 
 .more a {
   color: #ffb763;
@@ -532,7 +533,7 @@ section#home-subscribe {
   background-color: #ff578f;
   color: #fff; }
 .product-detail #amount, #post-cart #amount {
-  height: 33px; }
+  height: 34px; }
 .product-detail .btn-cart:hover, .product-detail .btn-cart:focus, #post-cart .btn-cart:hover, #post-cart .btn-cart:focus {
   color: #464646; }
 .product-detail .number-spinner, #post-cart .number-spinner {
@@ -552,6 +553,12 @@ section#home-subscribe {
 
 .cart-list .title-head span {
   margin-top: 40px; }
+
+.detailed {
+  margin-top: 25px; }
+  .detailed h4 {
+    display: inline;
+    border-bottom: 2px solid #7f7f7f; }
 
 @media (min-width: 1200px) {
   .product-item:hover img, .product-item:focus img, .product-item:active img,
