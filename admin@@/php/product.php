@@ -457,8 +457,8 @@ function product_image($db){
 		try{
             $recent = $db->insert($table,$insert);
             if(common::file_check($_FILES['file'])){
-                WideImage::load('file')->resize(600,700, 'fill')->saveToFile(myPath.$file);
-                WideImage::load(myPath.$file)->resize(300,350, 'fill')->saveToFile(myPath.'thumb_'.$file);
+                WideImage::load('file')->resize(500,350, 'fill')->saveToFile(myPath.$file);
+                WideImage::load(myPath.$file)->resize(300,210, 'fill')->saveToFile(myPath.'thumb_'.$file);
                 $db->where('id',$recent);
                 $db->update($table,array('img'=>$file));
             }
@@ -470,7 +470,7 @@ function product_image($db){
 	if(isset($_POST["update"]))	{
 	   $update=array('ind'=>$ind,'active'=>$active);
        if(common::file_check($_FILES['file'])){
-            WideImage::load('file')->resize(600,700, 'fill')->saveToFile(myPath.$file);
+            WideImage::load('file')->resize(500,350, 'fill')->saveToFile(myPath.$file);
             WideImage::load(myPath.$file)->resize(300,350, 'fill')->saveToFile(myPath.'thumb_'.$file);
             $update = array_merge($update,array('img'=>$file));
             $db->where('id',$_POST['idLoad']);
@@ -533,7 +533,7 @@ function product_image($db){
 	<div class="row">
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
-            '.$form->file('img',600,700).'
+            '.$form->file('img',500,350).'
             '.$form->number('ind',array('label'=>'Thứ tự','required'=>true)).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'
         </div>

@@ -58,17 +58,21 @@ class product extends base{
     
     function product_item($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
-        $img=webPath.$item['img'];
+        $img=$this->first_image($item['id']);
+        $imgLink=webPath.$img;
         return '
-              <div class="col-md-4 col-sm-6 project-col wow fadeInLeft animated" data-wow-duration="2s">
-                <figure class="project-item item">
-                       <img src="'.$img.'" class="img-responsive center-block"/>
-                   
-                    <figcaption>
-                        <p class="item-title text-center">'.$item['title'].'</p>
-                        <a href="'.$lnk.'">View more</a>                     
-                    </figcaption>			
-                </figure>
+            <div class="col-md-4 col-sm-6 product-col-wrap">
+                <div class="project-col wow fadeInLeft animated" data-wow-duration="2s">
+               
+                    <figure class="project-item item">
+                           <img src="'.$imgLink.'" class="img-responsive center-block"/>
+
+                        <figcaption>
+                            <p class="item-title text-center">'.$item['title'].'</p>
+                            <a href="'.$lnk.'">View more</a>                     
+                        </figcaption>			
+                    </figure>
+                </div>
             </div>';
     }
     function product_item2($item){
@@ -101,7 +105,7 @@ class product extends base{
         $list=$this->db->paginate('product',$page);
         $count=$this->db->totalCount;
         $str.='<div class="product-list">'
-                . '<div class="row">';
+                . '<div class="row navbar">';
         $str.=$this->product_cate_lev1($pId,$pId_lev2);
         if($count>0){
             foreach($list as $key=>$item){
@@ -139,13 +143,13 @@ class product extends base{
         $this->db_orderBy();
         $list=$this->db->get($this->db_cate_name);
         $str.='         
-        <ul class="nav nav-pills">';
+        <ul class="nav category-item">';
         foreach($list as $cate){
             $active = ($cate["id"]==$pId) ? 'active': '';
             $title=$cate['title'];
             $link = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-p'.$cate["id"];
             $str.='<li role="presentation" class="dropdown '.$active.'"> '
-                . '<a href="'.$link.'" role="button" aria-haspopup="true" aria-expanded="false">'
+                . '<a href="'.$link.'"  role="button" aria-haspopup="true" aria-expanded="false">'
                 . ''.$title.'</a> '
                 .$this->menu_cate_lev2($cate["id"],$link,$pId_lev2)
             . '</li>';
@@ -168,7 +172,6 @@ class product extends base{
                 $sub_lnk = $link.'/'.common::slug($title).'-p_sub'.$sub_item['id'];
                   $str.='<li class="'.$active.'">'
                         . '<a href="'.$sub_lnk.'">'.$title.'</a>'
-                        . '<hr/>'
                     . '</li>';             
             }
             $str.='
@@ -223,6 +226,12 @@ class product extends base{
         }
         $str.='</div> </div>';
         return $str;
+    }
+    function first_image($id){
+        $this->db->reset();
+        $this->db->where('active',1)->where('pId',$id)->orderBy('ind','ASC')->orderBy('id');
+        $img=$this->db->getOne('product_image','img');
+        return $img['img'];
     }
 }
 

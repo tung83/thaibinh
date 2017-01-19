@@ -485,6 +485,14 @@ header{
         color: #810303;
     }
 }
+#product .category-item {  
+    a {
+        margin: 0;          
+    }
+    a:hover {
+        background-color: transparent;          
+    }     
+}
 @media (max-width: 991px){
     .wrapper{
         margin-top:50px;
@@ -586,6 +594,19 @@ header{
 line-height: 30px;
 
 }
+
+.navbar {
+  text-align: center;
+  .nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+    >li {
+        float: none;
+        display: inline-block;
+    }
+  }
+}
 .ind-about .title {
     color: #595959;
     margin-top: 0;
@@ -668,9 +689,6 @@ section#home-subscribe {
 	}
 }
 
-.item:hover .item-title,.item:focus .item-title{
-    color: #db5010;
-}
 .product-detail{    
     .price{
         span{
@@ -713,14 +731,15 @@ section#home-subscribe {
         margin: 15px 0;
     }
 }
-@media (min-width: 1200px){   
+@media (min-width: 991px){   
     .product-item:hover img, .product-item:focus img, .product-item:active img,
+    .project-item:hover img, .project-item:focus img, .project-item:active img,
     .service-item:hover img, .service-item:focus img, .service-item:active img{
-        -webkit-transform: scale(1.08);
-        transform: scale(1.08);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
     }
 }
-.product-item img,.service-item img  {
+.project-item img,.product-item img,.service-item img  {
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: translateZ(0);
@@ -896,11 +915,14 @@ footer{
 }
 
 /*//project*/
-.project-col{
-    margin: 0;
-    padding: 0;
+.product-col-wrap{
+    margin: 12px 0;
+    
 }
-.project-item img {
+#product{
+    background-color: #121212;
+}
+/*.project-item img {
     opacity: 1;
     -webkit-transition: opacity 0.35s;
     transition: opacity 0.35s;
@@ -916,6 +938,9 @@ footer{
     animation-timing-function: linear;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
+}*/
+.project-item{
+    overflow: hidden;
 }
 .project-item figcaption, .project-item figcaption > a {
     position: absolute;
@@ -928,39 +953,23 @@ footer{
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-.project-item p:after {
-    display: block;
-    content:'';
-    height: 10px;
-    bottom: -10px;
-}
-
-.project-item p,.project-item p:after {
-    -webkit-transition: -webkit-transform 0.35s;
-    transition: transform 0.35s;
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+.project-item p {
     position: absolute;
     left: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: #000;
     margin: 0;
     padding: 0;
-}
-
-.project-item p {
     padding: 15px;
     opacity: 0.73;
     bottom: 0;
     min-height: 50px;
+    color: #fff;
 }
 .project-item:hover p {
-    -webkit-transform: translate3d(0,-10px,0);
-    transform: translate3d(0,-10px,0);
-}
-.project-item:hover p:after {
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    opacity: 0.9;
+    color: #fff;
+    background-color: #7b0000;
 }
 .project-item figcaption::before, .project-item figcaption::after {
     pointer-events: none;
@@ -1020,19 +1029,17 @@ footer{
     
 }
 ul.dropdown-menu {    
-    background-color: #1f7db5;
-    border-radius: 8px;
-    list-style: disc;
+    background-color: #7b0000;
+    border-radius: 0;
+    list-style-image: url(/file/front/small-arrow.png);
     font-weight: normal;
     font-size: 16px;
     color: #fff;
     padding: 15px 5px 5px 40px;
 }
-.nav > li:nth-child(3) ul.dropdown-menu {    
-    left: -55px !important;
-}
-.nav > li:nth-child(4) ul.dropdown-menu {    
-    left: -55px !important;
+
+.nav > li ul.dropdown-menu {    
+    left: 0 !important;
 }
 ul.dropdown-menu a{
     color: #fff;
@@ -1048,19 +1055,6 @@ ul.dropdown-menu >li:last-child >hr{
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
     color: #8fc6e6;
 }
-ul.dropdown-menu:before {
-    margin-top: -8px;
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 100%;
-    left: 47%;
-    border: 8px solid transparent;
-    border-bottom-color: #1f7db5;
-    content: ' ';
-    height: 0;
-    width: 0;
-    pointer-events: none;
-}
 .direct-chat-text:after, .direct-chat-text:before {
     position: absolute;
     bottom: 100%;
@@ -1072,7 +1066,15 @@ ul.dropdown-menu:before {
     width: 0;
     pointer-events: none;
 }
-
+#contact-page{
+    background-color: #121212;
+    input{
+        border-radius: 0;
+    }
+    textarea{
+        border-radius: 0;        
+    }
+}
 
 
 
