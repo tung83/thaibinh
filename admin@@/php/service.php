@@ -53,7 +53,7 @@ function service($db)
                     try{
                 $recent = $db->insert($table,$insert);
                 if(common::file_check($_FILES['file'])){
-                    WideImage::load('file')->resize(365,175, 'fill')->saveToFile(myPath.$file);
+                    WideImage::load('file')->resize(500,360, 'fill')->saveToFile(myPath.$file);
                     $db->where('id',$recent);
                     $db->update($table,array('img'=>$file));
                 }
@@ -70,7 +70,7 @@ function service($db)
                 'home'=>$home,'active'=>$active,'ind'=>$ind,'pId'=>$pId
             );
             if(common::file_check($_FILES['file'])){
-                WideImage::load('file')->resize(365,175, 'fill')->saveToFile(myPath.$file);
+                WideImage::load('file')->resize(500,360, 'fill')->saveToFile(myPath.$file);
                 $update = array_merge($update,array('img'=>$file));
                 $form->img_remove($_POST['idLoad'],$db,$table);
             }
@@ -138,7 +138,7 @@ function service($db)
              
         </div>
         <div class="col-lg-12">
-            '.$form->file('img',365,175).'
+            '.$form->file('img',500,360).'
             '.$form->number('ind',array('label'=>'Thứ tự')).'
             '.$form->checkbox('home',array('label'=>'Trang chủ')).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'

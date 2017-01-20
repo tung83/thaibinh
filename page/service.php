@@ -21,7 +21,6 @@ class service extends base{
                     <a href="'.$lnk.'" class="about-item clearfix">
                         <p class="service-title">'.$item['title'].'</p>
                     </a>
-                    <p class="service-date"><i> '.date("d/m/Y",strtotime($item['date'])).'</i></p>
                     <div class="service-sum">
                         <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
                     </div>

@@ -508,9 +508,9 @@ header{
     border-color: #7f0000;
 }
 .btn-primary {
-    background-color: #fff;
-    border-color: #fff;
-    color: $grey-text-color;
+    background-color: #9a0000;
+    border-color: #420101;
+    color: #fff;
     border-radius: 0;
 }
 .btn-primary:hover, .btn-primary:focus {
@@ -733,13 +733,12 @@ section#home-subscribe {
 }
 @media (min-width: 991px){   
     .product-item:hover img, .product-item:focus img, .product-item:active img,
-    .project-item:hover img, .project-item:focus img, .project-item:active img,
-    .service-item:hover img, .service-item:focus img, .service-item:active img{
+    .project-item:hover img, .project-item:focus img, .project-item:active img{
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
 }
-.project-item img,.product-item img,.service-item img  {
+.project-item img,.product-item img {
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: translateZ(0);
@@ -790,7 +789,9 @@ section#home-subscribe {
 }
 
 
-
+.service-title{
+    color: #9a0000;
+}
 
 
 
@@ -941,6 +942,7 @@ footer{
 }*/
 .project-item{
     overflow: hidden;
+    margin-right: 1px;
 }
 .project-item figcaption, .project-item figcaption > a {
     position: absolute;
@@ -1069,10 +1071,14 @@ ul.dropdown-menu >li:last-child >hr{
 #contact-page{
     background-color: #121212;
     input{
-        border-radius: 0;
+        border-radius: 0;       
+        border: none;
+        border-bottom: 1px solid #2a2a2a;
+        background-color: #121212;
     }
     textarea{
-        border-radius: 0;        
+        border-radius: 0;  
+        background-color: #121212;      
     }
 }
 
