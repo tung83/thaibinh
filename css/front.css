@@ -77,7 +77,11 @@ a:hover, a:focus {
     color: #767676; }
 
 .btn {
-  border-radius: 18px; }
+  border-radius: 0; }
+
+.cart-list {
+  margin-bottom: 15px;
+  margin-top: 10px; }
 
 .fb-page {
   margin-top: 10px; }
@@ -238,7 +242,13 @@ header {
 
 @media (max-width: 991px) {
   .wsmenu > .wsmenu-list > li > a {
-    line-height: 28px; } }
+    line-height: 28px; }
+
+  .animated-arrow {
+    margin: 10px 0 0 10px; }
+
+  #home-subscribe input[type="email"] {
+    width: 90%; } }
 #partner-slider {
   padding-bottom: 50px; }
   #partner-slider .slick-slide {
@@ -331,6 +341,7 @@ header {
   margin-top: 20px;
   margin-bottom: 50px;
   display: inline-block;
+  line-height: 40px;
   color: #ff578f;
   padding-bottom: 14px;
   border-bottom: 4px solid #ff578f; }
@@ -515,6 +526,9 @@ section#home-subscribe {
     color: #fff;
     outline: none; }
 
+@media (max-width: 991px) {
+  section#home-subscribe input[type=email] {
+    width: 90%; } }
 .item:hover .item-title, .item:focus .item-title {
   color: #db5010; }
 

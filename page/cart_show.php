@@ -175,7 +175,7 @@ class cart_show extends base{
                         <div class="choose_area">						
     						<a class="btn btn-default btn-product pull-left" href="'.myWeb.'">Tiếp tục mua sắm</a>
                             <button type="submit"  class="btn btn-default btn-product">Cập nhật</button>
-							<a class="btn btn-default btn-product" href="'.myWeb.$this->view.'/giao-hang">Gửi đơn hàng</a>
+							<a class="btn btn-default btn-product" href="'.myWeb.'thanh-toan/giao-hang">Gửi đơn hàng</a>
     					</div>							
 					</div>
 				</div>
