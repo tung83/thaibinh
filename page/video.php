@@ -1,7 +1,7 @@
 <?php
 class video extends base{
     function __construct($db){
-        parent::__construct($db,10,'video');
+        parent::__construct($db,5,'video');
     }
     function video_top_content(){
         return '  
@@ -50,7 +50,7 @@ class video extends base{
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $img=webPath.$item['img'];
         return '
-        <div class="col-md-2 col-sm-3 video-col wow bounceIn animated" data-wow-duration="2s">
+        <div class="col-md-3 col-sm-6 video-col wow bounceIn animated" data-wow-duration="2s">
             <div class="video-item item">
                 <a href="'.$lnk.'">
                     <img src="'.$img.'" class="img-responsive center-block"/>
@@ -66,9 +66,10 @@ class video extends base{
         $this->db->reset();
         $this->db->where('active',1);
         $this->db_orderBy();
-        $this->db->pageLimit=limit;
+        $this->db->pageLimit=12;
         $list=$this->db->paginate('video',$page);
         $count=$this->db->totalCount;
+        $str.=$this->category($id);
         $str.='<div class="video-list">';
         if($count>0){
             foreach($list as $item){
@@ -95,6 +96,26 @@ class video extends base{
                 </div>
                 <p>'.$content.'</p>
             </article>';                        
+    }
+    
+    function category($id){
+        $list=$this->db->where('active',1)->orderBy('ind','ASC')->get('video_cate',null,'id,title,e_title');
+        $str='<div class="title-head">
+        <div class="row video-category category-item">';
+        foreach($list as $item){
+            $title=($this->lang=='en')?$item['e_title']:$item['title'];
+            if($item['id']==$id){
+                $active=' class="active"';
+            }else{
+                $active='';
+            }
+            $str.='
+            <a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'].'"'.$active.'>
+                '.$title.'
+            </a>';
+        }
+        $str.='</div> </div> </div>';
+        return $str;
     }
 }
 

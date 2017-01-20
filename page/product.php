@@ -165,13 +165,13 @@ class product extends base{
         $sub_list=$this->db->get($this->db_cate_name);
         if(count($sub_list)>0){
             $str.='
-            <ul class="dropdown-menu">';
+            <ul class="dropdown-menu product-menu">';
             foreach($sub_list as $sub_item){
                 $title=$sub_item['title'];
-                $active = ($sub_item["id"]==$pId_lev2) ? 'active': '';
+                $active = '';
                 $sub_lnk = $link.'/'.common::slug($title).'-p_sub'.$sub_item['id'];
                   $str.='<li class="'.$active.'">'
-                        . '<a href="'.$sub_lnk.'">'.$title.'</a>'
+                        . '<a href="'.$sub_lnk.'"><span></span>'.$title.'</a>'
                     . '</li>';             
             }
             $str.='

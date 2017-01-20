@@ -421,11 +421,11 @@ function video($db){
     $video=new video($db);
     $str.=$video->video_top_content();
     $str.=$video->top_content('');
-//    if(isset($_GET['id'])){
-//        $str.=$video->video_one(intval($_GET['id']));    
-//    }else{
-//        $str.=$video->video_cate();
-//    }     
+    if(isset($_GET['id'])){
+        $str.=$video->video_one(intval($_GET['id']));    
+    }else{
+        $str.=$video->video_cate();
+    }     
     return $str;
 }
 function service($db){

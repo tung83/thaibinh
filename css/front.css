@@ -17,7 +17,11 @@
 body {
   font-family: 'arial';
   font-size: 14px;
-  line-height: 19px; }
+  line-height: 19px;
+  color: #fff; }
+
+hr {
+  border-top: 1px solid #464646; }
 
 @media (min-width: 992px) {
   .container {
@@ -385,16 +389,18 @@ header {
 .wsmenu > .wsmenu-list > li:last-child {
   vertical-align: middle; }
 
-#others .header {
+#others {
   background: #121212; }
-  #others .header .menu-ground, #others .header .mobile-sub li {
-    background: transparent;
-    opacity: 1;
-    margin-right: 2px; }
-  #others .header .nav > .container > .row {
-    padding-bottom: 10px; }
-#others #about-us {
-  background: #121212; }
+  #others .header {
+    background: #121212; }
+    #others .header .menu-ground, #others .header .mobile-sub li {
+      background: transparent;
+      opacity: 1;
+      margin-right: 2px; }
+    #others .header .nav > .container > .row {
+      padding-bottom: 10px; }
+  #others #about-us {
+    background: #121212; }
 
 .category-item a {
   color: #fff;
@@ -413,7 +419,7 @@ header {
   .wrapper {
     margin-top: 50px; } }
 #page-content {
-  background-color: #f9f9f9; }
+  background-color: #121212; }
 
 .btn-primary-long.see-more {
   margin-top: 5px;
@@ -663,6 +669,9 @@ section#home-subscribe {
 .service-title {
   color: #9a0000; }
 
+.video-item p {
+  color: #fff; }
+
 footer {
   background-color: #e8e8e8;
   color: #464646; }
@@ -726,7 +735,7 @@ footer {
 .about-us-box, .contact-box, .news-box, .product-box, .project-box, .service-box {
   margin-bottom: 10px; }
 
-#news, #product, #project, #service {
+#news, #project, #service {
   margin-bottom: 30px; }
 
 .contact-wrap {
@@ -755,6 +764,9 @@ footer {
 
 .news-list hr:last-child {
   display: none; }
+
+.service-sum {
+  color: #fff; }
 
 /*//project*/
 .product-col-wrap {
@@ -864,11 +876,10 @@ footer {
 ul.dropdown-menu {
   background-color: #7b0000;
   border-radius: 0;
-  list-style-image: url(/file/front/small-arrow.png);
+  list-style: none;
   font-weight: normal;
   font-size: 16px;
-  color: #fff;
-  padding: 15px 5px 5px 40px; }
+  color: #fff; }
 
 .nav > li ul.dropdown-menu {
   left: 0 !important; }
@@ -907,7 +918,55 @@ ul.dropdown-menu > li:last-child > hr {
     background-color: #121212; }
   #contact-page textarea {
     border-radius: 0;
-    background-color: #121212; }
+    background-color: #121212;
+    border-color: #2a2a2a; }
+
+ul.product-menu {
+  font-weight: normal;
+  font-size: 16px;
+  padding: 15px 0 5px 0; }
+  ul.product-menu li {
+    position: relative;
+    list-style-type: none; }
+  ul.product-menu a {
+    text-transform: capitalize !important;
+    color: #fff !important;
+    font-size: 13px;
+    line-height: 35px;
+    padding: 0;
+    text-align: left; }
+  ul.product-menu a span {
+    width: 35px;
+    display: inline-block; }
+  ul.product-menu a span::before {
+    position: absolute;
+    content: "";
+    top: 46%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin: 0 15px 0 20px;
+    width: 0;
+    height: 0;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-left: 3px solid #fff; }
+  ul.product-menu > li > hr {
+    margin: 0 20px 0 20px;
+    border-bottom: 1px solid #e3e3e3; }
+  ul.product-menu > li:last-child > hr {
+    display: none; }
+  ul.product-menu li.active a {
+    color: #fff !important; }
+    ul.product-menu li.active a span::before {
+      border-left: 3px solid #fff; }
+  ul.product-menu li:hover, ul.product-menu li:focus {
+    background-color: #000;
+    color: #fff !important; }
+    ul.product-menu li:hover hr, ul.product-menu li:focus hr {
+      display: none; }
 
 /*=================== Start phone ring ===============*/
 .coccoc-alo-phone {
