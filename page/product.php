@@ -179,33 +179,52 @@ class product extends base{
         }
         return $str;
     }
+    
     function product_one($id){
-        $item=$this->db->where('id',$id)->getOne('product');
-        $title=$item['title'];
-        $content=$item['content'];
-        return '  
-        <section id="collection-us">
-            <div class="container">
-                <div class="row collection-us-box">
-                    <div class="row wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="10ms">
-                        <div class="col-xs-12">
-                            <div class="title-head">'
-                                    .$this->category($id).' 
-                            </div>
-                        </div> 
-                        <div class="col-md-12">
-                            <article>
-                                <div class="text-center">
-                                    <h2 class="page-title">'.$title.'</h2>
-                                </div>
-                                <p>'.$content.'</p>
-                            </article>
-                        </div>
-                    </div>
+        $this->db->where('id',$id);
+        $item=$this->db->getOne('product','id,price,price_reduce,title,content,pId,feature,manual,promotion,video');
+        $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
+        $list=$this->db->get('product');
+        $lnk=domain.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $str.='
+        <div class="row product-detail clearfix">            
+            <div class="auto-resizable-iframe">
+                <div>
+                  <iframe
+                   frameborder="0"
+                   allowfullscreen=""
+                   src="https://www.youtube.com/embed/'.$item['video'].'">
+                   </iframe>
                 </div>
-                '.shadowBottomDent().' 
             </div>
-        </section>';
+            <div class="col-xs-12">
+                <article class="product-one">
+                <h2 style="text-align: center;">'.$item['title'].'</h2>                    
+                <p>'.$item['feature'].'</p>
+                </article>
+                                 
+                <div class="detailed">       
+                    <h4><i class="fa fa-file-text-o"></i> MÔ TẢ CHI TIẾT</h4>
+                    <article>
+                            <p>'.$item['content'].'</p>
+                    </article>      
+                </div>   
+                </div>
+            </div>';
+        if(count($list)>0){
+            $str.='
+            <h3 class="small-title">
+                    DANH SÁCH CÙNG LOẠI
+            </h3>';
+            $str.='<div class="slick product_list clearfix">';
+
+            foreach($list as $item){                
+                $str.=$this->product_item($item);                
+            }  
+            $str.='</div>'
+                    . '</div>';  
+        }        
+        return $str;
     }
     
     function category($id){

@@ -19,7 +19,7 @@ class service extends base{
                 </div>
                 <div class="col-xs-7">
                     <a href="'.$lnk.'" class="about-item clearfix">
-                        <p class="service-title">'.$item['title'].'</p>
+                        <h3 class="service-title">'.$item['title'].'</h3>
                     </a>
                     <div class="service-sum">
                         <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>

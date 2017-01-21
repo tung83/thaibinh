@@ -51,7 +51,7 @@ class video extends base{
         $img=webPath.$item['img'];
         return '
         <div class="col-md-3 col-sm-6 video-col wow bounceIn animated" data-wow-duration="2s">
-            <div class="video-item item">
+            <div class="video-item video-item item">
                 <a href="'.$lnk.'">
                     <img src="'.$img.'" class="img-responsive center-block"/>
                 </a>
@@ -70,34 +70,69 @@ class video extends base{
         $list=$this->db->paginate('video',$page);
         $count=$this->db->totalCount;
         $str.=$this->category($id);
-        $str.='<div class="video-list">';
+        $str.='<div class="col-xs-12">'
+                . ' <div class="video-list">';
         if($count>0){
             foreach($list as $item){
                 $str.=$this->video_item($item);
             }
         }        
-        $str.='</div>';
+        $str.='</div>'
+                . '<div class="clearfix"></div>';
         
         $pg=new Pagination(array('limit'=>pd_lim,'count'=>$count,'page'=>$page,'type'=>0));  
         $pg->set_url(array('def'=>myWeb.$this->view,'url'=>myWeb.$this->view.'/page[p]'));
         
-        $str.= '<div class="pagination-wrapper"> <div class="text-center">'.$pg->process().'</div></div>';
+        $str.= '<div class=""> <div class="text-center">'.$pg->process().'</div></div></div>';
         $this->paging_shown = ($pg->paginationTotalpages > 0);
         return $str;
     }
-    function video_one($id=1){
-        $item=$this->db->where('id',$id)->getOne('video');
-        $title=$item['title'];
-        $content=$item['content'];
-        return  
-            '<article>
-                <div class="text-center">
-                    <h2 class="page-title">'.$title.'</h2>
-                </div>
-                <p>'.$content.'</p>
-            </article>';                        
-    }
     
+    function video_one($id){
+        $this->db->where('id',$id);
+        $item=$this->db->getOne('video','id,title,content,pId,video');
+        $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
+        $list=$this->db->get('video');
+        $lnk=domain.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $str.='
+        <div class="row video-detail clearfix">            
+            <div class="auto-resizable-iframe">
+                <div>
+                  <iframe
+                   frameborder="0"
+                   allowfullscreen=""
+                   src="https://www.youtube.com/embed/'.$item['video'].'">
+                   </iframe>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <article class="video-one">
+                <h2 style="text-align: center;">'.$item['title'].'</h2>          
+                </article>
+                                 
+                <div class="detailed">       
+                    <h4><i class="fa fa-file-text-o"></i> MÔ TẢ CHI TIẾT</h4>
+                    <article>
+                            <p>'.$item['content'].'</p>
+                    </article>      
+                </div>   
+                </div>
+            </div>';
+        if(count($list)>0){
+            $str.='
+            <h3 class="small-title">
+                    VIDEO CÙNG LOẠI
+            </h3>';
+            $str.='<div class="slick video_list clearfix">';
+
+            foreach($list as $item){                
+                $str.=$this->video_item($item);                
+            }  
+            $str.='</div>'
+                    . '</div>';  
+        }        
+        return $str;
+    }
     function category($id){
         $list=$this->db->where('active',1)->orderBy('ind','ASC')->get('video_cate',null,'id,title,e_title');
         $str='<div class="title-head">

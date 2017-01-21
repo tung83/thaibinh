@@ -15,19 +15,19 @@ function menu($db,$lang,$view){
     $str.='
     <div class="wsmobileheader clearfix">
         <a id="wsnavtoggle" class="animated-arrow"><span></span></a>
-        <a href="'.myWeb.$lang.'/'.'" class="smallogo"><img src="'.frontPath.'logo.png" height="35" alt="" /></a>
+        <a href="'.myWeb.$lang.'" class="smallogo"><img src="'.frontPath.'letter-logo.png" height="35" alt="" /></a>
         <a class="callusicon" href="tel:'.common::qtext($db,$lang,2).'"><span class="fa fa-phone"></span></a>
     </div>            
     <div class="header">
-    <div class="nav hidden-xs hidden-sm">
+    <div class="nav">
     	<div class="container">
             <div class="row">
                 <div class="row">
                     
-                    <div class="col-md-2 logo">
+                    <div class="col-md-2 logo  hidden-xs hidden-sm">
                         <a href="'.myWeb.$lang.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
                     </div>
-                     <div class="col-md-7">
+                     <div class="col-md-7 header-right-top">
                      <!--Main Menu HTML Code-->
                     <nav class="wsmenu clearfix">
                         <ul class="mobile-sub wsmenu-list">';
@@ -49,7 +49,7 @@ function menu($db,$lang,$view){
                     </nav>
                     <!--Menu HTML Code--> 
                      </div>
-                    <div class="col-md-3 header-right">
+                    <div class="col-md-3 header-right header-right-top">
                     <div class="hotline">                  
                         <a href="tel:'.common::qtext($db,$lang,2).'">  
                             <span class="small-phone"></span><span class="phone-number">'.common::qtext($db,$lang,2)
@@ -518,12 +518,22 @@ function resizeSlider(){
         <script>   
         $(document).ready(function() {
             $(window).resize(function() {
-                if($(window).height() > 600)
+                var wHeight = $(window).height();
+                var wWidth = $(window).width();
+                var sliderHeight = wHeight - $(".copyright-wrapper").height();
+                if(wHeight > 400)
                 {
-                    var sliderHeight = $(window).height() - $(".copyright-wrapper").height();
                     $("#wowslider-container1 .ws_images").height(sliderHeight);                    
                     $("#page-content").height(sliderHeight - $("header").height()-1);
-                }                
+                }  
+                if(wWidth < 769)
+                {                      
+                    var ratioWH = 2; 
+                    var imageWidth = sliderHeight * ratioWH;
+                    var imageMarginLeft = "-" + (imageWidth - wWidth)/2 + "px";
+                    $("#wowslider-container1 .ws_images .ws_list img").width(imageWidth);
+                    $("#wowslider-container1 .ws_images .ws_list img").css( "margin-left" ,imageMarginLeft);
+                }
             }).resize();
         });
         </script>';

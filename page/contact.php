@@ -72,7 +72,7 @@ class contact extends base{
                                 <span>'
                                     .$this->title.' 
                                 </span>    
-                                <p>
+                                <p style="margin-bottom: 30px;">
                                     <i>Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:</i>
                                 </p>    
                             </div>

@@ -281,6 +281,7 @@ function product($db){
         //$price_reduce=intval($_POST['price_reduce']);
         $meta_kw=htmlspecialchars($_POST['meta_keyword']);
         $meta_desc=htmlspecialchars($_POST['meta_description']);
+        $video=htmlspecialchars($_POST['video']);
         $content=str_replace("'","",$_POST['content']);     
         $feature=str_replace("'","",$_POST['feature']);
         $detail=str_replace("'","",$_POST['detail']);
@@ -305,7 +306,7 @@ function product($db){
     }
 	if(isset($_POST["addNew"])) {
         $insert = array(
-                    'title'=>$title,'content'=>$content,
+                    'title'=>$title,'content'=>$content,'video'=>$video,
                     'detail'=>$detail,'manual'=>$manual,
                     'feature'=>$feature,'meta_keyword'=>$meta_kw,
                     'meta_description'=>$meta_desc,                                    
@@ -320,7 +321,7 @@ function product($db){
 	}
 	if(isset($_POST["update"]))	{
 	   $update=array(
-                    'title'=>$title,'content'=>$content,
+                    'title'=>$title,'content'=>$content,'video'=>$video,
                     'detail'=>$detail,'manual'=>$manual,
                     'feature'=>$feature,'meta_keyword'=>$meta_kw,
                     'meta_description'=>$meta_desc,
@@ -408,6 +409,7 @@ function product($db){
             '.$form->ckeditor('manual',array('label'=>'Ghi chú')).'           
         </div>
         <div class="col-lg-12">
+            '.$form->text('video',array('label'=>'Video<code>https://www.youtube.com/embed/<i style="color:#000">60g__iiYDPo</i></code>')).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'
             '.$form->checkbox('home',array('label'=>'Trang chủ')).'            
             '.$form->number('ind',array('label'=>'Thứ tự')).'
