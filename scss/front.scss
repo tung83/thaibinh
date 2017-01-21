@@ -514,7 +514,7 @@ header{
         display: inline-block;
 
     }
-    a.active, a:hover, a:focus{
+    a.active,li.active a, a:hover, a:focus{
         color: #810303;
     }
 }
@@ -571,6 +571,12 @@ header{
     border-bottom: 4px solid #7f7f7f;   
     line-height: 40px;
 
+}
+.detailed{
+    h4{
+        border-bottom: 2px solid #7f7f7f;
+        display: inline;
+    }
 }
 #home-page .title-head span{  
     margin-bottom: 30px; 

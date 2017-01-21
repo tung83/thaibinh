@@ -92,13 +92,23 @@ class product extends base{
         $pId_lev2 = $this->check_pId('pSubId');
         $page=isset($_GET['page'])?intval($_GET['page']):1;
         $this->db->reset();
+        $this->db->reset();
         $this->db->where('active',1);
         
-        if($pId_lev2!=0){
+        if($pId_lev2 > 0){
             $this->db->where('pId',$pId_lev2);
         }
-        else if($pId!=0){
-            $this->db->where('pId',$pId);
+        else if($pId > 0){
+            $cate_sub=$this->db->where('pId',$pId)->where('active',1)->get('product_cate',null,'id');
+            if(count($cate_sub) > 0){
+                foreach($cate_sub as $cate_sub_item){
+                    $arr[]=$cate_sub_item['id'];
+                }
+                $this->db->where('pId',$arr,'in');
+            }
+            else{                
+                $this->db->where('pId',-999);
+            }
         }
         $this->db_orderBy();
         $this->db->pageLimit=9;
@@ -121,7 +131,7 @@ class product extends base{
             $cate=$this->db->where('id',$pId)->getOne('product_cate','id,title');  
             $cateLev2=$this->db->where('id',$pId_lev2)->getOne('product_cate','id,title');  
             $cateLink = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'];
-            $sub_lnk = $cateLink.'/'.common::slug($title).'-p_sub'.$sub_item['id'];
+            $sub_lnk = $cateLink.'/'.common::slug($cateLev2['title']).'-p_sub'.$cateLev2['id'];
             $pg->defaultUrl = $sub_lnk;
             $pg->paginationUrl = $pg->defaultUrl.'/page[p]';
         }
@@ -181,6 +191,102 @@ class product extends base{
     }
     
     function product_one($id){
+        $this->db->where('id',$id);
+        $item=$this->db->getOne('product','id,price,price_reduce,title,content,pId,feature,manual,promotion,video');
+        $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
+        $list=$this->db->get('product');
+        $lnk=domain.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $str.='
+        <div class="row product-detail clearfix">
+            
+            <div class="col-xs-12">
+                <div class="col-md-5">
+                    '.$this->product_image_show($item['id']).'
+                </div>
+                    <article class="product-one">
+                    <h1>'.$item['title'].'</h1>                  
+                    <p>'.$item['feature'].'</p>
+                    </article>
+
+                    <div class="detailed">       
+                        <h4><i class="fa fa-file-text-o"></i> MÔ TẢ CHI TIẾT</h4>
+                        <article>
+                                <p>'.$item['content'].'</p>
+                        </article>      
+                    </div>   
+            <div class="clearfix"></div>';
+        if(count($list)>0){
+            $str.='
+            <h3 class="small-title">
+                    DANH SÁCH CÙNG LOẠI
+            </h3>';
+            $str.='<div class="slick product_list clearfix">';
+
+            foreach($list as $item){                
+                $str.=$this->product_item($item);                
+            }  
+            $str.='</div>
+            </div>';  
+        }        
+        return $str;
+    }
+    
+    function product_image_show($id){
+        $this->db->reset();
+        $this->db->where('active',1)->where('pId',$id);
+        $this->db_orderBy();
+        $list=$this->db->get('product_image');
+        $temp=$tmp='';
+        foreach($list as $item){
+            $temp.='
+            <li>
+                <a href="'.webPath.$item['img'].'" >
+                    <img src="'.webPath.$item['img'].'" alt="" title="" class="zoom" data-zoom-image="'.webPath.$item['img'].'"/>
+                </a>
+            </li>';
+            $tmp.='
+            <li>
+                <img src="'.webPath.'thumb_'.$item['img'].'" alt="" title=""/>
+            </li>';
+        }
+        $str.='
+        <!-- Place somewhere in the <body> of your page -->
+        <div id="image-slider" class="flexslider">
+          <ul class="slides popup-gallery">
+            '.$temp.'
+          </ul>
+        </div>
+        <div id="carousel" class="flexslider" style="margin-top:-50px;margin-bottom:10px">
+          <ul class="slides">
+            '.$tmp.'
+          </ul>
+        </div>
+        <script>
+        $(window).load(function() {
+          // The slider being synced must be initialized first
+          $("#carousel").flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            itemWidth: 80,
+            itemMargin: 5,
+            asNavFor: "#image-slider"
+          });
+
+          $("#image-slider").flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            sync: "#carousel"
+          });
+        });
+        </script>';
+        return $str;
+    }
+    
+    function product_one_old($id){
         $this->db->where('id',$id);
         $item=$this->db->getOne('product','id,price,price_reduce,title,content,pId,feature,manual,promotion,video');
         $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');

@@ -421,7 +421,7 @@ header {
   text-transform: uppercase;
   margin: 0px 20px 50px 20px;
   display: inline-block; }
-.category-item a.active, .category-item a:hover, .category-item a:focus {
+.category-item a.active, .category-item li.active a, .category-item a:hover, .category-item a:focus {
   color: #810303; }
 
 .about-category a {
@@ -470,6 +470,10 @@ header {
   text-transform: uppercase;
   border-bottom: 4px solid #7f7f7f;
   line-height: 40px; }
+
+.detailed h4 {
+  border-bottom: 2px solid #7f7f7f;
+  display: inline; }
 
 #home-page .title-head span {
   margin-bottom: 30px;

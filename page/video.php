@@ -62,14 +62,18 @@ class video extends base{
         </div>';
     }
     function video_cate(){
+        $pId = $this->check_pId('pId');
         $page=isset($_GET['page'])?intval($_GET['page']):1;
         $this->db->reset();
         $this->db->where('active',1);
+        if($pId!=0){
+            $this->db->where('pId',$pId);
+        }
         $this->db_orderBy();
         $this->db->pageLimit=12;
         $list=$this->db->paginate('video',$page);
         $count=$this->db->totalCount;
-        $str.=$this->category($id);
+        $str.=$this->category($pId);
         $str.='<div class="col-xs-12">'
                 . ' <div class="video-list">';
         if($count>0){
@@ -80,8 +84,14 @@ class video extends base{
         $str.='</div>'
                 . '<div class="clearfix"></div>';
         
-        $pg=new Pagination(array('limit'=>pd_lim,'count'=>$count,'page'=>$page,'type'=>0));  
-        $pg->set_url(array('def'=>myWeb.$this->view,'url'=>myWeb.$this->view.'/page[p]'));
+        $pg=new Pagination(array('limit'=>pd_lim,'count'=>$count,'page'=>$page,'type'=>0)); 
+        if($pId > 0){
+            $cate=$this->db->where('id',$pId)->getOne('video_cate','id,title');       
+            $pg->defaultUrl = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'];
+            $pg->paginationUrl = $pg->defaultUrl.'/page[p]';
+        }else{
+            $pg->set_url(array('def'=>myWeb.$this->lang.'/'.$this->view,'url'=>myWeb.$this->lang.'/'.$this->view.'/page[p]'));
+        }
         
         $str.= '<div class=""> <div class="text-center">'.$pg->process().'</div></div></div>';
         $this->paging_shown = ($pg->paginationTotalpages > 0);
@@ -133,19 +143,19 @@ class video extends base{
         }        
         return $str;
     }
-    function category($id){
+    function category($pId){
         $list=$this->db->where('active',1)->orderBy('ind','ASC')->get('video_cate',null,'id,title,e_title');
         $str='<div class="title-head">
         <div class="row video-category category-item">';
         foreach($list as $item){
             $title=($this->lang=='en')?$item['e_title']:$item['title'];
-            if($item['id']==$id){
+            if($item['id']==$pId){
                 $active=' class="active"';
             }else{
                 $active='';
             }
             $str.='
-            <a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'].'"'.$active.'>
+            <a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-p'.$item['id'].'"'.$active.'>
                 '.$title.'
             </a>';
         }
