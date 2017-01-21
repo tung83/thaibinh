@@ -1,7 +1,7 @@
 <?php
 define('db_prefix'      ,'e_');
 define('welcome'  ,'Welcome !');
-define('cmsStudio_view'        ,'cmstudio');
+define('cmStudio_view'        ,'cmstudio');
 define('cate'           ,'Categories');
 define('sys'            ,'Hệ thống phân phối');
 define('sys_desc'       ,'Hệ thống phân phối của Mekong rộng khắp toàn quốc');
@@ -19,7 +19,7 @@ define('about_title'    ,'About us');
 define('product_title'  ,'Products');
 define('detail_price'   ,'Price');
 define('feature'        ,'Highlight Features');
-define('content'        ,'Describe');
+define('content'        ,' Describe');
 define('detail'         ,'Detail');
 define('teach'          ,'Manual Instruction');
 define('contact'        ,'Contact US');
@@ -30,4 +30,17 @@ define('video_title'    ,'Video');
 define('search'         ,'Search');
 define('all'            ,'See All');
 define('other_article'  ,'Other Articles');
+define('same_video_list'  ,'SAME VIDEO LIST');
+define('same_product_list'  ,'SAME COLLECTION LIST');
+define('more_button'            ,'Read more');
+
+define('lang_contact_thankyou'           ,'Thank you for visiting our website. All information, please contact:');
+define('lang_contact_fillout'           ,'Please fill out the information and messages of customers, our company will reply as soon as possible.');
+define('lang_contact_fullname'           ,'Full name');
+define('lang_contact_phone'           ,'Phone');
+define('lang_contact_address'           ,'Address');
+define('lang_contact_topic'           ,'Topic');
+define('lang_contact_message'           ,'Message content');
+define('lang_contact_delete'           ,'Delete');
+define('lang_contact_send'           ,'Send');
 ?>

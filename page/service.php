@@ -1,7 +1,7 @@
 <?php
 class service extends base{
-    function __construct($db){
-        parent::__construct($db,10,'service');
+    function __construct($db, $lang){
+        parent::__construct($db,10,'service', $lang);
     }
     function service_top_content(){
         return '  
@@ -9,7 +9,9 @@ class service extends base{
             </div>';
     }
     function service_item($item){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $title=$this->lang == 'en' ? $item['e_title'] : $item['title'];
+        $sum=$this->lang == 'en' ? $item['e_sum'] : $item['sum'];
+        $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         return '
             <div class="row service-item wow fadeInLeft animated" data-wow-duration="1000ms" data-wow-delay="10ms">
                 <div class="col-xs-3">
@@ -19,10 +21,10 @@ class service extends base{
                 </div>
                 <div class="col-xs-7">
                     <a href="'.$lnk.'" class="about-item clearfix">
-                        <h3 class="service-title">'.$item['title'].'</h3>
+                        <h3 class="service-title">'.$title.'</h3>
                     </a>
                     <div class="service-sum">
-                        <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
+                        <span>'.nl2br(common::str_cut($sum,620)).'</span>
                     </div>
                 </div>
             </div>
@@ -46,9 +48,9 @@ class service extends base{
         
         $pg=new Pagination(array('limit'=>pd_lim,'count'=>$count,'page'=>$page,'type'=>0));  
         if($pId==0){
-            $pg->set_url(array('def'=>myWeb.$this->view,'url'=>myWeb.$this->view.'/page[p]'));
+            $pg->set_url(array('def'=>myWeb.$this->view,'url'=>myWeb.$this->lang.'/'.$this->view.'/page[p]'));
         }else{     
-            $pg->defaultUrl = myWeb.$this->view;
+            $pg->defaultUrl = myWeb.$this->lang.'/'.$this->view;
             $pg->paginationUrl = $pg->defaultUrl.'/page[p]';
         }
         $str.= '<div class="pagination-wrapper"> <div class="text-center">'.$pg->process().'</div></div>';
@@ -57,8 +59,8 @@ class service extends base{
     }
     function service_one($id=1){
         $item=$this->db->where('id',$id)->getOne('service');
-        $title=$item['title'];
-        $content=$item['content'];
+        $title=$this->lang == 'en' ? $item['e_title'] : $item['title'];
+        $content=$this->lang == 'en' ? $item['e_content'] : $item['content'];
         return  
             '<article>
                 <div class="text-center">

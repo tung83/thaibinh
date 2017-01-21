@@ -1,7 +1,7 @@
 <?php
 class video extends base{
-    function __construct($db){
-        parent::__construct($db,5,'video');
+    function __construct($db, $lang){
+        parent::__construct($db,5,'video', $lang);
     }
     function video_top_content(){
         return '  
@@ -47,8 +47,9 @@ class video extends base{
         return $str;
     }
     function video_item($item){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $title=$this->lang == 'en' ? $item['e_title'] : $item['title'];
         $img=webPath.$item['img'];
+        $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         return '
         <div class="col-md-3 col-sm-6 video-col wow bounceIn animated" data-wow-duration="2s">
             <div class="video-item video-item item">
@@ -56,7 +57,7 @@ class video extends base{
                     <img src="'.$img.'" class="img-responsive center-block"/>
                 </a>
                 <a href="'.$lnk.'">                    
-                    <p class="item-title text-center">'.$item['title'].'</p>
+                    <p class="item-title text-center">'.$title.'</p>
                 </a>
             </div>
         </div>';
@@ -100,10 +101,12 @@ class video extends base{
     
     function video_one($id){
         $this->db->where('id',$id);
-        $item=$this->db->getOne('video','id,title,content,pId,video');
+        $item=$this->db->getOne('video','id,title,content,e_title,e_content,pId,video');
         $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
         $list=$this->db->get('video');
-        $lnk=domain.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        
+        $title=$this->lang == 'en' ? $item['e_title'] : $item['title'];
+        $content=$this->lang == 'en' ? $item['e_content'] : $item['content'];
         $str.='
         <div class="row video-detail clearfix">            
             <div class="auto-resizable-iframe">
@@ -117,13 +120,13 @@ class video extends base{
             </div>
             <div class="col-xs-12">
                 <article class="video-one">
-                <h2 style="text-align: center;">'.$item['title'].'</h2>          
+                <h2 style="text-align: center;">'.$title.'</h2>          
                 </article>
                                  
                 <div class="detailed">       
-                    <h4><i class="fa fa-file-text-o"></i> MÔ TẢ CHI TIẾT</h4>
+                    <h4><i class="fa fa-file-text-o"></i>'.content.'</h4>
                     <article>
-                            <p>'.$item['content'].'</p>
+                            <p>'.$content.'</p>
                     </article>      
                 </div>   
                 </div>
@@ -131,7 +134,7 @@ class video extends base{
         if(count($list)>0){
             $str.='
             <h3 class="small-title">
-                    VIDEO CÙNG LOẠI
+                    '.same_video_list.'
             </h3>';
             $str.='<div class="slick video_list clearfix">';
 

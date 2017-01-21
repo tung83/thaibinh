@@ -209,7 +209,10 @@ class common{
     static function qtext($db,$lang,$id,$table='qtext'){
         $db->where('id',$id);
         $item=$db->getOne($table,'content, e_content');
-        return $lang=='vi'?$item['content']:$item['e_content'];
+        if(!isset($item['e_content']) || $item['e_content'] == ''){
+            return $item['content'];         
+        }
+        return $lang=='vi'?$item['content']:$item['e_content'];   
     }
     function ads_banner($db){
         $db->reset();

@@ -70,8 +70,8 @@ class about extends base{
     
     function about_one($id){
         $item=$this->db->where('id',$id)->getOne('about');
-        $title=$item['title'];
-        $content=$item['content'];
+        $title=$this->lang == 'en' ? $item['e_title'] : $item['title'];
+        $content=$this->lang == 'en' ? $item['e_content'] : $item['content'];
         return '  
         <section id="about-us">
             <div class="container">

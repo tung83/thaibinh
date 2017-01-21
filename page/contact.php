@@ -73,7 +73,7 @@ class contact extends base{
                                     .$this->title.' 
                                 </span>    
                                 <p style="margin-bottom: 30px;">
-                                    <i>Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:</i>
+                                    <i>'.lang_contact_thankyou.'</i>
                                 </p>    
                             </div>
                         </div> 
@@ -89,12 +89,12 @@ class contact extends base{
                             </p>       
                         </div>
                         <div class="col-sm-6"> 
-                            <p class="text-center">
-                                Chú ý: Dấu (*) các trường bắt buộc phải nhập vào. Quý vị có thể gõ chữ tiếng Việt không dấu hoặc chữ tiếng Việt có dấu theo chuẩn UNICODE (UTF-8).
-                            </p>
+                            <p class="text-center">'
+                                .lang_contact_fillout
+                            .'</p>
                             <form data-toggle="validator" role="form" class="contact-form" name="contact-form" method="post" action="">
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" required placeholder="Họ Tên*" />
+                                    <input type="text" name="name" class="form-control" required placeholder="'.lang_contact_fullname.'*" />
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
@@ -102,17 +102,17 @@ class contact extends base{
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="phone" class="form-control" required placeholder="Điện Thoại*">
+                                    <input type="text" name="phone" class="form-control" required placeholder="'.lang_contact_phone.'*">
                                 </div>   
                                 <div class="form-group">
-                                    <input type="text" name="adds" class="form-control" required placeholder="Địa Chỉ*">
+                                    <input type="text" name="adds" class="form-control" required placeholder="'.lang_contact_address.'*">
                                 </div>      
                                 <div class="form-group">
-                                    <input type="text" name="subject" class="form-control" required placeholder="Chủ Đề*"/>
+                                    <input type="text" name="subject" class="form-control" required placeholder="'.lang_contact_topic.'*"/>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="content" id="content" required class="form-control"  placeholder="Nội Dung Tin Nhắn*" rows="8"></textarea>
+                                    <textarea name="content" id="content" required class="form-control"  placeholder="'.lang_contact_message.'*" rows="8"></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">    
@@ -120,10 +120,10 @@ class contact extends base{
                                 </div> 
                                 <div class="form-group">
                                     <button type="submit" name="contact_send" class="btn btn-primary btn-md btn-custom submit-button">
-                                        Gửi Tin
+                                        '.lang_contact_send.'
                                     </button>
                                     <button type="reset" name="reset" class="btn btn-primary btn-md btn-custom">
-                                        Xóa
+                                        '.lang_contact_delete.'
                                     </button>
                                 </div>
                             </form> 

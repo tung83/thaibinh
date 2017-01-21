@@ -41,7 +41,7 @@
                 echo product($db,$lang);
                 break;
             case 'dich-vu':
-            case 'service':
+            case 'services':
                 echo service($db,$lang);
                 break;
             case 'video-dac-sac':
@@ -57,10 +57,11 @@
             case 'tin-tuc':
                 echo news($db,$lang);
                 break;
-            case 'CMStudio':
+            case 'cmstudio':
                 echo about($db,$lang);
                 break;
             case 'lien-he':
+            case 'contact-us':                
                 echo contact($db,$lang);
                 break;
             default:
@@ -75,7 +76,7 @@
                     <div class="row bottom-footer">                
                         <div class="row">
                             <div class="col-md-6 copyright">
-                                Copyright © 2016 <b class="company">Hana Beauty</b>, All rights reserved. Designed by <a class="psmedia"><b>PSmedia.vn</b></a>
+                                Copyright © 2016 <b class="company">CM Studio</b>, All rights reserved. Designed by <a class="psmedia"><b>PSmedia.vn</b></a>
                             </div>
                             <div class="col-md-6 ">
                                 <?=social($db)?>

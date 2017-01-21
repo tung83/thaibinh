@@ -33,9 +33,9 @@ function menu($db,$lang,$view){
                         <ul class="mobile-sub wsmenu-list">';
                     foreach($list as $item){
                         $title=$lang=='vi'?$item['title']:$item['e_title'];
-                        $active=($view==$item['view'])?'active':'';
-                        $lnk=$lang=='vi'?$item['view']:$item['e_view'];
-                        $lnk = myWeb.$lang.'/'.$lnk;
+                        $current_view=$lang=='vi'?$item['view']:$item['e_view'];
+                        $active=($view==$current_view)?'active':'';
+                        $lnk = myWeb.$lang.'/'.$current_view;
                         if($item['view'] == "trang-chu"){
                             $str.='<li><a href="'.$lnk.'"  class="'.$active.'"><i class="fa fa-home"></i></a></li>';
                         }
@@ -176,7 +176,7 @@ function welcomeHome($db,$lang){
                        .common::qtext($db,$lang,6) 
                   
                     . ' <div>
-                            <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$lang.'/'.cmsStudio_view.'">'.more_button.'</a>    
+                            <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$lang.'/'.cmStudio_view.'">'.more_button.'</a>    
                         </div>
                     </div>
                 </div>
@@ -377,48 +377,9 @@ function manual($db){
 //    return $str;
 //}
 
-function bien_tan($db){
-    common::page('bien_tan');
-    $bien_tan=new bien_tan($db);
-    $str.=$bien_tan->breadcrumb_with_Id();
-    $str.=$bien_tan->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$bien_tan->product_one(intval($_GET['id']));    
-    }else{
-        $str.=$bien_tan->product_cate();
-    }     
-    return $str;
-}
-
-function servo($db){
-    common::page('servo');
-    $servo=new servo($db);
-    $str.=$servo->breadcrumb_with_Id();
-    $str.=$servo->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$servo->product_one(intval($_GET['id']));    
-    }else{
-        $str.=$servo->product_cate();
-    }     
-    return $str;
-}
-
-function dong_co($db){
-    common::page('dong_co');
-    $dong_co=new dong_co($db);
-    $str.=$dong_co->breadcrumb_with_Id();
-    $str.=$dong_co->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$dong_co->product_one(intval($_GET['id']));    
-    }else{
-        $str.=$dong_co->product_cate();
-    }     
-    return $str;
-}
-
-function video($db){
+function video($db, $lang){
     common::page('video');
-    $video=new video($db);
+    $video=new video($db, $lang);
     $str.=$video->video_top_content();
     $str.=$video->top_content('');
     if(isset($_GET['id'])){
@@ -428,9 +389,9 @@ function video($db){
     }     
     return $str;
 }
-function service($db){
+function service($db, $lang){
     common::page('service');
-    $service=new service($db);
+    $service=new service($db, $lang);
     $str.=$service->service_top_content();
     $str.=$service->top_content('');
     if(isset($_GET['id'])){

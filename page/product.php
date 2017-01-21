@@ -56,8 +56,9 @@ class product extends base{
         return $str;
     }
     
-    function product_item($item){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+    function product_item($item){        
+        $title=$this->lang == 'en' ? $item['e_title'] : $item['title'];
+        $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         $img=$this->first_image($item['id']);
         $imgLink=webPath.$img;
         return '
@@ -68,24 +69,12 @@ class product extends base{
                            <img src="'.$imgLink.'" class="img-responsive center-block"/>
 
                         <figcaption>
-                            <p class="item-title text-center">'.$item['title'].'</p>
+                            <p class="item-title text-center">'.$title.'</p>
                             <a href="'.$lnk.'">View more</a>                     
                         </figcaption>			
                     </figure>
                 </div>
             </div>';
-    }
-    function product_item2($item){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
-        $str.='
-        <a href="'.$lnk.'" class="collection-item clearfix">
-            <img src="'.webPath.$item['img'].'" class="img-responsive" alt="" title=""/>
-            <div>
-                <h2>'.$item['title'].'</h2>
-                <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
-            </div>
-        </a>';
-        return $str;
     }
     function product_cate(){
         $pId = $this->check_pId('pId');
@@ -128,16 +117,20 @@ class product extends base{
         
         $pg=new Pagination(array('limit'=>24,'count'=>$count,'page'=>$page,'type'=>0));  
         if($pId_lev2 > 0){
-            $cate=$this->db->where('id',$pId)->getOne('product_cate','id,title');  
-            $cateLev2=$this->db->where('id',$pId_lev2)->getOne('product_cate','id,title');  
-            $cateLink = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'];
-            $sub_lnk = $cateLink.'/'.common::slug($cateLev2['title']).'-p_sub'.$cateLev2['id'];
+            $cate=$this->db->where('id',$pId)->getOne('product_cate','id,title,e_title');
+            $title_cate=$this->lang == 'en' ? $cate['e_title'] : $cate['title'];
+            
+            $cateLev2=$this->db->where('id',$pId_lev2)->getOne('product_cate','id,title,e_title');  
+            $title_cateLev2=$this->lang == 'en' ? $cateLev2['e_title'] : $cateLev2['title'];
+            $cateLink = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title_cate).'-p'.$cate['id'];
+            $sub_lnk = $cateLink.'/'.common::slug($title_cateLev2).'-p_sub'.$cateLev2['id'];
             $pg->defaultUrl = $sub_lnk;
             $pg->paginationUrl = $pg->defaultUrl.'/page[p]';
         }
         else if($pId > 0){
-            $cate=$this->db->where('id',$pId)->getOne('product_cate','id,title');       
-            $pg->defaultUrl = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'];
+            $cate=$this->db->where('id',$pId)->getOne('product_cate','id,title,e_title');
+            $title_cate=$this->lang == 'en' ? $cate['e_title'] : $cate['title'];      
+            $pg->defaultUrl = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title_cate).'-p'.$cate['id'];
             $pg->paginationUrl = $pg->defaultUrl.'/page[p]';
         }else{
             $pg->set_url(array('def'=>myWeb.$this->lang.'/'.$this->view,'url'=>myWeb.$this->lang.'/'.$this->view.'/page[p]'));
@@ -156,16 +149,17 @@ class product extends base{
         <ul class="nav category-item">';
         foreach($list as $cate){
             $active = ($cate["id"]==$pId) ? 'active': '';
-            $title=$cate['title'];
-            $link = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-p'.$cate["id"];
+            $title_cate=$this->lang == 'en' ? $cate['e_title'] : $cate['title'];
+            $link = myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title_cate).'-p'.$cate["id"];
             $str.='<li role="presentation" class="dropdown '.$active.'"> '
                 . '<a href="'.$link.'"  role="button" aria-haspopup="true" aria-expanded="false">'
-                . ''.$title.'</a> '
+                . ''.$title_cate.'</a> '
                 .$this->menu_cate_lev2($cate["id"],$link,$pId_lev2)
             . '</li>';
         }
         $str.='               
-        </ul>'  ;
+        </ul>
+            <div class="clearfix"></div>'  ;
         return $str;
     }
     function menu_cate_lev2($cate_lev1_id,$link,$pId_lev2){
@@ -177,11 +171,11 @@ class product extends base{
             $str.='
             <ul class="dropdown-menu product-menu">';
             foreach($sub_list as $sub_item){
-                $title=$sub_item['title'];
+                $title_cate=$this->lang == 'en' ? $sub_item['e_title'] : $sub_item['title'];
                 $active = '';
-                $sub_lnk = $link.'/'.common::slug($title).'-p_sub'.$sub_item['id'];
+                $sub_lnk = $link.'/'.common::slug($title_cate).'-p_sub'.$sub_item['id'];
                   $str.='<li class="'.$active.'">'
-                        . '<a href="'.$sub_lnk.'"><span></span>'.$title.'</a>'
+                        . '<a href="'.$sub_lnk.'"><span></span>'.$title_cate.'</a>'
                     . '</li>';             
             }
             $str.='
@@ -192,10 +186,12 @@ class product extends base{
     
     function product_one($id){
         $this->db->where('id',$id);
-        $item=$this->db->getOne('product','id,price,price_reduce,title,content,pId,feature,manual,promotion,video');
+        $item=$this->db->getOne('product','id,title,content,pId,feature,e_title,e_content,e_feature,video');
         $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
         $list=$this->db->get('product');
-        $lnk=domain.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $title=$this->lang == 'en' ? $item['e_title'] : $item['title'];
+        $feature=$this->lang == 'en' ? $item['e_feature'] : $item['feature'];
+        $content=$this->lang == 'en' ? $item['e_content'] : $item['content'];
         $str.='
         <div class="row product-detail clearfix">
             
@@ -204,21 +200,21 @@ class product extends base{
                     '.$this->product_image_show($item['id']).'
                 </div>
                     <article class="product-one">
-                    <h1>'.$item['title'].'</h1>                  
-                    <p>'.$item['feature'].'</p>
+                    <h1>'.$$title.'</h1>                  
+                    <p>'.$feature.'</p>
                     </article>
 
                     <div class="detailed">       
-                        <h4><i class="fa fa-file-text-o"></i> MÔ TẢ CHI TIẾT</h4>
+                        <h4><i class="fa fa-file-text-o"></i>'.content.'</h4>
                         <article>
-                                <p>'.$item['content'].'</p>
+                                <p>'.$content.'</p>
                         </article>      
                     </div>   
             <div class="clearfix"></div>';
         if(count($list)>0){
             $str.='
             <h3 class="small-title">
-                    DANH SÁCH CÙNG LOẠI
+                    '.same_product_list.'
             </h3>';
             $str.='<div class="slick product_list clearfix">';
 
@@ -283,53 +279,6 @@ class product extends base{
           });
         });
         </script>';
-        return $str;
-    }
-    
-    function product_one_old($id){
-        $this->db->where('id',$id);
-        $item=$this->db->getOne('product','id,price,price_reduce,title,content,pId,feature,manual,promotion,video');
-        $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
-        $list=$this->db->get('product');
-        $lnk=domain.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
-        $str.='
-        <div class="row product-detail clearfix">            
-            <div class="auto-resizable-iframe">
-                <div>
-                  <iframe
-                   frameborder="0"
-                   allowfullscreen=""
-                   src="https://www.youtube.com/embed/'.$item['video'].'">
-                   </iframe>
-                </div>
-            </div>
-            <div class="col-xs-12">
-                <article class="product-one">
-                <h2 style="text-align: center;">'.$item['title'].'</h2>                    
-                <p>'.$item['feature'].'</p>
-                </article>
-                                 
-                <div class="detailed">       
-                    <h4><i class="fa fa-file-text-o"></i> MÔ TẢ CHI TIẾT</h4>
-                    <article>
-                            <p>'.$item['content'].'</p>
-                    </article>      
-                </div>   
-                </div>
-            </div>';
-        if(count($list)>0){
-            $str.='
-            <h3 class="small-title">
-                    DANH SÁCH CÙNG LOẠI
-            </h3>';
-            $str.='<div class="slick product_list clearfix">';
-
-            foreach($list as $item){                
-                $str.=$this->product_item($item);                
-            }  
-            $str.='</div>'
-                    . '</div>';  
-        }        
         return $str;
     }
     
