@@ -7,15 +7,8 @@ function ad_menu()
                     /*array(10,'Banner quảng cáo','ads_banner','diamond'),*/
                     array(2,"Giới thiệu","about","credit-card"),
                     array(3,'Quản lý sản phẩm',"product","dropbox"),
-                    array(16,'Dịch vụ','service','anchor'), 
-                    array(7,'Quản lý Videos',"video","dropbox"),
-					/*array(3,"Quản lý phụ tùng","accessary","pencil"),	*/	
-                    array(4,'Khuyến mãi','promotion','anchor'), 
-                    array(5,'Tin tức','news','pencil-square-o'),   
-                    array(6,'Đối tác','partner','briefcase'), 
-                    //array(9,'Video','video','youtube'),
-                    /*array(14,'Hỗ trợ trực tuyến','support_online','headphones'),*/
-                    //array(14,'Đặt hàng','cart','shopping-cart'),
+                    array(16,'Dịch vụ','service','briefcase'), 
+                    array(7,'Quản lý Videos',"video","youtube"),
                     array(8,'Liên hệ','contact','users'),                    
                     array(11,"Pages SEO","seo","book"),
                     array(12,"Quản lý text","qtext","folder-open"),

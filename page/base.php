@@ -93,8 +93,7 @@ class base{
         return '        </div>
                     </div>
                 </div>
-                <div class="'.$has_paging.'">
-                </div>
+                
             </div>
         </section>';
     }

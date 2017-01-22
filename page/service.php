@@ -14,12 +14,12 @@ class service extends base{
         $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         return '
             <div class="row service-item wow fadeInLeft animated" data-wow-duration="1000ms" data-wow-delay="10ms">
-                <div class="col-xs-3">
+                <div class="col-md-3">
                     <a href="'.$lnk.'" class="about-item ">
                         <img src="'.webPath.$item['img'].'" class="img-responsive" alt="" title=""/>
                     </a>     
                 </div>
-                <div class="col-xs-7">
+                <div class="col-md-7">
                     <a href="'.$lnk.'" class="about-item clearfix">
                         <h3 class="service-title">'.$title.'</h3>
                     </a>

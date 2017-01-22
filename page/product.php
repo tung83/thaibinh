@@ -135,7 +135,7 @@ class product extends base{
         }else{
             $pg->set_url(array('def'=>myWeb.$this->lang.'/'.$this->view,'url'=>myWeb.$this->lang.'/'.$this->view.'/page[p]'));
         }
-        $str.= '<div class="pagination-wrapper"> <div class="text-center">'.$pg->process().'</div></div>';
+        $str.= '<div class="text-center">'.$pg->process().'</div>';
         $this->paging_shown = ($pg->paginationTotalpages > 0);
         return $str;
     }

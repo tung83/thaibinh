@@ -489,7 +489,7 @@ function resizeSlider(){
                 }  
                 if(wWidth < 769)
                 {                      
-                    var ratioWH = 2; 
+                    var ratioWH = (2000/930); 
                     var imageWidth = sliderHeight * ratioWH;
                     var imageMarginLeft = "-" + (imageWidth - wWidth)/2 + "px";
                     $("#wowslider-container1 .ws_images .ws_list img").width(imageWidth);

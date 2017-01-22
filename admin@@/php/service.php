@@ -140,10 +140,10 @@ function service($db)
 	<div class="row">
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
-         <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs">
                      <li class="active"><a href="#vietnamese" data-toggle="tab">Việt Nam</a></li>
                      <li><a href="#english" data-toggle="tab">English</a></li>
-                 </ul>
+                </ul>
                 <div class="tab-content">
                     <div class="tab-pane bg-vi active" id="vietnamese">
                         '.$form->text('title',array('label'=>'Tiêu đề','required'=>true)).'      
