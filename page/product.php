@@ -235,7 +235,7 @@ class product extends base{
                     '.$this->product_image_show($item['id']).'
                 </div>
                     <article class="product-one">
-                    <h1>'.$$title.'</h1>                  
+                    <h1>'.$title.'</h1>                  
                     <p>'.$feature.'</p>
                     </article>
 
