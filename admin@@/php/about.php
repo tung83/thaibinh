@@ -5,7 +5,6 @@ function mainProcess($db)
 }
 function about($db)
 {
-    var_dump($_POST["addNew"]);
     $msg='';
     $act='about';
     $table='about';

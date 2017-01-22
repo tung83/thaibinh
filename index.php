@@ -12,7 +12,7 @@
 <body id="<?=pageId($view)?>">
     
         <?php
-        if($view == 'trang-chu'){
+        if($view == 'trang-chu' || $view == 'home'){
             echo '<section id="ind-slider">
                 <div id="slider-box">
                     '.wow_slider($db).' 

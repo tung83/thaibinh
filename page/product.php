@@ -140,6 +140,41 @@ class product extends base{
         return $str;
     }
     
+    function product_search(){
+        $page=isset($_GET['page'])?intval($_GET['page']):1;
+        $this->db->reset();
+        $this->db->where('active',1);
+        $this->db->where('title','%'.$_GET['hint'].'%', 'like');        
+        $this->db_orderBy();
+        $this->db->pageLimit=9;
+        $list=$this->db->paginate('product',$page);        
+        $count=$this->db->totalCount;
+       $str.='<div class="alert alert-success"><i class="icon fa fa-check"></i>
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Có '.$count. ' kết quả với từ khoá <b>"'.$_GET['hint'].'"</b>
+              </div>';
+       
+        $str.='<div class="product-list">'
+                . '<div class="row">';
+        if($count>0){
+            foreach($list as $item){
+                $str.=$this->product_item($item);
+            }
+        }        
+        $str.=      '</div>'
+                .'</div>'
+                .'<div class="clearfix"></div>';
+        
+        $pg=new Pagination(array('limit'=>24,'count'=>$count,'page'=>$page,'type'=>0));  
+             
+            $pg->defaultUrl = myWeb.search_view.'/'.$_GET['hint'];
+            $pg->paginationUrl = myWeb.search_view.'/page[p]'.'/'.$_GET['hint'];
+        
+        $str.= '<div class="pagination-wrapper"> <div class="text-center">'.$pg->process().'</div></div>';
+        $this->paging_shown = ($pg->paginationTotalpages > 0);
+        return $str;
+    }
+    
     function product_cate_lev1($pId,$pId_lev2){
         $this->db->reset();
         $this->db->where('active',1)->where('lev',1);
@@ -307,6 +342,7 @@ class product extends base{
         $img=$this->db->getOne('product_image','img');
         return $img['img'];
     }
+    
 }
 
 

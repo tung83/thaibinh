@@ -16,8 +16,9 @@ function qtext($db)
     $form = new form($item);
 
 	if(isset($_POST["addNew"])||isset($_POST["update"])) {
-        $content=str_replace("'","",$_POST['content']);
-        $e_content=str_replace("'","",$_POST['e_content']);
+            
+            $content=str_replace("'","",$_POST['content']);
+            $e_content=str_replace("'","",$_POST['e_content']);
 	}
 	if(isset($_POST["update"]))	{
         $update=array(
@@ -35,6 +36,8 @@ function qtext($db)
                     array('#','Quản lý bài viết'),
                     array('#',$item['title'])
                 );
+    $content_text = ($id == 2) ? $form->text('content',array('label'=>'Nội dung')): $form->ckeditor('content',array('label'=>'Nội dung'));
+    $e_content_text = ($id == 2) ? $form->text('e_content',array('label'=>'Nội dung')): $form->ckeditor('e_content',array('label'=>'Nội dung'));
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
 	$str.='			
@@ -49,10 +52,10 @@ function qtext($db)
             </ul>
             <div class="tab-content">
     			<div class="tab-pane bg-vi active" id="vietnamese">
-                    '.$form->ckeditor('content',array('label'=>'Nội dung')).'
+                    '.$content_text.'
                 </div>
                 <div class="tab-pane bg-en" id="english">
-                    '.$form->ckeditor('e_content',array('label'=>'Nội dung')).'
+                    '.$e_content_text.'
                 </div>
             </div>
         </div>

@@ -34,7 +34,7 @@ function menu($db,$lang,$view){
                     foreach($list as $item){
                         $title=$lang=='vi'?$item['title']:$item['e_title'];
                         $current_view=$lang=='vi'?$item['view']:$item['e_view'];
-                        $active=($view==$current_view)?'active':'';
+                        $active=($view==$item['view'] || $view==$item['e_view'])?'active':'';
                         $lnk = myWeb.$lang.'/'.$current_view;
                         if($item['view'] == "trang-chu"){
                             $str.='<li><a href="'.$lnk.'"  class="'.$active.'"><i class="fa fa-home"></i></a></li>';
@@ -62,7 +62,7 @@ function menu($db,$lang,$view){
                             <div class="search_form">
                                <form class="pull-right" role="form" method="get" name="search" id="search">
                                     <input type="hidden" id="search-link" value="'.myWeb.$lang.'/'.search_view.'/" />                                      
-                                    <input type="text" id="hint" placeholder="Tìm kiếm...">
+                                    <input type="text" id="hint" placeholder="'.search.'...">
                                     <input type="submit" value="search">                               
                                 </form> 
                             </div>
