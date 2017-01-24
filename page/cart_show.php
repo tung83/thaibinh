@@ -21,6 +21,8 @@ class cart_show extends base{
                 'notice'=>$content,
                 'dates'=>date("Y-m-d H:i:s")
             );
+            $cutomerInfo = $insert;
+            $itemList=array();
             try{
                 //$this->send_mail($insert);
                 $recent=$this->db->insert('cart',$insert); 
@@ -33,20 +35,17 @@ class cart_show extends base{
                         'product_price'=>$price,
                         'product_qty'=>$val['qty']
                     );
+                    array_push($itemList, $insert);
                     $this->db->insert('cart_detail',$insert);    
                     $_SESSION['cart']=NULL;            
                 }
+                $this->send_mail($cutomerInfo, $itemList);
                 echo '
                     <script>
-                        var msg="Thông tin của bạn đã được gửi đi, Chúng tôi sẽ liên lạc với bạn sớm nhất có thể, Xin cám ơn!";
-                        $.jAlert({
-                            "title":"Thông báo"
-                            "content":msg,
-                            onClose:function(){
-                                location.href="'.myWeb.'" 
-                            }
-                        })              
-                        location.href="'.myWeb.'"         
+                        alert("Thông tin của bạn đã được gửi đi, Chúng tôi sẽ liên lạc với bạn sớm nhất có thể, Xin cám ơn!");
+                        $(function(){
+                            $("#cart-count").addClass("hidden");
+                        });
                     </script>';
             }catch(Exception $e){
                 echo $e->getErrorMessage;
@@ -214,5 +213,101 @@ class cart_show extends base{
           });      
         </script>';
         return $str;
+    }
+    
+    function send_mail($cutomerInfo, $itemList){
+        $basic_config=$this->db->getOne('basic_config');      
+      
+        //Create a new PHPMailer instance
+        include_once phpLib.'PHPMailer/PHPMailerAutoload.php';
+        $mail = new PHPMailer(); // create a new object
+        $mail->IsSMTP(); // enable SMTP
+        $mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for Gmail        
+        //Whether to use SMTP authentication
+        //$mail->SMTPDebug = 3;
+        //Ask for HTML-friendly debug output
+        //$mail->Debugoutput = 'html';
+        $mail->SMTPAuth = true;
+        $mail->Host = $basic_config['smtp_server']; //smtp.gmail.com
+        $mail->Port = $basic_config['smtp_port']; // or 587
+        $mail->IsHTML(true);
+        //quantrimang.psmedia@gmail.com psmediaquantrimang
+        $mail->Username = $basic_config['smtp_user'];
+        $mail->Password = $basic_config['smtp_pwd'];
+        $mail->SetFrom($basic_config['smtp_user'], $basic_config['smtp_sender_name']);
+        $mail->AddAddress($basic_config['smtp_receiver']);
+        $mail->SMTPAutoTLS = false;
+        $mail->CharSet = 'UTF-8';
+        $mail->Subject =  'Khách hàng đặt hàng từ website';        
+        
+        $strBody = '
+        <html>
+        <head>
+        	<title>'.$mail->Subject.'</title>
+                <style>
+                    table {
+                        font-family: arial, sans-serif;
+                        border-collapse: collapse;
+                        width: 100%;
+                    }
+
+                    td, th {
+                        border: 1px solid #dddddd;
+                        text-align: left;
+                        padding: 8px;
+                    }
+
+                    tr:nth-child(even) {
+                        background-color: #dddddd;
+                    }
+                </style>
+        </head>
+        <body>
+        	<p>Full Name: '.$cutomerInfo['name'].'</p>
+        	
+        	<p>Address: '.$cutomerInfo['adds'].'</p>
+        	<p>Phone: '.$cutomerInfo['phone'].'</p>
+        	
+        	<p>Notes: '.nl2br($cutomerInfo['notice']).'</p>
+        	<p>Ngày giờ: '.date("Y-m-d H:i:s").'</p>';
+        $strBody.='
+                <table>
+                    <tr>
+                      <th>Tên Sản phẩm</th>
+                      <th>Đơn giá</th>
+                      <th>Số lượng</th>
+                      <th>Thành tiền</th>
+                    </tr>';
+        $set=0;
+        $isSetContact = false;
+        foreach($itemList as $key=>$cartItem){
+            $total = $cartItem['product_price']*$cartItem['product_qty'];
+            if($total==0){
+                $isSetContact = true;
+            }
+            $set+=$total;
+            $totaltring = ($total == 0) ? 'Liên hệ' : number_format($total,0,',','.').'&nbsp;₫';
+            $strBody.='
+                <tr>
+                  <td>'.$cartItem['product_title'].'</td>
+                  <td>'.number_format($cartItem['product_price'],0,',','.').'&nbsp;₫'.'</td>
+                  <td>'.$cartItem['product_qty'].'</td>
+                  <td>'.$totaltring.'</td>
+                </tr>';
+        }
+        $setString = ($set == 0) ? 'Liên hệ' : number_format($set,0,',','.').'&nbsp;₫';   
+        $strBody.='</table>
+                <p class="pull-right">                                        
+                    <b>Tổng cộng: <span id="span-price">'.$setString.'</span></b>
+                </p>
+            </body>
+        </html>';
+        $mail->Body = $strBody;
+        if (!$mail->send()) {
+             $this->post_result = ' <div class="alert alert-warning">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Lỗi!</strong> Mailer Error:' . $mail->ErrorInfo.
+                      '</div>'; 
+        }
     }
 }
