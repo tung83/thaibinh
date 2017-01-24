@@ -481,12 +481,19 @@ function resizeSlider(){
             $(window).resize(function() {
                 var wHeight = $(window).height();
                 var wWidth = $(window).width();
-                var sliderHeight = wHeight - $(".copyright-wrapper").height();
-                if(wHeight > 400)
+                var sliderHeight = 0;
+                var contentHeight = 0;
+                if(wHeight < 530)
                 {
-                    $("#wowslider-container1 .ws_images").height(sliderHeight);                    
-                    $("#page-content").height(sliderHeight - $("header").height()-1);
-                }  
+                    sliderHeight = 450;    
+                    contentHeight = 312;
+                }             
+                else{
+                    sliderHeight = wHeight - $(".copyright-wrapper").height();
+                    contentHeight = sliderHeight - $("header").height()-1;
+                }
+                $("#wowslider-container1 .ws_images").height(sliderHeight);         
+                $("#page-content").height(contentHeight);
                 if(wWidth < 769)
                 {                      
                     var ratioWH = (2000/930); 
