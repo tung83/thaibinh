@@ -894,7 +894,11 @@ footer {
     margin-top: 10px; }
 
   .promotion-item img {
-    width: 100%; } }
+    width: 100%; }
+
+  .news-box img, .about-us-box img, .promotion-box img {
+    max-width: 100% !important;
+    height: auto !important; } }
 .coccoc-alo-phone.coccoc-alo-show {
   visibility: visible; }
 

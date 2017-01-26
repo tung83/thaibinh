@@ -1113,7 +1113,12 @@ footer{
     .promotion-item img{
         width: 100%;
     }
-
+    .news-box, .about-us-box, .promotion-box{
+        img{
+            max-width: 100%!important;
+            height: auto!important;
+        }
+    }
     
 }
 .coccoc-alo-phone.coccoc-alo-show {
