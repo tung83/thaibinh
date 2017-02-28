@@ -24,12 +24,12 @@ function menu($db,$view){
     	<div class="container">
             <div class="row">
                 <div class="row">
+                    <div class="col-md-4 logo hidden-xs hidden-sm">
+                        <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
+                    </div>
                     <div class="col-md-4 hotline hidden-xs hidden-sm">
                         <span>Hotline:</span>
                         <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
-                    </div>
-                    <div class="col-md-4 logo hidden-xs hidden-sm">
-                        <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
                     </div>
                     <div class="col-md-4 header-right">
 
