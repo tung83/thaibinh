@@ -23,36 +23,16 @@ function menu($db,$view){
     <div class="nav">
     	<div class="container">
             <div class="row">
-                <div class="row">
-                    <div class="col-md-4 logo hidden-xs hidden-sm">
-                        <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'letter-logo.png" alt="" style=""/></a>
+                <div class="row header-top">
+                    <div class="col-md-8 logo hidden-xs hidden-sm">
+                        <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'logo.jpg" alt="" style=""/></a>
                     </div>
-                    <div class="col-md-4 hotline hidden-xs hidden-sm">
-                        <span>Hotline:</span>
+                    <div class="col-md-2 hotline hidden-xs hidden-sm">
+                        <span>Contact us:</span>
                         <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
                     </div>
-                    <div class="col-md-4 header-right">
-
-                        '.social($db).' 
-                        <div class="search">
-                            <input class="search_box" type="checkbox" id="search_box">                            
-                            <label class="icon-search" for="search_box"><i class="fa fa-search"></i></label>
-                            <div class="search_form">
-                               <form class="pull-right" role="form" method="get" name="search" id="search">
-                                    <input type="hidden" id="search-link" value="'.myWeb.search_view.'/" />                                      
-                                    <input type="text" id="hint" placeholder="Tìm kiếm...">
-                                    <input type="submit" value="search">                               
-                                </form> 
-                            </div>
-
-
-                          </div>
-                        <div class="cart">                           
-                            <a href="/thanh-toan"><i class="fa fa-shopping-cart"></i><span class="cart-text">GIỎ HÀNG</span>';
-                                $cart_count = cart_count($db);
-                                    $str.='<span id="cart-count" class="user-cart-quantity'.($cart_count > 0? '' : ' hidden').'">'.$cart_count.'</span>
-                            </a>
-                        </div>
+                    <div class="col-md-2 header-right">
+                        '.social($db).'                        
                     </div>
                 </div>
             </div>
@@ -417,11 +397,17 @@ function shadowBottomDent(){
 function social($db){
     $basic_config=$db->where('id',1)->getOne('basic_config','social_twitter, social_facebook, social_google_plus');
     $str.='
-        <div id="social_block">    
-            <a href="'.$basic_config['social_facebook'].'" target="_blank"><i class="fa fa-facebook"></i></a>
-            <a href="'.$basic_config['social_twitter'].'" target="_blank"><i class="fa fa-twitter"></i></a>
-            <a href="'.$basic_config['social_google_plus'].'" target="_blank"><i class="fa fa-google-plus"></i></a>			
-        </div>
+        <ul id="social_block"> 
+            <li>
+                <a class="facebook-link" href="'.$basic_config['social_facebook'].'" target="_blank"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li>
+                <a href="'.$basic_config['social_twitter'].'" target="_blank"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li>
+                <a href="'.$basic_config['social_google_plus'].'" target="_blank"><i class="fa fa-google-plus"></i></a>			
+            </li>
+        </ul>
     ';
     return $str;
 }

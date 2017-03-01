@@ -64,9 +64,34 @@ a {
 	------------------------------------------------
 */
 .header {
-  background-color: #000; }
-
-#social_block {
-  color: #fff; }
+  background-color: #000;
+  color: #858585; }
+  .header .header-top {
+    margin: 8px 0 12px 0; }
+    .header .header-top > div {
+      height: 96px; }
+    .header .header-top .hotline {
+      line-height: 96px; }
+      .header .header-top .hotline span {
+        font-weight: bold; }
+      .header .header-top .hotline a {
+        color: #d3528c; }
+    .header .header-top #social_block {
+      list-style: none;
+      margin-top: 35px;
+      float: right; }
+      .header .header-top #social_block li {
+        display: inline; }
+        .header .header-top #social_block li a {
+          display: inline-block;
+          width: 25px;
+          height: 25px;
+          padding: 3px 6px;
+          border: 1px solid #858585;
+          border-radius: 50%; }
+          .header .header-top #social_block li a i {
+            color: #858585; }
+          .header .header-top #social_block li a.facebook-link {
+            padding-left: 8px; }
 
 /*# sourceMappingURL=front.css.map */

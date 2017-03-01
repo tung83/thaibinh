@@ -50,6 +50,20 @@ a { color: $primary-color; @include animate( color, 320ms );
 	------------------------------------------------
 */
 
-.header{ background-color: #000; }
-
-#social_block{ color: #fff; }
+.header{ background-color: #000; color: $grey; 
+    .header-top{ margin: 8px 0 12px 0;  
+       > div{height: 96px;}
+       .hotline{ line-height: 96px; 
+           span{ font-weight: bold;}
+           a{color: $dark-pink;}
+       }
+       #social_block { list-style: none; margin-top: 35px; float: right;
+           li{display: inline;
+               a{ display: inline-block; width: 25px; height: 25px; padding: 3px 6px; border: 1px solid $grey; border-radius: 50%;
+                   i{ color: $grey; }  
+                   &.facebook-link{padding-left: 8px;}
+               } 
+           }
+       }
+    }
+}
