@@ -15,29 +15,29 @@ function menu($db,$view){
     $str.='
              
     <div class="header">
-    <div class="wsmobileheader clearfix">
-        <a id="wsnavtoggle" class="animated-arrow"><span></span></a>
-        <a href="'.myWeb.'" class="smallogo"><img src="'.frontPath.'white-letter-logo.png" height="27" alt="" /></a>
-        <a class="callusicon" href="tel:'.common::qtext($db,5).'"><span class="fa fa-phone"></span></a>
-    </div>  
-    <div class="nav">
-    	<div class="container">
-            <div class="row">
-                <div class="row header-top">
-                    <div class="col-md-8 logo hidden-xs hidden-sm">
-                        <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'logo.jpg" alt="" style=""/></a>
-                    </div>
-                    <div class="col-md-2 hotline hidden-xs hidden-sm">
-                        <span>Contact us:</span>
-                        <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
-                    </div>
-                    <div class="col-md-2 header-right">
-                        '.social($db).'                        
+        <div class="wsmobileheader clearfix">
+            <a id="wsnavtoggle" class="animated-arrow"><span></span></a>
+            <a href="'.myWeb.'" class="smallogo"><img src="'.frontPath.'white-letter-logo.png" height="27" alt="" /></a>
+            <a class="callusicon" href="tel:'.common::qtext($db,5).'"><span class="fa fa-phone"></span></a>
+        </div>  
+        <div class="header-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="row header-top">
+                        <div class="col-md-4 logo hidden-xs hidden-sm">
+                            <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'logo.jpg" alt="" style=""/></a>
+                        </div>
+                        <div class="header-right">
+                            '.social($db).' 
+                            <div class="hotline hidden-xs hidden-sm">
+                                <span>Contact us:</span>
+                                <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-    	</div>
-    </div>
+        </div>
     <div class="menu-ground">
     <div class="container clearfix bigmegamenu">
     <div class="row">      
