@@ -24,6 +24,15 @@ a { color: $primary-color; @include animate( color, 320ms );
 	&:hover,
 	&:focus { text-decoration: none; color: $dark-grey; }
 }
+.scrollTo-top { display: none; position: fixed; bottom: 16px;
+    right: 20px; font-size: 32px; background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0.3rem;
+    z-index: 5000000000000000;
+    i {
+        padding: 3px 10px;
+        color: #fff;
+    }
+}
 
 @media (min-width: 992px){
     .container {
@@ -44,6 +53,14 @@ a { color: $primary-color; @include animate( color, 320ms );
     max-width: 100%  !important;
 }
 
+#social_block { list-style: none; float:right;
+    li{display: inline;
+        a{ display: inline-block; width: 40px; height: 40px; padding: 7px 11px; border: 1px solid $grey; border-radius: 50%;
+            i{ color: $grey; }  
+            &.facebook-link{padding-left: 14px;}
+        } 
+    }
+}
 
 /* 
 	Header 
@@ -61,14 +78,6 @@ a { color: $primary-color; @include animate( color, 320ms );
                     span{ font-weight: bold;}
                     a{color: $dark-pink;}
                 }
-                #social_block { list-style: none; float:right;
-                    li{display: inline;
-                        a{ display: inline-block; width: 40px; height: 40px; padding: 7px 11px; border: 1px solid $grey; border-radius: 50%;
-                            i{ color: $grey; }  
-                            &.facebook-link{padding-left: 14px;}
-                        } 
-                    }
-                }
            }
         }
     }
@@ -77,22 +86,12 @@ a { color: $primary-color; @include animate( color, 320ms );
         Menu 
         ------------------------------------------------
 */
-    .menu-ground, .mobile-sub {
-        background: $light-grey;
-    }
+    .menu-ground, .mobile-sub { background: $light-grey; }
     .menu-ground{
-        .wsmenu > .wsmenu-list > li > a.active {
-            background: #ff578f !important;
-            color: #fff !important;
-        }
-        .wsmenu > .wsmenu-list > li > a {
-            color: #fff;
-            text-transform: uppercase;
-            border-radius: 0px;
-            font-size: 18px;
-            font-weight: bold;
-            line-height: 90px;
-            background: transparent !important;
+        .wsmenu > .wsmenu-list > li > a.active { background: #ff578f !important; color: #fff !important; }
+        .wsmenu > .wsmenu-list > li > a { color: #fff; text-transform: uppercase; border-radius: 0px; 
+                                          font-size: 18px; font-weight: bold; line-height: 90px; 
+                                          background: transparent !important;
         }
     }
 }
@@ -101,8 +100,36 @@ a { color: $primary-color; @include animate( color, 320ms );
 	Footer
         ------------------------------------------------
 */
-footer {
-    background-color: $light-white;
-    padding: 30px 0 0 0;
-    color: #464646;
+
+footer { background-color: $light-white; padding: 60px 0 0; color: $grey; 
+    a{ color: $grey; }
+    .footer-content { margin-bottom: 60px;
+            .footer-top-span {
+            display: inline-block;
+            color: $dark-blue;
+            width: 100%;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        ul { list-style: none;padding: 0; margin: 0; line-height: 28px;
+            li:before {
+                content: "\f0da";
+                font-size: 12px;
+                font-weight: normal;
+                font-family: FontAwesome;
+                padding-right: 15px;
+            }
+        }
+    }
+    
+    .copyright-wrapper { background-color: #000; font-size: 18px; padding: 22px 0; 
+        .copyright { width: 660px; margin-top: 7px;
+            .company { color: #54273b; }
+            .psmedia { color: #86390d;}
+        }
+        #social_block { display: block; overflow: hidden; float: right; font-size: 20px; margin-bottom: 0;
+        }
+    }
+    
 }

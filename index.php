@@ -100,16 +100,7 @@
                             <div class="col-md-6 copyright">
                                 Copyright © 2016 <b class="company">Hana Beauty</b>, All rights reserved. Designed by <a class="psmedia" href="http://psmedia.vn" target="_blank"><b>PSmedia.vn</b></a>
                             </div>
-                            <div class="col-md-6 counter">
-                                <div id="counters">
-                                    <?php
-                                        $vs=new visitors($db);
-                                    ?>
-                                    <span>Đang online: <?= $vs->getOnlineVisitors() ?></span> |
-                                    <span>Lượt truy cập: <?= $vs->getCounter() ?></span>
-                                </div>
-                                <?=social($db)?>
-                            </div>
+                            <?=social($db)?>
                         </div>
                     </div>
                 </div>
@@ -117,17 +108,5 @@
         </footer>
         </div>
     </div>
-
-<div class="coccoc-alo-phone coccoc-alo-green coccoc-alo-show" id="coccoc-alo-phoneIcon">
-    <div class="coccoc-alo-ph-circle"></div>
-    <div class="coccoc-alo-ph-circle-fill"></div>
-    <div class="coccoc-alo-ph-img-circle">
-        <a href="tel:<?=common::qtext($db,2)?>"><img class="coccoc-img" src="<?=frontPath?>phone-ring.png" alt=""/></a>
-    </div>
-</div>
-    
-<script type="text/javascript">
-(function(d,s,id){var z=d.createElement(s);z.type="text/javascript";z.id=id;z.async=true;z.src="//static.zotabox.com/8/1/81b778a185e8e5c63b09a80b61cb6b5d/widgets.js";var sz=d.getElementsByTagName(s)[0];sz.parentNode.insertBefore(z,sz)}(document,"script","zb-embed-code"));
-</script>
 </body>
 </html>
