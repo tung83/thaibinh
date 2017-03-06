@@ -12,9 +12,11 @@ class product extends base{
             <div class="row">
             <div class="col-xs-12">
                 <div class="title-head">
-                    <span>
-                        SẢN PHẨM BÁN CHẠY
+                    <span>'.$this->title.'
                     </span>
+                    <p class="sub-sum">
+                        Unlike many other buyers advocates who work on a commission bas
+                    </p>
                 </div>
             </div>
             <div class="clearfix"></div>';
@@ -29,26 +31,11 @@ class product extends base{
                 <div class="product-item item">
                     <a href="'.$lnk.'">
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
-                    </a>
-                    <a href="'.$lnk.'">
-                        <p class="item-title">'.$item['title'].'</p>';
-                        if(!isset($item['price']) || $item['price'] == 0){
-                            $str.='
-                            <p class="price">Liên hệ</p>';   
-                        }
-                        else if(isset($item['price_reduce']) && $item['price_reduce'] > 0){
-                            $str.='
-                            <p class="price-strike"><s>'.number_format($item['price'],0,',','.').'</s>&nbsp;₫</p>
-                            <p class="price"><b>'.number_format($item['price_reduce'],0,',','.').'</b>&nbsp;₫</p>';                                
-                        }
-                        else{
-                            $str.='
-                            <p class="price"><b>'.number_format($item['price'],0,',','.').'</b>&nbsp;₫</p>';                              
-                        }
-                     $str.='</a>
-                    <button class="btn btn-default btn-cart" onclick="add_cart('.$item['id'].',1)"><i class="fa fa-shopping-cart"></i> ĐẶT MUA</button>
-         
-                </div>
+                    </a>               
+                </div>                
+                <a class href="'.$lnk.'">
+                    <p class="item-title">'.$item['title'].'</p>';                        
+                 $str.='</a>
             </div>';
         }
         $str.=' 
