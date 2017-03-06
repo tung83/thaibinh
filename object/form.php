@@ -384,12 +384,6 @@ class  form{
         ';
         return $str;
     }
-    
-    function select_options($db,$name,$label,$required=false){
-        $list_string=$db->where('active',1)->where('keyName',$name)->getOne($table,'list');
-        $options = explode(',', $list_string);
-        return select($name,$label,$options, $required);
-    }
     function select_table($name,$label,$table,$db,$required=false){
         $id=intval($this->get($name));
         $list=$db->where('active',1)->orderBy('id')->get($table,null,'id,title');

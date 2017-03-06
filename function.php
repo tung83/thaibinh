@@ -1,6 +1,8 @@
 <?php
 include_once 'front.php';
+include_once 'object\form.php';
 common::page('base');
+include_once 'page\search.php';
 function pageId($view){
     if($view == 'trang-chu')
     {
@@ -148,7 +150,6 @@ function home($db){
     $partner=new partner($db);
     $str.=$partner->partners();    
     
-    $str.=submit_mail();
     
     
     /*$str.=partner($db);*/
@@ -411,18 +412,7 @@ function social($db){
     ';
     return $str;
 }
-function submit_mail(){
-    return '<section id="home-subscribe">
-        <div class="container text-center">
-            <form action="" id="subscribe">
-                <span>Vui lòng để lại email để nhận tin khuyến mãi</span>
-                <input type="email" name="email" placeholder="Nhập email">
-                <input type="submit" value="Gửi">
-            </form>
-        </div>
-    </section>';
-}
-
+   
 function resize_product_cate(){      
     return '
         <script>   

@@ -184,4 +184,19 @@ footer {
       font-size: 20px;
       margin-bottom: 0; }
 
+/* 
+	Search form
+        ------------------------------------------------
+*/
+.search-form .form-group {
+  width: 14.285%;
+  float: left;
+  margin: 10px 0px;
+  padding: 0 20px; }
+  .search-form .form-group:first-child, .search-form .form-group:last-child {
+    padding: 0; }
+  .search-form .form-group button {
+    width: 100%;
+    margin-top: 24px; }
+
 /*# sourceMappingURL=front.css.map */

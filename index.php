@@ -56,7 +56,24 @@
                 echo home($db);
                 break;
         }
-        ?>        
+        ?>
+            
+        <div class="container">
+            <div class="row">
+                <form class="form-horizontal search-form" role="form">
+                  <?php
+                    echo select_options($db, 'storey','storey', 'Storey');
+                    echo select_options($db, 'beds','min_beds', 'Min. Beds');
+                    echo select_options($db, 'beds','max_beds', 'Max. Beds');
+                    echo select_options_land_width($db);
+                    echo select_options_min_price($db);
+                    echo select_options_max_price($db);
+                    echo seach_button();
+                    ?>
+                </form>
+            </div>
+        </div>
+            
         </section>
         <footer>
             <div class="container">

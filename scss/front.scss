@@ -130,6 +130,14 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
         }
         #social_block { display: block; overflow: hidden; float: right; font-size: 20px; margin-bottom: 0;
         }
-    }
-    
+    }    
+}
+
+/* 
+	Search form
+        ------------------------------------------------
+*/
+.search-form .form-group{ width: 14.285%;float: left; margin: 10px 0px; padding: 0 20px;
+    &:first-child,&:last-child{ padding: 0 ;}
+    button{width: 100%; margin-top: 24px;}
 }
