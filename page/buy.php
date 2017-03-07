@@ -1,65 +1,49 @@
 <?php
 //http://bootsnipp.com/snippets/z4Wor
-class product extends base{
+class buy extends base{
     function __construct($db){        
-        parent::__construct($db,3,'product');
+        parent::__construct($db,3,'buy');
     }
-    function ind_product(){ 
-        $str.='
-        <section class="ind-product"> 
-            <div class="container">
-            <div class="row">
-            <div class="row">
-            <div class="col-xs-12">
-                <div class="title-head">
-                    <span>'.$this->title.'
-                    </span>
-                    <p class="sub-sum">
-                        Unlike many other buyers advocates who work on a commission bas
-                    </p>
-                </div>
-            </div>
-            <div class="clearfix"></div>';
+    function ind_buy(){ 
+        $str.='<div class="row">
+                    <div class="col-xs-12 title-head">
+                        '.$this->title.'                   
+                    </div>                  
+                </div>';
         $this->db->where('active',1)->where('home',1);
         $this->db_orderBy();
-        $list=$this->db->get('product');   
+        $list=$this->db->get('buy');   
         foreach($list as $item){
             $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
             $img=$this->first_image($item['id']);
             $str.='
-            <div class="col-md-4 col-sm-6 product-col wow bounceIn animated" data-wow-duration="2s">
-                <div class="product-item item">
+            <div class="row buy-item item wow bounceIn animated" data-wow-duration="2s">
+                <div class="pull-right col-xs-4">
                     <a href="'.$lnk.'">
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
                     </a>               
-                </div>                
+                </div>    
+                <div class="buy-item-left pull-right col-xs-8">
                 <a class href="'.$lnk.'">
-                    <p class="item-title">'.$item['title'].'</p>';                        
-                 $str.='</a>
-            </div>';
+                    <p class="item-title">'.$item['title'].'</p>                       
+                </a>'; 
+                $str.='<p class="news-item-sum">'.nl2br(common::str_cut($item['feature'],300)).'</p>'
+                        . '</div>';
+             $str.='</div>';   
         }
-        $str.=' 
-            <div class="clearfix"></div>
-            <div class="text-center">
-                <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->view.'">'.more_button.'</a>      
-            </div>
-            </div>
-            </div>
-        </section>';
-        
         return $str;
     }
-    function hot_product(){
+    function hot_buy(){
         $this->db->reset();
         $this->db->where('active',1)->where('home',1);
-        $list=$this->db->get('product',null);
+        $list=$this->db->get('buy',null);
         $i=1;
         foreach($list as $item){
             if($i%4==1){
                 $str.='
                 <div class="row">';
             }
-            $str.=$this->product_item($item);
+            $str.=$this->buy_item($item);
             if($i%4==0){
                 $str.='
                 </div>';
@@ -72,12 +56,12 @@ class product extends base{
         }
         return $str;
     }
-    function product_item($item){
+    function buy_item($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $img=$this->first_image($item['id']);
         $str.='
-            <div class="col-md-3 wow fadeIn animated product-col" data-wow-duration="1000ms">
-                <div class="product-item item">
+            <div class="col-md-3 wow fadeIn animated buy-col" data-wow-duration="1000ms">
+                <div class="buy-item item">
                     <a href="'.$lnk.'">
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
                     </a>
@@ -103,16 +87,16 @@ class product extends base{
             </div>';
         return $str;
     }
-    function product_list_item($item,$type=1){
+    function buy_list_item($item,$type=1){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $img=$this->first_image($item['id']);
         if(trim($img)==='') $img='holder.js/400x300';else $img=webPath.$img;
         if($type==1){
             $str='
-            <div class="col-md-12 col-sm-6 col-md-3 product-item">';    
+            <div class="col-md-12 col-sm-6 col-md-3 buy-item">';    
         }else{
             $str='
-            <div class="col-md-12 col-sm-6 col-md-4 product-item">';
+            <div class="col-md-12 col-sm-6 col-md-4 buy-item">';
         }        
         $str.='
         <a href="'.$lnk.'">
@@ -132,9 +116,9 @@ class product extends base{
         $pId=$this->check_pId();
         $this->db->where('active',1);
         $this->db_orderBy();
-        $list=$this->db->get('product_cate',null,'id,title');
+        $list=$this->db->get('buy_cate',null,'id,title');
         $str='
-        <div class="row product-category">
+        <div class="row buy-category">
         <div class="col-xs-12">';
         foreach($list as $item){
             if($item['id']==$pId){
@@ -152,7 +136,7 @@ class product extends base{
         </div>';
         return $str;
     }
-    function product_cate(){
+    function buy_cate(){
         $pId = $this->check_pId();
         $page=isset($_GET['page'])?intval($_GET['page']):1;
         $this->db->reset();
@@ -162,14 +146,14 @@ class product extends base{
         }
         $this->db_orderBy();
         $this->db->pageLimit=23;
-        $list=$this->db->paginate('product',$page);
+        $list=$this->db->paginate('buy',$page);
         $count=$this->db->totalCount;
-        $str.='<div class="product-list">'
+        $str.='<div class="buy-list">'
                 . '<div class="row">';
-                    $str.=$this->product_cate_left_list();
+                    $str.=$this->buy_cate_left_list();
         if($count>0){
             foreach($list as $key=>$item){
-                $str.=$this->product_item($item);
+                $str.=$this->buy_item($item);
             }
         }        
         $str.=      '</div>'
@@ -180,7 +164,7 @@ class product extends base{
         if($pId==0){
             $pg->set_url(array('def'=>myWeb.$this->view,'url'=>myWeb.$this->view.'/page[p]'));
         }else{
-            $cate=$this->db->where('id',$pId)->getOne('product_cate','id,title');       
+            $cate=$this->db->where('id',$pId)->getOne('buy_cate','id,title');       
             $pg->defaultUrl = myWeb.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'];
             $pg->paginationUrl = $pg->defaultUrl.'/page[p]';
         }
@@ -189,24 +173,24 @@ class product extends base{
         return $str;
     }
     
-    function product_search(){
+    function buy_search(){
         $page=isset($_GET['page'])?intval($_GET['page']):1;
         $this->db->reset();
         $this->db->where('active',1);
         $this->db->where('title','%'.$_GET['hint'].'%', 'like');        
         $this->db_orderBy();
         $this->db->pageLimit=24;
-        $list=$this->db->paginate('product',$page);        
+        $list=$this->db->paginate('buy',$page);        
         $count=$this->db->totalCount;
        $str.='<div class="alert alert-success"><i class="icon fa fa-check"></i>
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 Có '.$count. ' kết quả với từ khoá <b>"'.$_GET['hint'].'"</b>
               </div>';
-        $str.='<div class="product-list">'
+        $str.='<div class="buy-list">'
                 . '<div class="row">';
         if($count>0){
             foreach($list as $item){
-                $str.=$this->product_item($item);
+                $str.=$this->buy_item($item);
             }
         }        
         $str.=      '</div>'
@@ -222,20 +206,20 @@ class product extends base{
         $this->paging_shown = ($pg->paginationTotalpages > 0);
         return $str;
     }
-    function product_one($id){
+    function buy_one($id){
         $this->db->where('id',$id);
-        $item=$this->db->getOne('product','id,price,price_reduce,title,content,pId,feature,manual,promotion,video');
+        $item=$this->db->getOne('buy','id,price,price_reduce,title,content,pId,feature,manual,promotion,video');
         $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
-        $list=$this->db->get('product');
+        $list=$this->db->get('buy');
         $lnk=domain.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $str.='
-        <div class="row product-detail clearfix">
+        <div class="row buy-detail clearfix">
             
             <div class="col-xs-12">
             <div class="col-md-5">
-                '.$this->product_image_show($item['id']).'
+                '.$this->buy_image_show($item['id']).'
             </div>
-                <article class="product-one">
+                <article class="buy-one">
                 <h1>'.$item['title'].'</h1>';
                     if(!isset($item['price']) || $item['price'] == 0){
                         $str.='
@@ -300,10 +284,10 @@ class product extends base{
             <h3 class="small-title">
                     SẢN PHẨM CÙNG LOẠI
             </h3>';
-            $str.='<div class="slick product_list clearfix">';
+            $str.='<div class="slick buy_list clearfix">';
 
             foreach($list as $item){                
-                $str.=$this->product_item($item);                
+                $str.=$this->buy_item($item);                
             }  
             $str.='</div>';  
         }        
@@ -313,14 +297,14 @@ class product extends base{
         $this->db->reset();
         $this->db->where('active',1)->where('pId',$id);
         $this->db_orderBy();
-        $img=$this->db->getOne('product_image','img');
+        $img=$this->db->getOne('buy_image','img');
         return $img['img'];
     }
-    function product_image_show($id){
+    function buy_image_show($id){
         $this->db->reset();
         $this->db->where('active',1)->where('pId',$id);
         $this->db_orderBy();
-        $list=$this->db->get('product_image');
+        $list=$this->db->get('buy_image');
         $temp=$tmp='';
         foreach($list as $item){
             $temp.='
@@ -376,7 +360,7 @@ class product extends base{
 //		imageCrossfade: true,
 //                 galleryActiveClass: "active", 
 //	});  
-    function product_cate_left_list(){
+    function buy_cate_left_list(){
         $pId = $this->check_pId();
         $this->db->reset();
         $this->db->where('active',1);
@@ -384,9 +368,9 @@ class product extends base{
         $list=$this->db->get($this->db_cate_name);
         
         $str.='
-            <div class="col-md-3 product-col">
-                <div class="product-item product-menu-container item">    
-                    <ul class="product-menu">';
+            <div class="col-md-3 buy-col">
+                <div class="buy-item buy-menu-container item">    
+                    <ul class="buy-menu">';
                     foreach($list as $cate){
                         $active_class = ($pId!=0 && $cate["id"] == $pId)? 'active' : '';
                         $title=$cate['title'];
@@ -400,12 +384,12 @@ class product extends base{
         return $str;
     }
     
-    function product_cate_list(){
+    function buy_cate_list(){
         $this->db->reset();
         $this->db->where('active',1);
         $this->db_orderBy();
         $list=$this->db->get($this->db_cate_name);
-        $str.='<ul class="product-menu">';
+        $str.='<ul class="buy-menu">';
         foreach($list as $cate){
             $title=$cate['title'];
             $str.='

@@ -183,3 +183,21 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
             border: 1px solid #e1e1e1;
         }      
 }
+ 
+/* 
+	Sell & buy indicator
+        ------------------------------------------------
+*/
+.ind-sell-buy{ color: #fff; margin: 0;
+              a {color: #fff;}
+              .row{margin: 0;}
+              .item{padding: 20px 0}
+              .ind-buy{ background-color: #ba759a; padding: 90px 60px 50px 5px;
+                    .buy-item-left{text-align: right;}                    
+                    .title-head{text-align: right; margin-bottom: 30px;}
+                  
+              }
+              .ind-sell{background-color: #ba4272; padding: 90px 5px 50px 50px;                                
+                    .title-head{text-align: left; margin-bottom: 30px;}
+              }
+}

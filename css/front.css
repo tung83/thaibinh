@@ -246,4 +246,32 @@ footer {
   vertical-align: bottom;
   border: 1px solid #e1e1e1; }
 
+/* 
+	Sell & buy indicator
+        ------------------------------------------------
+*/
+.ind-sell-buy {
+  color: #fff;
+  margin: 0; }
+  .ind-sell-buy a {
+    color: #fff; }
+  .ind-sell-buy .row {
+    margin: 0; }
+  .ind-sell-buy .item {
+    padding: 20px 0; }
+  .ind-sell-buy .ind-buy {
+    background-color: #ba759a;
+    padding: 90px 60px 50px 5px; }
+    .ind-sell-buy .ind-buy .buy-item-left {
+      text-align: right; }
+    .ind-sell-buy .ind-buy .title-head {
+      text-align: right;
+      margin-bottom: 30px; }
+  .ind-sell-buy .ind-sell {
+    background-color: #ba4272;
+    padding: 90px 5px 50px 50px; }
+    .ind-sell-buy .ind-sell .title-head {
+      text-align: left;
+      margin-bottom: 30px; }
+
 /*# sourceMappingURL=front.css.map */

@@ -145,7 +145,7 @@ function home($db){
     common::page('product');
     $product=new product($db);
     $str.=$product->ind_product();
-    
+    $str.=ind_buy_sell($db);
     common::page('partner');
     $partner=new partner($db);
     $str.=$partner->partners();    
@@ -154,6 +154,22 @@ function home($db){
     
     /*$str.=partner($db);*/
     return $str;
+}
+function ind_buy_sell($db){
+    common::page('buy');
+    $buy=new buy($db);
+    common::page('sell');
+    $sell=new sell($db);
+    return '<div class="row ind-sell-buy">
+            <div class="ind-buy col-md-6 col-middle2-container">
+                <div class="col-middle2">'.
+                   $buy->ind_buy().                   
+                '</div>
+            </div>
+            <div class="ind-sell col-md-6">'.
+                   $sell->ind_sell().     
+            '</div>
+        </div>';
 }
 function wow_slider($db){
     $db->reset();
@@ -165,7 +181,7 @@ function wow_slider($db){
 	<div class="ws_images"><ul>';
     $i=1;
     foreach($list as $item){
-        $img='<img src="'.webPath.$item['img'].'" alt="" title=""/>';
+        $img='<img src="'.webPath.$item['img'].'" alt="" title="" />Barbados, Caribbean Sea';
         $lnk=$item['lnk']!=''?'<a href="'.$item['lnk'].'">'.$img.'</a>':$img;
         $str.='
         <li>'.$lnk.'</li>';
@@ -177,7 +193,7 @@ function wow_slider($db){
 	</ul></div>
 	<div class="ws_bullets"><div>
 		'.$tmp.'
-	</div></div><div class="ws_script" style="position:absolute;left:-99%"></div>
+	</div></div>
 	<div class="ws_shadow"></div>
 	</div>	
 	<script type="text/javascript" src="'.myWeb.'engine/wowslider.js"></script>
