@@ -138,19 +138,21 @@ function home($db){
             '.wow_slider($db).'
         </div>
     </section>';  
-    common::page('promotion');
-    $promotion=new promotion($db);
-    $str.=$promotion->ind_promotion();
     
     common::page('product');
     $product=new product($db);
     $str.=$product->ind_product();
     $str.=ind_buy_sell($db);
-    common::page('partner');
-    $partner=new partner($db);
-    $str.=$partner->partners();    
     
+    common::page('news');
+    $news=new news($db);
+    $str.=$news->ind_news();
     
+    common::page('about');
+    $about=new about($db);
+    $str.=$about->ind_about();  
+    $str.='<div id="google-map"> </div>';
+    $str.=gmap();
     
     /*$str.=partner($db);*/
     return $str;
