@@ -183,12 +183,12 @@ function wow_slider($db){
 	<div class="ws_images"><ul>';
     $i=1;
     foreach($list as $item){
-        $img='<img src="'.webPath.$item['img'].'" alt="" title="" />Barbados, Caribbean Sea';
-        $lnk=$item['lnk']!=''?'<a href="'.$item['lnk'].'">'.$img.'</a>':$img;
+        $img='<img src="'.webPath.$item['img'].'" alt="" title="" />';
+        $lnk=$item['lnk']==''?$img.'<a href="'.$item['lnk'].'">Barbados, Caribbean Sea'.'</a>':$img.'<a href="tel:0165 9181037">0165 9181037</a><a href="tel:0165 9181037">0165 9181037</a>Barbados, Caribbean Sea<button>Click</button>';
         $str.='
         <li>'.$lnk.'</li>';
         $tmp.='
-        <a href="#" title=""><span>'.$i.'</span></a>';
+        <a href="#" title=""><span>'.$i.'</span></a><br />';
         $i++;
     }
     $str.='
