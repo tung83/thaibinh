@@ -59,6 +59,9 @@ a {
     padding: 3px 10px;
     color: #fff; }
 
+#google-map {
+  height: 400px; }
+
 @media (min-width: 992px) {
   .container {
     width: 100%; } }
@@ -274,7 +277,29 @@ footer {
       text-align: left;
       margin-bottom: 30px; }
 
-#google-map {
-  height: 400px; }
+/* 
+	slider
+        ------------------------------------------------
+*/
+#wowslider-container1 .ws_bullets {
+  bottom: 50% !important;
+  left: auto !important;
+  right: 40px !important; }
+#wowslider-container1 .ws-title {
+  color: #fff !important;
+  opacity: 0.9 !important;
+  background-color: #000 !important;
+  bottom: 50% !important;
+  left: auto !important;
+  right: 40px !important;
+  width: 550px;
+  height: 180px;
+  padding: 0 !important;
+  margin: 0 !important; }
+  #wowslider-container1 .ws-title > span {
+    color: #ea639e !important;
+    background-color: transparent !important; }
+  #wowslider-container1 .ws-title div {
+    background-color: transparent !important; }
 
 /*# sourceMappingURL=front.css.map */

@@ -33,6 +33,7 @@ a { color: $primary-color; @include animate( color, 320ms );
         color: #fff;
     }
 }
+#google-map{height: 400px;}
 
 @media (min-width: 992px){
     .container {
@@ -201,5 +202,14 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
                     .title-head{text-align: left; margin-bottom: 30px;}
               }
 }
-
-#google-map{height: 400px;}
+/* 
+	slider
+        ------------------------------------------------
+*/
+#wowslider-container1 {
+    .ws_bullets { bottom: 50%!important;left: auto!important;right: 40px!important;}
+    .ws-title{color:#fff!important;opacity: 0.9!important; background-color: #000!important; bottom: 50%!important;left: auto!important;right: 40px!important;width: 550px; height: 180px;padding:0!important;margin:0!important;
+              > span{color: #ea639e!important;background-color: transparent!important;}
+              div{background-color: transparent!important;}
+    }
+}
