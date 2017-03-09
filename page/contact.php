@@ -2,7 +2,7 @@
 class contact extends base{
     private $post_result;
     function __construct($db){
-        parent::__construct($db,7,'contact');
+        parent::__construct($db,8,'contact');
     }
     function contact_insert(){
         $this->db->reset();

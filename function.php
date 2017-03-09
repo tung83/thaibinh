@@ -141,16 +141,16 @@ function home($db){
     
     common::page('product');
     $product=new product($db);
-    $str.=$product->ind_product();
+    $str.=$product->ind_product($db);
     $str.=ind_buy_sell($db);
     
-    common::page('news');
-    $news=new news($db);
-    $str.=$news->ind_news();
+    common::page('concierge');
+    $concierge=new concierge($db);
+    $str.=$concierge->ind_concierge();
     
     common::page('about');
     $about=new about($db);
-    $str.=$about->ind_about();  
+    $str.=$about->ind_about($db);  
     $str.='<div id="google-map"> </div>';
     $str.=gmap();
     
@@ -278,17 +278,17 @@ function about($db){
     </section>';
     return $str;    
 }
-function news($db){
-    common::page('news');
-    $news=new news($db);
-    $str.=$news->breadcrumb_with_Id();
-    $str.=$news->top_content('');
+function concierge($db){
+    common::page('concierge');
+    $concierge=new concierge($db);
+    $str.=$concierge->breadcrumb_with_Id();
+    $str.=$concierge->top_content('');
     if(isset($_GET['id'])){
-        $str.=$news->news_one(intval($_GET['id']));    
+        $str.=$concierge->concierge_one(intval($_GET['id']));    
     }else{
-        $str.=$news->news_cate();
+        $str.=$concierge->concierge_cate();
     }     
-    $str.=$news->bottom_content(); 
+    $str.=$concierge->bottom_content(); 
     return $str;
 }
 function promotion($db){

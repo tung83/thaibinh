@@ -5,9 +5,11 @@ function ad_menu()
 	$topNav=array(
                     array(1,"Slider","slider","camera-retro"),
                     array(2,"Giới thiệu","about","credit-card"),
-                    array(3,'Quản lý sản phẩm',"product","dropbox"),
+                    array(3,'Build',"product","dropbox"),
+                    array(67,'Buy',"buy","dropbox"),
+                    array(67,'Sell',"sell","dropbox"),
 					/*array(3,"Quản lý phụ tùng","accessary","pencil"),	*/	
-                    array(4,'Khuyến mãi','promotion','anchor'), 
+                    array(4,'Concierge','concierge','anchor'), 
                     array(5,'Tin tức','news','pencil-square-o'),   
                     array(6,'Đối tác','partner','briefcase'), 
                     //array(9,'Video','video','youtube'),
@@ -30,9 +32,12 @@ function ad_menu()
                     //array(8,'Danh mục khuyến mãi','type=promotion_cate'),
                     //array(8,'Danh sách khuyến mãi','type=promotion'),   
                     array(12,"HotLine","id=2"),
-					array(12,"Liên hệ","id=3"),
-                   
-                    array(12,"Footer","id=4")               	
+                    array(12,"Liên hệ","id=3"),                   
+                    array(12,"Footer","id=4")  ,                   
+                    array(12,"Build summary","id=6"),                   
+                    array(12,"About summary","id=7"),                    
+                    array(12,"Sell summary","id=8") ,                    
+                    array(12,"Concierge summary","id=9")                	
 				);
 	$size=sizeof($topNav);
 	$act=$_GET["act"];

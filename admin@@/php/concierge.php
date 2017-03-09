@@ -1,14 +1,14 @@
 <?php
 function mainProcess($db)
 {
-    return promotion($db);
+    return concierge($db);
 }
-function promotion($db)
+function concierge($db)
 {
 	$msg='';
-    $act='promotion';
-    $type='promotion';
-    $table='promotion';
+    $act='concierge';
+    $type='concierge';
+    $table='concierge';
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
             $db->where('id',$_POST['idLoad']);
             $list = $db->getOne($table);
@@ -53,7 +53,7 @@ function promotion($db)
                     try{
                 $recent = $db->insert($table,$insert);
                 if(common::file_check($_FILES['file'])){
-                    WideImage::load('file')->resize(365,175, 'fill')->saveToFile(myPath.$file);
+                    WideImage::load('file')->resize(500,400, 'fill')->saveToFile(myPath.$file);
                     $db->where('id',$recent);
                     $db->update($table,array('img'=>$file));
                 }
@@ -70,7 +70,7 @@ function promotion($db)
                 'home'=>$home,'active'=>$active,'ind'=>$ind,'pId'=>$pId
             );
             if(common::file_check($_FILES['file'])){
-                WideImage::load('file')->resize(365,175, 'fill')->saveToFile(myPath.$file);
+                WideImage::load('file')->resize(500,400, 'fill')->saveToFile(myPath.$file);
                 $update = array_merge($update,array('img'=>$file));
                 $form->img_remove($_POST['idLoad'],$db,$table);
             }
@@ -100,7 +100,7 @@ function promotion($db)
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
     
-    $str.=$form->search_area($db,$act,'promotion_cate',$_GET['hint'],0);
+    $str.=$form->search_area($db,$act,'concierge_cate',$_GET['hint'],0);
     
     $head_title=array('Tiêu đề','Hình ảnh','Hiện/Ẩn','STT');
 	$str.=$form->table_start($head_title);
@@ -138,7 +138,7 @@ function promotion($db)
              
         </div>
         <div class="col-lg-12">
-            '.$form->file('img',365,175).'
+            '.$form->file('img',500,400).'
             '.$form->number('ind',array('label'=>'Thứ tự')).'
             '.$form->checkbox('home',array('label'=>'Trang chủ')).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'

@@ -2,9 +2,9 @@
 //http://bootsnipp.com/snippets/z4Wor
 class product extends base{
     function __construct($db){        
-        parent::__construct($db,3,'product');
+        parent::__construct($db,2,'product');
     }
-    function ind_product(){ 
+    function ind_product($db){ 
         $str.='
         <section class="ind-product"> 
             <div class="container">
@@ -14,9 +14,9 @@ class product extends base{
                 <div class="title-head">
                     <span>'.$this->title.'
                     </span>
-                    <p class="sub-sum">
-                        Unlike many other buyers advocates who work on a commission bas
-                    </p>
+                    <p class="sub-sum">'
+                        .common::qtext($db,6).
+                    '</p>
                 </div>
             </div>
             <div class="clearfix"></div>';

@@ -1,15 +1,15 @@
 <?php
-class about extends base{
+class concierge extends base{
     function __construct($db){
-        parent::__construct($db,6,'about');
+        parent::__construct($db,5,'concierge');
     }
-    function ind_about($db){
+    function ind_concierge(){
         $this->db->reset();
         $this->db->where('active',1)->where('home',1);
         $this->db_orderBy();
-        $list=$this->db->get('about',5);
+        $list=$this->db->get('concierge',5);
         $str='
-        <div class="ind-about">  
+        <div class="ind-concierge">  
             <div class="container">
                 <div class="row">   
                 <div class="row">    
@@ -18,9 +18,6 @@ class about extends base{
                             <span>'
                                 .$this->title.' 
                             </span>
-                            <p class="sub-sum">'
-                                .common::qtext($db,7).
-                            '</p>
                         </div>
                     </div>';
         foreach($list as $item){
@@ -28,16 +25,16 @@ class about extends base{
             $img=webPath.$item['img'];
             if($img=='') $img='holder.js/126x100';
             $str.='
-                    <div class="col-md-4 col-sm-6 col-xs-12 about-col wow fadeIn animated" data-wow-duration="1000ms">
-                        <div class="about-item">
+                    <div class="col-md-4 col-sm-6 col-xs-12 concierge-col wow fadeIn animated" data-wow-duration="1000ms">
+                        <div class="concierge-item">
                             <a href="'.$lnk.'">
                                 <img src="'.$img.'" alt="'.$item['title'].'" class="img-responsive"/>
                             </a>
                             <a href="'.$lnk.'">
-                                <p class="about-item-title">'.common::str_cut($item['title'],30).'</p>
+                                <p class="concierge-item-title">'.common::str_cut($item['title'],30).'</p>
                             </a>
-                            <p class="about-date">'.date("d/m/Y",strtotime($item['date'])).'</p>
-                            <p class="about-item-sum">'.nl2br(common::str_cut($item['sum'],300)).'</p>
+                            <p class="concierge-date">'.date("d/m/Y",strtotime($item['date'])).'</p>
+                            <p class="concierge-item-sum">'.nl2br(common::str_cut($item['sum'],300)).'</p>
                         </div>
                     </div>';   
         }
@@ -52,10 +49,10 @@ class about extends base{
             </div>';
         return $str;
     }
-    function about_item($item){
+    function concierge_item($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         return '
-            <div class="row about-item wow fadeInLeft animated" data-wow-duration="1000ms" data-wow-delay="10ms">
+            <div class="row concierge-item wow fadeInLeft animated" data-wow-duration="1000ms" data-wow-delay="10ms">
                 <div class="col-xs-3">
                     <a href="'.$lnk.'" class="about-item ">
                         <img src="'.webPath.$item['img'].'" class="img-responsive" alt="" title=""/>
@@ -63,28 +60,28 @@ class about extends base{
                 </div>
                 <div class="col-xs-7">
                     <a href="'.$lnk.'" class="about-item clearfix">
-                        <p class="about-title">'.$item['title'].'</p>
+                        <p class="concierge-title">'.$item['title'].'</p>
                     </a>
-                    <p class="about-date"><i> '.date("d/m/Y",strtotime($item['date'])).'</i></p>
-                    <div class="about-sum">
+                    <p class="concierge-date"><i> '.date("d/m/Y",strtotime($item['date'])).'</i></p>
+                    <div class="concierge-sum">
                         <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
                     </div>
                 </div>
             </div>
             <hr/>';
     }
-    function about_cate(){
+    function concierge_cate(){
         $page=isset($_GET['page'])?intval($_GET['page']):1;
         $this->db->reset();
         $this->db->where('active',1);
         $this->db_orderBy();
         $this->db->pageLimit=limit;
-        $list=$this->db->paginate('about',$page);
+        $list=$this->db->paginate('concierge',$page);
         $count=$this->db->totalCount;
-        $str.='<div class="about-list">';
+        $str.='<div class="concierge-list">';
         if($count>0){
             foreach($list as $item){
-                $str.=$this->about_item($item);
+                $str.=$this->concierge_item($item);
             }
         }        
         $str.='</div>';
@@ -100,8 +97,8 @@ class about extends base{
         $this->paging_shown = ($pg->paginationTotalpages > 0);
         return $str;
     }
-    function about_one($id=1){
-        $item=$this->db->where('id',$id)->getOne('about');
+    function concierge_one($id=1){
+        $item=$this->db->where('id',$id)->getOne('concierge');
         $title=$item['title'];
         $content=$item['content'];
         return  
