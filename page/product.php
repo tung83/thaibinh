@@ -14,15 +14,15 @@ class product extends base{
                 <div class="title-head">
                     <span>'.$this->title.'
                     </span>
-                    <p class="sub-sum">'
+                    <p class="sub-sum"><span>'
                         .common::qtext($db,6).
-                    '</p>
+                    '</span></p>
                 </div>
             </div>
             <div class="clearfix"></div>';
         $this->db->where('active',1)->where('home',1);
         $this->db_orderBy();
-        $list=$this->db->get('product');   
+        $list=$this->db->get('product',3);   
         foreach($list as $item){
             $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
             $img=$this->first_image($item['id']);
@@ -39,10 +39,7 @@ class product extends base{
             </div>';
         }
         $str.=' 
-            <div class="clearfix"></div>
-            <div class="text-center">
-                <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->view.'">'.more_button.'</a>      
-            </div>
+            <div class="clearfix"></div>            
             </div>
             </div>
         </section>';

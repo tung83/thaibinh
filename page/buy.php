@@ -18,12 +18,12 @@ class buy extends base{
             $img=$this->first_image($item['id']);
             $str.='
             <div class="row buy-item item wow bounceIn animated" data-wow-duration="2s">
-                <div class="pull-right col-xs-4">
+                <div class="pull-right col-xs-3">
                     <a href="'.$lnk.'">
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
                     </a>               
                 </div>    
-                <div class="buy-item-left pull-right col-xs-8">
+                <div class="buy-item-left pull-right col-xs-9">
                 <a class href="'.$lnk.'">
                     <p class="item-title">'.$item['title'].'</p>                       
                 </a>'; 

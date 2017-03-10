@@ -20,36 +20,27 @@
         <?php
 
         switch($view){
-            case 'san-pham':
+            case 'build':
             case 'search':
             case 'tim-kiem':
                 echo product($db);
                 break;
-            case 'khuyen-mai':
-                echo promotion($db);
+            case 'buy':
+                echo buy($db);
                 break;
-            case 'thanh-toan':
-                echo cart($db, $view);
+            case 'sell':
+                echo sell($db, $view);
                 break;        
-            case 'dong-co':
-                echo dong_co($db);
+            case 'concierge':
+                echo concierge($db);
                 break;
-            case 'dich-vu':
-                echo service($db);
+            case 'meet-our-partners':
+                echo met_our_parners($db);
                 break;
-            case 'du-an':
-                echo project($db);
-                break;
-            case 'tuyen-dung':
-                echo career($db);
-                break;
-            case 'tin-tuc':
-                echo news($db);
-                break;
-            case 'gioi-thieu':
+            case 'about-us':
                 echo about($db);
                 break;
-            case 'lien-he':
+            case 'contact-us':
                 echo contact($db);
                 break;
             default:
@@ -57,22 +48,7 @@
                 break;
         }
         ?>
-            
-        <div class="container">
-            <div class="row">
-                <form class="form-horizontal search-form" role="form">
-                  <?php
-                    echo select_options($db, 'storey','storey', 'Storey');
-                    echo select_options($db, 'beds','min_beds', 'Min. Beds');
-                    echo select_options($db, 'beds','max_beds', 'Max. Beds');
-                    echo select_options_land_width($db);
-                    echo select_options_min_price($db);
-                    echo select_options_max_price($db);
-                    echo seach_button();
-                    ?>
-                </form>
-            </div>
-        </div>
+        
             
         </section>
         <footer>

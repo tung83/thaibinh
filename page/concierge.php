@@ -25,7 +25,7 @@ class concierge extends base{
             $img=webPath.$item['img'];
             if($img=='') $img='holder.js/126x100';
             $str.='
-                    <div class="col-md-4 col-sm-6 col-xs-12 concierge-col wow fadeIn animated" data-wow-duration="1000ms">
+                    <div class="col-md-2 col-sm-4 col-xs-12 concierge-col wow fadeIn animated" data-wow-duration="1000ms">
                         <div class="concierge-item">
                             <a href="'.$lnk.'">
                                 <img src="'.$img.'" alt="'.$item['title'].'" class="img-responsive"/>
@@ -33,16 +33,13 @@ class concierge extends base{
                             <a href="'.$lnk.'">
                                 <p class="concierge-item-title">'.common::str_cut($item['title'],30).'</p>
                             </a>
-                            <p class="concierge-date">'.date("d/m/Y",strtotime($item['date'])).'</p>
                             <p class="concierge-item-sum">'.nl2br(common::str_cut($item['sum'],300)).'</p>
                         </div>
                     </div>';   
         }
         $str.='
                     <div class="clearfix"></div>
-                        <div class="text-center">
-                            <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->view.'">'.more_button.'</a>      
-                        </div>
+                       
                     </div>
                 </div>
                 </div>

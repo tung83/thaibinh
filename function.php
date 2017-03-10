@@ -138,7 +138,7 @@ function home($db){
             '.wow_slider($db).'
         </div>
     </section>';  
-    
+    $str.=search_form($db);
     common::page('product');
     $product=new product($db);
     $str.=$product->ind_product($db);
@@ -273,7 +273,7 @@ function about($db){
     <section id="page">';
     common::page('about');
     $about=new about($db);
-    $str.=$about->about_one();
+    $str.=$about->about_cate();
     $str.='
     </section>';
     return $str;    
@@ -304,39 +304,17 @@ function promotion($db){
     $str.=$promotion->bottom_content(); 
     return $str;
 }
-function career($db){
-    common::page('career');
-    $career=new career($db);
-    $str.=$career->breadcrumb_with_Id();
-    $str.=$career->top_content('');
+function buy($db){
+    common::page('buy');
+    $buy=new buy($db);
+    $str.=$buy->breadcrumb_with_Id();
+    $str.=$buy->top_content('');
     if(isset($_GET['id'])){
-        $str.=$career->career_one(intval($_GET['id']));    
+        $str.=$buy->buy_one(intval($_GET['id']));    
     }else{
-        $str.=$career->career_cate();
+        $str.=$buy->buy_cate();
     }     
-    $str.=$career->bottom_content(); 
-    return $str;
-}
-function cart($db, $view)
-{
-    common::load('cart_show','page');
-    $cart = new cart_show($db, $view, $lang);
-    
-    $str.='
-    <div class="container cart-list">
-        <div class="row">';
-        switch($act=$_GET['act']){
-            case 'giao-hang':
-            case 'payment':
-                $str.=$cart->cart_checkout();
-                break;
-            default:
-                $str.=$cart->cart_output($db);
-                break;
-    }
-    $str.='           
-        </div>
-    </div>';
+    $str.=$buy->bottom_content(); 
     return $str;
 }
 function product($db){
@@ -377,26 +355,6 @@ function search($db){
     $str.='
     </section>';
     return $str;
-}
-
-function cart_count($db){
-    common::load('cart');
-    $obj=new cart($db);
-    return $obj->cart_count();
-}
-
-function cart_update_multi($db){
-    common::load('cart');
-    $obj=new cart($db);        
-             
-    if ( isset( $_POST['productItems'] ) )  {   
-        foreach ( $_POST['productItems'] as $item )
-        { 
-            $obj->cart_update($item['id'],$item['qty']);
-        }
-        return true;
-    }
-    return false;
 }
 function shadowBottom(){
     return '<div class="container">  
@@ -478,5 +436,25 @@ function gmap(){
         </script>';
     
     return $str;
+}
+
+function search_form($db){
+    return    
+        '<div class="search-box">
+            <div class="container">
+                <div class="row">
+                    <form class="form-horizontal search-form" role="form">'
+                        . select_options($db, 'storey','storey', 'Storey')
+                        . select_options($db, 'beds','min_beds', 'Min. Beds')
+                        . select_options($db, 'beds','max_beds', 'Max. Beds')
+                        . select_options_land_width($db)
+                        . select_options_min_price($db)
+                        . select_options_max_price($db)
+                        . seach_button().                    
+                    '<p>*Search results based on Melbourne Metro & New Estates regions </p>
+                        </form>
+                </div>
+            </div>
+        </div>';
 }
 ?>

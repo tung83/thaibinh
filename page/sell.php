@@ -2,7 +2,7 @@
 //http://bootsnipp.com/snippets/z4Wor
 class sell extends base{
     function __construct($db){        
-        parent::__construct($db,3,'sell');
+        parent::__construct($db,4,'sell');
     }
     function ind_sell(){ 
         $str.='<div class="row">
@@ -18,12 +18,12 @@ class sell extends base{
             $img=$this->first_image($item['id']);
             $str.='
             <div class="row sell-item item wow bounceIn animated" data-wow-duration="2s">
-                <div class="col-xs-4">
+                <div class="col-xs-3">
                     <a href="'.$lnk.'">
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
                     </a>               
                 </div>    
-                <div class="sell-item-right col-xs-8">
+                <div class="sell-item-right col-xs-9">
                 <a class href="'.$lnk.'">
                     <p class="item-title">'.$item['title'].'</p>                       
                 </a>'; 

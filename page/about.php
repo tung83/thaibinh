@@ -14,9 +14,8 @@ class about extends base{
                 <div class="row">   
                 <div class="row">    
                     <div class="col-xs-12">
-                        <div class="title-head">
-                            <span>'
-                                .$this->title.' 
+                        <div class="about-title-head">
+                            <span>Welcome to JJ KETSA
                             </span>
                             <p class="sub-sum">'
                                 .common::qtext($db,7).
@@ -33,19 +32,12 @@ class about extends base{
                             <a href="'.$lnk.'">
                                 <img src="'.$img.'" alt="'.$item['title'].'" class="img-responsive"/>
                             </a>
-                            <a href="'.$lnk.'">
-                                <p class="about-item-title">'.common::str_cut($item['title'],30).'</p>
-                            </a>
-                            <p class="about-date">'.date("d/m/Y",strtotime($item['date'])).'</p>
-                            <p class="about-item-sum">'.nl2br(common::str_cut($item['sum'],300)).'</p>
                         </div>
                     </div>';   
         }
         $str.='
                     <div class="clearfix"></div>
-                        <div class="text-center">
-                            <a class="btn btn-primary btn-primary-long see-more" href="'.myWeb.$this->view.'">'.more_button.'</a>      
-                        </div>
+                       
                     </div>
                 </div>
                 </div>
