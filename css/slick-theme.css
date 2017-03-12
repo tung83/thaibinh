@@ -66,31 +66,10 @@
     right: -25px;
     left: auto;
 }
-.slick-prev:before
-{
-    content: '\f104';
-}
-[dir='rtl'] .slick-prev:before
-{
-    content: '\f104';
-}
-
-.slick-next
-{
-    right: -12px;
-}
 [dir='rtl'] .slick-next
 {
     right: auto;
     left: -25px;
-}
-.slick-next:before
-{
-    content: '\f105';
-}
-[dir='rtl'] .slick-next:before
-{
-    content: '\f105';
 }
 
 /* Dots */
