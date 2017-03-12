@@ -58,31 +58,23 @@ class buy extends base{
     }
     function buy_item($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
-        $img=$this->first_image($item['id']);
-        $str.='
-            <div class="col-md-3 wow fadeIn animated buy-col" data-wow-duration="1000ms">
-                <div class="buy-item item">
-                    <a href="'.$lnk.'">
-                        <img src="'.webPath.$img.'" class="img-responsive center-block"/>
-                    </a>
-                    <a href="'.$lnk.'">
-                        <p class="item-title">'.$item['title'].'</p>';
-                        if(!isset($item['price']) || $item['price'] == 0){
-                            $str.='
-                            <p class="price">Liên hệ</p>';   
-                        }
-                        else if(isset($item['price_reduce']) && $item['price_reduce'] > 0){
-                            $str.='
-                            <p class="price-strike"><s>'.number_format($item['price'],0,',','.').'</s>&nbsp;₫</p>
-                            <p class="price"><b>'.number_format($item['price_reduce'],0,',','.').'</b>&nbsp;₫</p>';                                
-                        }
-                        else{
-                            $str.='
-                            <p class="price"><b>'.number_format($item['price'],0,',','.').'</b>&nbsp;₫</p>';                              
-                        }
-                     $str.='</a>
-                    <button class="btn btn-default btn-cart" onclick="add_cart('.$item['id'].',1)"><i class="fa fa-shopping-cart"></i> ĐẶT MUA</button>
-         
+        $img=$this->first_image($item['id']);        
+        $str.= '
+            <div class="col-md-6 buy-item-row wow fadeInLeft animated" data-wow-duration="1000ms"> 
+                <div class="buy-item-bound">
+                    <div class="col-xs-3">
+                        <a href="'.$lnk.'" class="buy-item ">
+                            <img src="'.webPath.$img.'" class="img-responsive" alt="" title=""/>
+                        </a>     
+                    </div>
+                    <div class="col-xs-7">
+                        <a href="'.$lnk.'" class="buy-item clearfix">
+                            <p class="buy-title">'.$item['title'].'</p>
+                        </a>
+                        <div class="buy-sum">
+                            <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
+                        </div>
+                    </div>
                 </div>
             </div>';
         return $str;
@@ -148,16 +140,22 @@ class buy extends base{
         $this->db->pageLimit=23;
         $list=$this->db->paginate('buy',$page);
         $count=$this->db->totalCount;
-        $str.='<div class="buy-list">'
-                . '<div class="row">';
-                    $str.=$this->buy_cate_left_list();
+        $str.='<div class="buy-list">';
         if($count>0){
             foreach($list as $key=>$item){
-                $str.=$this->buy_item($item);
+                
+                if($key == 0 ||$key %2 == 1){
+                    $str.='<div class="container">'
+                            . '<div class="row">';
+                }
+                $str.=$this->buy_item($item,$key);
+                if($key %2 == 0 || $key == count($list)){
+                    $str.='</div>'
+                        .'</div>';
+                }
             }
         }        
-        $str.=      '</div>'
-                .'</div>'
+        $str.= '</div>'
                 .'<div class="clearfix"></div>';
         
         $pg=new Pagination(array('limit'=>24,'count'=>$count,'page'=>$page,'type'=>0));  

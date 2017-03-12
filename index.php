@@ -35,7 +35,7 @@
                 echo concierge($db);
                 break;
             case 'meet-our-partners':
-                echo met_our_parners($db);
+                echo partner($db);
                 break;
             case 'about-us':
                 echo about($db);

@@ -44,11 +44,6 @@ a { color: $primary-color; @include animate( color, 320ms );
     .container {
         width: 1170px;
     }
-    .wsmenu-submenu{
-        min-width: 185px;
-        
-    background: #db5010
-    }
 }
 #page-content table{
     max-width: 100%  !important;
@@ -79,6 +74,9 @@ a { color: $primary-color; @include animate( color, 320ms );
     .sub-sum{text-align: center; 
               span{ max-width: 680px; display: inline-block; }
     }
+}
+.pagination>.active{
+    >a,span,>a:hover,>span:hover,>a:focus,>span:focus {background-color: #ea639e;border-color: #ea639e;}
 }
 
 /* 
@@ -111,6 +109,11 @@ a { color: $primary-color; @include animate( color, 320ms );
         .wsmenu > .wsmenu-list > li > a { color: #fff; text-transform: uppercase; border-radius: 0px; 
                                           font-size: 18px; font-weight: bold; line-height: 90px; 
                                           background: transparent !important;
+                                          .arrow:after { border-top-color: #fff!important;top: 43px!important;}
+                                          
+        }
+        .wsmenu-submenu {top: 90px!important; min-width: 185px; background-color: transparent;
+            a {background: #ff578f !important;}
         }
     }
 }
@@ -119,8 +122,7 @@ a { color: $primary-color; @include animate( color, 320ms );
 	Footer
         ------------------------------------------------
 */
-
-footer { background-color: $light-white; padding: 60px 0 0; color: $grey; 
+footer { background-color: $light-white; padding: 60px 0 0; color: $grey;border-top: 7px solid #575757;
     a{ color: $grey; }
     .footer-content { margin-bottom: 60px;
             .footer-top-span {
@@ -253,12 +255,149 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
 }
 
 /* 
+	Buy 
+        ------------------------------------------------
+*/
+.buy-item-row{padding: 10px;
+              .buy-item-bound{display: inline-block; border: 1px solid #f3f3f3; padding: 10px 0;
+                              .buy-title{font-weight: bold;}
+              }
+}
+
+/* 
+	Sell
+        ------------------------------------------------
+*/
+.sell-col {
+    .sell-item { overflow: hidden; 
+    box-shadow: 0px 0px 8px #e1e1e1;
+    position: relative;
+    background: #fff;
+          
+        img{
+            @include animate( transform, 0.3s );
+        }
+    }
+    &:hover .sell-item img, &:focus .sell-item img, &:active .sell-item img, {@include transform( scale(1.1) ); 
+    }
+    .item-title{
+            border-top: 1px solid #e1e1e1;
+            min-height: 70px;
+            width: 100%;
+            background: #fff;
+            color: #464646;
+            padding: 15px 15px 15px 15px;
+            vertical-align: bottom;
+            text-align: center;
+            border: 1px solid #e1e1e1;
+        }  
+    ul.sell-menu {font-weight: normal;font-size: 16px;padding: 15px 0 5px 0;
+        li {position: relative;list-style-type: none;
+            a {text-transform: capitalize !important;color: #464646 !important;font-size: 13px;line-height: 35px;
+               span {width: 35px;display: inline-block;
+                     &::before {
+                        position: absolute;
+                        content: "";
+                        top: 46%;
+                        -webkit-transform: translateY(-50%);
+                        -moz-transform: translateY(-50%);
+                        -o-transform: translateY(-50%);
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);
+                        margin: 0 15px 0 20px;
+                        width: 0;
+                        height: 0;
+                        border-top: 3px solid transparent;
+                        border-bottom: 3px solid transparent;
+                        border-left: 3px solid #464646;
+                    }
+               }
+            }
+            > hr {
+                margin: 0 20px 0 20px;
+                border-bottom: 1px solid #e3e3e3;
+            }
+            &.active, &:focus {background-color: #ff578f;color: #fff !important;}
+            &.active hr, &:focus hr,&:last-child > hr {
+                display: none;
+            }
+        }
+    }
+}
+/* 
 	Concierge
         ------------------------------------------------
 */
 .ind-concierge{ background: url('../file/front/concierge.jpg'); padding-bottom: 70px;
     .concierge-col{padding:0.5px; width: 20%!important;
     .concierge-item-title{margin-top: 27px; font-weight: bold; font-size: 16px;}}           
+    
+}
+.concierge-col {
+    .concierge-item { overflow: hidden; 
+    box-shadow: 0px 0px 8px #e1e1e1;
+    position: relative;
+    background: #fff;
+          
+        img{
+            @include animate( transform, 0.3s );
+        }
+    }
+    &:hover .concierge-item img, &:focus .concierge-item img, &:active .concierge-item img, {@include transform( scale(1.1) ); 
+    }
+    .item-title{
+            border-top: 1px solid #e1e1e1;
+            min-height: 70px;
+            width: 100%;
+            background: #fff;
+            color: #464646;
+            padding: 15px 15px 15px 15px;
+            vertical-align: bottom;
+            text-align: center;
+            border: 1px solid #e1e1e1;
+            h3{border-bottom: 1px solid #e1e1e1;padding-bottom: 17px;}
+        }  
+    ul.concierge-menu {font-weight: normal;font-size: 16px;padding: 15px 0 5px 0;
+        li {position: relative;list-style-type: none;
+            a {text-transform: capitalize !important;color: #464646 !important;font-size: 13px;line-height: 35px;
+               span {width: 35px;display: inline-block;
+                     &::before {
+                        position: absolute;
+                        content: "";
+                        top: 46%;
+                        -webkit-transform: translateY(-50%);
+                        -moz-transform: translateY(-50%);
+                        -o-transform: translateY(-50%);
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);
+                        margin: 0 15px 0 20px;
+                        width: 0;
+                        height: 0;
+                        border-top: 3px solid transparent;
+                        border-bottom: 3px solid transparent;
+                        border-left: 3px solid #464646;
+                    }
+               }
+            }
+            > hr {
+                margin: 0 20px 0 20px;
+                border-bottom: 1px solid #e3e3e3;
+            }
+            &.active, &:focus {background-color: #ff578f;color: #fff !important;}
+            &.active hr, &:focus hr,&:last-child > hr {
+                display: none;
+            }
+        }
+    }
+}
+/* 
+	Partner
+        ------------------------------------------------
+*/
+#partner-section{background-color: #f7f7f7; padding: 85px 0;
+    
+}
+#slider-section{padding: 85px 0;
     
 }
 /* 
@@ -285,6 +424,14 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
             
         }
 }
+
+/* 
+	Contact
+        ------------------------------------------------
+*/
+.map-image{
+    width: 100%;
+}
 /* 
 	slider
         ------------------------------------------------
@@ -303,5 +450,29 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
               div{background-color: transparent!important;}
     }
 }
+/* 
+	slick
+        ------------------------------------------------
+*/
+#partner-slider {
+  padding-bottom: 50px; }
+  #partner-slider .slick-slide {
+    margin: 0 2px; }
+  #partner-slider .slick-list {
+    margin: 0 40px; }
+  #partner-slider .slick-prev, #partner-slider .slick-next {
+    top: 29%;
+    width: 25px;
+    height: 42px;
+    background-color: transparent; }
+  #partner-slider .slick-prev {
+    left: 5px;
+    background-image: url(/file/front/left-arrow.png); }
+  #partner-slider .slick-next {
+    right: 5px;
+    background-image: url(/file/front/right-arrow.png); }
+  #partner-slider .slick-prev:hover,
+  #partner-slider .slick-next:hover {
+    background-color: #7f7f7f; }
 
 

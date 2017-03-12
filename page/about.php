@@ -54,26 +54,26 @@ class about extends base{
             </div>';
         return $str;
     }
+    
     function about_item($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
-        return '
-            <div class="row about-item wow fadeInLeft animated" data-wow-duration="1000ms" data-wow-delay="10ms">
-                <div class="col-xs-3">
-                    <a href="'.$lnk.'" class="about-item ">
-                        <img src="'.webPath.$item['img'].'" class="img-responsive" alt="" title=""/>
-                    </a>     
+         return '
+            <div class="col-md-4 wow fadeIn animated about-col" data-wow-duration="1000ms">
+                <div class="about-item item">
+                    <a href="'.$lnk.'">
+                        <img src="'.webPath.$item['img'].'" class="img-responsive center-block"/>
+                    </a>               
                 </div>
-                <div class="col-xs-7">
-                    <a href="'.$lnk.'" class="about-item clearfix">
-                        <p class="about-title">'.$item['title'].'</p>
-                    </a>
-                    <p class="about-date"><i> '.date("d/m/Y",strtotime($item['date'])).'</i></p>
-                    <div class="about-sum">
-                        <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
+                    <div class="item-title">
+                        <a href="'.$lnk.'">
+                            <h3>'.$item['title'].'</h3>
+                        </a>
+                        <div class="about-sum">
+                                <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <hr/>';
+            </div>';
+       
     }
     function about_cate(){
         $page=isset($_GET['page'])?intval($_GET['page']):1;

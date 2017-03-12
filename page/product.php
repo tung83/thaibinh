@@ -396,23 +396,5 @@ class product extends base{
         $str.='</ul>';
         return $str;
     } 
-    function top_content_product($db,$fade_wow='wow fadeInDown animated'){
-        return '  
-        <section id="'.$this->db_name.'">
-            <div class="container">
-                <div class="row '.$this->db_name.'-box">
-                    <div class="row '.$fade_wow.'" >
-                        <div class="col-xs-12">
-                            <div class="title-head">
-                                <span>'
-                                    .$this->title.' 
-                                </span>
-                                 <p class="sub-sum"><span>'
-                                    .common::qtext($db,6).
-                                '</span></p>
-                            </div>
-                        </div> 
-                        <div class="col-xs-12">';
-    }
 }    
 ?>

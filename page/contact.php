@@ -79,13 +79,13 @@ class contact extends base{
                          {
                              $str.= $this->post_result;
                          }                             
-        $str.=              '<div class="col-sm-6">
+        $str.=              '<div class="col-sm-6 contact-left">
                              
                             <p>
                                 '.common::qtext($this->db,3).'
                             </p>     
                             <p>
-                                <img src="'.frontPath.'contact.png" class="img-responsive" alt="" title=""/>
+                                <img src="'.frontPath.'contact.jpg" class="img-responsive map-image" alt="" title=""/>
                             </p>     
                         </div>
                         <div class="col-sm-6"> 

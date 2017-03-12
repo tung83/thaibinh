@@ -62,30 +62,15 @@ class sell extends base{
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $img=$this->first_image($item['id']);
         $str.='
-            <div class="col-md-3 wow fadeIn animated sell-col" data-wow-duration="1000ms">
+            <div class="col-md-4 wow fadeIn animated sell-col" data-wow-duration="1000ms">
                 <div class="sell-item item">
                     <a href="'.$lnk.'">
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
-                    </a>
-                    <a href="'.$lnk.'">
-                        <p class="item-title">'.$item['title'].'</p>';
-                        if(!isset($item['price']) || $item['price'] == 0){
-                            $str.='
-                            <p class="price">Liên hệ</p>';   
-                        }
-                        else if(isset($item['price_reduce']) && $item['price_reduce'] > 0){
-                            $str.='
-                            <p class="price-strike"><s>'.number_format($item['price'],0,',','.').'</s>&nbsp;₫</p>
-                            <p class="price"><b>'.number_format($item['price_reduce'],0,',','.').'</b>&nbsp;₫</p>';                                
-                        }
-                        else{
-                            $str.='
-                            <p class="price"><b>'.number_format($item['price'],0,',','.').'</b>&nbsp;₫</p>';                              
-                        }
-                     $str.='</a>
-                    <button class="btn btn-default btn-cart" onclick="add_cart('.$item['id'].',1)"><i class="fa fa-shopping-cart"></i> ĐẶT MUA</button>
-         
+                    </a>               
                 </div>
+                <a href="'.$lnk.'">
+                    <p class="item-title">'.$item['title'].'</p>
+                </a>
             </div>';
         return $str;
     }
@@ -152,7 +137,6 @@ class sell extends base{
         $count=$this->db->totalCount;
         $str.='<div class="sell-list">'
                 . '<div class="row">';
-                    $str.=$this->sell_cate_left_list();
         if($count>0){
             foreach($list as $key=>$item){
                 $str.=$this->sell_item($item);

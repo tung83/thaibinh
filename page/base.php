@@ -87,6 +87,24 @@ class base{
                         </div> 
                         <div class="col-xs-12">';
     }
+    function top_content_sum($sum,$fade_wow='wow fadeInDown animated'){
+        return '  
+        <section id="'.$this->db_name.'">
+            <div class="container">
+                <div class="row '.$this->db_name.'-box">
+                    <div class="row '.$fade_wow.'" >
+                        <div class="col-xs-12">
+                            <div class="title-head">
+                                <span>'
+                                    .$this->title.' 
+                                </span>
+                                 <p class="sub-sum"><span>'
+                                    .$sum.
+                                '</span></p>
+                            </div>
+                        </div> 
+                        <div class="col-xs-12">';
+    }
     function bottom_content(){
         $has_paging = ($this->paging_shown)? "has-paging":"";
         return '        </div>

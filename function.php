@@ -49,7 +49,30 @@ function menu($db,$view){
         foreach($list as $item){
             $active=($view==$item['view'])?'active':'';
             $title=$item['title'];
-            $lnk=myWeb.$item['view'];    
+            $lnk=myWeb.$item['view'];  
+            $db_cate_name = null;          
+            switch($item['view']){
+                case 'buy':
+                    $db_cate_name = 'buy_cate';                    
+                    break;
+                case 'sell':
+                    $db_cate_name = 'sell_cate';  
+            } 
+            if(isset($db_cate_name)){
+                $str.='
+                        <li><span class="wsmenu-click"><i class="wsmenu-arrow fa fa-angle-down"></i></span>
+                            <a href="'.$lnk.'" class="'.$active.'">'.$title.'<span class="arrow"></span></a>
+                            <ul class="wsmenu-submenu">';
+                    $cate=$db->where('active',1)->orderBy('ind','ASC')->orderBy('id')->get($db_cate_name,null,'id,title');
+                    foreach($cate as $cate_item){
+                        $lnk=myWeb.$item['view'].'/'.common::slug($cate_item['title']).'-p'.$cate_item['id'];                        
+                        $str.='                        
+                                <li><a href="'.$lnk.'"><i class="fa fa-angle-right"></i>'.$cate_item['title'].' </a></li>';
+                    }
+                    $str.=' </ul>
+                        </li>';
+                continue;
+            }
             $str.='
                 <li><a href="'.$lnk.'"  class="'.$active.'">'.$title.'</a></li>';
         }
@@ -254,36 +277,44 @@ function contact($db){
     common::page('contact');
     $contact=new contact($db);
     $str.=$contact->breadcrumb_with_Id();
-    $str.=$contact->contact();    
+    $str.=$contact->contact(); 
+    $str.=$contact->bottom_content();    
     $str.=gmap();
     $str.='
     </section>';
     return $str;
 }
-function project($db){
-    common::page('project');
-    $project=new project($db);
-    $str.=$project->breadcrumb_with_Id();
-    $str.=$project->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$project->project_one(intval($_GET['id']));    
-    }else{
-        $str.=$project->project_cate();
-    }     
-    return $str;
-}
 function about($db){ 
-    $str='
-    <section id="ind-slider">
-        <div id="slider-box">
-            '.wow_slider($db).'
-        </div>
-    </section>'; 
     $str.='
     <section id="page">';
+    $str.=search_form($db);
     common::page('about');
     $about=new about($db);
+    $str.=$about->top_content_sum(common::qtext($db,7));
     $str.=$about->about_cate();
+    $str.=$about->bottom_content(); 
+    $str.='
+    </section>';
+    return $str;    
+}
+function partner($db){ 
+    $str.='
+    <section id="page">';
+    $str.=search_form($db);
+    common::page('partner');
+    $partner=new partner($db);
+    $str.=$partner->top_content();
+    $str.=$partner->bottom_content(); 
+    $str.= '<section id="partner-section">
+            <div class="container">
+                <div class="row partner-box">';
+    $str.=$partner->partner_cate();
+    $str.='</div></div></section>';
+    $str.= '<section id="slider-section">
+            <div class="container">
+                <div class="row partner-box">';
+    $str.=$partner->partners();
+    $str.='</div></div></section>'; 
     $str.='
     </section>';
     return $str;    
@@ -291,8 +322,8 @@ function about($db){
 function concierge($db){
     common::page('concierge');
     $concierge=new concierge($db);
-    $str.=$concierge->breadcrumb_with_Id();
-    $str.=$concierge->top_content('');
+    $str.=search_form($db);
+    $str.=$concierge->top_content_sum(common::qtext($db,9));
     if(isset($_GET['id'])){
         $str.=$concierge->concierge_one(intval($_GET['id']));    
     }else{
@@ -301,30 +332,30 @@ function concierge($db){
     $str.=$concierge->bottom_content(); 
     return $str;
 }
-function promotion($db){
-    common::page('promotion');
-    $promotion=new promotion($db);
-    $str.=$promotion->breadcrumb_with_Id();
-    $str.=$promotion->top_content('');
-    if(isset($_GET['id'])){
-        $str.=$promotion->promotion_one(intval($_GET['id']));    
-    }else{
-        $str.=$promotion->promotion_cate();
-    }     
-    $str.=$promotion->bottom_content(); 
-    return $str;
-}
 function buy($db){
     common::page('buy');
     $buy=new buy($db);
-    $str.=$buy->breadcrumb_with_Id();
-    $str.=$buy->top_content('');
+    $str.=search_form($db);
+    $str.=$buy->top_content_sum(common::qtext($db,10));
     if(isset($_GET['id'])){
         $str.=$buy->buy_one(intval($_GET['id']));    
     }else{
         $str.=$buy->buy_cate();
     }     
     $str.=$buy->bottom_content(); 
+    return $str;
+}
+function sell($db){
+    common::page('sell');
+    $sell=new sell($db);
+    $str.=search_form($db);
+    $str.=$sell->top_content_sum(common::qtext($db,8));
+    if(isset($_GET['id'])){
+        $str.=$sell->sell_one(intval($_GET['id']));    
+    }else{
+        $str.=$sell->sell_cate();
+    }     
+    $str.=$sell->bottom_content(); 
     return $str;
 }
 function product($db){
@@ -334,7 +365,7 @@ function product($db){
     common::page('product');
     $pd=new product($db);
     
-    $str.=$pd->top_content_product($db);
+    $str.=$pd->top_content_sum(common::qtext($db,6));
     if(isset($_GET['id'])){
         $str.=$pd->product_one(intval($_GET['id']));    
     }elseif(isset($_GET['hint'])){
