@@ -54,30 +54,48 @@
         <footer>
             <div class="container">
                 <div class="row footer-content">
-                    <div class="col-md-3 col-xs-5 footer-menu">
+                    <div class="col-md-2 footer-col col-xs-5 footer-menu">
                         <div class="footer-menu-part">
                             <span class="footer-top-span">
-                                Menu
+                                Site map
                             </span>
                             <div>
                                 <?=foot_menu($db,$view)?>
                             </div>     
                         </div>
                     </div>
-                    <div class="col-md-3 col-xs-6">
+                    <div class="col-md-2 footer-col col-xs-6">
                         <div class="footer-product-part">
                             <span class="footer-top-span">
-                                Sản phẩm
+                                Build
                             </span>
                             <div>
                                 <?=foot_product_cate($db,$view)?>   
                             </div>  
                         </div>
+                    </div><div class="col-md-2 footer-col col-xs-6">
+                        <div class="footer-product-part">
+                            <span class="footer-top-span">
+                                Buy
+                            </span>
+                            <div>
+                                <?=foot_buy_cate($db,$view)?>   
+                            </div>  
+                        </div>
+                    </div><div class="col-md-2 footer-col col-xs-6">
+                        <div class="footer-product-part">
+                            <span class="footer-top-span">
+                                Sell
+                            </span>
+                            <div>
+                                <?=foot_sell_cate($db,$view)?>   
+                            </div>  
+                        </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-2 footer-col">
                         <div class="footer-contact-part">
                             <span class="footer-top-span">
-                                Liên hệ công ty
+                                Contact us
                             </span>    
                             <div>
                                 <?=common::qtext($db,4)?>

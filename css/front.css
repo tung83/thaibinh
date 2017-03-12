@@ -183,6 +183,8 @@ footer {
       font-size: 22px;
       font-weight: bold;
       margin-bottom: 30px; }
+    footer .footer-content .footer-col {
+      width: 20%; }
     footer .footer-content ul {
       list-style: none;
       padding: 0;
@@ -271,6 +273,44 @@ footer {
   vertical-align: bottom;
   text-align: center;
   border: 1px solid #e1e1e1; }
+.product-col ul.product-menu {
+  font-weight: normal;
+  font-size: 16px;
+  padding: 15px 0 5px 0; }
+  .product-col ul.product-menu li {
+    position: relative;
+    list-style-type: none; }
+    .product-col ul.product-menu li a {
+      text-transform: capitalize !important;
+      color: #464646 !important;
+      font-size: 13px;
+      line-height: 35px; }
+      .product-col ul.product-menu li a span {
+        width: 35px;
+        display: inline-block; }
+        .product-col ul.product-menu li a span::before {
+          position: absolute;
+          content: "";
+          top: 46%;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+          margin: 0 15px 0 20px;
+          width: 0;
+          height: 0;
+          border-top: 3px solid transparent;
+          border-bottom: 3px solid transparent;
+          border-left: 3px solid #464646; }
+    .product-col ul.product-menu li > hr {
+      margin: 0 20px 0 20px;
+      border-bottom: 1px solid #e3e3e3; }
+    .product-col ul.product-menu li.active, .product-col ul.product-menu li:focus {
+      background-color: #ff578f;
+      color: #fff !important; }
+    .product-col ul.product-menu li.active hr, .product-col ul.product-menu li:focus hr, .product-col ul.product-menu li:last-child > hr {
+      display: none; }
 
 /* 
 	Sell & buy indicator
@@ -313,6 +353,13 @@ footer {
 .ind-concierge {
   background: url("../file/front/concierge.jpg");
   padding-bottom: 70px; }
+  .ind-concierge .concierge-col {
+    padding: 0.5px;
+    width: 20% !important; }
+    .ind-concierge .concierge-col .concierge-item-title {
+      margin-top: 27px;
+      font-weight: bold;
+      font-size: 16px; }
 
 /* 
 	About
@@ -337,6 +384,8 @@ footer {
       .ind-about .about-title-head .sub-sum span {
         max-width: 680px;
         display: inline-block; }
+  .ind-about .about-col {
+    padding: 0.5px; }
 
 /* 
 	slider
@@ -346,7 +395,17 @@ footer {
   bottom: 50% !important;
   left: auto !important;
   right: 40px !important; }
+  #wowslider-container1 .ws_bullets a {
+    background: #fff !important; }
+    #wowslider-container1 .ws_bullets a.ws_selbull {
+      background: #e02d85 !important;
+      color: #e02d85 !important; }
 #wowslider-container1 .ws-title {
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -ms-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
   color: #fff !important;
   opacity: 0.9 !important;
   background-color: #000 !important;
@@ -358,6 +417,11 @@ footer {
   padding: 0 !important;
   margin: 0 !important; }
   #wowslider-container1 .ws-title > span {
+    -webkit-transition: transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -ms-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
     color: #ea639e !important;
     background-color: transparent !important; }
   #wowslider-container1 .ws-title div {

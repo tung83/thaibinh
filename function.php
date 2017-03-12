@@ -130,6 +130,16 @@ function foot_product_cate($db,$view){
     $product=new product($db);
     return $product->product_cate_list();    
 }
+function foot_buy_cate($db,$view){   
+    common::page('buy');
+    $buy=new buy($db);
+    return $buy->buy_cate_list();    
+}
+function foot_sell_cate($db,$view){   
+    common::page('sell');
+    $sell=new sell($db);
+    return $sell->sell_cate_list();    
+}
 
 function home($db){    
     $str='
@@ -320,15 +330,11 @@ function buy($db){
 function product($db){
     $str.='
     <section id="product-page">';  
+    $str.=search_form($db);
     common::page('product');
     $pd=new product($db);
-    $str.=$pd->breadcrumb_cate_lev1();
     
-    common::page('promotion');
-    $promotion=new promotion($db);
-    $str.=$promotion->ind_promotion();
-    
-    $str.=$pd->top_content('');
+    $str.=$pd->top_content_product($db);
     if(isset($_GET['id'])){
         $str.=$pd->product_one(intval($_GET['id']));    
     }elseif(isset($_GET['hint'])){

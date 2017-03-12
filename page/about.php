@@ -21,21 +21,31 @@ class about extends base{
                                 .common::qtext($db,7).
                             '</p>
                         </div>
-                    </div>';
+                    </div>
+                    <div class="col-md-2 hidden-sm hidden-xs visible-md visible-lg">
+
+                    </div>';   
         foreach($list as $item){
-            $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+            $lnk=myWeb.$this->view.'/'.common::slug($item['title']);
             $img=webPath.$item['img'];
             if($img=='') $img='holder.js/126x100';
             $str.='
-                    <div class="col-md-4 col-sm-6 col-xs-12 about-col wow fadeIn animated" data-wow-duration="1000ms">
+                    <div class="col-md-2 col-sm-3 col-xs-12 about-col wow fadeIn animated" data-wow-duration="1000ms">
                         <div class="about-item">
-                            <a href="'.$lnk.'">
-                                <img src="'.$img.'" alt="'.$item['title'].'" class="img-responsive"/>
-                            </a>
+                            <img src="'.$img.'" alt="'.$item['title'].'" class="img-responsive"/>
                         </div>
                     </div>';   
         }
-        $str.='
+        $str.='     <div class="col-md-2 col-sm-3 col-xs-12 about-col wow fadeIn animated" data-wow-duration="1000ms">
+                        <div class="about-item">
+                            <a href="'.$lnk.'">
+                                <img src="'.frontPath.'about_dots.png" alt="'.$item['title'].'" class="img-responsive"/>
+                            </a>
+                        </div>
+                    </div>  
+                    <div class="col-md-2 hidden-sm hidden-xs visible-md visible-lg">
+
+                    </div>
                     <div class="clearfix"></div>
                        
                     </div>

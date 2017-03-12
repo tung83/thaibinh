@@ -131,6 +131,10 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
             font-weight: bold;
             margin-bottom: 30px;
         }
+        
+        .footer-col{
+             width: 20%;   
+        }
         ul { list-style: none;padding: 0; margin: 0; line-height: 28px;
             li:before {
                 content: "\f0da";
@@ -194,7 +198,39 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
             vertical-align: bottom;
             text-align: center;
             border: 1px solid #e1e1e1;
-        }      
+        }  
+    ul.product-menu {font-weight: normal;font-size: 16px;padding: 15px 0 5px 0;
+        li {position: relative;list-style-type: none;
+            a {text-transform: capitalize !important;color: #464646 !important;font-size: 13px;line-height: 35px;
+               span {width: 35px;display: inline-block;
+                     &::before {
+                        position: absolute;
+                        content: "";
+                        top: 46%;
+                        -webkit-transform: translateY(-50%);
+                        -moz-transform: translateY(-50%);
+                        -o-transform: translateY(-50%);
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);
+                        margin: 0 15px 0 20px;
+                        width: 0;
+                        height: 0;
+                        border-top: 3px solid transparent;
+                        border-bottom: 3px solid transparent;
+                        border-left: 3px solid #464646;
+                    }
+               }
+            }
+            > hr {
+                margin: 0 20px 0 20px;
+                border-bottom: 1px solid #e3e3e3;
+            }
+            &.active, &:focus {background-color: #ff578f;color: #fff !important;}
+            &.active hr, &:focus hr,&:last-child > hr {
+                display: none;
+            }
+        }
+    }
 }
  
 /* 
@@ -221,7 +257,8 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
         ------------------------------------------------
 */
 .ind-concierge{ background: url('../file/front/concierge.jpg'); padding-bottom: 70px;
-               
+    .concierge-col{padding:0.5px; width: 20%!important;
+    .concierge-item-title{margin-top: 27px; font-weight: bold; font-size: 16px;}}           
     
 }
 /* 
@@ -244,17 +281,27 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;
                       span{ max-width: 680px; display: inline-block; }
             }
         }
-    
+        .about-col{padding: 0.5px;
+            
+        }
 }
 /* 
 	slider
         ------------------------------------------------
 */
 #wowslider-container1 {
-    .ws_bullets { bottom: 50%!important;left: auto!important;right: 40px!important;}
-    .ws-title{color:#fff!important;opacity: 0.9!important; background-color: #000!important; bottom: 50%!important;left: auto!important;right: 40px!important;width: 550px; height: 180px;padding:0!important;margin:0!important;
-              > span{color: #ea639e!important;background-color: transparent!important;}
+    .ws_bullets { bottom: 50%!important;left: auto!important;right: 40px!important;
+                  a{background:#fff!important;
+                    &.ws_selbull {
+                      background: $pink!important;
+                      color: $pink!important;
+                    }
+                    }
+                }
+    .ws-title{@include animate( transform, 0.3s ); color:#fff!important;opacity: 0.9!important; background-color: #000!important; bottom: 50%!important;left: auto!important;right: 40px!important;width: 550px; height: 180px;padding:0!important;margin:0!important;
+              > span{@include animate( transform, 0.3s );color: #ea639e!important;background-color: transparent!important;}
               div{background-color: transparent!important;}
     }
 }
+
 
