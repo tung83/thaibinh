@@ -1,8 +1,8 @@
 <?php
 include_once 'front.php';
-include_once 'object\form.php';
+include_once 'object/form.php';
 common::page('base');
-include_once 'page\search.php';
+include_once 'page/search.php';
 function pageId($view){
     if($view == 'trang-chu')
     {

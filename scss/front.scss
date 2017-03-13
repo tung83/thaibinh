@@ -502,7 +502,7 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;border-
                     }
                     }
                 }
-    .ws-title{@include animate( transform, 0.3s ); color:#fff!important;opacity: 0.9!important; background-color: #000!important; bottom: 50%!important;left: auto!important;right: 40px!important;width: 550px; height: 180px;padding:0!important;margin:0!important;
+    .ws-title{@include animate( transform, 0.3s ); color:#fff!important;opacity: 0.9!important; background-color: #000!important; bottom: 30%!important;left: auto!important;right: 40px!important;width: 550px; height: 180px;padding:0!important;margin:0!important;
               > span{@include animate( transform, 0.3s );color: #ea639e!important;background-color: transparent!important;}
               div{background-color: transparent!important;}
     }
