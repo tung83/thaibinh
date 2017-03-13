@@ -2,24 +2,24 @@
 function mainProcess($db)
 {
     switch($_GET['type']){
-        case 'sell_cate':
-            return sell_cate($db);
+        case 'buy_cate':
+            return buy_cate($db);
             break;
-        case 'sell_cate_2':
-            return sell_cate_2($db);
+        case 'buy_cate_2':
+            return buy_cate_2($db);
             break;
         default:
-            if(isset($_GET['id'])) return sell_image($db);
-            else return sell($db);
+            if(isset($_GET['id'])) return buy_image($db);
+            else return buy($db);
             break;
     }
 }
-function sell_cate($db)
+function buy_cate($db)
 {
 	$msg='';
-    $act='sell';
-    $type='sell_cate';
-    $table='sell_cate';
+    $act='buy';
+    $type='buy_cate';
+    $table='buy_cate';
     $lev=1;
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
 		$db->where('id',$_POST['idLoad']);
@@ -93,7 +93,7 @@ function sell_cate($db)
         }
 	}
     $page_head= array(
-                    array('#','Sell Category')
+                    array('#','Buy Category')
                 );
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
@@ -140,11 +140,11 @@ function sell_cate($db)
 	';	
 	return $str;
 }
-function sell_cate_2($db){
+function buy_cate_2($db){
     $msg='';
-    $act='sell';
-    $type='sell_cate_2';
-    $table='sell_cate';
+    $act='buy';
+    $type='buy_cate_2';
+    $table='buy_cate';
     $lev=2;
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
 		$db->where('id',$_POST['idLoad']);
@@ -218,7 +218,7 @@ function sell_cate_2($db){
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
     
-    $str.=$form->search_area($db,$act,'sell_cate',$_GET['hint'],1);
+    $str.=$form->search_area($db,$act,'buy_cate',$_GET['hint'],1);
     
     $head_title=array('Tiêu đề','Thuộc danh mục','Thứ tự','Hiển thị');
 	$str.=$form->table_start($head_title);
@@ -232,7 +232,7 @@ function sell_cate_2($db){
 
     if($db->count!=0){
         foreach($list as $item){
-            $cate=$db->where('id',$item['pId'])->getOne('sell_cate','id,title');
+            $cate=$db->where('id',$item['pId'])->getOne('buy_cate','id,title');
             $item_content = array(
                 array($item['title'],'text'),
                 array(array($cate),'cate'),
@@ -250,7 +250,7 @@ function sell_cate_2($db){
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
             '.$form->text('title',array('label'=>'Tiêu đề','required'=>true)).'
-            '.$form->cate_group($db,$table='sell_cate',1).'
+            '.$form->cate_group($db,$table='buy_cate',1).'
             '.$form->text('meta_keyword',array('label'=>'Keyword <code>SEO</code>')).'
             '.$form->textarea('meta_description',array('label'=>'Description <code>SEO</code>')).'
             '.$form->number('ind',array('label'=>'Thứ tự','required'=>true)).'
@@ -261,11 +261,11 @@ function sell_cate_2($db){
 	</form>';	
 	return $str;
 }
-function sell($db){
+function buy($db){
     $msg='';
-    $act='sell';
-    $type='sell';
-    $table='sell';
+    $act='buy';
+    $type='buy';
+    $table='buy';
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
 		$db->where('id',$_POST['idLoad']);
         $list = $db->getOne($table);
@@ -358,7 +358,7 @@ function sell($db){
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
     
-    $str.=$form->search_area($db,$act,'sell_cate',$_GET['hint'],1);
+    $str.=$form->search_area($db,$act,'buy_cate',$_GET['hint'],1);
 
     $head_title=array('Name','Category','Image','Price','Home','Show/Hide','Indicator');
 	$str.=$form->table_start($head_title);
@@ -375,8 +375,8 @@ function sell($db){
     if($db->count!=0){
         $db_sub=$db;
         foreach($list as $item){
-            $cate_1=$db->where('id',$item['pId'])->where('lev',1)->getOne('sell_cate','id,title,pId');
-            $img=$db->where('pId',$item['id'])->orderBy('ind','asc')->getOne('sell_image','img');
+            $cate_1=$db->where('id',$item['pId'])->where('lev',1)->getOne('buy_cate','id,title,pId');
+            $img=$db->where('pId',$item['id'])->orderBy('ind','asc')->getOne('buy_image','img');
             if(trim($img['img'])==='') $img='holder.js/130x100';else $img=myPath.$img['img'];   
             $item_content = array(
                 array($item['title'],'text'),
@@ -401,7 +401,7 @@ function sell($db){
 	<div class="row">
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
-            '.$form->cate_group($db,'sell_cate',1).'
+            '.$form->cate_group($db,'buy_cate',1).'
         </div>
         <div class="col-lg-12">
           '.$form->text('title',array('label'=>'Tên SP','required'=>true)).'
@@ -427,11 +427,11 @@ function sell($db){
 	';
 	return $str;
 }
-function sell_image($db){
+function buy_image($db){
     $msg='';
-    $act='sell';
-    $type='sell';
-    $table='sell_image';
+    $act='buy';
+    $type='buy';
+    $table='buy_image';
     $pId=intval($_GET['id']);
     
     if(isset($_POST["Edit"])&&$_POST["Edit"]==1){
@@ -504,9 +504,9 @@ function sell_image($db){
         }
 	}
     $db->where('id',$pId);
-    $pd=$db->getOne('sell','id,title,pId');
+    $pd=$db->getOne('buy','id,title,pId');
     $db->where('id',$pd['pId']);
-    $cate=$db->getOne('sell_cate','id,title');
+    $cate=$db->getOne('buy_cate','id,title');
 
     $page_head= array(
                     array('#','Hình ảnh sản phẩm'),

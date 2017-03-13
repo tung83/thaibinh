@@ -12,7 +12,7 @@ class concierge extends base{
         <div class="ind-concierge">  
             <div class="container">
                 <div class="row">   
-                <div class="row">    
+                <div>    
                     <div class="col-xs-12">
                         <div class="title-head">
                             <span>'

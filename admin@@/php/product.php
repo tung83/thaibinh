@@ -289,7 +289,9 @@ function product($db){
         $home=$_POST['home']=='on'?1:0;
         $ind=intval($_POST['ind']);
         $price=intval($_POST['price']);
-        $price_reduce=intval($_POST['price_reduce']);
+        $storey=intval($_POST['storey']);
+        $beds=intval($_POST['beds']);
+        $landWidth=intval($_POST['landWidth']);
         $pId=intval($_POST['frm_cate_1']);
 	}
     if(isset($_POST['listDel'])&&$_POST['listDel']!=''){
@@ -310,7 +312,8 @@ function product($db){
                     'manual'=>$manual,
                     'feature'=>$feature,'meta_keyword'=>$meta_kw,
                     'meta_description'=>$meta_desc,                                    
-                    'home'=>$home,'active'=>$active,'pId'=>$pId,'ind'=>$ind,'price'=>$price,'price_reduce'=>$price_reduce
+                    'home'=>$home,'active'=>$active,'pId'=>$pId,'ind'=>$ind,'price'=>$price
+                    ,'storey'=>$storey,'beds'=>$beds,'landWidth'=>$landWidth
                 );
 		try{
             $db->insert($table,$insert);
@@ -326,7 +329,8 @@ function product($db){
                     'feature'=>$feature,'meta_keyword'=>$meta_kw,
                     'meta_description'=>$meta_desc,
                     'price'=>$price,'price_reduce'=>$price_reduce,                    
-                    'home'=>$home,'active'=>$active,'pId'=>$pId,'ind'=>$ind,'price'=>$price,'price_reduce'=>$price_reduce
+                    'home'=>$home,'active'=>$active,'pId'=>$pId,'ind'=>$ind,'price'=>$price                   
+                    ,'storey'=>$storey,'beds'=>$beds,'landWidth'=>$landWidth
                 );
         try{
             $db->where('id',$_POST['idLoad']);
@@ -356,7 +360,7 @@ function product($db){
     
     $str.=$form->search_area($db,$act,'product_cate',$_GET['hint'],1);
 
-    $head_title=array('Tên SP','Danh mục','Hình ảnh','Đơn Giá (VNĐ)','Trang chủ','Hiển thị','Thứ tự');
+    $head_title=array('Name','Category','Image','Price','Home','Show/Hide','Indicator');
 	$str.=$form->table_start($head_title);
     
     $page=isset($_GET["page"])?intval($_GET["page"]):1;
@@ -403,8 +407,10 @@ function product($db){
           '.$form->text('title',array('label'=>'Tên SP','required'=>true)).'
             '.$form->text('meta_keyword',array('label'=>'Keyword <code>SEO</code>')).'
             '.$form->textarea('meta_description',array('label'=>'Description <code>SEO</code>')).'
-            '.$form->number('price',array('label'=>'Đơn Giá (VNĐ)')).'
-            '.$form->number('price_reduce',array('label'=>'Giảm giá (VNĐ)')).'
+            '.$form->number('price',array('label'=>'Price')).'
+            '.$form->number('storey',array('label'=>'Storey')).'
+            '.$form->number('beds',array('label'=>'Beds')).'
+            '.$form->number('landWidth',array('label'=>'Land Width')).'
             '.$form->ckeditor('feature',array('label'=>'Điểm nổi bật')).'            
             '.$form->ckeditor('content',array('label'=>'Mô tả chi tiết')).'
             '.$form->ckeditor('manual',array('label'=>'Ghi chú')).'           
@@ -459,7 +465,7 @@ function product_image($db){
 		try{
             $recent = $db->insert($table,$insert);
             if(common::file_check($_FILES['file'])){
-                WideImage::load('file')->resize(500,415, 'fill')->saveToFile(myPath.$file);
+                WideImage::load('file')->resize(420,350, 'fill')->saveToFile(myPath.$file);
                 WideImage::load(myPath.$file)->resize(300,350, 'fill')->saveToFile(myPath.'thumb_'.$file);
                 $db->where('id',$recent);
                 $db->update($table,array('img'=>$file));
@@ -472,7 +478,7 @@ function product_image($db){
 	if(isset($_POST["update"]))	{
 	   $update=array('ind'=>$ind,'active'=>$active);
        if(common::file_check($_FILES['file'])){
-            WideImage::load('file')->resize(500,415, 'fill')->saveToFile(myPath.$file);
+            WideImage::load('file')->resize(420,350, 'fill')->saveToFile(myPath.$file);
             WideImage::load(myPath.$file)->resize(300,350, 'fill')->saveToFile(myPath.'thumb_'.$file);
             $update = array_merge($update,array('img'=>$file));
             $db->where('id',$_POST['idLoad']);
@@ -535,7 +541,7 @@ function product_image($db){
 	<div class="row">
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
-            '.$form->file('img',500,415).'
+            '.$form->file('img',420,350).'
             '.$form->number('ind',array('label'=>'Thứ tự','required'=>true)).'
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'
         </div>

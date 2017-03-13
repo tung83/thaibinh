@@ -17,6 +17,8 @@ function slider($db){
 	}
 	if(isset($_POST["addNew"])||isset($_POST["update"])) {
         $lnk=htmlspecialchars($_POST['lnk']);
+        $title=htmlspecialchars($_POST['title']);	   
+        $sum=htmlspecialchars($_POST['sum']);
         $ind=intval($_POST['ind']);	   
         $file=time().$_FILES['file']['name'];
         $active=$_POST['active']=='on'?1:0;        
@@ -37,7 +39,7 @@ function slider($db){
 	if(isset($_POST["addNew"])) {
         $insert = array(
                     'ind'=>$ind,
-                    'active'=>$active,'lnk'=>$lnk
+                    'active'=>$active,'lnk'=>$lnk,'title'=>$title,'sum'=>$sum
                 );
 		try{
             $recent = $db->insert($table,$insert);
@@ -54,7 +56,7 @@ function slider($db){
 	if(isset($_POST["update"]))	{
         $update=array(
                     'ind'=>$ind,
-                    'active'=>$active,'lnk'=>$lnk
+                    'active'=>$active,'lnk'=>$lnk,'title'=>$title,'sum'=>$sum,
                 );
         if(common::file_check($_FILES['file'])){
             WideImage::load('file')->resize(1900,475, 'fill')->saveToFile(myPath.$file);
@@ -115,7 +117,9 @@ function slider($db){
 	<div class="row">
         <div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
-            '.$form->text('lnk',array('label'=>'Liên kết')).'            
+            '.$form->text('lnk',array('label'=>'Liên kết')).'  
+         '.$form->text('title',array('label'=>'Tiêu đề','required'=>true)).'      
+            '.$form->textarea('sum',array('label'=>'Trích Dẫn','required'=>true)).'                
         </div>
         <div class="col-lg-12">
             '.$form->file('img',1900,475).'

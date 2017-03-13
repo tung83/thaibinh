@@ -54,7 +54,7 @@
         <footer>
             <div class="container">
                 <div class="row footer-content">
-                    <div class="col-md-2 footer-col col-xs-5 footer-menu">
+                    <div class="col-md-2 footer-col col-xs-6 footer-menu">
                         <div class="footer-menu-part">
                             <span class="footer-top-span">
                                 Site map
@@ -107,7 +107,7 @@
             <div class="copyright-wrapper">
                 <div class="container">             
                     <div class="row bottom-footer">                
-                        <div class="row">
+                        <div >
                             <div class="col-md-6 copyright">
                                 Copyright © 2016 <b class="company">Hana Beauty</b>, All rights reserved. Designed by <a class="psmedia" href="http://psmedia.vn" target="_blank"><b>PSmedia.vn</b></a>
                             </div>

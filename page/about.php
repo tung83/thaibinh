@@ -26,7 +26,7 @@ class about extends base{
 
                     </div>';   
         foreach($list as $item){
-            $lnk=myWeb.$this->view.'/'.common::slug($item['title']);
+            $lnk=myWeb.$this->view;
             $img=webPath.$item['img'];
             if($img=='') $img='holder.js/126x100';
             $str.='
@@ -37,7 +37,7 @@ class about extends base{
                     </div>';   
         }
         $str.='     <div class="col-md-2 col-sm-3 col-xs-12 about-col wow fadeIn animated" data-wow-duration="1000ms">
-                        <div class="about-item">
+                        <div class="about-item about-3dot">
                             <a href="'.$lnk.'">
                                 <img src="'.frontPath.'about_dots.png" alt="'.$item['title'].'" class="img-responsive"/>
                             </a>
@@ -56,7 +56,7 @@ class about extends base{
     }
     
     function about_item($item){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $lnk=myWeb.$this->view;
          return '
             <div class="col-md-4 wow fadeIn animated about-col" data-wow-duration="1000ms">
                 <div class="about-item item">

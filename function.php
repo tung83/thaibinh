@@ -19,7 +19,7 @@ function menu($db,$view){
     <div class="header">
         <div class="wsmobileheader clearfix">
             <a id="wsnavtoggle" class="animated-arrow"><span></span></a>
-            <a href="'.myWeb.'" class="smallogo"><img src="'.frontPath.'white-letter-logo.png" height="27" alt="" /></a>
+            <a href="'.myWeb.'" class="smallogo"><img src="'.frontPath.'logo.jpg" height="27" alt="" /></a>
             <a class="callusicon" href="tel:'.common::qtext($db,5).'"><span class="fa fa-phone"></span></a>
         </div>  
         <div class="header-wrap">
@@ -27,11 +27,11 @@ function menu($db,$view){
                 <div class="row">
                     <div class="row header-top">
                         <div class="col-md-4 logo hidden-xs hidden-sm">
-                            <a href="'.myWeb.'" title="Hana"><img src="'.frontPath.'logo.jpg" alt="" style=""/></a>
+                            <a href="'.myWeb.'" title="logo"><img src="'.frontPath.'logo.jpg" alt="" style=""/></a>
                         </div>
-                        <div class="header-right">
+                        <div class="header-right hidden-xs hidden-sm">
                             '.social($db).' 
-                            <div class="hotline hidden-xs hidden-sm">
+                            <div class="hotline">
                                 <span>Contact us:</span>
                                 <a href="tel:'.common::qtext($db,2).'">'.common::qtext($db,2).'</a>
                             </div>
@@ -276,7 +276,6 @@ function contact($db){
     <section id="page">';
     common::page('contact');
     $contact=new contact($db);
-    $str.=$contact->breadcrumb_with_Id();
     $str.=$contact->contact(); 
     $str.=$contact->bottom_content();    
     $str.=gmap();
@@ -445,8 +444,8 @@ function gmap(){
     return '
         <script>   
             function initMap() {
-                var companyAddress = {lat: 10.841838, lng: 106.635172};
-                var addCenter = {lat: 10.8427, lng: 106.635172};
+                var companyAddress = {lat: 10.790890,lng: 106.728202};
+                var addCenter = {lat: 10.791,lng: 106.728202};
                 var map = new google.maps.Map(document.getElementById("google-map"), {
                   zoom: 17,
                   fullscreenControl: true,
@@ -458,11 +457,10 @@ function gmap(){
                   title: "566/12 Điện Biên Phủ, Phường 22, Quận Bình Thạnh, Tp. Hồ Chí Minh"
                 });
                 var lequangdinhContentString = 
-                      "<h4 style=\"color: #ff578f\">Hana Beauty</h4>" +
-                      "<p>Căn Hộ Gia Đức, Đường 44, Phường 14, Gò Vấp</p>" +
-                      "<a  target=\"_blank\" href=\"https://www.google.com/maps/dir//10.841838,106.635172/@10.8430076,106.6335198,17z/data=!4m8!1m7!3m6!1s0x0:0x0!2zMTDCsDUwJzMwLjYiTiAxMDbCsDM4JzA2LjYiRQ!3b1!8m2!3d10.841838!4d106.635172\">Get direction</a>";
-
-                  var infowindow = new google.maps.InfoWindow({
+                      "<h4 style=\"color: #ff578f\">JJKetsa</h4>" +
+                      "<p>2, Road 31, Binh An Ward, District 2</p>" +
+                      "<a  target=\"_blank\" href=\"https://www.google.com/maps/place/%C4%90%C6%B0%E1%BB%9Dng+S%E1%BB%91+31,+Khu+ph%E1%BB%91+1,+B%C3%ACnh+An,+Qu%E1%BA%ADn+2,+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.7908958,106.7260239,17z/data=!3m1!4b1!4m5!3m4!1s0x3175260114221b6f:0x7f862a27d73c8111!8m2!3d10.7908905!4d106.7282126\">Get direction</a>";
+                    var infowindow = new google.maps.InfoWindow({
                     content: lequangdinhContentString
                   });
                   infowindow.open(map, marker);

@@ -4,12 +4,24 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/wamp64/www/thaibinhauto/page/search.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/admin@@/navigation.php</file>
             <file>file:/D:/wamp64/www/thaibinhauto/page/about.php</file>
-            <file>file:/D:/wamp64/www/thaibinhauto/scss/front.scss</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/admin@@/php/buy.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/config.php</file>
             <file>file:/D:/wamp64/www/thaibinhauto/index.php</file>
-            <file>file:/D:/wamp64/www/thaibinhauto/page/concierge.php</file>
             <file>file:/D:/wamp64/www/thaibinhauto/page/sell.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/admin@@/php/partner.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/admin@@/php/concierge.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/admin@@/php/slider.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/object/ad_form.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/page/partner.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/admin@@/php/product.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/page/contact.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/scss/front.scss</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/page/concierge.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/admin@@/php/contact.php</file>
             <file>file:/D:/wamp64/www/thaibinhauto/page/buy.php</file>
+            <file>file:/D:/wamp64/www/thaibinhauto/admin@@/php/sell.php</file>
         </group>
     </open-files>
 </project-private>

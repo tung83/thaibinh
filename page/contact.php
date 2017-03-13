@@ -31,14 +31,14 @@ class contact extends base{
                                      if(!$this->post_result){
                                     $this->post_result = ' <div class="alert alert-success"><i class="icon fa fa-check"></i>
                                              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                             <strong>Thành công!</strong>  Thông tin của Quý Khách đã gửi thành công. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất!.
+                                             <strong>Success!</strong>  Your information was submitted successfully. We will contact you soon!
                                            </div>';
                                 }
                                         
                                 }catch(Exception $e){
                                      $this->post_result .= ' <div class="alert alert-warning">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                        <strong>Lỗi!</strong> '. $e->getMessage() .
+                                        <strong>Error!</strong> '. $e->getMessage() .
                                       '</div>'; 
                                 }
                 }
@@ -69,7 +69,7 @@ class contact extends base{
                                     .$this->title.' 
                                 </span>                                
                                 <p>
-                                    <i>Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:</i>
+                                    <i>Thank you for visiting our website. For more information, Please contact:</i>
                                 </p>   
                             </div>
                         </div> 
@@ -79,7 +79,7 @@ class contact extends base{
                          {
                              $str.= $this->post_result;
                          }                             
-        $str.=              '<div class="col-sm-6 contact-left">
+        $str.=              '<div class="col-md-5 contact-left">
                              
                             <p>
                                 '.common::qtext($this->db,3).'
@@ -88,13 +88,13 @@ class contact extends base{
                                 <img src="'.frontPath.'contact.jpg" class="img-responsive map-image" alt="" title=""/>
                             </p>     
                         </div>
-                        <div class="col-sm-6"> 
-                            <p class="text-center">
-                                Chú ý: Dấu (*) các trường bắt buộc phải nhập vào. Quý vị có thể gõ chữ tiếng Việt không dấu hoặc chữ tiếng Việt có dấu theo chuẩn UNICODE (UTF-8).
-                            </p>
+                        <div class="col-md-7"> 
+                            <h3 class="contact-right-header">
+                                How can we assist you?
+                            </h3>
                             <form data-toggle="validator" role="form" class="contact-form" name="contact-form" method="post" action="">
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" required placeholder="Họ Tên*" />
+                                    <input type="text" name="name" class="form-control" required placeholder="Full name*" />
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
@@ -102,17 +102,17 @@ class contact extends base{
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="phone" class="form-control" required placeholder="Điện Thoại*">
+                                    <input type="text" name="phone" class="form-control" required placeholder="Phone*">
                                 </div>   
                                 <div class="form-group">
-                                    <input type="text" name="adds" class="form-control" required placeholder="Địa Chỉ*">
+                                    <input type="text" name="adds" class="form-control" required placeholder="Address*">
                                 </div>      
                                 <div class="form-group">
-                                    <input type="text" name="subject" class="form-control" required placeholder="Chủ Đề*"/>
+                                    <input type="text" name="subject" class="form-control" required placeholder="Subject*"/>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="content" id="content" required class="form-control"  placeholder="Nội Dung Tin Nhắn*" rows="8"></textarea>
+                                    <textarea name="content" id="content" required class="form-control"  placeholder="Message*" rows="8"></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">    
@@ -120,10 +120,10 @@ class contact extends base{
                                 </div> 
                                 <div class="form-group">
                                     <button type="submit" name="contact_send" class="btn btn-primary btn-md btn-custom submit-button">
-                                        Gửi Tin
+                                        SEND
                                     </button>
                                     <button type="reset" name="reset" class="btn btn-primary btn-md btn-custom">
-                                        Xóa
+                                        CLEAR
                                     </button>
                                 </div>
                             </form> 

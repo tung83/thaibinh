@@ -1,13 +1,13 @@
 <?php
 class partner extends base{
     function __construct($db){
-        parent::__construct($db,7,'parner_detail');
+        parent::__construct($db,7,'partner_detail');
     }
     function ind_partner($db){
         $this->db->reset();
         $this->db->where('active',1)->where('home',1);
         $this->db_orderBy();
-        $list=$this->db->get('parner_detail',5);
+        $list=$this->db->get('partner_detail',5);
         $str='
         <div class="ind-partner">  
             <div class="container">
@@ -58,7 +58,7 @@ class partner extends base{
     function partner_item($item){
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
          return '
-            <div class="col-md-4 wow fadeIn animated partner-col" data-wow-duration="1000ms">
+            <div class="col-md-2 wow fadeIn animated partner-col" data-wow-duration="1000ms">
                 <div class="partner-item item">
                     <a href="'.$lnk.'">
                         <img src="'.webPath.$item['img'].'" class="img-responsive center-block"/>
@@ -81,7 +81,7 @@ class partner extends base{
         $this->db->where('active',1);
         $this->db_orderBy();
         $this->db->pageLimit=limit;
-        $list=$this->db->paginate('parner_detail',$page);
+        $list=$this->db->paginate('partner_detail',$page);
         $count=$this->db->totalCount;
         $str.='<div class="partner-list">';
         if($count>0){
@@ -103,7 +103,7 @@ class partner extends base{
         return $str;
     }
     function partner_one($id=1){
-        $item=$this->db->where('id',$id)->getOne('parner_detail');
+        $item=$this->db->where('id',$id)->getOne('partner_detail');
         $title=$item['title'];
         $content=$item['content'];
         return  

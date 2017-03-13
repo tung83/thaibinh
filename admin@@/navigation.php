@@ -6,17 +6,15 @@ function ad_menu()
                     array(1,"Slider","slider","camera-retro"),
                     array(2,"Giới thiệu","about","credit-card"),
                     array(3,'Build',"product","dropbox"),
-                    array(67,'Buy',"buy","dropbox"),
-                    array(67,'Sell',"sell","dropbox"),
+                    array(16,'Buy',"buy","dropbox"),
+                    array(17,'Sell',"sell","dropbox"),
 					/*array(3,"Quản lý phụ tùng","accessary","pencil"),	*/	
-                    array(4,'Concierge','concierge','anchor'), 
-                    array(5,'Tin tức','news','pencil-square-o'),   
+                    array(4,'Concierge','concierge','anchor'),   
                     array(6,'Đối tác','partner','briefcase'), 
                     //array(9,'Video','video','youtube'),
                     /*array(14,'Hỗ trợ trực tuyến','support_online','headphones'),*/
-                    array(14,'Đặt hàng','cart','shopping-cart'),
+                    //array(14,'Đặt hàng','cart','shopping-cart'),
                     array(8,'Liên hệ','contact','users'), 
-                    array(9,'Đăng ký nhận email','subscriber','user'),
                     array(11,"Pages SEO","seo","book"),
                     array(12,"Quản lý text","qtext","folder-open"),
                     array(15,"Cấu hình cơ bản","basic_config","cog")
@@ -25,8 +23,13 @@ function ad_menu()
 	//Submenu (parent,name,lnk)
 	$subNav=array(
                     array(3,'Danh mục sản phẩm','type=product_cate'),
-                    /*array(2,'Danh mục sản phẩm cấp 2','type=product_cate_2'), */
                     array(3,'Danh sách sản phẩm','type=product'), 
+                    array(16,'Danh mục Buy','type=buy_cate'),
+                    array(16,'Danh sách Buy','type=buy'),
+                    array(17,'Danh mục Sell','type=sell_cate'),
+                    array(6,'Danh sách Đối tác','type=partner'),
+                    array(6,'Danh mục Logo','type=logo'),
+                    array(17,'Danh sách Sell','type=sell'),
                     /*array(6,'Danh mục dịch vụ','type=serv_cate'),
                     array(6,'Danh sách dịch vụ','type=serv'),*/ 
                     //array(8,'Danh mục khuyến mãi','type=promotion_cate'),
@@ -37,7 +40,9 @@ function ad_menu()
                     array(12,"Build summary","id=6"),                   
                     array(12,"About summary","id=7"),                    
                     array(12,"Sell summary","id=8") ,                    
-                    array(12,"Concierge summary","id=9")                	
+                    array(12,"Concierge summary","id=9") ,                    
+                    array(12,"Buy summary","id=10")               
+            
 				);
 	$size=sizeof($topNav);
 	$act=$_GET["act"];
