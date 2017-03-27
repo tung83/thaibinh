@@ -128,19 +128,19 @@ class contact extends base{
                                     <tr>
                                     <td>
                                         <label class="checkbox-inline">
-                                            <input type="checkbox" name="purpose[]" value="custom_homes" class=""/>Custom Homes
+                                            <input type="checkbox" name="purpose[]" value="custom homes" class=""/>Custom Homes
                                         </label>
                                     </td>
                                     <td>
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" name="purpose[]" value="buy_home" class=""/>Buy Home (advocacy)
+                                        <input type="checkbox" name="purpose[]" value="buy home" class=""/>Buy Home (advocacy)
                                     </label>
                                     </td>
                                     </tr>
                                     <tr>
                                     <td>
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" name="purpose[]" value="build_new_home" class=""/>Build New Home
+                                        <input type="checkbox" name="purpose[]" value="build new home" class=""/>Build New Home
                                     </label>
                                     </td>
                                     <td>
@@ -152,7 +152,7 @@ class contact extends base{
                                     <tr>
                                     <td>
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" name="purpose[]" value="sell_home" class=""/>Sell Home
+                                        <input type="checkbox" name="purpose[]" value="sell home" class=""/>Sell Home
                                     </label>
                                     </td>
                                     </tr>

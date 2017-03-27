@@ -78,6 +78,7 @@ function contact($db)
 							<th>Fax</th>							
 							<th>Email</th>
 							<th>Company</th>
+							<th>Sections</th>
 							<th width="40%">Nội dung</th>
 							<th style="width:10% !important">Options</th>
 						</tr>
@@ -99,6 +100,7 @@ function contact($db)
 			<td>'.$item['adds'].'</td>
 			<td><a href="mailto:'.$item['email'].'">'.$item['email'].'</a></td>
 			<td>'.$item['subject'].'</td>
+			<td>'.$item['purpose'].'</td>
 			<td>'.nl2br($item['content']).'</td>
 			<td align="center">
 		';
