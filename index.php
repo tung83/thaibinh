@@ -54,7 +54,7 @@
         <footer>
             <div class="container">
                 <div class="row footer-content">
-                    <div class="col-md-2 footer-col col-xs-6 footer-menu">
+                    <div class="col-md-6 footer-col col-xs-6 footer-menu">
                         <div class="footer-menu-part">
                             <span class="footer-top-span">
                                 Site map
@@ -64,35 +64,7 @@
                             </div>     
                         </div>
                     </div>
-                    <div class="col-md-2 footer-col col-xs-6">
-                        <div class="footer-product-part">
-                            <span class="footer-top-span">
-                                Build
-                            </span>
-                            <div>
-                                <?=foot_product_cate($db,$view)?>   
-                            </div>  
-                        </div>
-                    </div><div class="col-md-2 footer-col col-xs-6">
-                        <div class="footer-product-part">
-                            <span class="footer-top-span">
-                                Buy
-                            </span>
-                            <div>
-                                <?=foot_buy_cate($db,$view)?>   
-                            </div>  
-                        </div>
-                    </div><div class="col-md-2 footer-col col-xs-6">
-                        <div class="footer-product-part">
-                            <span class="footer-top-span">
-                                Sell
-                            </span>
-                            <div>
-                                <?=foot_sell_cate($db,$view)?>   
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="col-md-2 footer-col">
+                    <div class="col-md-6 footer-col">
                         <div class="footer-contact-part">
                             <span class="footer-top-span">
                                 Contact us

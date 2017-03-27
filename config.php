@@ -24,7 +24,7 @@ unset($process);
 //define area
 define('_hostName'  , 'localhost');
 define('_userName'  , 'tung');	
-define('_dbName'    , 'hana2');	
+define('_dbName'    , 'jjketsa');	
 define('_pass'      , 'tung');
 //define('_userName'  , 'tung');	
 //define('_dbName'    , 'thaibinh_db');	

@@ -21,18 +21,13 @@ class concierge extends base{
                         </div>
                     </div>';
         foreach($list as $item){
-            $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
             $img=webPath.$item['img'];
             if($img=='') $img='holder.js/126x100';
             $str.='
                     <div class="col-md-2 col-sm-4 col-xs-12 concierge-col wow fadeIn animated" data-wow-duration="1000ms">
                         <div class="concierge-item">
-                            <a href="'.$lnk.'">
                                 <img src="'.$img.'" alt="'.$item['title'].'" class="img-responsive"/>
-                            </a>
-                            <a href="'.$lnk.'">
                                 <p class="concierge-item-title">'.common::str_cut($item['title'],30).'</p>
-                            </a>
                             <p class="concierge-item-sum">'.nl2br(common::str_cut($item['sum'],300)).'</p>
                         </div>
                     </div>';   
@@ -47,18 +42,13 @@ class concierge extends base{
         return $str;
     }
     function concierge_item($item){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
          return '
             <div class="col-md-4 wow fadeIn animated concierge-col" data-wow-duration="1000ms">
                 <div class="concierge-item item">
-                    <a href="'.$lnk.'">
-                        <img src="'.webPath.$item['img'].'" class="img-responsive center-block"/>
-                    </a>               
+                        <img src="'.webPath.$item['img'].'" class="img-responsive center-block"/>         
                 </div>
                     <div class="item-title">
-                        <a href="'.$lnk.'">
                             <h3>'.$item['title'].'</h3>
-                        </a>
                         <div class="concierge-sum">
                                 <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
                         </div>

@@ -95,7 +95,7 @@ function concierge($db)
 	}
     
     $page_head= array(
-                    array('#','Danh sách khuyến mãi')
+                    array('#','Danh sách Concierge')
                 );
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
@@ -131,10 +131,7 @@ function concierge($db)
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
          '.$form->text('title',array('label'=>'Tiêu đề','required'=>true)).'      
-            '.$form->textarea('sum',array('label'=>'Trích Dẫn','required'=>true)).'      
-            '.$form->text('meta_keyword',array('label'=>'Keyword<code>SEO</code>','required'=>true)).'      
-            '.$form->textarea('meta_description',array('label'=>'Meta Description<code>SEO</code>','required'=>true)).'   
-            '.$form->ckeditor('content',array('label'=>'Nội dung','required'=>true)).'
+            '.$form->textarea('sum',array('label'=>'Mô tả ngắn','required'=>true)).'     
              
         </div>
         <div class="col-lg-12">

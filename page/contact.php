@@ -20,9 +20,21 @@ class contact extends base{
                                 $email=htmlspecialchars($_POST['email']);
                                 $subject=htmlspecialchars($_POST['subject']);
                                 $content=htmlspecialchars($_POST['content']);
+                                $purpose='';
+                                if(!empty($_POST['purpose'])) {
+                                    foreach($_POST['purpose'] as $key=>$check) {
+                                        if($key == 0){
+                                            $purpose.= $check; 
+                                        }
+                                        else{
+                                            $purpose.= ', '.$check; 
+                                            
+                                        }
+                                    }
+                                }
                                 $insert=array(
                                     'name'=>$name,'adds'=>$adds,'phone'=>$phone,
-                                    'email'=>$email,'subject'=>$subject,'content'=>$content,
+                                    'email'=>$email,'subject'=>$subject,'content'=>$content, 'purpose'=>$purpose,
                                     'dates'=>date("Y-m-d H:i:s")
                                 );
                                 try{
@@ -79,40 +91,76 @@ class contact extends base{
                          {
                              $str.= $this->post_result;
                          }                             
-        $str.=              '<div class="col-md-5 contact-left">
+        $str.=              '<div class="col-md-4 contact-left">
                              
-                            <p>
+                            <p class="thanks-text">
                                 '.common::qtext($this->db,3).'
                             </p>     
                             <p>
                                 <img src="'.frontPath.'contact.jpg" class="img-responsive map-image" alt="" title=""/>
                             </p>     
                         </div>
-                        <div class="col-md-7"> 
+                        <div class="col-md-7 col-md-offset-1 "> 
                             <h3 class="contact-right-header">
                                 How can we assist you?
                             </h3>
                             <form data-toggle="validator" role="form" class="contact-form" name="contact-form" method="post" action="">
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" required placeholder="Full name*" />
+                                    <input type="text" name="name" class="form-control" required placeholder="Name *" />
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" required placeholder="Email*" />
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="phone" class="form-control" required placeholder="Phone*">
+                                    <input type="text" name="phone" class="form-control" required placeholder="Phone *">
                                 </div>   
                                 <div class="form-group">
-                                    <input type="text" name="adds" class="form-control" required placeholder="Address*">
-                                </div>      
+                                    <input type="text" name="adds" class="form-control" placeholder="Fax">
+                                </div>  
                                 <div class="form-group">
-                                    <input type="text" name="subject" class="form-control" required placeholder="Subject*"/>
+                                    <input type="text" name="subject" class="form-control" placeholder="Company"/>
                                     <div class="help-block with-errors"></div>
-                                </div>
+                                </div>   
                                 <div class="form-group">
-                                    <textarea name="content" id="content" required class="form-control"  placeholder="Message*" rows="8"></textarea>
+                                    <input type="email" name="email" class="form-control" required placeholder="Email *" />
+                                    <div class="help-block with-errors"></div>
+                                </div> 
+                                <div class="form-group">
+                                <table class="purpose-check">
+                                    <tr>
+                                    <td>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="purpose[]" value="custom_homes" class=""/>Custom Homes
+                                        </label>
+                                    </td>
+                                    <td>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="purpose[]" value="buy_home" class=""/>Buy Home (advocacy)
+                                    </label>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="purpose[]" value="build_new_home" class=""/>Build New Home
+                                    </label>
+                                    </td>
+                                    <td>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="purpose[]" value="house" class=""/>House
+                                    </label>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="purpose[]" value="sell_home" class=""/>Sell Home
+                                    </label>
+                                    </td>
+                                    </tr>
+                                   </table>
+                                    <div class="help-block with-errors"></div>
+                                </div>   
+                                <div class="form-group">
+                                    <textarea name="content" id="content" required class="form-control"  placeholder="Message *" rows="8"></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">    
@@ -167,11 +215,11 @@ class contact extends base{
         <body>
         	<p>Full Name: '.$item['name'].'</p>
         	
-        	<p>Address: '.$item['adds'].'</p>
+        	<p>Fax: '.$item['adds'].'</p>
         	<p>Phone: '.$item['phone'].'</p>
-        	
+                <p>Company: '.$item['subject'].'</p>        	
         	<p>Email: '.$item['email'].'</p>
-                <p>Tiêu Đề: '.$item['subject'].'</p>
+                <p>For: '.$item['purpose'].'</p>
         	<p>Content: '.nl2br($item['content']).'</p>
         </body>
         </html>';

@@ -62,9 +62,8 @@ function about($db)
             <h3>Thông Tin mạng xã hội</h3>
         </div>
         <div class="col-lg-12">
-            '.$form->text('social_twitter',array('label'=>'<i class="fa fa-twitter"></i> Twitter','required'=>true)).'      
+            '.$form->text('social_twitter',array('label'=>'<i class="fa fa-instagram"></i> Instagram','required'=>true)).'      
             '.$form->text('social_facebook',array('label'=>'<i class="fa fa-facebook"></i> Facebook','required'=>true)).'      
-            '.$form->text('social_google_plus',array('label'=>'<i class="fa fa-google-plus"></i> Google Plus','required'=>true)).'   
         </div>
 	   '.$form->hidden($btn['name'],$btn['value']).'
 	</div>

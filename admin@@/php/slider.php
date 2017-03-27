@@ -44,7 +44,7 @@ function slider($db){
 		try{
             $recent = $db->insert($table,$insert);
             if(common::file_check($_FILES['file'])){
-                WideImage::load('file')->resize(1900,475,'fill')->saveToFile(myPath.$file);
+                WideImage::load('file')->resize(1900,600,'fill')->saveToFile(myPath.$file);
                 $db->where('id',$recent);
                 $db->update($table,array('img'=>$file));
             }
@@ -59,7 +59,7 @@ function slider($db){
                     'active'=>$active,'lnk'=>$lnk,'title'=>$title,'sum'=>$sum,
                 );
         if(common::file_check($_FILES['file'])){
-            WideImage::load('file')->resize(1900,475, 'fill')->saveToFile(myPath.$file);
+            WideImage::load('file')->resize(1900,600, 'fill')->saveToFile(myPath.$file);
             $update = array_merge($update,array('img'=>$file)); 
             $form->img_remove($_POST['idLoad'],$db,$table);
         }        
@@ -122,7 +122,7 @@ function slider($db){
             '.$form->textarea('sum',array('label'=>'Trích Dẫn','required'=>true)).'                
         </div>
         <div class="col-lg-12">
-            '.$form->file('img',1900,475).'
+            '.$form->file('img',1900,600).'
             '.$form->number('ind',array('label'=>'Thứ tự')).'
             '.$form->checkbox('active',array('label'=>'Hiển thị','checked'=>true)).'
         </div>

@@ -75,9 +75,9 @@ function contact($db)
 						<tr>
 							<th>ID</th>							
 							<th>Họ&Tên</th>
-							<th>Địa chỉ</th>							
+							<th>Fax</th>							
 							<th>Email</th>
-							<th>Chủ đề</th>
+							<th>Company</th>
 							<th width="40%">Nội dung</th>
 							<th style="width:10% !important">Options</th>
 						</tr>

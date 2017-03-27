@@ -1,18 +1,8 @@
 <?php
 function mainProcess($db)
 {
-    switch($_GET['type']){
-        case 'buy_cate':
-            return buy_cate($db);
-            break;
-        case 'buy_cate_2':
-            return buy_cate_2($db);
-            break;
-        default:
-            if(isset($_GET['id'])) return buy_image($db);
-            else return buy($db);
-            break;
-    }
+    if(isset($_GET['id'])) return buy_image($db);
+    else return buy($db);
 }
 function buy_cate($db)
 {
@@ -352,15 +342,15 @@ function buy($db){
 	}
     
     $page_head= array(
-                    array('#','Danh sách sản phẩm')
+                    array('#','Danh sách Buy')
                 );
 
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
     
-    $str.=$form->search_area($db,$act,'buy_cate',$_GET['hint'],1);
+    $str.=$form->search_area($db,$act,'buy_cate',$_GET['hint'],0);
 
-    $head_title=array('Name','Category','Image','Price','Home','Show/Hide','Indicator');
+    $head_title=array('Name','Image','Price','Home','Show/Hide','Indicator');
 	$str.=$form->table_start($head_title);
     
     $page=isset($_GET["page"])?intval($_GET["page"]):1;
@@ -375,12 +365,10 @@ function buy($db){
     if($db->count!=0){
         $db_sub=$db;
         foreach($list as $item){
-            $cate_1=$db->where('id',$item['pId'])->where('lev',1)->getOne('buy_cate','id,title,pId');
             $img=$db->where('pId',$item['id'])->orderBy('ind','asc')->getOne('buy_image','img');
             if(trim($img['img'])==='') $img='holder.js/130x100';else $img=myPath.$img['img'];   
             $item_content = array(
-                array($item['title'],'text'),
-                array(array($cate_1),'cate'),                             
+                array($item['title'],'text'),                          
                 array($img,'image'),
                 array($item['price'],'text'),   
                 
@@ -401,19 +389,8 @@ function buy($db){
 	<div class="row">
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
-            '.$form->cate_group($db,'buy_cate',1).'
-        </div>
-        <div class="col-lg-12">
           '.$form->text('title',array('label'=>'Tên SP','required'=>true)).'
-            '.$form->text('meta_keyword',array('label'=>'Keyword <code>SEO</code>')).'
-            '.$form->textarea('meta_description',array('label'=>'Description <code>SEO</code>')).'
-            '.$form->number('price',array('label'=>'Price')).'
-            '.$form->number('storey',array('label'=>'Storey')).'
-            '.$form->number('beds',array('label'=>'Beds')).'
-            '.$form->number('landWidth',array('label'=>'Land Width')).'
-            '.$form->ckeditor('feature',array('label'=>'Điểm nổi bật')).'            
-            '.$form->ckeditor('content',array('label'=>'Mô tả chi tiết')).'
-            '.$form->ckeditor('manual',array('label'=>'Ghi chú')).'           
+            '.$form->ckeditor('feature',array('label'=>'Mô tả ngắn')).'             
         </div>
         <div class="col-lg-12">
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'

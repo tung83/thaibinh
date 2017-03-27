@@ -56,18 +56,13 @@ class about extends base{
     }
     
     function about_item($item){
-        $lnk=myWeb.$this->view;
          return '
             <div class="col-md-4 wow fadeIn animated about-col" data-wow-duration="1000ms">
                 <div class="about-item item">
-                    <a href="'.$lnk.'">
-                        <img src="'.webPath.$item['img'].'" class="img-responsive center-block"/>
-                    </a>               
+                        <img src="'.webPath.$item['img'].'" class="img-responsive center-block"/>     
                 </div>
                     <div class="item-title">
-                        <a href="'.$lnk.'">
                             <h3>'.$item['title'].'</h3>
-                        </a>
                         <div class="about-sum">
                                 <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
                         </div>

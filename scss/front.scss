@@ -42,7 +42,7 @@ a { color: $primary-color; @include animate( color, 320ms );
 }
 @media (min-width: 1200px){
     .container {
-        width: 1170px;
+        width: 1200px;
     }
 }
 #page-content table{
@@ -59,7 +59,7 @@ a { color: $primary-color; @include animate( color, 320ms );
 }
 .title-head {text-align: center; margin-bottom: 60px;
     > span {
-        font-size: 66px;
+        font-size: 51px;
         font-weight: 580;
         margin-top: 90px;
         margin-bottom: 10px;
@@ -88,14 +88,14 @@ a { color: $primary-color; @include animate( color, 320ms );
             Header Top content
     ------------------------------------------------
 */
-    .header-wrap{ background-color: #000; margin-bottom: 1px;
-        .header-top{ margin: 8px 0 12px 0; font-size: 20px; 
+    .header-wrap{ background-color: #000; margin-bottom: 1px; border-top: 5px solid $light-grey;
+        .header-top{ margin: 8px 0 12px 0; font-size: 18px; 
            .header-right{height: 73px; margin-top: 35px; width: 440px; float:right;
                 .hotline{ float:right; line-height: 40px;
                     span{ font-weight: bold;}
                     a{color: $dark-pink;}
                 }
-           }
+           }           
         }
     }
     
@@ -104,7 +104,8 @@ a { color: $primary-color; @include animate( color, 320ms );
         ------------------------------------------------
 */
     .menu-ground, .mobile-sub { background: $light-grey; }
-    .menu-ground{
+    .menu-ground{ 
+        .bigmegamenu{padding: 0 45px;}
         .wsmenu > .wsmenu-list > li > a.active { background: #ff578f !important; color: #fff !important; }
         .wsmenu > .wsmenu-list > li > a { color: #fff; text-transform: uppercase; border-radius: 0px; 
                                           font-weight: bold; 
@@ -122,12 +123,13 @@ a { color: $primary-color; @include animate( color, 320ms );
 }
 
 @media (min-width: 992px){
-    .wsmenu > .wsmenu-list > li > a { font-size: 18px; line-height: 90px; }
+    .wsmenu > .wsmenu-list > li > a { font-size: 16px; line-height: 77px; }
 }
 /* 
 	Footer
         ------------------------------------------------
 */
+
 footer { background-color: $light-white; padding: 60px 0 0; color: $grey;border-top: 7px solid #575757;
     a{ color: $grey; }
     .footer-content { margin-bottom: 60px;
@@ -136,7 +138,6 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;border-
             color: $dark-blue;
             width: 100%;
             font-size: 22px;
-            font-weight: bold;
             margin-bottom: 30px;
         }
         
@@ -162,9 +163,6 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;border-
 }
 
 @media (min-width: 992px){
-    .footer-col{
-         width: 20%;   
-    }
     .copyright { width: 660px!important;}
 }
 
@@ -474,19 +472,27 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;border-
 */
 .contact-wrap{ padding-bottom: 105px;
     .contact-left{
-        padding-right: 30px;
         > p{ background-color: #191919; color: #fff; margin-bottom: 0; padding: 10px;}
         .map-image{
             width: 100%;
         }
+        .thanks-text{color: #6c5417}
     }
-    .contact-right-header{
-        text-transform: uppercase;
-    }
-    .contact-form{
+    .contact-right-header{text-transform: uppercase;color: #6c5417}
+    .contact-form{color: #6c5417;
         .form-control{border-color: #6c5417; border-radius: 0;}
         .btn-primary{background-color: #ca256a; border-color: #b20f53; border-radius: 0;}
         .btn-primary.disabled{background-color: #d3407d; border-color: #ca256a;border-radius: 0;}
+        .purpose-check{
+            tr td:first-child{ padding-right: 25px;}
+        }
+    }
+}
+
+@media (min-width: 1060px){
+    .contact-wrap {
+        padding-left: 85px;
+        padding-right: 85px;
     }
 }
 /* 

@@ -146,16 +146,13 @@ class product extends base{
         $this->db->pageLimit=23;
         $list=$this->db->paginate('product',$page);
         $count=$this->db->totalCount;
-        $str.='<div class="product-list">'
-                . '<div class="row">';
-                    $str.=$this->product_cate_left_list();
+        $str.='<div class="product-list">';
         if($count>0){
             foreach($list as $key=>$item){
                 $str.=$this->product_item($item);
             }
         }        
-        $str.=      '</div>'
-                .'</div>'
+        $str.=  '</div>'
                 .'<div class="clearfix"></div>';
         
         $pg=new Pagination(array('limit'=>24,'count'=>$count,'page'=>$page,'type'=>0));  

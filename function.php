@@ -50,29 +50,6 @@ function menu($db,$view){
             $active=($view==$item['view'])?'active':'';
             $title=$item['title'];
             $lnk=myWeb.$item['view'];  
-            $db_cate_name = null;          
-            switch($item['view']){
-                case 'buy':
-                    $db_cate_name = 'buy_cate';                    
-                    break;
-                case 'sell':
-                    $db_cate_name = 'sell_cate';  
-            } 
-            if(isset($db_cate_name)){
-                $str.='
-                        <li><span class="wsmenu-click"><i class="wsmenu-arrow fa fa-angle-down"></i></span>
-                            <a href="'.$lnk.'" class="'.$active.'">'.$title.'<span class="arrow"></span></a>
-                            <ul class="wsmenu-submenu">';
-                    $cate=$db->where('active',1)->orderBy('ind','ASC')->orderBy('id')->get($db_cate_name,null,'id,title');
-                    foreach($cate as $cate_item){
-                        $lnk=myWeb.$item['view'].'/'.common::slug($cate_item['title']).'-p'.$cate_item['id'];                        
-                        $str.='                        
-                                <li><a href="'.$lnk.'"><i class="fa fa-angle-right"></i>'.$cate_item['title'].' </a></li>';
-                    }
-                    $str.=' </ul>
-                        </li>';
-                continue;
-            }
             $str.='
                 <li><a href="'.$lnk.'"  class="'.$active.'">'.$title.'</a></li>';
         }
@@ -408,17 +385,14 @@ function shadowBottomDent(){
 }
 
 function social($db){
-    $basic_config=$db->where('id',1)->getOne('basic_config','social_twitter, social_facebook, social_google_plus');
+    $basic_config=$db->where('id',1)->getOne('basic_config','social_twitter, social_facebook');
     $str.='
         <ul id="social_block"> 
             <li>
                 <a class="facebook-link" href="'.$basic_config['social_facebook'].'" target="_blank"><i class="fa fa-facebook"></i></a>
             </li>
             <li>
-                <a href="'.$basic_config['social_twitter'].'" target="_blank"><i class="fa fa-twitter"></i></a>
-            </li>
-            <li>
-                <a href="'.$basic_config['social_google_plus'].'" target="_blank"><i class="fa fa-google-plus"></i></a>			
+                <a href="'.$basic_config['social_twitter'].'" target="_blank"><i class="fa fa-instagram"></i></a>
             </li>
         </ul>
     ';

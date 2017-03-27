@@ -1,18 +1,8 @@
 <?php
 function mainProcess($db)
 {
-    switch($_GET['type']){
-        case 'sell_cate':
-            return sell_cate($db);
-            break;
-        case 'sell_cate_2':
-            return sell_cate_2($db);
-            break;
-        default:
-            if(isset($_GET['id'])) return sell_image($db);
-            else return sell($db);
-            break;
-    }
+    if(isset($_GET['id'])) return sell_image($db);
+    else return sell($db);
 }
 function sell_cate($db)
 {
@@ -358,9 +348,9 @@ function sell($db){
 	$str=$form->breadcumb($page_head);
 	$str.=$form->message($msg);
     
-    $str.=$form->search_area($db,$act,'sell_cate',$_GET['hint'],1);
+    $str.=$form->search_area($db,$act,'sell_cate',$_GET['hint'],0);
 
-    $head_title=array('Name','Category','Image','Price','Home','Show/Hide','Indicator');
+    $head_title=array('Name','Image','Price','Home','Show/Hide','Indicator');
 	$str.=$form->table_start($head_title);
     
     $page=isset($_GET["page"])?intval($_GET["page"]):1;
@@ -375,12 +365,10 @@ function sell($db){
     if($db->count!=0){
         $db_sub=$db;
         foreach($list as $item){
-            $cate_1=$db->where('id',$item['pId'])->where('lev',1)->getOne('sell_cate','id,title,pId');
             $img=$db->where('pId',$item['id'])->orderBy('ind','asc')->getOne('sell_image','img');
             if(trim($img['img'])==='') $img='holder.js/130x100';else $img=myPath.$img['img'];   
             $item_content = array(
-                array($item['title'],'text'),
-                array(array($cate_1),'cate'),                             
+                array($item['title'],'text'),                         
                 array($img,'image'),
                 array($item['price'],'text'),   
                 
@@ -400,9 +388,6 @@ function sell($db){
 	<form role="form" class="form" id="actionForm" name="actionForm" enctype="multipart/form-data" action="" method="post" data-toggle="validator">
 	<div class="row">
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
-        <div class="col-lg-12">
-            '.$form->cate_group($db,'sell_cate',1).'
-        </div>
         <div class="col-lg-12">
           '.$form->text('title',array('label'=>'Tên SP','required'=>true)).'
             '.$form->text('meta_keyword',array('label'=>'Keyword <code>SEO</code>')).'

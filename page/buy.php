@@ -19,15 +19,11 @@ class buy extends base{
             $str.='
             <div class="row buy-item item wow bounceIn animated" data-wow-duration="2s">
                 <div class="pull-right col-xs-3">
-                    <a href="'.$lnk.'">
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
-                    </a>               
                 </div>    
                 <div class="buy-item-left pull-right col-xs-9">
-                <a class href="'.$lnk.'">
                     <p class="item-title">'.$item['title'].'</p>                       
-                </a>'; 
-                $str.='<p class="news-item-sum">'.nl2br(common::str_cut($item['feature'],300)).'</p>'
+                    <p class="news-item-sum">'.nl2br(common::str_cut($item['feature'],300)).'</p>'
                         . '</div>';
              $str.='</div>';   
         }
@@ -57,20 +53,15 @@ class buy extends base{
         return $str;
     }
     function buy_item($item){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $img=$this->first_image($item['id']);        
         $str.= '
             <div class="col-md-6 buy-item-row wow fadeInLeft animated" data-wow-duration="1000ms"> 
                 <div class="buy-item-bound">
                     <div class="col-xs-3">
-                        <a href="'.$lnk.'" class="buy-item ">
-                            <img src="'.webPath.$img.'" class="img-responsive" alt="" title=""/>
-                        </a>     
+                            <img src="'.webPath.$img.'" class="img-responsive" alt="" title=""/> 
                     </div>
                     <div class="col-xs-7">
-                        <a href="'.$lnk.'" class="buy-item clearfix">
                             <p class="buy-title">'.$item['title'].'</p>
-                        </a>
                         <div class="buy-sum">
                             <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
                         </div>
@@ -144,12 +135,12 @@ class buy extends base{
         if($count>0){
             foreach($list as $key=>$item){
                 
-                if($key == 0 ||$key %2 == 1){
+                if($key %2 == 0){
                     $str.='<div class="container">'
                             . '<div class="row">';
                 }
                 $str.=$this->buy_item($item,$key);
-                if($key %2 == 0 || $key == count($list)){
+                if($key %2 == 1 || $key == count($list)){
                     $str.='</div>'
                         .'</div>';
                 }

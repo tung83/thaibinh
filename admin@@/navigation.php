@@ -22,14 +22,8 @@ function ad_menu()
 				);
 	//Submenu (parent,name,lnk)
 	$subNav=array(
-                    array(3,'Danh mục sản phẩm','type=product_cate'),
-                    array(3,'Danh sách sản phẩm','type=product'), 
-                    array(16,'Danh mục Buy','type=buy_cate'),
-                    array(16,'Danh sách Buy','type=buy'),
-                    array(17,'Danh mục Sell','type=sell_cate'),
                     array(6,'Danh sách Đối tác','type=partner'),
                     array(6,'Danh mục Logo','type=logo'),
-                    array(17,'Danh sách Sell','type=sell'),
                     /*array(6,'Danh mục dịch vụ','type=serv_cate'),
                     array(6,'Danh sách dịch vụ','type=serv'),*/ 
                     //array(8,'Danh mục khuyến mãi','type=promotion_cate'),
