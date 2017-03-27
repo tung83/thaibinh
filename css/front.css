@@ -59,6 +59,12 @@ a {
     padding: 3px 10px;
     color: #fff; }
 
+.fixed {
+  position: fixed !important;
+  width: 100%;
+  top: 0;
+  z-index: 99999; }
+
 #google-map {
   height: 440px; }
 
@@ -153,26 +159,28 @@ a {
             color: #d3528c; }
   .header .menu-ground, .header .mobile-sub {
     background: #3b4347; }
-  .header .menu-ground .bigmegamenu {
-    padding: 0 45px; }
-  .header .menu-ground .wsmenu > .wsmenu-list > li > a.active {
-    background: #ff578f !important;
-    color: #fff !important; }
-  .header .menu-ground .wsmenu > .wsmenu-list > li > a {
-    color: #fff;
-    text-transform: uppercase;
-    border-radius: 0px;
-    font-weight: bold;
-    background: transparent !important; }
-    .header .menu-ground .wsmenu > .wsmenu-list > li > a .arrow:after {
-      border-top-color: #fff !important;
-      top: 43px !important; }
-  .header .menu-ground .wsmenu-submenu {
-    top: 90px !important;
-    min-width: 185px;
-    background-color: transparent; }
-    .header .menu-ground .wsmenu-submenu a {
-      background: #ff578f !important; }
+  .header .menu-ground {
+    transition: all 1s ease; }
+    .header .menu-ground .bigmegamenu {
+      padding: 0 45px; }
+    .header .menu-ground .wsmenu > .wsmenu-list > li > a.active {
+      background: #ff578f !important;
+      color: #fff !important; }
+    .header .menu-ground .wsmenu > .wsmenu-list > li > a {
+      color: #fff;
+      text-transform: uppercase;
+      border-radius: 0px;
+      font-weight: bold;
+      background: transparent !important; }
+      .header .menu-ground .wsmenu > .wsmenu-list > li > a .arrow:after {
+        border-top-color: #fff !important;
+        top: 43px !important; }
+    .header .menu-ground .wsmenu-submenu {
+      top: 90px !important;
+      min-width: 185px;
+      background-color: transparent; }
+      .header .menu-ground .wsmenu-submenu a {
+        background: #ff578f !important; }
 
 .smallogo {
   background: #000; }
@@ -633,10 +641,10 @@ footer {
 */
 #wowslider-container1 .ws_bullets {
   bottom: 50% !important;
-  left: auto !important;
-  right: 40px !important; }
+  left: auto !important; }
   #wowslider-container1 .ws_bullets a {
-    background: #fff !important; }
+    background: #fff !important;
+    margin-bottom: 3px; }
     #wowslider-container1 .ws_bullets a.ws_selbull {
       background: #e02d85 !important;
       color: #e02d85 !important; }
@@ -651,7 +659,6 @@ footer {
   background-color: #000 !important;
   bottom: 30% !important;
   left: auto !important;
-  right: 40px !important;
   width: 550px;
   height: 180px;
   padding: 0 !important;

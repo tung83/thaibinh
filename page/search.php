@@ -77,7 +77,7 @@ function seach_button(){
     $str='
     <div class="form-group">    
         <button type="submit" class="btn btn-primary">
-          SEARCH <i class="fa fa-search" aria-hidden="true"></i> 
+          <i class="fa fa-search" aria-hidden="true"></i> SEARCH
         </button>    
     </div>
     ';
