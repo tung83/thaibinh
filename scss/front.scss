@@ -443,9 +443,7 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;border-
 #partner-section{background-color: #f7f7f7; padding: 85px 0;
     .partner-col{width: 20%;}
 }
-#slider-section{padding: 85px 0;
-    
-}
+#slider-section{padding: 85px 0; }
 /* 
 	About
         ------------------------------------------------
@@ -484,7 +482,7 @@ footer { background-color: $light-white; padding: 60px 0 0; color: $grey;border-
         }
         .thanks-text{color: #6c5417}
     }
-    .contact-right-header{text-transform: uppercase;color: #6c5417}
+    .contact-right-header{text-transform: uppercase;color: #6c5417; margin-top: 0}
     .contact-form{color: #6c5417;
         .form-control{border-color: #6c5417; border-radius: 0;}
         .btn-primary{background-color: #ca256a; border-color: #b20f53; border-radius: 0;}
