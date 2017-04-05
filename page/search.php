@@ -60,7 +60,7 @@ function select_options_max_price($db){
     $option_list = range(180000, 700000, 20000);
     $str='
     <div class="form-group">
-        <label>Min.Price</label>
+        <label>Max.Price</label>
         <select class="form-control form-inline" name="max-price" id="max-price" >
         <option value="">Any</option>';
     foreach($option_list as $item){

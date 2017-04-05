@@ -60,7 +60,9 @@
                                 Site map
                             </span>
                             <div>
+                                <img class="logo-footer" src="<?=frontPath?>logo2.jpg" alt="" style=""/>
                                 <?=foot_menu($db,$view)?>
+                                
                             </div>     
                         </div>
                     </div>
@@ -72,6 +74,13 @@
                             <div>
                                 <?=common::qtext($db,4)?>
                             </div> 
+                             <div id="counters">
+                                <?php
+                                    $vs=new visitors($db);
+                                ?>
+                                <div>Visitors Online: <?= $vs->getOnlineVisitors() ?></div>
+                                <div>All Visitors: <?= $vs->getCounter() ?></div>
+                            </div>
                         </div>
                     </div>
                 </div>  

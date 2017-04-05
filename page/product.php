@@ -73,7 +73,7 @@ class product extends base{
         $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $img=$this->first_image($item['id']);
         $str.='
-            <div class="col-md-3 wow fadeIn animated product-col" data-wow-duration="1000ms">
+            <div class="col-md-4 wow fadeIn animated product-col" data-wow-duration="1000ms">
                 <div class="product-item item">
                     <a href="'.$lnk.'">
                         <img src="'.webPath.$img.'" class="img-responsive center-block"/>
@@ -143,7 +143,7 @@ class product extends base{
             $this->db->where('pId',$pId);
         }
         $this->db_orderBy();
-        $this->db->pageLimit=23;
+        $this->db->pageLimit=24;
         $list=$this->db->paginate('product',$page);
         $count=$this->db->totalCount;
         $str.='<div class="product-list">';
@@ -216,34 +216,7 @@ class product extends base{
             </div>
                 <article class="product-one">
                 <h1>'.$item['title'].'</h1>';
-                    if(!isset($item['price']) || $item['price'] == 0){
-                        $str.='
-                        <p class="price"><span>Giá: </span>Liên hệ</p>';   
-                    }
-                    else if(isset($item['price_reduce']) && $item['price_reduce'] > 0){
-                        $str.='
-                        <p class="price-strike"><span>Giá gốc: </span><s>'.number_format($item['price'],0,',','.').'</s>&nbsp;₫</p>
-                        <p class="price"><span>Giảm Giá: </span><b>'.number_format($item['price_reduce'],0,',','.').'</b>&nbsp;₫</p>';                                
-                    }
-                    else{
-                        $str.='
-                        <p class="price"><span>Giá: </span><b>'.number_format($item['price'],0,',','.').'</b>&nbsp;₫</p>';                              
-                    }
-                $str.='<form class="form-horizontal" action="javascript:add_cart('.$item['id'].',$(\'#amount\').val())">
-                    <label for="">Số lượng:</label>
-                    <div class="number-spinner-container">
-                        <div class="input-group number-spinner ">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
-                            </span>
-                            <input type="text" id="amount" class="form-control text-center" value="1">
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
-                            </span>
-                        </div>
-                    </div>
-                    <button class="btn btn-default btn-cart"><i class="fa fa-shopping-cart"></i> ĐẶT MUA</button>         
-                </form>
+                $str.='
                 <p>'.$item['feature'].'</p>
                 </article>
                                  

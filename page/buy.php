@@ -12,20 +12,13 @@ class buy extends base{
                 </div>';
         $this->db->where('active',1)->where('home',1);
         $this->db_orderBy();
-        $list=$this->db->get('buy');   
+        $list=$this->db->get('buy',1);   
         foreach($list as $item){
-            $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
-            $img=$this->first_image($item['id']);
             $str.='
             <div class="row buy-item item wow bounceIn animated" data-wow-duration="2s">
-                <div class="pull-right col-xs-3">
-                        <img src="'.webPath.$img.'" class="img-responsive center-block"/>
-                </div>    
-                <div class="buy-item-left pull-right col-xs-9">
-                    <p class="item-title">'.$item['title'].'</p>                       
-                    <p class="news-item-sum">'.nl2br(common::str_cut($item['feature'],300)).'</p>'
-                        . '</div>';
-             $str.='</div>';   
+                              
+                    <p class="news-item-sum">'.$item['feature'].'</p>
+            </div>';   
         }
         return $str;
     }
@@ -52,21 +45,12 @@ class buy extends base{
         }
         return $str;
     }
-    function buy_item($item){
-        $img=$this->first_image($item['id']);        
+    function buy_item($item){      
         $str.= '
-            <div class="col-md-6 buy-item-row wow fadeInLeft animated" data-wow-duration="1000ms"> 
-                <div class="buy-item-bound">
-                    <div class="col-xs-3">
-                            <img src="'.webPath.$img.'" class="img-responsive" alt="" title=""/> 
-                    </div>
-                    <div class="col-xs-7">
-                            <p class="buy-title">'.$item['title'].'</p>
-                        <div class="buy-sum">
-                            <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-xs-12 wow fadeIn animated" data-wow-duration="1000ms">
+                <div>
+                    '.$item['content'].'
+                 </div>
             </div>';
         return $str;
     }

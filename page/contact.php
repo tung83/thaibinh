@@ -7,13 +7,7 @@ class contact extends base{
     function contact_insert(){
         $this->db->reset();
         if(isset($_POST['contact_send'])){
-            if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){
-                //your site secret key
-                $secret = '6LcaQQkUAAAAAMxjN-JsE3qRx1uhp-pJp9A42J_e';
-                //get verify response data
-                $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
-                $responseData = json_decode($verifyResponse);
-                if($responseData->success){
+            
                                 $name=htmlspecialchars($_POST['name']);
                                 $adds=htmlspecialchars($_POST['adds']);
                                 $phone=htmlspecialchars($_POST['phone']);
@@ -53,14 +47,7 @@ class contact extends base{
                                         <strong>Error!</strong> '. $e->getMessage() .
                                       '</div>'; 
                                 }
-                }
-                else{
-                    $errMsg = 'Robot verification failed, please try again.';
-                }
-            }
-            else{
-                $errMsg = 'Please click on the reCAPTCHA box.';
-            }            
+                     
         }
     }
     function contact(){
@@ -163,9 +150,6 @@ class contact extends base{
                                     <textarea name="content" id="content" required class="form-control"  placeholder="Message *" rows="8"></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
-                                <div class="form-group">    
-                                    <div class="g-recaptcha" data-sitekey="6LcaQQkUAAAAAB-OYdRvS3TsfqOdJWfTG6hQJ3TW" data-callback="recaptchaCallback"></div>
-                                </div> 
                                 <div class="form-group">
                                     <button type="submit" name="contact_send" class="btn btn-primary btn-md btn-custom submit-button">
                                         SEND

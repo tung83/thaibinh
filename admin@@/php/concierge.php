@@ -20,7 +20,7 @@ function concierge($db)
 	}
 	if(isset($_POST["addNew"])||isset($_POST["update"])) {
             $title=htmlspecialchars($_POST['title']);	   
-            $sum=htmlspecialchars($_POST['sum']);
+            $sum=str_replace("'","",$_POST['sum']);
             $content=str_replace("'","",$_POST['content']);
             $meta_kw=htmlspecialchars($_POST['meta_keyword']);
             $meta_desc=htmlspecialchars($_POST['meta_description']);
@@ -102,7 +102,7 @@ function concierge($db)
     
     $str.=$form->search_area($db,$act,'concierge_cate',$_GET['hint'],0);
     
-    $head_title=array('Tiêu đề','Hình ảnh','Hiện/Ẩn','STT');
+    $head_title=array('Tiêu đề','Hiện/Ẩn','STT');
 	$str.=$form->table_start($head_title);
 	
     $page=isset($_GET["page"])?intval($_GET["page"]):1;
@@ -116,7 +116,6 @@ function concierge($db)
         foreach($list as $item){
             $item_content = array(
                 array($item['title'],'text'),
-                array(myPath.$item['img'],'image'),
                 array($item['active'],'bool'),
                 array($item['ind'],'text')
             );
@@ -131,7 +130,8 @@ function concierge($db)
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
          '.$form->text('title',array('label'=>'Tiêu đề','required'=>true)).'      
-            '.$form->textarea('sum',array('label'=>'Mô tả ngắn','required'=>true)).'     
+            '.$form->ckeditor('sum',array('label'=>'Mô tả ngắn','required'=>true)).'     
+            '.$form->ckeditor('content',array('label'=>'Nội dung')).'
              
         </div>
         <div class="col-lg-12">

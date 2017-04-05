@@ -299,7 +299,7 @@ function concierge($db){
     common::page('concierge');
     $concierge=new concierge($db);
     $str.=search_form($db);
-    $str.=$concierge->top_content_sum(common::qtext($db,9));
+    $str.=$concierge->top_content();
     if(isset($_GET['id'])){
         $str.=$concierge->concierge_one(intval($_GET['id']));    
     }else{
@@ -312,7 +312,7 @@ function buy($db){
     common::page('buy');
     $buy=new buy($db);
     $str.=search_form($db);
-    $str.=$buy->top_content_sum(common::qtext($db,10));
+    $str.=$buy->top_content();
     if(isset($_GET['id'])){
         $str.=$buy->buy_one(intval($_GET['id']));    
     }else{
@@ -423,7 +423,8 @@ function gmap(){
                 var map = new google.maps.Map(document.getElementById("google-map"), {
                   zoom: 17,
                   fullscreenControl: true,
-                  center: addCenter
+                  center: addCenter,
+                    scrollwheel: false,
                 });
                 var marker = new google.maps.Marker({
                   position: companyAddress,
@@ -452,7 +453,9 @@ function search_form($db){
         '<div class="search-box">
             <div class="container">
                 <div class="row">
-                    <form class="form-horizontal search-form" role="form">'
+                    <form  id="search"  class="form-horizontal search-form" role="form">
+                        <input type="hidden" id="search-link" value="'.myWeb.search_view.'/" />'                                      
+                                    
                         . select_options($db, 'storey','storey', 'Storey')
                         . select_options($db, 'beds','min_beds', 'Min. Beds')
                         . select_options($db, 'beds','max_beds', 'Max. Beds')

@@ -33,9 +33,7 @@ function ad_menu()
                     array(12,"Footer","id=4")  ,                   
                     array(12,"Build summary","id=6"),                   
                     array(12,"About summary","id=7"),                    
-                    array(12,"Sell summary","id=8") ,                    
-                    array(12,"Concierge summary","id=9") ,                    
-                    array(12,"Buy summary","id=10")               
+                    array(12,"Sell summary","id=8")              
             
 				);
 	$size=sizeof($topNav);

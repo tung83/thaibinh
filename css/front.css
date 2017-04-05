@@ -87,10 +87,10 @@ a {
       width: 40px;
       height: 40px;
       padding: 7px 11px;
-      border: 1px solid #858585;
+      border: 1px solid #fff;
       border-radius: 50%; }
       #social_block li a i {
-        color: #858585; }
+        color: #fff; }
       #social_block li a.facebook-link {
         padding-left: 14px; }
 
@@ -129,7 +129,7 @@ a {
 */
 .header {
   background-color: #fff;
-  color: #858585;
+  color: #fff;
   /* 
               Header Top content
       ------------------------------------------------
@@ -201,18 +201,23 @@ footer {
   footer a {
     color: #858585; }
   footer .footer-content {
-    margin-bottom: 60px; }
+    margin-bottom: 16px; }
     footer .footer-content .footer-top-span {
       display: inline-block;
       color: #0c4da2;
       width: 100%;
       font-size: 22px;
       margin-bottom: 30px; }
+    footer .footer-content .logo-footer {
+      float: right;
+      padding-top: 5px; }
+    footer .footer-content #counters {
+      margin-top: 30px; }
     footer .footer-content ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      line-height: 28px; }
+      line-height: 32px; }
       footer .footer-content ul li:before {
         content: "\f0da";
         font-size: 12px;

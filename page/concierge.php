@@ -7,7 +7,7 @@ class concierge extends base{
         $this->db->reset();
         $this->db->where('active',1)->where('home',1);
         $this->db_orderBy();
-        $list=$this->db->get('concierge',5);
+        $list=$this->db->get('concierge',1);
         $str='
         <div class="ind-concierge">  
             <div class="container">
@@ -21,14 +21,10 @@ class concierge extends base{
                         </div>
                     </div>';
         foreach($list as $item){
-            $img=webPath.$item['img'];
-            if($img=='') $img='holder.js/126x100';
             $str.='
-                    <div class="col-md-2 col-sm-4 col-xs-12 concierge-col wow fadeIn animated" data-wow-duration="1000ms">
-                        <div class="concierge-item">
-                                <img src="'.$img.'" alt="'.$item['title'].'" class="img-responsive"/>
-                                <p class="concierge-item-title">'.common::str_cut($item['title'],30).'</p>
-                            <p class="concierge-item-sum">'.nl2br(common::str_cut($item['sum'],300)).'</p>
+                    <div class="col-xs-12 wow fadeIn animated" data-wow-duration="1000ms">
+                        <div class="">
+                            <p >'.$item['sum'].'</p>
                         </div>
                     </div>';   
         }
@@ -43,16 +39,10 @@ class concierge extends base{
     }
     function concierge_item($item){
          return '
-            <div class="col-md-4 wow fadeIn animated concierge-col" data-wow-duration="1000ms">
-                <div class="concierge-item item">
-                        <img src="'.webPath.$item['img'].'" class="img-responsive center-block"/>         
-                </div>
-                    <div class="item-title">
-                            <h3>'.$item['title'].'</h3>
-                        <div class="concierge-sum">
-                                <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
-                        </div>
-                    </div>
+            <div class="col-xs-12 wow fadeIn animated" data-wow-duration="1000ms">
+                <div>
+                    '.$item['content'].'
+                 </div>
             </div>';
        
     }
@@ -61,15 +51,11 @@ class concierge extends base{
         $this->db->reset();
         $this->db->where('active',1);
         $this->db_orderBy();
-        $this->db->pageLimit=limit;
-        $list=$this->db->paginate('concierge',$page);
-        $count=$this->db->totalCount;
+        $list=$this->db->get('concierge',1);
         $str.='<div class="concierge-list">';
-        if($count>0){
             foreach($list as $item){
                 $str.=$this->concierge_item($item);
             }
-        }        
         $str.='</div>';
         
         $pg=new Pagination(array('limit'=>pd_lim,'count'=>$count,'page'=>$page,'type'=>0));  

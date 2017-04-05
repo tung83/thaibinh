@@ -1,8 +1,7 @@
 <?php
 function mainProcess($db)
 {
-    if(isset($_GET['id'])) return buy_image($db);
-    else return buy($db);
+    return buy($db);
 }
 function buy_cate($db)
 {
@@ -350,7 +349,7 @@ function buy($db){
     
     $str.=$form->search_area($db,$act,'buy_cate',$_GET['hint'],0);
 
-    $head_title=array('Name','Image','Price','Home','Show/Hide','Indicator');
+    $head_title=array('Name','Home','Show/Hide','Indicator');
 	$str.=$form->table_start($head_title);
     
     $page=isset($_GET["page"])?intval($_GET["page"]):1;
@@ -365,21 +364,14 @@ function buy($db){
     if($db->count!=0){
         $db_sub=$db;
         foreach($list as $item){
-            $img=$db->where('pId',$item['id'])->orderBy('ind','asc')->getOne('buy_image','img');
-            if(trim($img['img'])==='') $img='holder.js/130x100';else $img=myPath.$img['img'];   
             $item_content = array(
-                array($item['title'],'text'),                          
-                array($img,'image'),
-                array($item['price'],'text'),   
+                array($item['title'],'text'),
                 
                 array($item['home'],'bool'),
                 array($item['active'],'bool'),
                 array($item['ind'],'text')
             );
-            $addition=array(
-                array('variable'=>array('act'=>$act,'type'=>$type,'id'=>$item['id']),'icon'=>'upload')
-            );
-            $str.=$form->table_body($item['id'],$item_content,$addition);
+            $str.=$form->table_body($item['id'],$item_content);
         }
     }
 	$str.=$form->table_end();                            
@@ -390,7 +382,8 @@ function buy($db){
     	<div class="col-lg-12"><h3>Cập nhật - Thêm mới thông tin</h3></div>
         <div class="col-lg-12">
           '.$form->text('title',array('label'=>'Tên SP','required'=>true)).'
-            '.$form->ckeditor('feature',array('label'=>'Mô tả ngắn')).'             
+            '.$form->ckeditor('feature',array('label'=>'Mô tả ngắn')).'     
+            '.$form->ckeditor('content',array('label'=>'Nội dung')).'              
         </div>
         <div class="col-lg-12">
             '.$form->checkbox('active',array('label'=>'Hiển Thị','checked'=>true)).'

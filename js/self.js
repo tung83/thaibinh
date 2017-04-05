@@ -1,8 +1,4 @@
-var recaptchaChecked = false;
-function recaptchaCallback() {
-    recaptchaChecked = true;
-    ToogleEnableSubmitButton();
-};
+
 
 function ToogleEnableSubmitButton(){
     var empty = false;
@@ -13,7 +9,7 @@ function ToogleEnableSubmitButton(){
         }
     });
 
-    if (empty || !recaptchaChecked) {
+    if (empty) {
         $('.submit-button').addClass('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
     } else {
         $('.submit-button').removeClass('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
@@ -119,10 +115,15 @@ $(function() {
       });
     $("#search").on('submit',function(e){
         e.preventDefault();
-        var val=$(this).find("#hint").val();
+        var storey = $('select[name="storey"]').val();
+        var min_beds = $('select[name="min_beds"]').val();
+        var max_beds = $('select[name="max_beds"]').val();
+        var land_width = $('select[name="land-width"]').val();
+        var min_price = $('select[name="min-price"]').val();
+        var max_price = $('select[name="max-price"]').val();
         var searchLink=$(this).find("#search-link").val();
 
-        $( location ).attr("href",searchLink+val);
+        $( location ).attr("href",searchLink+'s='+storey+'&mb='+min_beds+'&ab='+max_beds+'&l='+land_width+'&mp='+min_price+'&ap='+max_price);
     });
     
     $('.pagination>li>a:has(i)').addClass('has_icon');
@@ -210,6 +211,7 @@ $(function() {
             $(".ws-title").css('right',marginValue/2+'px');
             $(".ws_bullets").css('right',marginValue/2+'px');
         }
+        $(".ind-buy").height($(".ind-sell").height());
       });
       $(window).trigger('resize');
 });
