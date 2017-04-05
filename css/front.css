@@ -619,7 +619,8 @@ footer {
     color: #6c5417; }
   .contact-wrap .contact-right-header {
     text-transform: uppercase;
-    color: #6c5417; }
+    color: #6c5417;
+    margin-top: 0; }
   .contact-wrap .contact-form {
     color: #6c5417; }
     .contact-wrap .contact-form .form-control {
