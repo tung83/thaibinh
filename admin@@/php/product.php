@@ -279,7 +279,7 @@ function product($db){
         $home=$_POST['home']=='on'?1:0;
         $ind=intval($_POST['ind']);
         $price=intval($_POST['price']);
-        $storey=intval($_POST['storey']);
+        $storey=htmlspecialchars($_POST['storey']);
         $beds=intval($_POST['beds']);
         $landWidth=intval($_POST['landWidth']);
         $pId=intval($_POST['frm_cate_1']);
@@ -317,8 +317,7 @@ function product($db){
                     'title'=>$title,'content'=>$content,
                     'manual'=>$manual,
                     'feature'=>$feature,'meta_keyword'=>$meta_kw,
-                    'meta_description'=>$meta_desc,
-                    'price'=>$price,'price_reduce'=>$price_reduce,                    
+                    'meta_description'=>$meta_desc,                   
                     'home'=>$home,'active'=>$active,'pId'=>$pId,'ind'=>$ind,'price'=>$price                   
                     ,'storey'=>$storey,'beds'=>$beds,'landWidth'=>$landWidth
                 );
@@ -393,7 +392,7 @@ function product($db){
             '.$form->text('meta_keyword',array('label'=>'Keyword <code>SEO</code>')).'
             '.$form->textarea('meta_description',array('label'=>'Description <code>SEO</code>')).'
             '.$form->number('price',array('label'=>'Price')).'
-            '.$form->number('storey',array('label'=>'Storey')).'
+            '.$form->select_options($db, 'storey','storey', 'Storey').' 
             '.$form->number('beds',array('label'=>'Beds')).'
             '.$form->number('landWidth',array('label'=>'Land Width')).'
             '.$form->ckeditor('feature',array('label'=>'Điểm nổi bật')).'            

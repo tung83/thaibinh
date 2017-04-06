@@ -212,6 +212,7 @@ class  form{
         }else{          
             $dimension.=' type="text"';            
         }
+        $dimension.='step="any"';
         $dimension.=' name="'.$name.'" id="'.$name.'"';
         $dimension.=$this->required($required);
         $dimension.=$this->disabled($disabled);
@@ -523,6 +524,26 @@ class  form{
             $new_arr[]=$val.'='.$key;
         }
         return implode($glue,$new_arr);
+    }
+    function select_options($db,$name,$field_name, $label,$required=false){
+        $value = $this->get($field_name);
+        $list_string=$db->where('active',1)->where('keyName',$name)->getOne('options','list');
+        $option_list = explode(',', $list_string['list']);
+        $str='
+        <div class="form-group">
+            <label>'.$label.'</label>
+            <select class="form-control form-inline" name="'.$field_name.'" id="'.$field_name.'" >
+            <option value=""></option>';
+        foreach($option_list as $item){            
+            if($item==$value) $slt=' selected';else $slt='';
+            $str.='<option value="'.$item.'"'.$slt.'>'.$item.'</option>';
+        }
+        $str.='
+            </select>
+            <div class="help-block with-errors"></div>
+        </div>
+        ';
+        return $str;
     }
  }
 ?>

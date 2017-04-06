@@ -344,8 +344,6 @@ function product($db){
     $str.=$pd->top_content_sum(common::qtext($db,6));
     if(isset($_GET['id'])){
         $str.=$pd->product_one(intval($_GET['id']));    
-    }elseif(isset($_GET['hint'])){
-        $str.=$pd->product_search();    
     }
     else{
         $str.=$pd->product_cate();
@@ -355,18 +353,15 @@ function product($db){
     return $str;
 }
 function search($db){
-    $hint=$_GET['hint'];
     $str.='
-    <section id="page">';
-    common::load('search','page');
-    $obj = new search($db,$hint);
-    $obj->add('product','Sản Phẩm','san-pham');
-    $obj->add('facility','Thiết bị','thiet-bi');
-    $obj->add('project','Dự Án','du-an');
-    $obj->add('career','Tuyển Dụng','tuyen-dung');
-    $str.=$obj->output();
-    $str.='
-    </section>';
+    <section id="search-page">';  
+    $str.=search_form($db);
+    common::page('product');
+    $pd=new product($db);
+    $str.=$pd->product_search($db);    
+    common::page('sell');
+    $pd=new sell($db);
+    $str.=$pd->sell_search($db);   
     return $str;
 }
 function shadowBottom(){

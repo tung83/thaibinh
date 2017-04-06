@@ -14,7 +14,7 @@ RewriteRule .* - [L]
 RewriteRule ^$ index.php?
 #product paging
 RewriteRule ^(tim-kiem|search)/page([0-9]+)/(.*)$ index.php?&view=$1&page=$2&hint=$3
-RewriteRule ^(tim-kiem|search)/(.*)$ index.php?&view=$1&hint=$2
+RewriteRule ^(tim-kiem|search)/s=([a-zA-Z0-9_-]*)&mb=([a-zA-Z0-9_-]*)&ab=([a-zA-Z0-9_-]*)&l=([\.a-zA-Z0-9_-]*)&mp=([a-zA-Z0-9_-]*)&ap=([a-zA-Z0-9_-]*)$ index.php?&view=$1&storey=$2&minBeds=$3&maxBeds=$4&landWidth=$5&minPrice=$6&maxPrice=$7
 RewriteRule ^([a-zA-Z0-9_-]+)/page([0-9]+)$ index.php?&view=$1&page=$2
 RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]*)-p([0-9]+)/page([0-9]+)$ index.php?&view=$1&pId=$3&page=$4
 

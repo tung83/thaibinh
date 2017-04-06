@@ -168,18 +168,51 @@ class product extends base{
         return $str;
     }
     
-    function product_search(){
+    function product_search($db){
+        $str.='
+                <div class="title-head">
+                    <span>'.$this->title.'
+                    </span>
+                    <p class="sub-sum"><span>'
+                        .common::qtext($db,6).
+                    '</span></p>
+                </div>';
         $page=isset($_GET['page'])?intval($_GET['page']):1;
         $this->db->reset();
         $this->db->where('active',1);
-        $this->db->where('title','%'.$_GET['hint'].'%', 'like');        
+        $searchStr='';
+        if($_GET['storey'] !=""){
+            $this->db->where('storey',$_GET['storey']); 
+            $searchStr.=" Storey: ".$_GET['storey'];
+        }
+        
+        if($_GET['minBeds'] !=""){
+            $this->db->where('beds',$_GET['minBeds'], '>='); 
+            $searchStr.=" Min Beds: ".$_GET['minBeds'];
+        }
+        if($_GET['maxBeds'] !=""){
+            $this->db->where('beds',$_GET['maxBeds'], '<='); 
+            $searchStr.=" Max Beds: ".$_GET['maxBeds'];
+        }
+        if($_GET['landWidth'] !=""){
+            $this->db->where('landWidth',$_GET['landWidth']); 
+            $searchStr.=" Land Width: ".$_GET['landWidth'];
+        }
+        if($_GET['minPrice'] !=""){
+            $this->db->where('price',$_GET['minPrice'], '>='); 
+            $searchStr.=" Min Price: ".$_GET['minPrice'];
+        }
+        if($_GET['maxPrice'] !=""){
+            $this->db->where('price',$_GET['maxPrice'], '>='); 
+            $searchStr.=" Max Price: ".$_GET['maxPrice'];
+        }
         $this->db_orderBy();
-        $this->db->pageLimit=24;
+        $this->db->pageLimit=200;
         $list=$this->db->paginate('product',$page);        
         $count=$this->db->totalCount;
        $str.='<div class="alert alert-success"><i class="icon fa fa-check"></i>
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                Có '.$count. ' kết quả với từ khoá <b>"'.$_GET['hint'].'"</b>
+                Có '.$count. ' kết quả với từ khoá<b>"'.$searchStr.'"</b>
               </div>';
         $str.='<div class="product-list">'
                 . '<div class="row">';
@@ -192,7 +225,7 @@ class product extends base{
                 .'</div>'
                 .'<div class="clearfix"></div>';
         
-        $pg=new Pagination(array('limit'=>24,'count'=>$count,'page'=>$page,'type'=>0));  
+        $pg=new Pagination(array('limit'=>200,'count'=>$count,'page'=>$page,'type'=>0));  
              
             $pg->defaultUrl = myWeb.search_view.'/'.$_GET['hint'];
             $pg->paginationUrl = myWeb.search_view.'/page[p]'.'/'.$_GET['hint'];

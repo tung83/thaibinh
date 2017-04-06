@@ -21,9 +21,11 @@
 
         switch($view){
             case 'build':
+                echo product($db);
+                break;
             case 'search':
             case 'tim-kiem':
-                echo product($db);
+                echo search($db);
                 break;
             case 'buy':
                 echo buy($db);
